@@ -1,0 +1,22 @@
+{
+  "name": "drupal/shopsPlus",
+  "description": "Shops Plus Drupal 8 Theme",
+  "type": "drupal-theme",
+  "homepage": "http://drupal.org/project/shopsPlus",
+  "authors": [
+    {
+      "name": "Richmond Page",
+      "email": "rpage@bwm.com",
+      "homepage": "http://bwm.com",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/shopsPlus",
+    "irc": "irc://irc.freenode.org/drupal-contribute",
+    "source": "http://cgit.drupalcode.org/shopsPlus"
+  },
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": {}
+}

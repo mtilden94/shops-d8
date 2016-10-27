@@ -1,0 +1,9 @@
+//==========================================================================
+// SMACSS structure based on Drupal 8 Guide: 
+// http://savaslabs.com/2015/08/21/sassy-drupal-theming-part-1.html
+//==========================================================================
+@import "config/config";
+@import "base/base";
+@import "components/components";
+@import "layout/layout-grid";
+@import "theme/theme";

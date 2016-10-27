@@ -1,0 +1,28 @@
+// Navigation styles
+.menu--main{
+  
+  ul.menu{
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    
+    li{
+      list-style-type: none;
+      display: inline-block;
+      
+      a{
+        display: inline-block;
+        padding: $menu-padding;
+        color: $menu-color;
+        background-color: $menu-background;
+        
+        &:hover{
+          color: $menu-color-hover;
+          background-color: $menu-background-hover;
+        }
+      }
+    }
+  }
+}

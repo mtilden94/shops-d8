@@ -1,0 +1,26 @@
+// Footer Menu
+.menu--footer{
+  
+  ul.menu{
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    
+    li{
+      list-style-type: none;
+      display: inline-block;
+      
+      &:before{
+        content: "|";
+        display: inline-block;
+        margin-right: 0.5em;
+      }
+      
+      &:nth-child(1):before{
+        content: "";
+      }
+    }
+  }
+}

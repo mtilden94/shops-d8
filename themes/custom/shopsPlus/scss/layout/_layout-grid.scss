@@ -1,0 +1,220 @@
+// Layout
+// ------
+// Using a negative margin technique, adapted from ZEN. The page is loaded by
+// this order:
+
+// 1. Header
+// 2. Content
+// 3. Navigation menus
+// 4. Sidebar Left
+// 5. Sideabr Right
+//
+// Layout rules.
+// (Disclaimer: do not change if you're not sure you know what you're doing.)
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+.container{
+  @include outer-container;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+#content {
+  
+  .no-sidebars & {
+    @include media($mobile) {
+      @include span-columns($mobile-cols);
+    }
+    @include media($tablet) {
+      @include span-columns($tablet-cols);
+    }
+    @include media($desktop) {
+      @include span-columns($fullsize-cols);
+    }
+  }
+  
+  //One, right column
+  .one-sidebar.sidebar-second & {
+    @include media($mobile) {
+      
+      //need an if statement here if it goes full width at mobile
+      //-------------------------------------------------------------------------------------------------------
+      @if $mobile-cols - map-get($dl-right-col, mobile) == 0{
+        @include span-columns($mobile-cols);
+      } @else {
+        @include span-columns($mobile-cols - map-get($dl-right-col, mobile));
+      }
+    }
+    
+    @include media($tablet) {
+      @include span-columns( $tablet-cols - map-get($dl-right-col, tablet) );
+    }
+    @include media($desktop) {
+      @include span-columns( $fullsize-cols - map-get($dl-right-col, fullsize) );
+    }
+  }
+  
+  //One, Left column
+  .one-sidebar.sidebar-first & {
+    @include media($mobile) {
+      
+      //need an if statement here if it goes full width at mobile
+      //-------------------------------------------------------------------------------------------------------
+      @if $mobile-cols - map-get($dl-left-col, mobile) == 0{
+        @include span-columns($mobile-cols);
+        @include shift(0);
+      } @else {
+        @include span-columns($mobile-cols - map-get($dl-left-col, mobile));
+        @include shift(map-get($dl-left-col, mobile));
+      }
+    }
+    
+    @include media($tablet){
+      @if $tablet-cols - map-get($dl-left-col, tablet) == 0{
+        @include span-columns($tablet-cols);
+          @include shift(0);
+        } @else {
+        @include media($tablet) {
+          @include span-columns( $tablet-cols - map-get($dl-left-col, tablet) );
+          @include shift( $tablet-cols - ($tablet-cols - map-get($dl-left-col, tablet)) );
+        }
+      }
+      
+      @include media($desktop) {
+        @include span-columns( $fullsize-cols - map-get($dl-left-col, fullsize) );
+        @include shift( $fullsize-cols - ($fullsize-cols - map-get($dl-left-col, fullsize)) );
+      }
+    }
+    
+  }
+  
+  //Both columns
+  .two-sidebars & {
+    @include media($mobile) {
+      
+      //need an if statement here if it goes full width at mobile
+      //-------------------------------------------------------------------------------------------------------
+      @if  $mobile-cols - map-get($dl-both-col, mobile-lt) - map-get($dl-both-col, mobile-rt) <= 0{
+        @include span-columns($mobile-cols);
+        @include shift(0);
+      } @else {
+        @include span-columns( $mobile-cols - map-get($dl-both-col, mobile-lt) - map-get($dl-both-col, mobile-rt) );
+        @include shift( map-get($dl-both-col, mobile-lt) );
+      }
+      
+    }
+    
+    @include media($tablet) {
+      //@include span-columns( $tablet-cols - map-get($dl-both-col, tablet) * 2 );
+      //@include shift( $tablet-cols - ($tablet-cols - map-get($dl-both-col, tablet)) );
+      
+      @if  $tablet-cols - map-get($dl-both-col, tablet-lt) - map-get($dl-both-col, tablet-rt) <= 0{
+        @include span-columns($tablet-cols);
+        @include shift(0);
+      } @else {
+        @include span-columns( $tablet-cols - map-get($dl-both-col, tablet-lt) - map-get($dl-both-col, tablet-rt) );
+        @include shift( map-get($dl-both-col, tablet-lt) );
+      }
+      
+    }
+    @include media($desktop) {
+      //@include span-columns( $fullsize-cols - (map-get($dl-both-col, fullsize) * 2) );
+      //@include shift( $fullsize-cols - ($fullsize-cols - map-get($dl-both-col, fullsize)) );
+      
+      @if  $fullsize-cols - map-get($dl-both-col, fullsize-lt) - map-get($dl-both-col, fullsize-rt) <= 0{
+        @include span-columns($fullsize-cols);
+        @include shift(0);
+      } @else {
+        @include span-columns( $fullsize-cols - map-get($dl-both-col, fullsize-lt) - map-get($dl-both-col, fullsize-rt) );
+        @include shift( map-get($dl-both-col, fullsize-lt) );
+      }
+    }
+  }
+}
+
+#sidebar-first {
+  
+  @include media($mobile) {
+    
+    //both columns active
+    @include span-columns( map-get($dl-both-col, mobile-lt) );
+    @include shift( -1 * ($mobile-cols - map-get($dl-both-col, mobile-rt)) );
+    
+    //Left side only
+    .sidebar-first & {
+      @if $mobile-cols - map-get($dl-left-col, mobile) == 0{
+        @include shift(0);
+      } @else {
+        @include shift(-1 * $mobile-cols);
+      }
+    }
+  }
+  
+  @include media($tablet) {
+    
+    //both columns active
+    @include span-columns( map-get($dl-both-col, tablet-lt) );
+    @include shift( -1 * ($tablet-cols - map-get($dl-both-col, tablet-rt)) );
+    
+    //Left side only
+    .sidebar-first & {
+      @if $tablet-cols - map-get($dl-left-col, tablet) == 0{
+        @include shift(0);
+      } @else {
+        @include span-columns( map-get($dl-left-col, tablet) );
+        @include shift(-1 * $tablet-cols);
+      }
+    }
+  }
+  
+  @include media($desktop) {
+    @include span-columns( map-get($dl-both-col, fullsize-lt) );
+    @include shift( -1 * ($fullsize-cols - map-get($dl-both-col, fullsize-rt)) );
+    
+    .sidebar-first & {
+      @include span-columns( map-get($dl-left-col, fullsize) );
+      @include shift(-1 * $fullsize-cols);
+    }
+  }
+}
+
+#sidebar-second {
+  @include media($mobile) {
+    @include span-columns( map-get($dl-both-col, mobile-rt) );
+    @include shift(0);
+    .sidebar-second & {
+      @include span-columns( map-get($dl-right-col, mobile) );
+    }
+  }
+  @include media($tablet) {
+    @include span-columns( map-get($dl-both-col, tablet-rt) );
+    @include shift(0);
+    .sidebar-second & {
+      @include span-columns( map-get($dl-right-col, tablet) );
+    }
+  }
+  @include media($desktop) {
+    @include span-columns( map-get($dl-both-col, fullsize-rt) );
+    @include shift(0);
+    .sidebar-second & {
+      @include span-columns( map-get($dl-right-col, fullsize) );
+    }
+  }
+}
+
+
+#footer{
+  float: none;
+  clear: both;
+}
+
+
+// Layout Helpers
+#header,
+#footer,
+.mission,
+.breadcrumb,
+.node{
+  clear: both
+}

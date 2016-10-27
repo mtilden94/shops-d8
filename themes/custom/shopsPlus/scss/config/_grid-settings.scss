@@ -1,0 +1,46 @@
+@import "../lib/neat/neat-helpers";
+
+
+//==========================================================================
+// Bourbon grid display. Set to "true" to turn on.
+//==========================================================================
+// $visual-grid: false
+// $visual-grid-color: #EEEEEE
+// $visual-grid-index: back
+// $visual-grid-opacity: 0.4
+
+
+
+
+//==========================================================================
+// Define the Drupal columns / breakpoints
+//==========================================================================
+
+// Setup the column, grid, and gutter amounts.
+$column: 101px;
+$gutter: 20px;
+$grid-columns: 12;
+$max-width: 1400px;
+
+//number of columns per breakpoint
+$mobile-cols: 4;
+$tablet-cols: 12;
+$fullsize-cols: 12;
+
+// Columns for drupal left/right cols (center is determined by those values and number of cols per breakpoint)
+// NEVER MAKE YOUR COLUMNS GREATER THAN THE TOTAL NUMBER OF COLUMNS!!!!
+
+$dl-left-col: (fullsize: 4, tablet: 4, mobile: 4);
+$dl-right-col: (fullsize: 4, tablet: 4, mobile: 4);
+$dl-both-col: (
+  fullsize-lt: 3, tablet-lt: 4, mobile-lt: 4, 
+  fullsize-rt: 3, tablet-rt: 4, mobile-rt: 4
+);
+
+
+//All your breakpoints:
+$mobile: new-breakpoint(min-width 1px $mobile-cols); //required
+$tablet: new-breakpoint(min-width 768px $tablet-cols); //required
+$tablet-wide: new-breakpoint(min-width 1024px $tablet-cols);
+$desktop: new-breakpoint(min-width 1040px $fullsize-cols); //required
+$fullsize: new-breakpoint(min-width $max-width $fullsize-cols);

@@ -1,0 +1,17 @@
+// Tabs.
+ul.tabs{
+  width: 100%;
+  margin: 0 0 5px;
+  border-bottom: $base-border;
+
+  li{
+    display: inline-block
+  }
+
+  a{
+    display: block;
+    border: $base-border;
+    border-bottom: 0;
+    border-radius: $base-border-radius $base-border-radius 0 0;
+  }
+}
