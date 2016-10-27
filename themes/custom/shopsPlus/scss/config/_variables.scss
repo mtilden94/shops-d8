@@ -3,7 +3,7 @@ $medium-screen: 600px;
 $large-screen: 900px;
 
 // Typography
-$base-font-family: $font-stack-system;
+$base-font-family: "Gill Sans W01", $font-stack-system;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
@@ -23,10 +23,13 @@ $base-z-index: 0;
 //-----------------------------------------------------
 $white: #FFF;
 $black: #000;
-$blue: #1565c0;
-$dark-gray: #333;
-$medium-gray: #999;
-$light-gray: #ddd;
+$blue: #002e6c;
+$light-blue: #8bd8f4;
+$green: #02807f;
+$red: #b90b2e;
+$dark-gray: #555;
+$medium-gray: #ccc;
+$light-gray: #eee;
 
 // Font Colors
 $base-font-color: $dark-gray;
@@ -41,14 +44,14 @@ $base-accent-color: $blue;
 
 //Message Colors
 $message-color: $light-gray;
-$error-color: #C00;
+$error-color: $red;
 $warning-color: #FC0;
-$status-color: #3C0;
+$status-color: $green;
 
 //Main Menu
-$menu-background: $base-accent-color;
-$menu-background-hover: darken($base-accent-color, 5%);
-$menu-color: $light-font-color;
+$menu-background: $white;
+$menu-background-hover: $light-gray;
+$menu-color: $base-font-color;
 $menu-color-hover: $menu-color;
 $menu-padding: .5em 1.5em;
 

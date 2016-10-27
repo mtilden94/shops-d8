@@ -8,6 +8,7 @@ package: Core
 libraries:
   - core/normalize
   - shopsPlus/global
+  - shopsPlus/fonts
 
 
 regions:

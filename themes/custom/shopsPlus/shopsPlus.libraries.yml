@@ -1,12 +1,12 @@
 global:
   version: VERSION
   css:
-    base:
-      css/base/base.css: {}
-    layout:
-      css/layout/layout.css: {}
-    component:
-      css/components/components.css: {}
+  #  base:
+  #    css/base/base.css: {}
+  #  layout:
+  #    css/layout/layout.css: {}
+  #  component:
+  #    css/components/components.css: {}
     theme:
       css/style.css: {}
       css/print.css: { media: print }
@@ -20,6 +20,16 @@ global:
   # Uncomment the code above to load scripts.js file on all pages. This file also requires JQuery to be
   # loaded on all pages. Consider implimenting your scripts through theme libraries if you wish to
   # avoid this. https://www.drupal.org/developing/api/8/assets
+
+fonts:
+  license:
+    name: SIL Open Font License, 1.1
+    url: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+  css:
+    theme:
+      //fast.fonts.net/cssapi/9d2b2205-5f71-4322-9dea-cb603b24bcb1.css: { type: external }
+      css/style.css: {}
+
 
 #tabs:
 #  version: VERSION

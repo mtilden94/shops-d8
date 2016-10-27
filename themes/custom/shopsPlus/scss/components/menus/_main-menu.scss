@@ -17,6 +17,7 @@
         padding: $menu-padding;
         color: $menu-color;
         background-color: $menu-background;
+        text-transform: uppercase;
         
         &:hover{
           color: $menu-color-hover;

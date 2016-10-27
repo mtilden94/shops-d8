@@ -1,8 +1,23 @@
-// Site name.
+//wrapper around logo and name
+#block-shopsplus-branding{
+  float: left;
+}
+
+//logo
+.site-logo{
+  display: block;
+  width: 180px;
+  box-sizing: content-box;
+  padding: 20px;
+  
+  img{
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Site name
 .site-name{
-  font-size: 2.2em;
-  line-height: 1.3em;
-  font-weight: 300;
-  padding: 0 0 0.5em;
-  margin: 0;
+  display: none;
 }
