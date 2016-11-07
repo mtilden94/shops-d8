@@ -28,7 +28,9 @@ fonts:
   css:
     theme:
       //fast.fonts.net/cssapi/9d2b2205-5f71-4322-9dea-cb603b24bcb1.css: { type: external }
+      https://s3.amazonaws.com/icomoon.io/49365/ShopsPlus/style.css?xw71q5: { type: external }
       css/style.css: {}
+
 
 
 #tabs:
