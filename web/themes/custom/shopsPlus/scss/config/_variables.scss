@@ -3,11 +3,14 @@ $medium-screen: 600px;
 $large-screen: 900px;
 
 // Typography
-$base-font-family: "Gill Sans W01", $font-stack-system;
-$heading-font-family: $base-font-family;
+
+$base-font-family: "SourceSansPro", $font-stack-system;
+$heading-font-family: "Gill Sans W01", $base-font-family;
 
 // Font Sizes
 $base-font-size: 1em;
+$tablet-font-size: 1.125em;
+$full-font-size: 1.4em;
 
 // Line height
 $base-line-height: 1.5;
@@ -15,7 +18,7 @@ $heading-line-height: 1.2;
 
 // Other Sizes
 $base-border-radius: 3px;
-$base-spacing: $base-line-height * 1em;
+$base-spacing: $base-line-height * 1.7em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
@@ -28,12 +31,14 @@ $light-blue: #8bd8f4;
 $green: #02807f;
 $red: #b90b2e;
 $dark-gray: #555;
+$dark-gray2: #333;
 $medium-gray: #ccc;
 $light-gray: #eee;
+$heading-color:#04326e;
 
 // Font Colors
 $base-font-color: $dark-gray;
-$action-color: $blue;
+$action-color: $green;
 $light-font-color: $white;
 
 // Background Colors
@@ -50,9 +55,9 @@ $status-color: $green;
 
 //Main Menu
 $menu-background: $white;
-$menu-background-hover: $light-gray;
-$menu-color: $base-font-color;
-$menu-color-hover: $menu-color;
+$menu-background-hover: $blue;
+$menu-color: $dark-gray2;
+$menu-color-hover: $white;
 $menu-padding: .5em 1.5em;
 
 

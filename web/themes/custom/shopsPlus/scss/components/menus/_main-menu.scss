@@ -1,6 +1,6 @@
 // Navigation styles
 .menu--main{
-  
+  font-weight: 600;
   ul.menu{
     display: block;
     margin: 0;
@@ -14,16 +14,37 @@
       
       a{
         display: inline-block;
-        padding: $menu-padding;
-        color: $menu-color;
-        background-color: $menu-background;
+        color: $dark-gray2;
         text-transform: uppercase;
-        
+        text-decoration: none;
         &:hover{
           color: $menu-color-hover;
           background-color: $menu-background-hover;
         }
       }
+    }
+  }
+  @include media($fullsize){
+    font-size: 18px;
+    line-height: 1em;
+    width: 100%;
+    float: left;
+    margin-left: -200px;
+    margin-right: -180px;
+
+    ul.menu{
+      text-align: center;
+      display: block;
+      margin-left: 200px;
+      margin-right: 180px;
+      li{
+
+        a{
+          padding: 38px 20px 33px;
+        }
+
+      }
+
     }
   }
 }

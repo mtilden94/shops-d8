@@ -1,11 +1,44 @@
 // THEME: purely visual styling (“look-and-feel”) for a component.
 //==========================================================================
 
-#header{
+#header {
   background-color: $secondary-background-color;
+  border: 1px solid $medium-gray;
   border-top: 6px solid $green;
-  
-  .container{
+  min-height: 75px;
+  .container {
     max-width: 100%;
+    padding: 0;
+  }
+  #block-linktocontactpage {
+    float: right;
+    width: 89px;
+    height: 89px;
+    border-left: 1px solid $medium-gray;
+    overflow: hidden;
+    text-indent: -200px;
+    a {
+      background-image: url('../images/optimized/contact.svg');
+      background-position: 50%;
+      background-repeat: no-repeat;
+      display: block;
+      min-height: 89px;
+      &:hover {
+    background-color: $blue;
+        background-image: url('../images/optimized/contact-white.svg');
+      }
+    }
+  }
+}
+
+@include media($tablet) {
+  #header {
+    min-height: 90px;
+  }
+}
+
+@include media($fullsize) {
+  #header {
+    min-height: 96px;
   }
 }

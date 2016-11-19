@@ -1,0 +1,82 @@
+#block-shopsplus-search {
+  display: none;
+}
+
+@include media($tablet) {
+  #block-shopsplus-search {
+    float: right;
+    position: relative;
+    display: block;
+    width: 89px;
+    border-left: 1px solid $medium-gray;
+    .form-item {
+      opacity: 0;
+      width: 0px;
+      position: absolute;
+      overflow: hidden;
+      right: 0;
+      top: 0;
+      background-color: $blue;
+      height: 89px;
+      transition: width 0.5s ease-in-out;
+      input.form-search {
+        padding: 5px 0 5px 20px;
+        border: 0;
+        background-color: $blue;
+        color: $light-gray;
+        margin: 26px 0 0;
+        width: 200px;
+        text-transform: uppercase;
+        font-size: 18px;
+        height: 24px;
+        &:focus {
+          border: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .open-form .form-item {
+      input.form-search{
+        position: relative;
+      }
+      width: 325px;
+      opacity: 1;
+    }
+    .form-submit {
+      background-image: url('../images/optimized/search-icon.png');
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-color: transparent;
+      width: 89px;
+      height: 89px;
+      overflow: hidden;
+      text-indent: -200px;
+      padding: 0;
+      border-radius: 0;
+      &:hover{
+        background-image: url('../images/optimized/search-icon-white.png');
+        background-color: $blue;
+      }
+      &:focus {
+        border: 0; box-shadow: none;
+        outline: none;
+      }
+    }
+    .open-form .form-submit {
+      position: absolute;
+      z-index: 1;
+      right: -1px;
+      top: 0;
+      background-image: url('../images/optimized/search-icon-white.png');
+      &:hover{
+        background-color: shade($blue, 25%);
+      }
+    }
+  }
+}
+
+@include media($fullsize) {
+  #block-shopsplus-search {
+
+  }
+}

@@ -6,9 +6,9 @@
 //logo
 .site-logo{
   display: block;
-  width: 180px;
+  width: 137px;
   box-sizing: content-box;
-  padding: 20px;
+  padding: 15px 0 0 19px;
   
   img{
     display: block;
@@ -20,4 +20,14 @@
 // Site name
 .site-name{
   display: none;
+}
+
+@include media($tablet){
+  .site-logo{
+    width: 180px;
+    padding: 22px 0 0 20px;
+  }
+}
+@include media($fullsize){
+
 }

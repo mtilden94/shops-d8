@@ -31,6 +31,11 @@
 
   <div id="main">
     <div class="container">
+
+      {% if page.oncontent|render %}
+        <div id="on-content">{{ page.oncontent }}</div>
+      {% endif %}
+
       <section id="content">
 
         <div id="content-header">
