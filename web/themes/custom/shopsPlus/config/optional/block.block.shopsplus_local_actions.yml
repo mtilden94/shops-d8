@@ -1,19 +1,17 @@
 langcode: en
 status: true
 dependencies:
-  module:
-    - system
   theme:
     - shopsPlus
-id: shopsPlus_content
+id: shopsplus_local_actions
 theme: shopsPlus
 region: content
-weight: 0
+weight: -20
 provider: null
-plugin: system_main_block
+plugin: local_actions_block
 settings:
-  id: system_main_block
-  label: 'Main page content'
-  provider: system
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
   label_display: '0'
 visibility: {  }

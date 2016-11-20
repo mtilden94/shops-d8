@@ -5,7 +5,7 @@ dependencies:
     - system
   theme:
     - shopsPlus
-id: shopsPlus_messages
+id: shopsplus_messages
 theme: shopsPlus
 region: highlighted
 weight: 0

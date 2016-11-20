@@ -1,17 +1,19 @@
 langcode: en
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - shopsPlus
-id: shopsPlus_page_title
+id: shopsplus_content
 theme: shopsPlus
 region: content
-weight: -50
+weight: 0
 provider: null
-plugin: page_title_block
+plugin: system_main_block
 settings:
-  id: page_title_block
-  label: 'Page title'
-  provider: core
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
   label_display: '0'
 visibility: {  }
