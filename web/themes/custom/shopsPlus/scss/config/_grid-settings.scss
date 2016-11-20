@@ -44,3 +44,4 @@ $tablet: new-breakpoint(min-width 768px $tablet-cols); //required
 $tablet-wide: new-breakpoint(min-width 1024px $tablet-cols);
 $desktop: new-breakpoint(min-width 1040px $fullsize-cols); //required
 $fullsize: new-breakpoint(min-width $max-width $fullsize-cols);
+$fullsize_1300: new-breakpoint(min-width 1300px $fullsize-cols);

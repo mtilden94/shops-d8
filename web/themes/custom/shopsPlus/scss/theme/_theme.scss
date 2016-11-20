@@ -10,10 +10,38 @@
     max-width: 100%;
     padding: 0;
   }
+}
+#block-linktocontactpage{
+  display: none;
+}
+#on-content{
+  img{
+    display: block;
+  }
+}
+
+
+
+@include media($tablet) {
+  #header-region > div:nth-child(1){
+    float: left;
+    width: 100%;
+    margin-right: -90px;
+  }
+  #header {
+    min-height: 90px;
+  }
+}
+
+@include media($fullsize) {
+  #header {
+    min-height: 96px;
+  }
   #block-linktocontactpage {
     float: right;
     width: 89px;
     height: 89px;
+    display: block;
     border-left: 1px solid $medium-gray;
     overflow: hidden;
     text-indent: -200px;
@@ -24,21 +52,9 @@
       display: block;
       min-height: 89px;
       &:hover {
-    background-color: $blue;
+        background-color: $blue;
         background-image: url('../images/optimized/contact-white.svg');
       }
     }
-  }
-}
-
-@include media($tablet) {
-  #header {
-    min-height: 90px;
-  }
-}
-
-@include media($fullsize) {
-  #header {
-    min-height: 96px;
   }
 }

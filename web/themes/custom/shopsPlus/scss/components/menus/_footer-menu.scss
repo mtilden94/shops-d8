@@ -1,25 +1,108 @@
 // Footer Menu
-.menu--footer{
-  
-  ul.menu{
+#footer {
+  ul.menu {
     display: block;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    text-align: left;
-    
-    li{
+    text-align: center;
+
+    li {
       list-style-type: none;
       display: inline-block;
-      
-      &:before{
+      &:before {
         content: "|";
         display: inline-block;
-        margin-right: 0.5em;
+        color: #5c82b5;
+        margin: 0 0.2em;
       }
-      
-      &:nth-child(1):before{
-        content: "";
+
+      &:nth-child(1):before {
+        content: none;
+      }
+      a, span {
+        font-size: 14px;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+    li:last-child {
+      &:before {
+        content: none;
+      }
+    }
+  }
+  .menu--social-links {
+    ul {
+      li {
+        margin: 20px 0 15px;
+        a {
+          text-indent: -200px;
+          width: 41px;
+          height: 41px;
+          display: inline-block;
+          background-image: url("../images/optimized/facebook.png");
+          background-size: 100%;
+          overflow: hidden;
+          margin: 0 6px;
+        }
+        &:before {
+          content: none;
+        }
+      }
+      li:nth-of-type(2) a {
+        background-image: url("../images/optimized/twitter.png");
+      }
+      li:nth-of-type(3) a {
+        background-image: url("../images/optimized/youtube.png");
+      }
+    }
+  }
+
+  @include media($tablet) {
+    .menu--social-links {
+      float: right;
+      ul {
+        li {
+          margin: 0px 0 5px;
+          a {
+            margin: 0 0 0 12px;
+          }
+        }
+      }
+    }
+    .menu--footer {
+      float: right;
+      clear: right;
+      ul.menu {
+        text-align: right;
+        li:last-child {
+          display: block;
+        }
+      }
+    }
+  }
+  @include media($fullsize) {
+    .menu--social-links {
+     ul{
+       li {
+         margin: 0px 0 15px;
+         a {
+           width: 50px;
+           height: 50px;
+           margin: 0 0 0 15px;
+         }
+       }
+     }
+    }
+    .menu--footer {
+      ul.menu{
+        li{
+          a, span{
+            font-size: 18px;
+            line-height: 25px;
+          }
+        }
       }
     }
   }
