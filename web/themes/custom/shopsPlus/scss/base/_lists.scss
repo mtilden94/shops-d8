@@ -4,7 +4,11 @@ ol {
   margin: 0;
   padding: 0;
 }
-
+.node{
+  ol, ul{
+    margin-bottom: 40px;
+  }
+}
 dl {
   margin: 0;
 }
