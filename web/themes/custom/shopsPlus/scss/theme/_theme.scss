@@ -10,19 +10,19 @@
     padding: 0;
   }
 }
-#block-linktocontactpage{
+
+#block-linktocontactpage {
   display: none;
 }
-#on-content{
-  img{
+
+#on-content {
+  img {
     display: block;
   }
 }
 
-
-
 @include media($tablet) {
-  #header-region > div:nth-child(1){
+  #header-region > div:nth-child(1) {
     float: left;
     width: 100%;
     margin-right: -90px;
@@ -37,22 +37,37 @@
     min-height: 96px;
   }
   #block-linktocontactpage {
+    p{
+      margin: 0;
+    }
     float: right;
-    width: 89px;
-    height: 89px;
     display: block;
     border-left: 1px solid $medium-gray;
+    text-indent: -250px;
     overflow: hidden;
-    text-indent: -200px;
+    text-align: left;
     a {
-      background-image: url('../images/optimized/contact.svg');
-      background-position: 50%;
-      background-repeat: no-repeat;
+      position: relative;
       display: block;
-      min-height: 89px;
-      &:hover {
+      width: 89px;
+      height: 89px;
+      text-align: center;
+      &:before {
+        position: absolute;
+        font-size: 31px;
+        content: "\e908";
+        font-family: 'icomoon' !important;
+        line-height: 89px;
+        color: $blue;
+        width: 89px;
+        height: 89px;
+        text-indent: 0px;
+        right: 0;
+        top: 0;
+      }
+      &:hover:before {
+        color: $white;
         background-color: $blue;
-        background-image: url('../images/optimized/contact-white.svg');
       }
     }
   }

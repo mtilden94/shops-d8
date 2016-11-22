@@ -4,6 +4,7 @@
   width: 69px;
   border-left: 1px solid $medium-gray;
   .form-item {
+    z-index: 10;
     opacity: 0;
     width: 0px;
     position: absolute;
@@ -30,41 +31,61 @@
     }
   }
   .open-form .form-item {
-    input.form-search{
+    input.form-search {
       position: relative;
     }
     width: 325px;
     opacity: 1;
   }
-  .form-submit {
-    background-image: url('../images/optimized/search-icon.png');
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-color: transparent;
-    background-size: 15px auto;
+
+  .form-actions {
+    z-index: 101;
+    position: relative;
     width: 69px;
     height: 69px;
-    overflow: hidden;
-    text-indent: -200px;
-    padding: 0;
-    border-radius: 0;
-    &:hover{
-      background-image: url('../images/optimized/search-icon-white.png');
+    .form-submit {
+      position: relative;
+      z-index: 100;
+      width: 69px;
+      height: 69px;
+      overflow: hidden;
+      text-indent: -200px;
+      padding: 0;
+      border-radius: 0;
+      background-color: transparent;
+      &:focus {
+        border: 0;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+
+    &:before {
+      position: absolute;
+      content: "\e900";
+      font-family: 'icomoon' !important;
+      color: $blue;
+      width: 69px;
+      height: 69px;
+      background-color: $white;
+      line-height: 69px;
+      text-align: center;
+      cursor: pointer;
+    }
+    &:hover:before {
+      color: $white;
       background-color: $blue;
     }
-    &:focus {
-      border: 0; box-shadow: none;
-      outline: none;
-    }
   }
-  .open-form .form-submit {
-    position: absolute;
-    z-index: 1;
-    right: -1px;
-    top: 0;
-    background-image: url('../images/optimized/search-icon-white.png');
-    &:hover{
-      background-color: shade($blue, 25%);
+  .open-form{
+    .form-actions {
+      &:before{
+        background-color: $blue;
+        color: $white;
+      }
+      &:hover:before{
+        background-color: shade($blue, 25%);
+      }
     }
   }
 }
@@ -79,10 +100,18 @@
         margin: 27px 0 0;
       }
     }
-    .form-submit{
-      background-size: 20px auto;
+    .form-actions {
       width: 89px;
       height: 89px;
+      .form-submit {
+        width: 89px;
+        height: 89px;
+      }
+    &:before{
+      width: 89px;
+      height: 89px;
+      line-height: 89px;
+    }
     }
   }
 }
