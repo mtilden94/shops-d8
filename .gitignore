@@ -7,6 +7,9 @@ vendor
 #web/profiles/contrib
 composer.lock
 
+# Ignore directories generated Node.js
+node_modules
+
 # Ignore Drupal's file directory
 web/sites/*/files
 
@@ -22,3 +25,4 @@ web/sites/simpletest
 
 #ignore logs
 error_log
+.com.apple.timemachine.supported
