@@ -4,11 +4,24 @@ ol {
   margin: 0;
   padding: 0;
 }
-.node{
-  ol, ul{
-    margin-bottom: 40px;
+
+.node {
+  ol, ul {
+    margin-bottom: 25px;
+    margin-left: 25px;
+  }
+  ol {
+    list-style: decimal;
+  }
+  ul{
+    li{
+      &:after{
+        content: '';
+      }
+    }
   }
 }
+
 dl {
   margin: 0;
 }
@@ -20,4 +33,22 @@ dt {
 
 dd {
   margin: 0;
+}
+
+@include media($tablet) {
+  .node {
+    ol, ul {
+      margin-bottom: 30px;
+      margin-left: 20px;
+    }
+  }
+}
+
+@include media($fullsize) {
+  .node {
+    ol, ul {
+      margin-bottom: 45px;
+      margin-left: 40px;
+    }
+  }
 }

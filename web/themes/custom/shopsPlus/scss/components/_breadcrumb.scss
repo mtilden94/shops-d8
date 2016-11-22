@@ -1,7 +1,36 @@
 // Breadcrumb styles
-.breadcrumb{
-  li{
+.breadcrumb {
+  margin-bottom: 20px;
+  li {
+    font-family: $heading-font-family;
+    font-size: 14px;
+    font-weight: 600;
     list-style-type: none;
     display: inline-block;
+    color: #999;
+    line-height: 1em;
+    a {
+      color: #2eb9ea;
+      text-decoration: none;
+    }
+    .separator {
+      font-size: 10px;
+      line-height: 14px;
+      padding: 0 5px;
+    }
+  }
+  li:last-child {
+    .separator {
+      display: none;
+    }
+  }
+  @include media($tablet){
+    margin-bottom: 25px;
+  }
+  @include media($fullsize){
+    margin-bottom: 40px;
+    li{
+      font-size: 15px;
+    }
   }
 }
