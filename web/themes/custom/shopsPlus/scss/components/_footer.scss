@@ -4,22 +4,23 @@
     padding: 44px 15px;
     font-family: $footer-font-family;
   }
-  .block-footerlogos {
+  .block-footerlogos, .block-footerlogos--2 {
     text-align: center;
     p {
       margin: 0;
-      display: inline-block;
-      margin-left: 8px;
       vertical-align: middle;
+      border-left: 1px solid #5c82b5;
+      padding-left: 11px;
+      display: inline-block;
       img{
         width: 131px;
         height: auto;
+        display: block;
       }
     }
     p:nth-of-type(1) {
-      margin-left: 0;
-      border-right: 1px solid $white;
-      padding-right: 11px;
+      margin-right: 8px;
+      border: none;
       img{
         width: 115px;
       }
@@ -29,7 +30,7 @@
     .container {
       padding: 37px 20px;
     }
-    .block-footerlogos {
+    .block-footerlogos, .block-footerlogos--2 {
       float: left;
       margin-top: 35px;
     }
@@ -38,7 +39,7 @@
     .container {
       padding: 50px 0px 60px;
     }
-    .block-footerlogos {
+    .block-footerlogos, .block-footerlogos--2 {
       p{
         img{
           width: 212px;
