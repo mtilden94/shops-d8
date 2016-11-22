@@ -22,3 +22,5 @@ web/sites/simpletest
 
 #ignore logs
 error_log
+
+node_modules
