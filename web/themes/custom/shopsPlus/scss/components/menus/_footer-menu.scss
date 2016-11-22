@@ -55,9 +55,11 @@
             top: 0;
             left: 0;
             border-radius: 50%;
+            transition: all 0.2s ease-in;
           }
-          &:hover {
-            opacity: 0.7;
+          &:hover:after {
+            color: #02807f;
+            background-color: $white;
           }
         }
         &:after {
