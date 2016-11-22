@@ -13,9 +13,9 @@ global:
   js:
     js/modernizr.js: {}
     js/build/scripts.js: {}
-  # dependencies:
-  #   - core/drupal
-  #   - core/jquery
+  dependencies:
+     - core/drupal
+     - core/jquery
 
   # Uncomment the code above to load scripts.js file on all pages. This file also requires JQuery to be
   # loaded on all pages. Consider implimenting your scripts through theme libraries if you wish to
@@ -29,7 +29,7 @@ fonts:
     theme:
       //fast.fonts.net/cssapi/9d2b2205-5f71-4322-9dea-cb603b24bcb1.css: { type: external }
       https://s3.amazonaws.com/icomoon.io/49365/ShopsPlus/style.css?xw71q5: { type: external }
-      https://fonts.googleapis.com/css?family=Source+Sans+Pro: { type: external }
+      https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700&amp;subset=vietnamese: { type: external }
       css/style.css: {}
 
 
