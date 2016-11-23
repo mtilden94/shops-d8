@@ -6,7 +6,9 @@
   background-color: $message-color;
   border: 1px solid darken($message-color, 10%);
   word-wrap: break-word;
-  
+  a {
+    color: $white;
+  }
   pre{
     border: 0;
   }

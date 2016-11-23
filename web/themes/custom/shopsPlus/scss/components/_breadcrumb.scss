@@ -10,8 +10,11 @@
     color: #999;
     line-height: 1em;
     a {
-      color: #2eb9ea;
+      color: $breadcrumbs;
       text-decoration: none;
+      &:hover {
+        color: darken($breadcrumbs, 30%);
+      }
     }
     .separator {
       font-size: 10px;
