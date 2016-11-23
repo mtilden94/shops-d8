@@ -1,0 +1,23 @@
+name: Seven Admin
+type: theme
+description: 'Seven Admin Sub theme'
+package: Core
+version: 0.1
+core: 8.x
+base theme: seven
+
+libraries:
+  - seven_admin/base-styling
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first

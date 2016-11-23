@@ -1,54 +1,82 @@
 ul,
 ol {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 .node {
-  ol, ul {
-    margin-bottom: 25px;
-    margin-left: 25px;
-  }
-  ol {
-    list-style: decimal;
-  }
-  ul{
-    li{
-      &:after{
-        content: '';
-      }
-    }
-  }
+	ol, ul {
+		margin-bottom: 25px;
+		margin-left: 25px;
+	}
+	ol {
+		list-style: decimal;
+	}
+	ul {
+		li {
+			&:after {
+				content: '';
+			}
+		}
+	}
 }
 
 dl {
-  margin: 0;
+	margin: 0;
 }
 
 dt {
-  font-weight: 600;
-  margin: 0;
+	font-weight: 600;
+	margin: 0;
 }
 
 dd {
-  margin: 0;
+	margin: 0;
 }
 
 @include media($tablet) {
-  .node {
-    ol, ul {
-      margin-bottom: 30px;
-      margin-left: 20px;
-    }
-  }
+	.node {
+		ol, ul {
+			margin-bottom: 30px;
+			margin-left: 20px;
+		}
+	}
 }
 
 @include media($fullsize) {
-  .node {
-    ol, ul {
-      margin-bottom: 45px;
-      margin-left: 40px;
-    }
-  }
+	.node {
+		ol, ul {
+			margin-bottom: 45px;
+			margin-left: 40px;
+		}
+	}
+}
+
+.content ul, .cke_editable ul {
+
+	li {
+		position: relative;
+		&:before {
+			content: '';
+			display: block;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: $light-blue;
+			left: -20px;
+			position: relative;
+			top: 20px;
+		}
+	}
+}
+
+.cke_editable {
+	ul, ol {
+		margin-bottom: 45px;
+		margin-left: 40px;
+	}
+	ol {
+		list-style: decimal;
+	}
 }

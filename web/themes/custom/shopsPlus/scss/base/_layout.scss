@@ -13,7 +13,7 @@ body {
   height: 100%;
 }
 
-body {
+body.no-sidebar, body.one-sidebar {
   background-color: $base-background-color;
 }
 

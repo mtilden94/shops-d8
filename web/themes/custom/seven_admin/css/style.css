@@ -1,0 +1,24 @@
+.cke_contents {
+	resize: vertical !important;
+	overflow: auto !important;
+	padding-bottom: 20px;
+}
+
+
+.layout-region-node-main, .layout-region-node-footer {
+	width: 80%;
+}
+
+.layout-region-node-secondary {
+	width: 20%;
+}
+
+@media screen and (max-width: 1200px) {
+	.layout-region-node-main, .layout-region-node-footer {
+		width: 100%;
+	}
+
+	.layout-region-node-secondary {
+		width: 100%;
+	}
+}

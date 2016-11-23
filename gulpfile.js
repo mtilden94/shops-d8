@@ -35,7 +35,8 @@ var path = {
         scss: [
             theme_path + 'scss/default.scss',
             theme_path + 'scss/style.scss',
-            theme_path + 'scss/print.scss'
+            theme_path + 'scss/print.scss',
+            theme_path + 'scss/editor.scss'
         ],
         js: theme_path + 'js/source/scripts.js',
         /*img: [
