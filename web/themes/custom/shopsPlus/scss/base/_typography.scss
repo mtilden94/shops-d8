@@ -1,10 +1,10 @@
 body {
-  color: $base-font-color;
-  font-family: $base-font-family;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
+	color: $base-font-color;
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -13,73 +13,110 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $heading-font-family;
-  font-size: modular-scale(1);
-  line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
-  font-weight: 600;
-  color: $heading-color;
+	font-family: $heading-font-family;
+	font-size: modular-scale(1);
+	line-height: $heading-line-height;
+	margin: 0 0 $small-spacing;
+	font-weight: 500;
+	color: $heading-color;
 }
-h1{
-  font-size: 28px;
+
+h1 {
+	font-size: 28px;
 }
-h2{
-  font-size: 24px;
+
+h2 {
+	font-size: 24px;
 }
-h3{
-  font-size: 20px;
+
+h3 {
+	font-size: 20px;
 }
-h4{
-  font-size: 18px;
-  color: $dark-gray;
+
+h4 {
+	font-size: 18px;
+	color: $dark-gray;
 }
+
 p {
-  margin: 0 0 $small-spacing;
+	margin: 0 0 $small-spacing;
 }
 
 a {
-  color: $action-color;
-  text-decoration: underline;
-  transition: color $base-duration $base-timing;
+	color: $action-color;
+	text-decoration: underline;
+	transition: color $base-duration $base-timing;
 
-  &:active,
-  &:focus,
-  &:hover {
-    color: shade($action-color, 25%);
-    text-decoration: none;
-  }
+	&:active,
+	&:focus,
+	&:hover {
+		color: shade($action-color, 25%);
+		text-decoration: none;
+	}
 }
 
 hr {
-  border-bottom: $base-border;
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  margin: $base-spacing 0;
-}
-strong{
-  font-weight: 700;
+	border-bottom: $base-border;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	margin: $base-spacing 0;
 }
 
-@include media($tablet){
-  body {
-  font-size: $tablet-font-size;
-  }
+strong {
+	font-weight: 700;
 }
-@include media($fullsize){
-  body {
-    font-size: $full-font-size;
-  }
-  h1{
-    font-size: 40px;
-  }
-  h2{
-    font-size: 30px;
-  }
-  h3{
-    font-size: 26px;
-  }
-  h4{
-    font-size: 22px;
-  }
+
+@include media($tablet) {
+	body {
+		font-size: $tablet-font-size;
+	}
+}
+
+@include media($fullsize) {
+	body {
+		font-size: $full-font-size;
+	}
+	h1 {
+		font-size: 40px;
+	}
+	h2 {
+		font-size: 30px;
+	}
+	h3 {
+		font-size: 26px;
+	}
+	h4 {
+		font-size: 22px;
+	}
+}
+
+p.int-text {
+	color: $green;
+	font-weight: 600;
+}
+
+figure.align-left {
+	border: 1px solid $medium-gray;
+	width: 100%;
+	padding: 20px;
+
+	@include media($fullsize) {
+		width: 350px;
+		float: left;
+		margin: 0 30px 30px 0;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: auto !important;
+	}
+	figcaption {
+		padding-top: 15px;
+		font-size: 14px;
+		line-height: 20px;
+		color: $heading-color;
+	}
 }
