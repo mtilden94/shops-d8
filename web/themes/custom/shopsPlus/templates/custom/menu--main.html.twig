@@ -44,9 +44,7 @@
             <li{{ item.attributes.addClass(classes) }}>
                 {{ link(item.title, item.url) }}
                 {% if item.below %}
-                    <span class="pos-block">
                     {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-                    </span>
                 {% endif %}
             </li>
         {% endfor %}

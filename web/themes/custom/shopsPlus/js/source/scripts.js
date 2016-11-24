@@ -36,77 +36,88 @@
  }(Drupal, jQuery, this));
  */
 (function (Drupal, $, window) {
-	jQuery(function ($) {
-		$(document).ready(function () {
-			//remove footer last link
-			var text_last_a_footer = $('#footer .menu--footer ul.menu li.menu-item:last-child a').text();
-			$('#footer .menu--footer ul.menu li.menu-item:last-child a').replaceWith("<span class='no-link'>" + text_last_a_footer + "</span>");
+    jQuery(function ($) {
+        $(document).ready(function () {
+            //remove footer last link
+            var text_last_a_footer = $('#footer .menu--footer ul.menu li.menu-item:last-child a').text();
+            $('#footer .menu--footer ul.menu li.menu-item:last-child a').replaceWith("<span class='no-link'>" + text_last_a_footer + "</span>");
 
-			//Expanding Search box
-			//================================================================================
+            //
+            $('.menu--main ul.menu ul').wrap('<span class="pos-block"></span>');
 
-			$('#block-shopsplus-search input.form-search').attr('placeholder', 'Search');
-			$('#block-shopsplus-search .form-actions .form-submit').on('click',
-				function (e) {
-					var this_form = $(this).parents('form:first');
-					var text_input = $('input.form-search', this_form).val();
-					if (this_form.hasClass('open-form')) {
-						if (text_input == '') {
-							e.preventDefault();
-							this_form.removeClass('open-form');
-						}
-					} else {
-						e.preventDefault();
-						this_form.addClass('open-form');
-					}
-				});
+            //Expanding Search box
+            //================================================================================
 
-			// hover main top menu
-			$('#header .menu--main > ul.menu > .menu-item--expanded').mouseenter(function () {
-				$('#header .menu--main li').removeClass('open-top-menu');
-				$(this).addClass('open-top-menu');
-			});
-			$('#header .menu--main > ul.menu > .menu-item--expanded').mouseleave(
-				function () {
-					$('#header .menu--main li').removeClass('open-top-menu');
-				}
-			);
+            $('#block-shopsplus-search input.form-search').attr('placeholder', 'Search');
+            $('#block-shopsplus-search .form-actions .form-submit').on('click',
+                function (e) {
+                    var this_form = $(this).parents('form:first');
+                    var text_input = $('input.form-search', this_form).val();
+                    if (this_form.hasClass('open-form')) {
+                        if (text_input == '') {
+                            e.preventDefault();
+                            this_form.removeClass('open-form');
+                        }
+                    } else {
+                        e.preventDefault();
+                        this_form.addClass('open-form');
+                    }
+                });
 
-			// mobile menu
-			$('#block-shopsplus-main-menu > ul.menu').clone().appendTo("#mobile-menu");
-			$('#mobile-menu .menu-item--expanded').append('<span class="prev-next"></span>');
-			$('#mobile-menu .pos-block').each(
-				function () {
-					$(this).children().first().prepend('<li class="beck">' + $(this).parent().children().first().text() + '</li>');
-				}
-			);
+            // hover main top menu
+            $('#header .menu--main > ul.menu > .menu-item--expanded').mouseenter(function () {
+                $('#header .menu--main li').removeClass('open-top-menu');
+                $(this).addClass('open-top-menu');
+            });
+            $('#header .menu--main > ul.menu > .menu-item--expanded').mouseleave(
+                function () {
+                    $('#header .menu--main li').removeClass('open-top-menu');
+                }
+            );
 
-			$('.mobile-menu-btn').on('click', function () {
-				$(this).parent().toggleClass('open-mobile-menu');
-			});
-			$('#mobile-menu .prev-next').on('click',
-				function () {
-					$(this).prev().addClass('right-none');
-					$(this).parent().addClass('pos-stat');
-				});
-			$('#mobile-menu .beck').on('click',
-				function () {
-					$(this).parent().parent().removeClass('right-none');
-					$(this).parents('li.menu-item--expanded').first().removeClass('pos-stat');
-				});
+            // mobile menu
+            $('#block-shopsplus-main-menu > ul.menu').clone().appendTo("#mobile-menu");
+            $('#mobile-menu .menu-item--expanded').append('<span class="prev-next"></span>');
+            $('#mobile-menu .pos-block').each(
+                function () {
+                    $(this).children().first().prepend('<li class="beck">' + $(this).parent().children().first().text() + '</li>');
+                }
+            );
 
-			//Close on click outside
-			$(document).click(function (e) {
-				var target = e.target;
-				if (!$(target).is('#block-shopsplus-search input') && !$(target).is('#block-shopsplus-search .form-item')) {
-					$('#block-shopsplus-search form').removeClass('open-form');
-				}
-				if (!$(target).is('#mobile-menu *')) {
-					$('#mobile-menu').removeClass('open-mobile-menu');
-					$('#mobile-menu .pos-block').removeClass('right-none');
-					$('li.menu-item--expanded').removeClass('pos-stat');
-				}
-			});
-		});
-	});
+            $('.mobile-menu-btn').on('click', function () {
+                $(this).parent().toggleClass('open-mobile-menu');
+            });
+            $('#mobile-menu .prev-next').on('click',
+                function () {
+                    $(this).prev().addClass('right-none');
+                    $(this).parent().addClass('pos-stat');
+                });
+            $('#mobile-menu .beck').on('click',
+                function () {
+                    $(this).parent().parent().removeClass('right-none');
+                    $(this).parents('li.menu-item--expanded').first().removeClass('pos-stat');
+                });
+
+            //sidebar menu
+            $('.block-current-active-submenu li.menu-item--expanded').on('click',
+                function () {
+                    $(this).toggleClass('open-sub-menu');
+                }
+            );
+
+
+            //Close on click outside
+            $(document).click(function (e) {
+                var target = e.target;
+                if (!$(target).is('#block-shopsplus-search input') && !$(target).is('#block-shopsplus-search .form-item')) {
+                    $('#block-shopsplus-search form').removeClass('open-form');
+                }
+                if (!$(target).is('#mobile-menu *')) {
+                    $('#mobile-menu').removeClass('open-mobile-menu');
+                    $('#mobile-menu .pos-block').removeClass('right-none');
+                    $('li.menu-item--expanded').removeClass('pos-stat');
+                }
+            });
+        });
+    });
 }(Drupal, jQuery, this));

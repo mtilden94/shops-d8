@@ -27,6 +27,6 @@
  */
 #}
 {% set attributes = attributes.addClass([
-  'block-' ~ configuration.provider|clean_class,
+  'block block-' ~ configuration.provider|clean_class,
   attributes.id
 ]) %}

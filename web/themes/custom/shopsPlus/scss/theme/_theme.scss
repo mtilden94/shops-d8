@@ -17,7 +17,7 @@
 }
 #main {
   padding-top: 75px;
-  @include media($fullsize) {
+  @include media($tablet) {
     padding-top: 96px;
   }
 }
@@ -81,6 +81,13 @@
         background-color: $blue;
       }
     }
+  }
+}
+
+.sidebar .block{
+  margin-bottom: 18px;
+  @include media($fullsize){
+    margin-bottom: 50px;
   }
 }
 
