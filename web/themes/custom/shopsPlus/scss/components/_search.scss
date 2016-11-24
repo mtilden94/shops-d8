@@ -63,7 +63,7 @@
     &:before {
       position: absolute;
       content: "\e900";
-      font-family: 'icomoon' !important;
+      font-family: $icons-font-family;
       color: $blue;
       width: 69px;
       height: 69px;

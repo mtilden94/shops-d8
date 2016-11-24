@@ -17,7 +17,8 @@
         margin: 0 0.2em;
       }
 
-      &:last-child:after {
+      &:nth-last-child(1):after,
+      &:nth-last-child(2):after {
         content: none;
       }
       a, span {
@@ -49,7 +50,7 @@
             position: absolute;
             line-height: 41px;
             color: $white;
-            font-family: 'icomoon' !important;
+            font-family: $icons-font-family;
             background-color: #02807f;
             width: 41px;
             top: 0;
