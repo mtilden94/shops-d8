@@ -1,6 +1,9 @@
 table {
   &.footable-details {
-    margin: 0 0 10px;
+    margin: 0;
+  }
+  .footable-detail-row:last-child .footable-details{
+    border-bottom: $base-border;
   }
   thead {
     background-color: $heading-color;
@@ -60,7 +63,12 @@ table {
       .footable-details {
         tr:last-child {
           td, th {
-            padding-bottom: 5px;
+            padding-bottom: 15px;
+          }
+        }
+        tr:first-child{
+          td, th {
+            padding-top: 10px;
           }
         }
       }
