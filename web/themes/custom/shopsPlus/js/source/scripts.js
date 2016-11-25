@@ -53,7 +53,11 @@
                         if (index_th < 5) {
                             $(this).attr('data-breakpoints','xs');
                         } else {
-                            $(this).attr('data-breakpoints','xs sm md');
+                            if(index_th<9){
+                                $(this).attr('data-breakpoints','xs sm md');
+                            }else{
+                                $(this).attr('data-breakpoints','xs sm md lg');
+                            }
                         }
                     }
                 }
