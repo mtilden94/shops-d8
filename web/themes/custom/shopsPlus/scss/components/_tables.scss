@@ -14,6 +14,9 @@ table {
       top: 22px;
     }
   }
+  tr td.no-icon {
+    padding-left: 22px;
+  }
   tr {
     &.tr-row {
       background-color: #f3f5f8;
@@ -49,6 +52,7 @@ table {
       & > td {
         width: 100% !important;
         padding-left: 0px;
+        display: table-cell !important;
       }
       .footable-details td {
         line-height: 1.2em;
@@ -67,9 +71,6 @@ table {
       th, td {
         font-size: 18px;
         padding: 17px 22px;
-      }
-      td.no-icon {
-        padding-left: 22px;
       }
     }
   }
