@@ -44,6 +44,38 @@ function shopsPlus_preprocess_html(&$variables) {
     ->applyTo($variables);
   // Union all theme setting variables to the html.html.twig template.
   $variables += $theme_settings->getOriginal();
+
+}
+
+function shopsPlus_preprocess_page(&$variables) {
+  //set header image
+  $variables['header_image'] = array();
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    //dsm($node);
+    if (isset($node->field__header_image) AND isset($node->field__header_image->entity)) {
+      $field__header_image = $node->field__header_image;
+      $original_image = $field__header_image->entity->getFileUri();
+
+      $style = \Drupal\image\Entity\ImageStyle::load('header_image');
+      $background_image = $style->buildUrl($original_image);
+      $variables['header_image'] = $background_image;
+
+
+      /*$display_options = array(
+        'label'    => 'hidden',
+        'type'     => 'responsive_image',
+        'settings' => array(
+          'responsive_image_style' => 'header_image',
+        ),
+      );
+
+      $image = $node->field__header_image->view($display_options);
+      //$image = $node->field_image->view($display_options);
+      $variables['header_image'] = $image;*/
+
+
+    }
+  }
 }
 
 /**
@@ -52,4 +84,15 @@ function shopsPlus_preprocess_html(&$variables) {
 function shopsPlus_preprocess_field(&$variables, $hook) {
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function grosolar_preprocess_block(&$variables) {
+  if(isset($variables['elements']['#id'])) {
+    $variables['attributes']['class'][] = "block-original-" . $variables['elements']['#id'];
+  }
+
+
 }

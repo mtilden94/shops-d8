@@ -1,99 +1,114 @@
 {% set main_menu = page.primary_menu|render %}
 {% set secondary_menu = page.secondary_menu|render %}
 <div{{ attributes.addClass(
-  'layout-container',
-  main_menu or secondary_menu ? 'with-navigation',
-  secondary_menu ? 'with-subnav'
+'layout-container',
+main_menu or secondary_menu ? 'with-navigation',
+secondary_menu ? 'with-subnav'
 ) }}>
 
-  <!-- ______________________ HEADER _______________________ -->
+    <!-- ______________________ HEADER _______________________ -->
 
-  <header id="header">
-    <div class="container">
-      {% if page.header %}
-        <div id="header-region">
-          {{ page.header }}
-          <div id="mobile-menu"><span class="mobile-menu-btn"></span></div>
+    <header id="header">
+        <div class="container">
+            {% if page.header %}
+                <div id="header-region">
+                    {{ page.header }}
+                    <div id="mobile-menu"><span class="mobile-menu-btn"></span></div>
+                </div>
+            {% endif %}
         </div>
-      {% endif %}
-    </div>
-  </header><!-- /#header -->
+    </header><!-- /#header -->
 
-  {% if main_menu or secondary_menu %}
-    <nav id="navigation" class="menu{% if main_menu %} with-primary{% endif %}{% if secondary_menu %} with-secondary{% endif %}">
-      <div class="container">
-        {{ main_menu }}
-        {{ secondary_menu }}
-      </div>
-    </nav><!-- /#navigation -->
-  {% endif %}
+    {% if main_menu or secondary_menu %}
+        <nav id="navigation"
+             class="menu{% if main_menu %} with-primary{% endif %}{% if secondary_menu %} with-secondary{% endif %}">
+            <div class="container">
+                {{ main_menu }}
+                {{ secondary_menu }}
+            </div>
+        </nav><!-- /#navigation -->
+    {% endif %}
 
-  <!-- ______________________ MAIN _______________________ -->
 
-  <div id="main">
-    <div class="container">
+    <!-- ______________________ MAIN _______________________ -->
 
-      {% if page.oncontent|render %}
-        <div id="on-content">{{ page.oncontent }}</div>
-      {% endif %}
+    <div id="main">
 
-      <section id="content">
 
-        <div id="content-header">
+        <div class="container">
 
-          {{ page.breadcrumb }}
+            {% if header_image %}
+                <div id="header-image">
+                    <style>
+                        #header-image {
+                            background: url({{ header_image }}) no-repeat center center;
+                            background-size: cover;
+                        }
+                    </style>
+                </div>
+            {% endif %}
 
-          {% if page.highlighted|render %}
-            <div id="highlighted">{{ page.highlighted }}</div>
-          {% endif %}
+            {% if page.oncontent|render %}
+                <div id="on-content">{{ page.oncontent }}</div>
+            {% endif %}
 
-          {{ title_prefix }}
+            <section id="content">
 
-          {% if title %}
-            <h1 class="title">{{ title }}</h1>
-          {% endif %}
+                <div id="content-header">
 
-          {{ title_suffix }}
-          {{ page.help }}
+                    {{ page.breadcrumb }}
 
-          {% if tabs %}
-            <div class="tabs">{{ tabs }}</div>
-          {% endif %}
+                    {% if page.highlighted|render %}
+                        <div id="highlighted">{{ page.highlighted }}</div>
+                    {% endif %}
 
-          {% if action_links %}
-            <ul class="action-links">{{ action_links }}</ul>
-          {% endif %}
+                    {{ title_prefix }}
 
-        </div><!-- /#content-header -->
+                    {% if title %}
+                        <h1 class="title">{{ title }}</h1>
+                    {% endif %}
 
-        <div id="content-area">
-          {{ page.content }}
-        </div>
+                    {{ title_suffix }}
+                    {{ page.help }}
 
-      </section><!-- /#content -->
+                    {% if tabs %}
+                        <div class="tabs">{{ tabs }}</div>
+                    {% endif %}
 
-      {% if page.sidebar_first|render %}
-        <aside id="sidebar-first" class="column sidebar first">
-          {{ page.sidebar_first }}
-        </aside><!-- /#sidebar-first -->
-      {% endif %}
+                    {% if action_links %}
+                        <ul class="action-links">{{ action_links }}</ul>
+                    {% endif %}
 
-      {% if page.sidebar_second|render %}
-        <aside id="sidebar-second" class="column sidebar second">
-          {{ page.sidebar_second }}
-        </aside><!-- /#sidebar-second -->
-      {% endif %}
-    </div><!-- /.container -->
-  </div><!-- /#main -->
+                </div><!-- /#content-header -->
 
-  <!-- ______________________ FOOTER _______________________ -->
+                <div id="content-area">
+                    {{ page.content }}
+                </div>
 
-  {% if page.footer|render %}
-    <footer id="footer">
-      <div class="container">
-        {{ page.footer }}
-      </div>
-    </footer><!-- /#footer -->
-  {% endif %}
+            </section><!-- /#content -->
+
+            {% if page.sidebar_first|render %}
+                <aside id="sidebar-first" class="column sidebar first">
+                    {{ page.sidebar_first }}
+                </aside><!-- /#sidebar-first -->
+            {% endif %}
+
+            {% if page.sidebar_second|render %}
+                <aside id="sidebar-second" class="column sidebar second">
+                    {{ page.sidebar_second }}
+                </aside><!-- /#sidebar-second -->
+            {% endif %}
+        </div><!-- /.container -->
+    </div><!-- /#main -->
+
+    <!-- ______________________ FOOTER _______________________ -->
+
+    {% if page.footer|render %}
+        <footer id="footer">
+            <div class="container">
+                {{ page.footer }}
+            </div>
+        </footer><!-- /#footer -->
+    {% endif %}
 
 </div><!-- /.layout-container -->

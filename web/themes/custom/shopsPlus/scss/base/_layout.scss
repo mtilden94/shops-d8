@@ -18,9 +18,11 @@ body.no-sidebar, body.one-sidebar {
 }
 
 #main > .container {
-	border: 1px solid $medium-gray;
-	background-color: $secondary-background-color;
-	border-top-width: 0;
+	@include media($fullsize) {
+		border: 1px solid $medium-gray;
+		background-color: $secondary-background-color;
+		border-top-width: 0;
+	}
 }
 
 .sidebar-second #main #content, .sidebar-second #sidebar-second, .sidebar-first #sidebar-first, .no-sidebar #main #content {
