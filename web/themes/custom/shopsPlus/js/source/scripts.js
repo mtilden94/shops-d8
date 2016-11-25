@@ -49,21 +49,29 @@
             $('table th').each(
                 function () {
                     var index_th = $(this).index();
-                      if (index_th != 0) {
+                    if (index_th != 0) {
                         if (index_th < 5) {
-                            $(this).attr('data-breakpoints','xs');
+                            $(this).attr('data-breakpoints', 'xs');
                         } else {
-                            if(index_th<9){
-                                $(this).attr('data-breakpoints','xs sm md');
-                            }else{
-                                $(this).attr('data-breakpoints','xs sm md lg');
+                            if (index_th < 8) {
+                                $(this).attr('data-breakpoints', 'xs sm md');
+                            } else {
+                                $(this).attr('data-breakpoints', 'xs sm md lg');
                             }
                         }
                     }
                 }
             );
             $('table tr:nth-child(2n)').addClass('tr-row');
-            $('table th').last().attr('data-breakpoints','');
+            $('table th').last().attr('data-breakpoints', '');
+            $('table tr').each(
+              function () {
+                  if($('td',this).size() < 9){
+                      $('td:first',this).addClass('no-icon');
+                  }
+              }
+            );
+            if($('table tr td').size() < 9){}
             $('table').footable();
 
             //Expanding Search box
