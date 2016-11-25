@@ -8,10 +8,12 @@ global:
   #  component:
   #    css/components/components.css: {}
     theme:
+      css/footable.standalone.min.css: {}
       css/style.css: {}
       css/print.css: { media: print }
   js:
     js/modernizr.js: {}
+    js/footable.min.js: {}
     js/build/scripts.js: {}
   dependencies:
      - core/drupal
