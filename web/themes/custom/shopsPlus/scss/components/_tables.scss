@@ -11,10 +11,30 @@ table {
   tr td.footable-first-visible {
     position: relative;
     padding-left: 30px;
-    span.fooicon {
-      position: absolute;
-      left: 15px;
-      top: 22px;
+    span{
+      &.fooicon {
+        position: absolute;
+        left: 12px;
+        top: 25px;
+        cursor: pointer;
+        &:before{
+          content: '';
+          background-image: url("../images/optimized/plus.svg");
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          position: absolute;
+          width: 11px;
+          height: 11px;
+          top: 0;
+          left: 0;
+        }
+      }
+      &.fooicon-minus{
+        top:29px;
+        &:before{
+          background-image: url("../images/optimized/minus.svg");
+        }
+      }
     }
   }
   tr td.no-icon {
