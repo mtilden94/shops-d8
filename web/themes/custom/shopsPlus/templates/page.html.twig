@@ -48,7 +48,7 @@ secondary_menu ? 'with-subnav'
                 </div>
             {% endif %}
 
-            {% if page.oncontent|render %}
+            {% if page.oncontent|render and not header_image %}
                 <div id="on-content">{{ page.oncontent }}</div>
             {% endif %}
 
