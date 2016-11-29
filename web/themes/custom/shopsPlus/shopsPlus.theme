@@ -93,6 +93,7 @@ function shopsPlus_preprocess_field(&$variables, $hook)
  */
 function shopsPlus_preprocess_block(&$variables)
 {
+    $id=$variables['attributes']['id'];
     if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
         if (isset($variables['attributes']['id'])) {
             $variables['attributes']['class'][] = "image-top-block";

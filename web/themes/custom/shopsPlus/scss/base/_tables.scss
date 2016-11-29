@@ -4,10 +4,16 @@ table {
   //table-layout: fixed;
   width: 100% !important;
 }
+tr,
+td,
+th {
+  vertical-align: middle;
+  font-weight: $bold;
+}
 
 th {
   border-bottom: 1px solid shade($base-border-color, 25%);
-  font-weight: 600;
+  font-weight: $strong;
   padding: $small-spacing 0;
   text-align: left;
 }
@@ -21,10 +27,4 @@ td:nth-child(1){
 }
 td:last-child{
   border-right: 0;
-}
-
-tr,
-td,
-th {
-  vertical-align: middle;
 }
