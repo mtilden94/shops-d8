@@ -28,7 +28,8 @@
   position: relative;
   &:before, &:after {
     content: "\e907";
-    color: #b9b6b1;
+    color: $white;
+    opacity: 0.6;
     font-family: $icons-font-family;
     font-size: 23px;
     position: absolute;
