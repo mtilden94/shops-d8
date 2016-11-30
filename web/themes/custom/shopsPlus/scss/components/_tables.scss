@@ -6,7 +6,7 @@ table {
     border-bottom: $base-border;
   }
   thead {
-    background-color: $heading-color;
+    background-color: $table-color;
   }
   tr td.footable-first-visible {
     position: relative;
@@ -48,17 +48,17 @@ table {
       color: $white;
       font-size: 16px;
       text-align: center;
-      padding: 18px 22px;
+      padding: 18px 12px;
       &:first-child {
         text-align: left;
       }
     }
     td {
-      color: $heading-color;
+      color: $table-color;
     }
     &.footable-detail-row {
       th, td {
-        color: $heading-color;
+        color: $table-color;
         padding: 0 0 0 30px;
         display: inline-block !important;
         width: auto !important;
@@ -97,8 +97,7 @@ table {
   @include media($fullsize) {
     tr {
       th, td {
-        font-size: 18px;
-        padding: 17px 22px;
+        padding: 17px 12px;
       }
     }
   }

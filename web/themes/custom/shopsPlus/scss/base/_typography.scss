@@ -102,7 +102,7 @@ p.int-text {
 figure.align-left, div[data-cke-display-name="image"].align-left {
 	border: 1px solid $medium-gray;
 	width: 100%;
-	padding: 20px;
+	padding: 20px 20px 20px 19px;
 
 	@include media($tablet) {
 		width: 230px;
@@ -123,9 +123,9 @@ figure.align-left, div[data-cke-display-name="image"].align-left {
 		height: auto !important;
 	}
 	figcaption {
-		padding-top: 15px;
+		padding-top: 12px;
 		font-size: 14px;
-		line-height: 20px;
+		line-height: 18px;
 		color: $heading-color;
 	}
 }
@@ -133,7 +133,7 @@ figure.align-left, div[data-cke-display-name="image"].align-left {
 figure.align-right, div[data-cke-display-name="image"].align-right {
 	border: 1px solid $medium-gray;
 	width: 100%;
-	padding: 20px;
+	padding: 20px 19px 20px 20px;
 
 	@include media($tablet) {
 		width: 230px;
