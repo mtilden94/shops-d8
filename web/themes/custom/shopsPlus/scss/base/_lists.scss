@@ -61,17 +61,25 @@ dd {
 .content ul, .cke_editable ul {
 
 	li {
-		//position: relative;
 		&:before {
 			content: '';
 			display: block;
-			width: 8px;
-			height: 8px;
+			width: 5px;
+			height: 5px;
 			border-radius: 50%;
 			background-color: $breadcrumbs;
-			left: -20px;
+			left: -15px;
 			position: absolute;
-			top: 16px;
+			top: 14px;
+		}
+		//position: relative;
+		@include media($fullsize){
+			&:before {
+				width: 8px;
+				height: 8px;
+				top: 16px;
+				top: 16px;
+			}
 		}
 	}
 }

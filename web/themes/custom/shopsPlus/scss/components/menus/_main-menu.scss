@@ -175,6 +175,8 @@
 		font-size: 18px;
 		transition: visibility 0s, opacity 0.3s linear;
 		overflow: hidden;
+		font-family: $heading-font-family;
+		font-weight: $header-bold;
 		.menu-item--expanded {
 			//position: relative;
 			position: static;
@@ -214,6 +216,7 @@
 				right: auto;
 				a {
 					text-transform: none;
+					color: #7b9ecd;
 				}
 			}
 			&.right-none {

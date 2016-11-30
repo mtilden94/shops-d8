@@ -19,7 +19,7 @@
     .separator {
       font-size: 7px;
       line-height: 15px;
-      padding: 0 5px;
+      padding: 0 3px;
       display: inline-block;
       vertical-align: top;
     }
@@ -30,7 +30,9 @@
     }
   }
   @include media($tablet){
-    margin-bottom: 25px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    padding: 0 39px;
   }
   @include media($fullsize){
     margin-bottom: 21px;
@@ -38,6 +40,9 @@
     padding: 0 50px;
     li{
       font-size: 15px;
+      .separator {
+        padding: 0 5px;
+      }
     }
   }
 }

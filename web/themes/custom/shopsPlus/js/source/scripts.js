@@ -63,7 +63,6 @@
                 }
             );
             $('table tr:nth-child(2n)').addClass('tr-row');
-            $('table th').last().attr('data-breakpoints', '');
             $('table tr').each(
                 function () {
                     if ($('td', this).size() < 9) {
@@ -71,8 +70,11 @@
                     }
                 }
             );
-            if ($('table tr td').size() < 9) {
-            }
+            $('table thead').each(
+              function () {
+                  $('th',this).last().attr('data-breakpoints', '');
+              }
+            );
             $('table').footable();
 
             //Expanding Search box
@@ -139,7 +141,11 @@
             $('strong').each(
                 function () {
                     if ($(this).prev().length < 1 && $(this).next().length < 1) {
-                        $(this).parent().addClass('only-strong');
+                        var this_content=$(this).parent().html().split("<strong>");
+                        var this_content_2=$(this).parent().html().split("</strong>");
+                        if(this_content[0]=='' || this_content_2[1]==''){
+                            $(this).parent().addClass('only-strong');
+                        }
                     }
                 }
             );

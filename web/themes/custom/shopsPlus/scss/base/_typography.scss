@@ -23,25 +23,31 @@ h6 {
 
 h1 {
   font-size: 28px;
+  margin-bottom: 14px;
 }
 
 h2 {
   font-size: 24px;
+  margin-bottom: 3px;
 }
 
 h3 {
   font-size: 20px;
+  margin-bottom: 2px;
 }
 
 h4 {
   font-size: 18px;
   color: $dark-gray;
+  margin-bottom: 7px;
 }
 
 p {
   margin: 0 0 $small-spacing;
 }
-
+p:empty{
+  margin: 0;
+}
 a {
   color: $action-color;
   text-decoration: underline;
@@ -68,6 +74,9 @@ hr {
 
 strong {
   font-weight: $strong;
+}
+p.only-strong {
+  margin-bottom: 2px;
 }
 
 @include media($tablet) {
@@ -106,13 +115,14 @@ strong {
     margin-bottom: 7px;
   }
   p.after-table {
-    font-size: 15px;
     top:-10px;
     margin-bottom: 60px;
   }
 }
 
 p.after-table {
+  font-size: 15px;
+  color: $dark-gray2;
   line-height: 1.3em;
   font-style: italic;
   position: relative;
@@ -126,18 +136,20 @@ p.int-text {
 figure.align-left, div[data-cke-display-name="image"].align-left {
   border: 1px solid $medium-gray;
   width: 100%;
-  padding: 20px 20px 20px 19px;
+  padding: 13px 13px 8px;
+  margin-bottom: 12px;
 
   @include media($tablet) {
     width: 230px;
     float: left;
-    margin: 0 30px 30px 0;
+    margin: 0 15px 0px 0;
   }
 
   @include media($fullsize) {
     width: 350px;
     float: left;
     margin: 10px 30px 30px 0;
+    padding: 20px 20px 20px 19px;
   }
 
   img {
@@ -147,28 +159,33 @@ figure.align-left, div[data-cke-display-name="image"].align-left {
     height: auto !important;
   }
   figcaption {
-    padding-top: 12px;
+    padding-top: 8px;
     font-size: 14px;
     line-height: 18px;
     color: $heading-color;
+    @include media($fullsize){
+      padding-top: 12px;
+    }
   }
 }
 
 figure.align-right, div[data-cke-display-name="image"].align-right {
   border: 1px solid $medium-gray;
   width: 100%;
-  padding: 20px 19px 20px 20px;
+  padding: 13px 13px 8px;
+  margin-bottom: 12px;
 
   @include media($tablet) {
     width: 230px;
     float: right;
-    margin: 0 0 30px 30px;
+    margin: 0 0 0px 15px;
   }
 
   @include media($fullsize) {
     width: 350px;
     float: right;
     margin: 10px 0 30px 30px;
+    padding: 20px 20px 20px 19px;
   }
 
   img {
@@ -178,10 +195,13 @@ figure.align-right, div[data-cke-display-name="image"].align-right {
     height: auto !important;
   }
   figcaption {
-    padding-top: 15px;
+    padding-top: 8px;
     font-size: 14px;
     line-height: 20px;
     color: $heading-color;
+    @include media($fullsize){
+      padding-top: 12px;
+    }
   }
 }
 
@@ -196,7 +216,7 @@ figcaption.text-color2 {
 blockquote {
   color: #04326d;
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 22px;
   position: relative;
   margin: 0 10px 45px 25px;
@@ -214,7 +234,7 @@ blockquote {
   }
   .author {
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 8px;
     font-style: normal;
     color: #666;
     font-weight: 400;
@@ -236,6 +256,7 @@ blockquote {
     }
     .author {
       font-size: 16px;
+      margin-top: 20px;
       strong {
         font-weight: 700;
       }
