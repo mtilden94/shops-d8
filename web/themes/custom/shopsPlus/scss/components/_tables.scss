@@ -25,7 +25,7 @@ table {
           position: absolute;
           width: 11px;
           height: 11px;
-          top: 0;
+          top: 4px;
           left: 0;
         }
       }
@@ -98,6 +98,22 @@ table {
     tr {
       th, td {
         padding: 17px 12px;
+      }
+      td{
+        padding-top:22px;
+        padding-bottom: 22px;
+      }
+      th{font-size: 18px;}
+      th:first-child{
+        padding-left: 20px;
+      }
+    }
+    .footable-detail-row {
+      tr th{
+        font-size: 16px;
+      }
+      th:first-child{
+        padding-left: 30px;
       }
     }
   }

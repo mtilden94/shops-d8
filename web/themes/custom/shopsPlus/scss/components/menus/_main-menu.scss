@@ -36,7 +36,7 @@
 						width: 1200px;
 						margin: 0 auto;
 						display: block;
-						padding: 45px 35px 0px 65px;
+						padding: 35px 35px 25px 65px;
 						text-align: left;
 						li {
 							display: inline-block;
@@ -52,7 +52,7 @@
 							a {
 								padding: 0;
 								color: $white;
-								margin-bottom: 25px;
+								margin-bottom: 10px;
 								&:hover {
 									color: #7b9ecd;
 								}
@@ -68,7 +68,7 @@
 									margin-bottom: 0;
 									a {
 										color: #7b9ecd;
-										margin-bottom: 20px;
+										margin-bottom: 5px;
 										&:hover {
 											color: $white;
 										}
@@ -80,12 +80,13 @@
 				}
 				a {
 					font-family: $heading-font-family;
-					font-weight: $header-bold;
+					font-weight: $header-normal;
 					display: inline-block;
 					color: $dark-gray2;
 					text-transform: uppercase;
 					text-decoration: none;
-					padding: 38px 10px 33px;
+					padding: 29px 16px;
+					letter-spacing: 0.5px;
 					&:hover {
 						color: $menu-color-hover;
 						background-color: $menu-background-hover;
@@ -106,7 +107,7 @@
 	}
 	@include media($fullsize_1300) {
 		ul.menu li a {
-			padding: 38px 20px 33px;
+			padding: 29px 20px;
 		}
 	}
 }
@@ -315,6 +316,7 @@
 						text-align: center;
 						cursor: pointer;
 						border-radius: 50%;
+						line-height: 1em;
 					}
 					&:hover:after {
 						color: $white;
@@ -349,7 +351,7 @@
 		h2.title,
 		ul li a {
 			font-size: 16px;
-			padding: 15px 65px 15px 19px;
+			padding: 16px 65px 16px 19px;
 		}
 		ul {
 			li {
@@ -359,7 +361,7 @@
 						top: 10px;
 						font-size: 8px;
 						width: 30px;
-						padding-top: 10px;
+						padding-top: 12px;
 						height: 30px;
 					}
 				}

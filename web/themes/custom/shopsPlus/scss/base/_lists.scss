@@ -3,6 +3,10 @@ ol {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	line-height: 1.7em;
+}
+ul{
+	line-height: 1.75em;
 }
 
 .node {
@@ -15,6 +19,7 @@ ol {
 	}
 	ul {
 		li {
+			position: relative;
 			&:after {
 				content: '';
 			}
@@ -47,8 +52,8 @@ dd {
 @include media($fullsize) {
 	.node {
 		ol, ul {
-			margin-bottom: 45px;
-			margin-left: 40px;
+			margin-bottom: 30px;
+			margin-left: 35px;
 		}
 	}
 }
@@ -65,16 +70,16 @@ dd {
 			border-radius: 50%;
 			background-color: $breadcrumbs;
 			left: -20px;
-			position: relative;
-			top: 20px;
+			position: absolute;
+			top: 16px;
 		}
 	}
 }
 
 .cke_editable {
 	ul, ol {
-		margin-bottom: 45px;
-		margin-left: 40px;
+		margin-bottom: 30px;
+		margin-left: 35px;
 	}
 	ol {
 		list-style: decimal;

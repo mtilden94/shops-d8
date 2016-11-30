@@ -1,10 +1,10 @@
 body {
-	color: $base-font-color;
-	font-family: $base-font-family;
-	font-size: $base-font-size;
-	line-height: $base-line-height;
-	font-weight: 400;
-	-webkit-font-smoothing: antialiased;
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -13,207 +13,232 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $heading-font-family;
-	font-size: modular-scale(1);
-	line-height: $heading-line-height;
-	margin: 0 0 $small-spacing;
-	font-weight: $header-bold;
-	color: $heading-color;
+  font-family: $heading-font-family;
+  font-size: modular-scale(1);
+  line-height: $heading-line-height;
+  margin: 0 0 $small-spacing;
+  font-weight: $header-bold;
+  color: $heading-color;
 }
 
 h1 {
-	font-size: 28px;
+  font-size: 28px;
 }
 
 h2 {
-	font-size: 24px;
+  font-size: 24px;
 }
 
 h3 {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 h4 {
-	font-size: 18px;
-	color: $dark-gray;
+  font-size: 18px;
+  color: $dark-gray;
 }
 
 p {
-	margin: 0 0 $small-spacing;
+  margin: 0 0 $small-spacing;
 }
 
 a {
-	color: $action-color;
-	text-decoration: underline;
-	transition: color $base-duration $base-timing;
+  color: $action-color;
+  text-decoration: underline;
+  transition: color $base-duration $base-timing;
 
-	&:active,
-	&:focus,
-	&:hover {
-		color: shade($action-color, 25%);
-		text-decoration: none;
-	}
+  &:active,
+  &:focus,
+  &:hover {
+    color: shade($action-color, 25%);
+    text-decoration: none;
+  }
 }
 
 hr {
-	border-bottom: $base-border;
-	border-left: 0;
-	border-right: 0;
-	border-top: 0;
-	margin: $base-spacing 0;
-	display: table;
-	clear: both;
-	width: 100%;
+  border-bottom: $base-border;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: $base-spacing 0;
+  display: table;
+  clear: both;
+  width: 100%;
 }
 
 strong {
-	font-weight: $strong;
+  font-weight: $strong;
 }
 
 @include media($tablet) {
-	body {
-		font-size: $tablet-font-size;
-	}
+  body {
+    font-size: $tablet-font-size;
+  }
 }
 
 @include media($fullsize) {
-	body {
-		font-size: $full-font-size;
-	}
-	h1 {
-		font-size: 40px;
-	}
-	h2 {
-		font-size: 30px;
-	}
-	h3 {
-		font-size: 26px;
-	}
-	h4 {
-		font-size: 22px;
-	}
+  body {
+    font-size: $full-font-size;
+  }
+  h1 {
+    font-size: 40px;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+  h3 {
+    font-size: 26px;
+    margin-bottom: 7px;
+  }
+  h4 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  p {
+    margin: 0 0 45px;
+  }
+  p.int-text {
+    margin-bottom: 25px;
+  }
+  p.only-strong {
+    margin-bottom: 7px;
+  }
+  p.after-table {
+    font-size: 15px;
+    top:-10px;
+    margin-bottom: 60px;
+  }
+}
+
+p.after-table {
+  line-height: 1.3em;
+  font-style: italic;
+  position: relative;
 }
 
 p.int-text {
-	color: $green;
-	font-weight: $bold;
+  color: $green;
+  font-weight: $bold;
 }
 
 figure.align-left, div[data-cke-display-name="image"].align-left {
-	border: 1px solid $medium-gray;
-	width: 100%;
-	padding: 20px 20px 20px 19px;
+  border: 1px solid $medium-gray;
+  width: 100%;
+  padding: 20px 20px 20px 19px;
 
-	@include media($tablet) {
-		width: 230px;
-		float: left;
-		margin: 0 30px 30px 0;
-	}
+  @include media($tablet) {
+    width: 230px;
+    float: left;
+    margin: 0 30px 30px 0;
+  }
 
-	@include media($fullsize) {
-		width: 350px;
-		float: left;
-		margin: 0 30px 30px 0;
-	}
+  @include media($fullsize) {
+    width: 350px;
+    float: left;
+    margin: 10px 30px 30px 0;
+  }
 
-	img {
-		display: block;
-		width: 100%;
-		max-width: 100%;
-		height: auto !important;
-	}
-	figcaption {
-		padding-top: 12px;
-		font-size: 14px;
-		line-height: 18px;
-		color: $heading-color;
-	}
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+  }
+  figcaption {
+    padding-top: 12px;
+    font-size: 14px;
+    line-height: 18px;
+    color: $heading-color;
+  }
 }
 
 figure.align-right, div[data-cke-display-name="image"].align-right {
-	border: 1px solid $medium-gray;
-	width: 100%;
-	padding: 20px 19px 20px 20px;
+  border: 1px solid $medium-gray;
+  width: 100%;
+  padding: 20px 19px 20px 20px;
 
-	@include media($tablet) {
-		width: 230px;
-		float: right;
-		margin: 0 0 30px 30px;
-	}
+  @include media($tablet) {
+    width: 230px;
+    float: right;
+    margin: 0 0 30px 30px;
+  }
 
-	@include media($fullsize) {
-		width: 350px;
-		float: right;
-		margin: 0 0 30px 30px;
-	}
+  @include media($fullsize) {
+    width: 350px;
+    float: right;
+    margin: 10px 0 30px 30px;
+  }
 
-	img {
-		display: block;
-		width: 100%;
-		max-width: 100%;
-		height: auto !important;
-	}
-	figcaption {
-		padding-top: 15px;
-		font-size: 14px;
-		line-height: 20px;
-		color: $heading-color;
-	}
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+  }
+  figcaption {
+    padding-top: 15px;
+    font-size: 14px;
+    line-height: 20px;
+    color: $heading-color;
+  }
 }
 
 figcaption.text-color1 {
-	color: #000;
+  color: #000;
 }
 
 figcaption.text-color2 {
-	color: red;
+  color: red;
 }
 
 blockquote {
-	color: #04326d;
-	font-style: italic;
-	font-size: 16px;
-	line-height: 22px;
-	position: relative;
-	margin: 0 10px 45px 25px;
-	&:before{
-		content: '“';
-		position: absolute;
-		left: -20px;
-		top: 1px;
-		font-family: $heading-font-family;
-		font-weight: bold;
-		font-size: 30px;
-	}
-	p {
-		margin-bottom: 0;
-	}
-	.author {
-		font-size: 14px;
-		margin-top: 20px;
-		font-style: normal;
-		color: #666;
-		font-weight: 400;
-		line-height: 1.2em;
-		strong {
-			color: #444;
-			font-weight: 700;
-		}
-	}
+  color: #04326d;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 22px;
+  position: relative;
+  margin: 0 10px 45px 25px;
+  &:before {
+    content: '“';
+    position: absolute;
+    left: -20px;
+    top: 1px;
+    font-family: $heading-font-family;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .author {
+    font-size: 14px;
+    margin-top: 20px;
+    font-style: normal;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.4em;
+    strong {
+      color: #444;
+      font-weight: 700;
+    }
+  }
 
-	@include media($fullsize){
-		margin: 0 0px 60px 52px;
-		font-size: 22px;
-		line-height: 30px;
-		&:before{
-			font-size: 40px;
-			left: -30px;
-		}
-		.author {
-			font-size: 16px;
-			strong {
-				font-weight: 700;
-			}
-		}
-	}
+  @include media($fullsize) {
+    margin: 17px 0px 55px 52px;
+    font-size: 22px;
+    line-height: 30px;
+    &:before {
+      font-size: 40px;
+      left: -34px;
+      top: 9px;
+    }
+    .author {
+      font-size: 16px;
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
 }

@@ -65,13 +65,14 @@
             $('table tr:nth-child(2n)').addClass('tr-row');
             $('table th').last().attr('data-breakpoints', '');
             $('table tr').each(
-              function () {
-                  if($('td',this).size() < 9){
-                      $('td:first',this).addClass('no-icon');
-                  }
-              }
+                function () {
+                    if ($('td', this).size() < 9) {
+                        $('td:first', this).addClass('no-icon');
+                    }
+                }
             );
-            if($('table tr td').size() < 9){}
+            if ($('table tr td').size() < 9) {
+            }
             $('table').footable();
 
             //Expanding Search box
@@ -134,6 +135,14 @@
                 }
             );
 
+            //only one <strong> in tag <p>
+            $('strong').each(
+                function () {
+                    if ($(this).prev().length < 1 && $(this).next().length < 1) {
+                        $(this).parent().addClass('only-strong');
+                    }
+                }
+            );
 
             //Close on click outside
             $(document).click(function (e) {
