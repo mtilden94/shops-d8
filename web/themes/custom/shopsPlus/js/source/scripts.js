@@ -137,19 +137,6 @@
                 }
             );
 
-            //only one <strong> in tag <p>
-            $('strong').each(
-                function () {
-                    if ($(this).prev().length < 1 && $(this).next().length < 1) {
-                        var this_content=$(this).parent().html().split("<strong>");
-                        var this_content_2=$(this).parent().html().split("</strong>");
-                        if(this_content[0]=='' || this_content_2[1]==''){
-                            $(this).parent().addClass('only-strong');
-                        }
-                    }
-                }
-            );
-
             //Close on click outside
             $(document).click(function (e) {
                 var target = e.target;
