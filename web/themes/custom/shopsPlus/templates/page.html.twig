@@ -52,39 +52,39 @@ secondary_menu ? 'with-subnav'
                 <div id="on-content">{{ page.oncontent }}</div>
             {% endif %}
 
+            {{ page.breadcrumb }}
+
             <section id="content">
+                <div class="in">
+                    <div id="content-header">
 
-                <div id="content-header">
+                        {% if page.highlighted|render %}
+                            <div id="highlighted">{{ page.highlighted }}</div>
+                        {% endif %}
 
-                    {{ page.breadcrumb }}
+                        {{ title_prefix }}
 
-                    {% if page.highlighted|render %}
-                        <div id="highlighted">{{ page.highlighted }}</div>
-                    {% endif %}
+                        {% if title %}
+                            <h1 class="title">{{ title }}</h1>
+                        {% endif %}
 
-                    {{ title_prefix }}
+                        {{ title_suffix }}
+                        {{ page.help }}
 
-                    {% if title %}
-                        <h1 class="title">{{ title }}</h1>
-                    {% endif %}
+                        {% if tabs %}
+                            <div class="tabs">{{ tabs }}</div>
+                        {% endif %}
 
-                    {{ title_suffix }}
-                    {{ page.help }}
+                        {% if action_links %}
+                            <ul class="action-links">{{ action_links }}</ul>
+                        {% endif %}
 
-                    {% if tabs %}
-                        <div class="tabs">{{ tabs }}</div>
-                    {% endif %}
+                    </div><!-- /#content-header -->
 
-                    {% if action_links %}
-                        <ul class="action-links">{{ action_links }}</ul>
-                    {% endif %}
-
-                </div><!-- /#content-header -->
-
-                <div id="content-area">
-                    {{ page.content }}
+                    <div id="content-area">
+                        {{ page.content }}
+                    </div>
                 </div>
-
             </section><!-- /#content -->
 
             {% if page.sidebar_first|render %}

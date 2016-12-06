@@ -63,15 +63,18 @@
                 }
             );
             $('table tr:nth-child(2n)').addClass('tr-row');
-            $('table th').last().attr('data-breakpoints', '');
             $('table tr').each(
+                function () {
+                    if ($('td', this).size() < 9) {
+                        $('td:first', this).addClass('no-icon');
+                    }
+                }
+            );
+            $('table thead').each(
               function () {
-                  if($('td',this).size() < 9){
-                      $('td:first',this).addClass('no-icon');
-                  }
+                  $('th',this).last().attr('data-breakpoints', '');
               }
             );
-            if($('table tr td').size() < 9){}
             $('table').footable();
 
             //Expanding Search box
@@ -133,7 +136,6 @@
                     $(this).toggleClass('open-sub-menu');
                 }
             );
-
 
             //Close on click outside
             $(document).click(function (e) {

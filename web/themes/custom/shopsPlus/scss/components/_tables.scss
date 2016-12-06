@@ -2,7 +2,7 @@ table {
   &.footable-details {
     margin: 0;
   }
-  .footable-detail-row:last-child .footable-details{
+  .footable-detail-row:last-child .footable-details {
     border-bottom: $base-border;
   }
   thead {
@@ -11,13 +11,14 @@ table {
   tr td.footable-first-visible {
     position: relative;
     padding-left: 30px;
-    span{
+    span {
       &.fooicon {
         position: absolute;
         left: 12px;
-        top: 25px;
+        top: 50%;
         cursor: pointer;
-        &:before{
+        margin-top: -6px;
+        &:before {
           content: '';
           background-image: url("../images/optimized/plus.svg");
           background-repeat: no-repeat;
@@ -25,13 +26,13 @@ table {
           position: absolute;
           width: 11px;
           height: 11px;
-          top: 0;
+          top: 0px;
           left: 0;
         }
       }
-      &.fooicon-minus{
-        top:29px;
-        &:before{
+      &.fooicon-minus {
+        &:before {
+          top:4px;
           background-image: url("../images/optimized/minus.svg");
         }
       }
@@ -53,6 +54,9 @@ table {
         text-align: left;
       }
     }
+    th {
+      font-size: 18px;
+    }
     td {
       color: $table-color;
     }
@@ -63,6 +67,7 @@ table {
         display: inline-block !important;
         width: auto !important;
         border: 0;
+        font-size: 16px;
       }
       td {
         padding-left: 5px;
@@ -86,7 +91,7 @@ table {
             padding-bottom: 15px;
           }
         }
-        tr:first-child{
+        tr:first-child {
           td, th {
             padding-top: 10px;
           }
@@ -98,6 +103,21 @@ table {
     tr {
       th, td {
         padding: 17px 12px;
+      }
+      td {
+        padding-top: 22px;
+        padding-bottom: 22px;
+      }
+      th:first-child {
+        padding-left: 20px;
+      }
+    }
+    .footable-detail-row {
+      tr th {
+        font-size: 16px;
+      }
+      th:first-child {
+        padding-left: 30px;
       }
     }
   }

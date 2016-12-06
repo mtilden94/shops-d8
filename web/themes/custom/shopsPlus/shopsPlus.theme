@@ -86,6 +86,14 @@ function shopsPlus_preprocess_field(&$variables, $hook)
 {
     // Make additional variables available to the template.
     $variables['bundle'] = $variables['element']['#bundle'];
+    if ($variables['bundle'] == 'image_top_block') {
+        $variables['image_top_block_url'] = '';
+        $field = $variables['items'][0]['content']['#item']->getValue();
+        $image_file = \Drupal\file\Entity\File::load($field['target_id']);
+        $image_public_uri = $image_file->getFileUri();
+        $style = \Drupal\image\Entity\ImageStyle::load('header_image')->buildUrl($image_public_uri);
+        $variables['image_top_block_url'] = $style;
+    }
 }
 
 /**
@@ -93,7 +101,7 @@ function shopsPlus_preprocess_field(&$variables, $hook)
  */
 function shopsPlus_preprocess_block(&$variables)
 {
-    $id=$variables['attributes']['id'];
+    $id = $variables['attributes']['id'];
     if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
         if (isset($variables['attributes']['id'])) {
             $variables['attributes']['class'][] = "image-top-block";
