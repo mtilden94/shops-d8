@@ -12,6 +12,9 @@ $request = Request::createFromGlobals();
 $kernel = DrupalKernel::createFromRequest($request, $autoloader, 'prod');
 $kernel->boot();
 
+// Open an SQL File
+
+$sql = fopen('./resources.sql', 'w+');
 
 /*********
  * Get List of New Countries
@@ -24,7 +27,7 @@ $query->condition('type', 'countries');
 
 $ids = $query->execute();
 
-print_r($ids);
+//print_r($ids);
 echo "Total: " . count($ids) . "\n\n";
 
 foreach ($ids as $key => $val){
@@ -45,7 +48,7 @@ $query->condition('type', 'technical_area');
 
 $ids = $query->execute();
 
-print_r($ids);
+//print_r($ids);
 echo "Total: " . count($ids) . "\n\n";
 
 foreach ($ids as $key => $val){
@@ -66,7 +69,7 @@ $query->condition('type', 'health_areas');
 
 $ids = $query->execute();
 
-print_r($ids);
+//print_r($ids);
 echo "Total: " . count($ids) . "\n\n";
 
 foreach ($ids as $key => $val){
@@ -80,21 +83,50 @@ print_r($healthareas);
   Get A Node of type Resource Center
 ****/
 
-$node = Drupal::entityTypeManager()->getStorage('node')->load(4929);
-print_r($node);
+$query = \Drupal::entityQuery('node');
+$query->condition('type', 'resource');
+$ids = $query->execute();
 
-/***
-  Load old Country Taxonomy
-  **/
+foreach ($ids as $key => $nId){
+  $node = Drupal::entityTypeManager()->getStorage('node')->load($nId);
 
-$currentCountries = $node->get('countries')->getValue();
-foreach ($currentCountries as $key => $val){
-  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($val['target_id']);
-  echo "\n\nCountry is: " . $term->get('name')->value . "\n";
-  echo "Entity ID for New Country is: " . $countries[$term->get('name')->value] . "\n\n";
+  /***
+    Load old Country Taxonomy
+    **/
+  $currentCountries = $node->get('countries')->getValue();
+  $delta = 0;
+  foreach ($currentCountries as $key => $val){
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($val['target_id']);
+    //echo "\n\nCountry is: [" . $term->get('name')->value . "]\n";
+    $countryId = $countries[trim($term->get('name')->value)];
+    //echo "Country ID: " . $countryId . "\n\n";
+    //echo "Entity ID for New Country is: " . $countryId . "\n\n";
+    if ($countryId > 0){
+      fwrite($sql, "INSERT INTO node_revision__field_country VALUES ('resource', 0, $nId, $nId, 'und', $delta, $countryId);\n");
+      fwrite($sql, "INSERT INTO node__field_country VALUES ('resource', 0, $nId, $nId, 'und', $delta, $countryId);\n");
+      $delta++;
+    }
+  }
 }
+/*
 
-$node->setTitle('The new Title');
-$node->save();
+Need to add countries to two tables:
+
+node_revision__field_country
+node__field_country
+
+Fields: [same for both tables]
+
+bundle: resource
+deleted: 0
+entity_id: [Node ID]
+revision_id: [Node ID]
+langcode: und
+delta: [0 - increments with each country]
+field_country_target_id: [country node id]
+
+*/
+
+fclose($sql);
 
 ?>
