@@ -1,0 +1,52 @@
+[submodule "web/modules/contrib/address"]
+	path = web/modules/contrib/address
+	url = https://git.drupal.org/project/address
+
+[submodule "web/modules/contrib/browsersync"]
+	path = web/modules/contrib/browsersync
+	url = https://git.drupal.org/project/browsersync
+
+[submodule "web/modules/contrib/devel"]
+	path = web/modules/contrib/devel
+	url = https://git.drupal.org/project/devel
+
+[submodule "web/modules/contrib/field_collection"]
+	path = web/modules/contrib/field_collection
+	url = https://git.drupal.org/project/field_collection
+
+[submodule "web/modules/contrib/field_group"]
+	path = web/modules/contrib/field_group
+	url = https://git.drupal.org/project/field_group
+
+[submodule "web/modules/contrib/flexslider"]
+	path = web/modules/contrib/flexslider
+	url = https://git.drupal.org/project/flexslider
+
+[submodule "web/modules/contrib/geofield"]
+	path = web/modules/contrib/geofield
+	url = https://git.drupal.org/project/geofield
+
+[submodule "web/modules/contrib/geophp"]
+	path = web/modules/contrib/geophp
+	url = https://git.drupal.org/project/geophp
+
+[submodule "web/modules/contrib/inline_entity_form"]
+	path = web/modules/contrib/inline_entity_form
+	url = https://git.drupal.org/project/inline_entity_form
+
+[submodule "web/modules/contrib/libraries"]
+	path = web/modules/contrib/libraries
+	url = https://git.drupal.org/project/libraries
+
+[submodule "web/modules/contrib/menu_breadcrumb"]
+	path = web/modules/contrib/menu_breadcrumb
+	url = https://git.drupal.org/project/menu_breadcrumb
+
+[submodule "web/modules/contrib/migrate_plus"]
+	path = web/modules/contrib/migrate_plus
+	url = https://git.drupal.org/project/migrate_plus
+
+[submodule "web/modules/contrib/pathauto"]
+	path = web/modules/contrib/pathauto
+	url = https://git.drupal.org/project/pathauto
+
