@@ -254,14 +254,18 @@
   }
   .views-row {
     display: inline-block;
-    width: 400px;
     text-align: center;
-    margin: 0 20px;
   }
   #block-shopsplus-content {
     border-bottom: 1px solid #ccc;
     padding-bottom: 50px;
     margin-bottom: 70px;
+  }
+  @include media($fullsize) {
+    .views-row {
+      width: 400px;
+      margin: 0 20px;
+    }
   }
 }
 
