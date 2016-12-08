@@ -394,7 +394,7 @@
   @include media($tablet) {
     .form-actions {
       display: inline-block;
-      width: 25%;
+      width: 24%;
       .button{
         position: relative;
         top:-2px;
@@ -404,7 +404,7 @@
     .form-item {
       width: 35%;
       display: inline-block;
-      margin-right: 15px;
+      margin-right: 2%;
       margin-bottom: 20px;
       input, select {
         border: $base-border;
