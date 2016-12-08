@@ -47,13 +47,29 @@ function shopsPlus_preprocess_html(&$variables)
 
 }
 
+function shopsPlus_preprocess_page_title(&$variables)
+{
+    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+        $node_type = $node->getType();
+        //hide title full view
+        if ($node_type == 'our_people') {
+            $variables['title'] = '';
+        }
+    }
+}
+
+/**
+ * @param $variables
+ */
 function shopsPlus_preprocess_page(&$variables)
 {
-    //set header image
-    $variables['header_image'] = '';
     if ($node = \Drupal::routeMatch()->getParameter('node')) {
         //dsm($node);
+        //set header image
+        $node_type = $node->getType();
+
         if (isset($node->field__header_image) AND isset($node->field__header_image->entity)) {
+            $variables['header_image'] = '';
             $field__header_image = $node->field__header_image;
             $original_image = $field__header_image->entity->getFileUri();
 
@@ -74,7 +90,45 @@ function shopsPlus_preprocess_page(&$variables)
             //$image = $node->field_image->view($display_options);
             $variables['header_image'] = $image;*/
 
+        }
+        //our people more
+        if ($node_type == "our_people") {
+            $node_nid = $node->id();
+            $query = \Drupal::database()->select('node', 'n');
+            $query->addField('n', 'nid');
+            $query->condition('n.type', 'our_people');
+            $query->join('node_field_data', 'nfd', 'nfd.nid = n.nid');
+            $query->addField('nfd', 'title');
+            $query->condition('nfd.status', 1);
+            $our_people_data = $query->execute()->fetchAll();
+            $old_item = $item = array();
+            $stop_flag = 0;
+            foreach ($our_people_data as $data) {
+                if ($data->nid != $node_nid) {
+                    if ($stop_flag) {
+                        $item = array('nid' => $data->nid, 'title' => $data->title);
+                        $stop_flag == 2;
+                    } else {
+                        $old_item = array('nid' => $data->nid, 'title' => $data->title);
+                    }
+                }
+                if ($stop_flag == 2) {
+                    break;
+                }
+                if ($data->nid == $node_nid) $stop_flag = 1;
+            }
+            $variables['our_people_more'] = array('prev' => $old_item, 'next' => $item);
+        }
 
+    }
+    if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
+        if (isset($term->field_header_image) AND isset($term->field_header_image->entity)) {
+            $variables['header_image'] = '';
+            $field_header_image = $term->field_header_image;
+            $original_image = $field_header_image->entity->getFileUri();
+            $style = \Drupal\image\Entity\ImageStyle::load('header_image');
+            $background_image = $style->buildUrl($original_image);
+            $variables['header_image'] = $background_image;
         }
     }
 }
@@ -86,6 +140,8 @@ function shopsPlus_preprocess_field(&$variables, $hook)
 {
     // Make additional variables available to the template.
     $variables['bundle'] = $variables['element']['#bundle'];
+
+    // Top image block style image
     if ($variables['bundle'] == 'image_top_block') {
         $variables['image_top_block_url'] = '';
         $field = $variables['items'][0]['content']['#item']->getValue();

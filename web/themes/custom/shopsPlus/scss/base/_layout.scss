@@ -82,6 +82,22 @@ body.no-sidebar, body.one-sidebar {
     }
   }
 }
+//no-sidebar
+.no-sidebar {
+  #content {
+    clear: both;
+  }
+  @include media($tablet) {
+    #content {
+      padding: 0 39px 39px 39px;
+    }
+  }
+  @include media($fullsize){
+    #content {
+      padding: 0 50px 50px 50px;
+    }
+  }
+}
 
 /*
 

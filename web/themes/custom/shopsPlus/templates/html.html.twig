@@ -59,6 +59,7 @@
     not is_front ? 'with-subnav',
     sidebar_first ? 'sidebar-first',
     sidebar_second ? 'sidebar-second',
+    node_type ? 'node-type-' ~ node_type|clean_class,
     (sidebar_first and not sidebar_second) or (sidebar_second and not sidebar_first) ? 'one-sidebar',
     (sidebar_first and sidebar_second) ? 'two-sidebars',
     (not sidebar_first and not sidebar_second) ? 'no-sidebar'

@@ -34,7 +34,6 @@ secondary_menu ? 'with-subnav'
 
     <div id="main">
 
-
         <div class="container">
 
             {% if header_image %}
@@ -51,9 +50,22 @@ secondary_menu ? 'with-subnav'
             {% if page.oncontent|render and not header_image %}
                 <div id="on-content">{{ page.oncontent }}</div>
             {% endif %}
-
-            {{ page.breadcrumb }}
-
+            <div id="breadcrumb-layout">
+                {{ page.breadcrumb }}
+                {% if our_people_more %}
+                    <div id="our-people-more">
+                        {% if our_people_more.prev.nid %}
+                            <a class="prev" href="{{ path('entity.node.canonical', {'node':  our_people_more.prev.nid}) }}">{{ our_people_more.prev.title }}</a>
+                        {% endif %}
+                        {% if our_people_more.next.nid and our_people_more.prev.nid %}
+                            <span class="separator">|</span>
+                        {% endif %}
+                        {% if our_people_more.next.nid %}
+                            <a class="next" href="{{ path('entity.node.canonical', {'node':  our_people_more.next.nid}) }}">{{ our_people_more.next.title }}</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
             <section id="content">
                 <div class="in">
                     <div id="content-header">
