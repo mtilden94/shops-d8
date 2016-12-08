@@ -1,0 +1,58 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% if page %}
+    {% set classes = [
+    'node node-our-people-full'
+    ] %}
+{% else %}
+    {% set classes = [
+    'node node-our-people-teaser'
+    ] %}
+{% endif %}
+
+<article{{ attributes.addClass(classes) }}>
+
+    {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+        <header>
+            {{ title_prefix }}
+            {% if not page and label %}
+                <h2{{ title_attributes.addClass(title_classes) }}>
+                    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+                </h2>
+            {% endif %}
+            {{ title_suffix }}
+
+            {% if not node.published %}
+                <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+            {% endif %}
+        </header>
+    {% endif %}
+    {% if page %}
+        <div{{ content_attributes.addClass('content') }}>
+            <div class="left-side">
+                {{ content.field_head_shot }}
+                <h2>{{ label }}</h2>
+                    {{ content.field_job_title }}
+                <div class="social">
+                    {{ content.field_facebook_url }}
+                    {{ content.field_twitter_url }}
+                    {{ content.field_linkedin_url }}
+                    {{ content.field_email }}
+                </div>
+            </div>
+            <div class="right-side">
+                {{ content|without('links', 'field_head_shot', 'field_job_title','field_facebook_url','field_twitter_url','field_linkedin_url','field_email') }}
+            </div>
+        </div><!-- /.content -->
+    {% else %}
+        <div{{ content_attributes.addClass('content') }}>
+            {{ content|without('links') }}
+        </div><!-- /.content -->
+    {% endif %}
+
+    {% if content.links %}
+        <div class="links">
+            {{ content.links }}
+        </div><!-- /.links -->
+    {% endif %}
+
+</article><!-- /.node -->
