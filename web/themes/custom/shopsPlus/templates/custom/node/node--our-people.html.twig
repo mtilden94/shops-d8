@@ -1,13 +1,8 @@
 {# Create classes array. The 'node' class is required for contextual edit links. #}
-{% if page %}
-    {% set classes = [
-    'node node-our-people-full'
-    ] %}
-{% else %}
-    {% set classes = [
-    'node node-our-people-teaser'
-    ] %}
-{% endif %}
+{% set classes = [
+   'node node-our-people-full'
+] %}
+
 
 <article{{ attributes.addClass(classes) }}>
 
@@ -26,7 +21,6 @@
             {% endif %}
         </header>
     {% endif %}
-    {% if page %}
         <div{{ content_attributes.addClass('content') }}>
             <div class="left-side">
                 {{ content.field_head_shot }}
@@ -43,16 +37,9 @@
                 {{ content|without('links', 'field_head_shot', 'field_job_title','field_facebook_url','field_twitter_url','field_linkedin_url','field_email') }}
             </div>
         </div><!-- /.content -->
-    {% else %}
-        <div{{ content_attributes.addClass('content') }}>
-            {{ content|without('links') }}
-        </div><!-- /.content -->
-    {% endif %}
-
     {% if content.links %}
         <div class="links">
             {{ content.links }}
         </div><!-- /.links -->
     {% endif %}
-
 </article><!-- /.node -->

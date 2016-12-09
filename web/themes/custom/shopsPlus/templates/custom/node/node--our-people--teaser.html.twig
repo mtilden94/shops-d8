@@ -1,0 +1,26 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+    'node node-our-people-teaser'
+] %}
+<article{{ attributes.addClass(classes) }}>
+        <div{{ content_attributes.addClass('content') }}>
+            {{ content|without('links', 'field_job_title') }}
+            <header>
+                {{ title_prefix }}
+                {% if not page and label %}
+                    <h2{{ title_attributes.addClass(title_classes) }}>
+                        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+                    </h2>
+                {% endif %}
+                {{ content.field_job_title }}
+                {{ title_suffix }}
+            </header>
+        </div><!-- /.content -->
+
+    {% if content.links %}
+        <div class="links">
+            {{ content.links }}
+        </div><!-- /.links -->
+    {% endif %}
+
+</article><!-- /.node -->

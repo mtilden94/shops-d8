@@ -1,6 +1,8 @@
 // Breadcrumb styles
 .breadcrumb {
   margin-bottom: 20px;
+  padding: 0 20px;
+  margin-top: 8px;
   li {
     font-family: $heading-font-family;
     font-size: 14px;
@@ -30,7 +32,6 @@
     }
   }
   @include media($tablet){
-    margin-top: 8px;
     margin-bottom: 15px;
     padding: 0 39px;
   }
