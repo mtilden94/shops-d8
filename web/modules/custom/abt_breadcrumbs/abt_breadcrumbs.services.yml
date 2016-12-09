@@ -1,0 +1,5 @@
+services:
+  abt_breadcrumbs.our_people:
+    class: Drupal\abt_breadcrumbs\Breadcrumb\OurPeopleBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }

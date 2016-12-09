@@ -1,0 +1,7 @@
+{
+	"patches": {
+		"drupal/drupal": {
+			"Add <nolink> support": "patches/add_no_link_support_in_menu.patch"
+		}
+	}
+}

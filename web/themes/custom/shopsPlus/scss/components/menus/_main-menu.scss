@@ -78,7 +78,7 @@
 						}
 					}
 				}
-				a {
+				a, span:not(.pos-block) {
 					font-family: $heading-font-family;
 					font-weight: $header-normal;
 					display: inline-block;
@@ -94,7 +94,7 @@
 				}
 			}
 			li.open-top-menu {
-				& > a {
+				& > a, & > span {
 					color: $menu-color-hover;
 					background-color: $menu-background-hover;
 				}
@@ -188,7 +188,7 @@
 				position: static;
 			}
 		}
-		a, .beck {
+		a, .beck, span:not(.pos-block):not(.prev-next) {
 			color: #FFF;
 			padding: 16px 16px 16px 20px;
 			line-height: 1.1em;

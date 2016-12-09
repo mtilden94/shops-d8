@@ -1,0 +1,5 @@
+name: ABT Shops Breadcrumbs
+description: ABT Shops Breadcrumbs.
+core: 8.x
+package: ABT
+type: module
