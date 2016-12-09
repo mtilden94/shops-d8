@@ -283,9 +283,6 @@
     }
     .views-row {
       width: 100%;
-      display: inline-block;
-      margin-right: 10px;
-      margin-left: 0;
       text-align: center;
       margin-bottom: 25px;
       header{
@@ -307,20 +304,27 @@
       margin-bottom: 15px;
     }
     @include media($tablet) {
-      .views-row {
-        width: 333px;
-        margin-right: 15px;
-        margin-bottom: 25px;
-      }
       .line-group{
+        width: 100%;
+        float: left;
         border-bottom: $base-border;
         margin-bottom: 30px;
-        .views-row:nth-child(2n+2) {
+        &:after{
+          content: '';
+          clear: both;
+          display: block;
+          width: 100%;
+        }
+        .views-row {
+          @include span-columns(4);
+          margin-bottom: 25px;
+        }
+        .views-row:nth-child(3n+3) {
           margin-right: 0;
         }
       }
-
     }
+
     @include media($fullsize) {
       .views-row {
         header{
@@ -337,16 +341,9 @@
         margin-bottom: 50px;
         .views-row {
           width: 353px;
-          margin-right: 15px;
-          margin-bottom: 45px;
+          margin: 0 15px 45px 0;
         }
-        .views-row:nth-child(2n+2) {
-          margin-right: 15px;
-        }
-        .views-row:nth-child(3n+3) {
-          margin-right: 0;
-        }
-      }
+       }
     }
   }
 }
