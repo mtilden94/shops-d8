@@ -395,14 +395,15 @@
 }
 
 //hover image
-.head-shot {
+.head-shot a{
   display: inline-block;
   margin: 0 auto;
   &:before{
     content: '';
     transition: all 0.3s ease;
   }
-  a{
+  span{
+    display: block;
     &:after, &:before{
       content: "";
       transition: all 0.3s ease;
@@ -424,7 +425,7 @@
       background-color: $breadcrumbs;
       opacity: 0.7;
     }
-    a {
+    span {
       &:after, &:before{
         content: "\e907";
         font-family: $icons-font-family;
@@ -449,7 +450,7 @@
   }
   @include media($fullsize){
     &:hover {
-      a{
+      span {
         &:after, &:before{
           width: 50px;
           height: 52px;
