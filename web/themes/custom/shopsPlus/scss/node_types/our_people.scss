@@ -49,7 +49,7 @@
   }
 
   .node-our-people-full {
-    &:after{
+    &:after {
       content: '';
       clear: both;
       display: block;
@@ -274,13 +274,15 @@
     }
   }
 }
-.node-type-our-people{
-  #block-shopsplus-content{
+
+.node-type-our-people {
+  #block-shopsplus-content {
     padding-bottom: 0;
     margin-bottom: 0;
     border: 0;
   }
 }
+
 .page-our-people-staff-fields-home-office-staff {
   #block-shopsplus-content {
     border: 0;
@@ -297,16 +299,16 @@
       width: 100%;
       text-align: center;
       margin-bottom: 25px;
-      header{
-        h2 a, .job-title{
+      header {
+        h2 a, .job-title {
           font-family: $heading-font-family;
           text-decoration: none;
           color: $heading-color;
         }
-        h2 a:hover{
+        h2 a:hover {
           color: darken($breadcrumbs, 30%);
         }
-        .job-title{
+        .job-title {
           color: $breadcrumbs;
           font-weight: $header-normal;
         }
@@ -315,16 +317,16 @@
     h3 {
       margin-bottom: 15px;
     }
-    .line-group{
+    .line-group {
       border-bottom: $base-border;
       margin-bottom: 30px;
     }
 
     @include media($tablet) {
-      .line-group{
+      .line-group {
         width: 100%;
         float: left;
-        &:after{
+        &:after {
           content: '';
           clear: both;
           display: block;
@@ -342,23 +344,23 @@
 
     @include media($fullsize) {
       .views-row {
-        header{
-          h2 a{
+        header {
+          h2 a {
             font-size: 26px;
           }
-          .job-title{
+          .job-title {
             font-size: 20px;
           }
         }
       }
-      .line-group{
+      .line-group {
         border-bottom: $base-border;
         margin-bottom: 50px;
         .views-row {
           width: 353px;
-          margin: 0 15px 45px 0;
+          margin: 0 18px 45px 0;
         }
-       }
+      }
     }
   }
 }
@@ -388,6 +390,73 @@
     .views-row {
       width: 400px;
       margin: 0 20px;
+    }
+  }
+}
+
+//hover image
+.head-shot {
+  display: inline-block;
+  margin: 0 auto;
+  &:before{
+    content: '';
+    transition: all 0.3s ease;
+  }
+  a{
+    &:after, &:before{
+      content: "";
+      transition: all 0.3s ease;
+    }
+  }
+  img{
+    display: block;
+    margin: 0 auto;
+  }
+  position: relative;
+  &:hover {
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      width: 100%;
+      top:0;
+      bottom: 0;
+      left: 0;
+      background-color: $breadcrumbs;
+      opacity: 0.7;
+    }
+    a {
+      &:after, &:before{
+        content: "\e907";
+        font-family: $icons-font-family;
+        position: absolute;
+        color: $white;
+        opacity: 0.6;
+        line-height: 1em;
+        width: 37px;
+        height: 38px;
+        font-size: 37px;
+      }
+      &:before{
+        content: "\e906";
+        top:20px;
+        left: 20px;
+      }
+      &:after{
+        right: 20px;
+        bottom: 20px;
+      }
+    }
+  }
+  @include media($fullsize){
+    &:hover {
+      a{
+        &:after, &:before{
+          width: 50px;
+          height: 52px;
+          overflow: hidden;
+          font-size: 50px;
+        }
+      }
     }
   }
 }
