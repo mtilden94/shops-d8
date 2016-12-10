@@ -15,6 +15,23 @@ label {
   display: block;
   font-weight: 600;
   margin-bottom: $small-spacing / 2;
+  font-family: $heading-font-family;
+  text-transform: uppercase;
+  color: $table-color;
+  font-size: 12px;
+  font-weight: $header-bold;
+  &.form-required{
+    &:after{
+      content: '*';
+      color: $breadcrumbs;
+      position: relative;
+      top:-2px;
+      padding-left: 5px;
+    }
+  }
+  @include media($fullsize){
+    font-size: 16px;
+  }
 }
 
 input,
@@ -27,30 +44,23 @@ textarea {
 
 #{$all-text-inputs} {
   appearance: none;
-  background-color: $base-background-color;
   border: $base-border;
-  border-radius: $base-border-radius;
-  box-shadow: $form-box-shadow;
   box-sizing: border-box;
   margin-bottom: $small-spacing;
   padding: $base-spacing / 3;
   transition: border-color $base-duration $base-timing;
   width: 100%;
-
   &:hover {
     border-color: shade($base-border-color, 20%);
   }
-
   &:focus {
     border-color: $action-color;
     box-shadow: $form-box-shadow-focus;
     outline: none;
   }
-
   &:disabled {
     background-color: shade($base-background-color, 5%);
     cursor: not-allowed;
-
     &:hover {
       border: $base-border;
     }
@@ -79,4 +89,61 @@ textarea {
 select {
   margin-bottom: $small-spacing;
   width: 100%;
+  padding: 0 10px;
+  @include media($fullsize){
+    padding: $base-spacing / 3;
+  }
+}
+
+input, select {
+  height: 42px;
+  border: $base-border;
+  border-radius: 0;
+  margin-bottom: 20px;
+  background-color: $white;
+  @include media($fullsize) {
+    height: 60px;
+    margin-bottom: 30px;
+  }
+}
+textarea{
+  border: $base-border;
+  background-color: $white;
+  border-radius: 0;
+}
+@include media($fullsize){
+  input, textarea, select{
+    font-size: 18px;
+  }
+}
+
+.form-actions {
+  text-align: center;
+  .button {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 40px;
+    border-radius: 0;
+    background-color: $breadcrumbs;
+    font-size: 14px;
+    font-family: $heading-font-family;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  @include media($fullsize) {
+    display: inline-block;
+    width: 159px;
+    .button {
+      width: 160px;
+      height: 59px;
+      margin-top: -2px;
+      position: relative;
+      border-radius: 0;
+      background-color: $breadcrumbs;
+      font-size: 16px;
+      font-family: $heading-font-family;
+      text-transform: uppercase;
+    }
+  }
 }

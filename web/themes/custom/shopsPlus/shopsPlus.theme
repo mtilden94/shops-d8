@@ -167,3 +167,10 @@ function shopsPlus_preprocess_block(&$variables)
         $variables['attributes']['class'][] = "block-original-" . $variables['elements']['#id'];
     }
 }
+
+function shopsPlus_form_alter(&$form, $form_state, $form_id) {
+    if (strpos($form_id, 'contact_us') !== FALSE) {
+        $form['actions']['submit']['#value']='Submit';
+        unset($form['actions']['preview']);
+    }
+}

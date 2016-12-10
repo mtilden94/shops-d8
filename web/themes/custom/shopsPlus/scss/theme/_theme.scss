@@ -184,62 +184,34 @@
 }
 
 .views-exposed-form {
-  .form-item {
-    max-width: 100%;
-  }
   background-color: $light-gray;
   border: $base-border;
   padding: 20px;
   margin-bottom: 50px;
-  label {
-    font-family: $heading-font-family;
-    text-transform: uppercase;
-    color: $table-color;
-    font-size: 16px;
-    font-weight: $header-bold;
-  }
   .form-item {
+    max-width: 100%;
     width: 100%;
     display: inline-block;
-    margin-right: 15px;
-    margin-bottom: 20px;
-    input, select {
-      height: 42px;
-      border: $base-border;
-      border-radius: 0;
-      margin-bottom: 0;
-      background-color: $white;
-    }
   }
   .form-actions {
-    text-align: center;
-    .button {
-      padding-top: 0;
-      padding-bottom: 0;
-      width: 100%;
-      height: 40px;
-      border-radius: 0;
-      background-color: $breadcrumbs;
-      font-size: 14px;
-      font-family: $heading-font-family;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-top: 10px;
+    text-align: left;
+    .button{
+      margin: 0;
     }
   }
-
   @include media($tablet) {
     .form-actions {
       display: inline-block;
-      width: 24%;
+      width: 19%;
       .button {
         position: relative;
         top: -2px;
-        margin-top: 0;
+        max-width: 100%;
+        width: 100%;
       }
     }
     .form-item {
-      width: 35%;
+      width: 37%;
       display: inline-block;
       margin-right: 2%;
       margin-bottom: 20px;
@@ -256,27 +228,138 @@
     padding: 40px;
     margin-bottom: 70px;
     .form-item {
-      max-width: 408px;
-      width: 408px;
+      max-width: 407px;
+      width: 407px;
       margin-right: 15px;
-      input, select {
-        height: 60px;
-      }
     }
     .form-actions {
-      display: inline-block;
-      width: 159px;
-      .button {
-        width: 160px;
-        height: 59px;
-        margin-top: -2px;
-        position: relative;
-        border-radius: 0;
-        background-color: $breadcrumbs;
-        font-size: 16px;
-        font-family: $heading-font-family;
-        text-transform: uppercase;
+      width: 16%;
+    }
+  }
+}
+
+//Contact Us
+.section-contact-us {
+  #content-area {
+    position: relative;
+  }
+  .field--name-field-description {
+    color: $green;
+  }
+  #contact-information {
+    p {
+      margin: 0;
+      font-size: 16px;
+      color: #888;
+      a {
+        text-decoration: none;
+        color: #888;
+        &:hover {
+          text-decoration: underline;
+        }
       }
+    }
+    h3 {
+      font-size: 18px;
+      line-height: 1em;
+      font-weight: $header-normal;
+      margin-bottom: 18px;
+    }
+    .field--name-field-contact-email, .field--name-field-contact-telephone, .field--name-field-contact-address {
+      background-image: url("../images/optimized/contact-phone.png");
+      background-repeat: no-repeat;
+      background-position: 0 9px;
+      padding-left: 35px;
+      background-size: 20px auto;
+      margin-bottom: 10px;
+    }
+    .field--name-field-contact-email {
+      background-image: url("../images/optimized/contact-email.svg");
+      background-position: 0 4px;
+      background-size: 25px auto;
+    }
+    .field--name-field-contact-address {
+      background-image: url("../images/optimized/contact-location.png");
+    }
+    @include media($tablet) {
+      position: absolute;
+      right: 0;
+      top: 3px;
+      width: 236px;
+      .form-wrapper {
+        margin-bottom: 15px;
+      }
+    }
+    @include media($fullsize) {
+      width: 280px;
+      top: 7px;
+      .form-wrapper {
+        padding-left: 48px;
+        margin-bottom: 20px;
+        background-size: auto;
+      }
+      .field--name-field-contact-email {
+        background-position: 0 3px;
+      }
+      p {
+        font-size: 18px;
+      }
+      h3 {
+        font-size: 22px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  #block-shopsplus-content {
+    width: 100%;
+    .captcha {
+      margin-top: 15px;
+      margin-bottom: 10px;
+      .g-recaptcha > div, iframe {
+        max-width: 100%;
+      }
+    }
+    @include media($tablet) {
+      margin-right: -261px;
+      form {
+        margin-right: 261px;
+        .form-wrapper {
+          display: inline-block;
+          width: 48%;
+          vertical-align: top;
+          margin-right: 3%;
+        }
+        .field--type-email, .field--name-field-topic {
+          margin-right: 0;
+        }
+        .field--type-markup, .form-actions, .field--name-message {
+          width: 100%;
+          text-align: left;
+          display: block;
+        }
+        .form-actions {
+          padding-top: 20px;
+          padding-bottom: 60px;
+        }
+      }
+    }
+    @include media($fullsize) {
+      margin-right: -350px;
+      form {
+        margin-right: 350px;
+      }
+      .form-actions {
+        padding-top: 30px;
+        padding-bottom: 110px;
+      }
+      .captcha {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+    }
+
+    form .field--type-language {
+      display: none;
     }
   }
 }
