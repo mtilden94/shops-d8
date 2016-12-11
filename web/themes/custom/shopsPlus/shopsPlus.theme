@@ -170,6 +170,10 @@ function shopsPlus_preprocess_block(&$variables)
 
 function shopsPlus_form_alter(&$form, $form_state, $form_id) {
     if (strpos($form_id, 'contact_us') !== FALSE) {
+        $form['field_name']['widget'][0]['value']['#placeholder'] = t('Enter full name');
+        $form['field_email']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+        $form['field_phone']['widget'][0]['value']['#placeholder'] = t('Enter best contact number');
+        $form['message']['widget'][0]['value']['#placeholder'] = t('Send us a message');
         $form['actions']['submit']['#value']='Submit';
         unset($form['actions']['preview']);
     }

@@ -283,7 +283,7 @@
   }
 }
 
-.page-our-people-staff-fields-home-office-staff {
+.page-our-people-staff-fields-home-office-staff, .page-our-people-staff-fields-field-staff {
   #block-shopsplus-content {
     border: 0;
     margin-bottom: 0;
@@ -368,8 +368,8 @@
 .block-original-views_block__office_and_field_staff_block_1 {
   text-align: center;
   h2 {
-    font-size: 26px;
-    margin-bottom: 30px;
+    font-size: 20px;
+    margin-bottom: 20px;
   }
   //temp
   .views-row {
@@ -377,16 +377,37 @@
     text-align: center;
     margin: 0 20px;
   }
-  .views-field-name a {
-    font-size: 26px;
-    color: $heading-color;
-    text-decoration: none;
-    font-family: $heading-font-family;
+  .views-field-name{
+    margin-bottom: 40px;
+    a {
+      font-size: 18px;
+      color: $heading-color;
+      text-decoration: none;
+      font-family: $heading-font-family;
+      &:hover{
+        color: darken($breadcrumbs, 30%);
+      }
+    }
   }
   @include media($tablet) {
-
+    margin-bottom: 30px;
+    .views-field-name{
+      margin-bottom: 0px;
+    }
+    .views-row {
+      width: 40%;
+      margin: 0 20px;
+    }
   }
   @include media($fullsize) {
+    margin-bottom: 40px;
+    h2 {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+    .views-field-name a {
+      font-size: 26px;
+    }
     .views-row {
       width: 400px;
       margin: 0 20px;
@@ -395,7 +416,7 @@
 }
 
 //hover image
-.head-shot a{
+.head-shot a, .block-original-views_block__office_and_field_staff_block_1 .views-field-field-group-image a{
   display: inline-block;
   margin: 0 auto;
   &:before{

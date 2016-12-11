@@ -57,6 +57,9 @@
 									color: #7b9ecd;
 								}
 							}
+							& > span:hover{
+								color: $white;
+							}
 							ul {
 								width: auto;
 								margin: 0;
