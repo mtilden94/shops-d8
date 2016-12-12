@@ -19,6 +19,11 @@ class CurrentActiveSubmenu extends BlockBase {
   public function build() {
     $menu_tree = \Drupal::menuTree();
     $menu_name = 'main';
+    $block = array(
+      '#cache' => array(
+        'contexts' => array('url'),
+      )
+    );
 
     // Build the typical default set of menu tree parameters.
     $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
@@ -51,14 +56,9 @@ class CurrentActiveSubmenu extends BlockBase {
       $markup .= '<h2 class="title">' .$title. '</h2>';
       $markup .= drupal_render($menu);
 
-      return array(
-        '#markup' => $markup,
-        '#cache' => array(
-          'contexts' => array('url'),
-        )
-      );
+      $block['#markup'] = $markup;
     }
 
-    return array();
+    return $block;
   }
 }

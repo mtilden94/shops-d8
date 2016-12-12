@@ -41,7 +41,9 @@ class OurPeopleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 
       $breadcrumb->addLink(Link::fromTextAndUrl($term->getName(), $term->toUrl()));
     }
-    dsm($breadcrumb);
+    //dsm($breadcrumb);
+    $breadcrumb->addCacheContexts(array('url'));
+
     return $breadcrumb;
   }
 }
