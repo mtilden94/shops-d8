@@ -415,21 +415,25 @@
   }
 }
 
-.page-our-people .views-element-container {
-  .views-field-title a {
-    font-size: 22px;
-  }
-  .views-field-field-job-title {
-    font-size: 16px;
-  }
-  @include media($fullsize) {
+.page-our-people{
+  text-align: left;
+  .views-element-container {
     .views-field-title a {
-      font-size: 26px;
+      font-size: 22px;
     }
     .views-field-field-job-title {
-      font-size: 20px;
+      font-size: 16px;
+    }
+    @include media($fullsize) {
+      .views-field-title a {
+        font-size: 26px;
+      }
+      .views-field-field-job-title {
+        font-size: 20px;
+      }
     }
   }
+
 }
 
 //hover image
