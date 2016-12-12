@@ -365,10 +365,10 @@
   }
 }
 
-.block-original-views_block__office_and_field_staff_block_1 {
+.block-original-views_block__office_and_field_staff_block_1, .page-our-people {
   text-align: center;
   h2 {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 20px;
   }
   //temp
@@ -377,21 +377,21 @@
     text-align: center;
     margin: 0 20px;
   }
-  .views-field-name{
+  .views-field-name {
     margin-bottom: 40px;
     a {
       font-size: 18px;
       color: $heading-color;
       text-decoration: none;
       font-family: $heading-font-family;
-      &:hover{
+      &:hover {
         color: darken($breadcrumbs, 30%);
       }
     }
   }
   @include media($tablet) {
     margin-bottom: 30px;
-    .views-field-name{
+    .views-field-name {
       margin-bottom: 0px;
     }
     .views-row {
@@ -415,22 +415,39 @@
   }
 }
 
+.page-our-people .views-element-container {
+  .views-field-title a {
+    font-size: 22px;
+  }
+  .views-field-field-job-title {
+    font-size: 16px;
+  }
+  @include media($fullsize) {
+    .views-field-title a {
+      font-size: 26px;
+    }
+    .views-field-field-job-title {
+      font-size: 20px;
+    }
+  }
+}
+
 //hover image
-.head-shot a, .block-original-views_block__office_and_field_staff_block_1 .views-field-field-group-image a{
+.head-shot a, .block-original-views_block__office_and_field_staff_block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a {
   display: inline-block;
   margin: 0 auto;
-  &:before{
+  &:before {
     content: '';
     transition: all 0.3s ease;
   }
-  span{
+  span {
     display: block;
-    &:after, &:before{
+    &:after, &:before {
       content: "";
       transition: all 0.3s ease;
     }
   }
-  img{
+  img {
     display: block;
     margin: 0 auto;
   }
@@ -440,14 +457,14 @@
     &:before {
       position: absolute;
       width: 100%;
-      top:0;
+      top: 0;
       bottom: 0;
       left: 0;
       background-color: $breadcrumbs;
       opacity: 0.7;
     }
     span {
-      &:after, &:before{
+      &:after, &:before {
         content: "\e907";
         font-family: $icons-font-family;
         position: absolute;
@@ -458,21 +475,21 @@
         height: 38px;
         font-size: 37px;
       }
-      &:before{
+      &:before {
         content: "\e906";
-        top:20px;
+        top: 20px;
         left: 20px;
       }
-      &:after{
+      &:after {
         right: 20px;
         bottom: 20px;
       }
     }
   }
-  @include media($fullsize){
+  @include media($fullsize) {
     &:hover {
       span {
-        &:after, &:before{
+        &:after, &:before {
           width: 50px;
           height: 52px;
           overflow: hidden;

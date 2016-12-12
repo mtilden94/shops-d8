@@ -375,3 +375,10 @@
 		}
 	}
 }
+.content ul.contextual-links{
+	li{
+		&:after, &:before{
+			display: none;
+		}
+	}
+}
