@@ -23,6 +23,8 @@ class OurPeopleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     if (isset($parameters['node'])) {
       return $parameters['node']->getType() == 'our_people';
     }
+
+    return false;
   }
 
   /**
@@ -39,6 +41,7 @@ class OurPeopleBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 
       $breadcrumb->addLink(Link::fromTextAndUrl($term->getName(), $term->toUrl()));
     }
+    dsm($breadcrumb);
     return $breadcrumb;
   }
 }
