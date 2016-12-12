@@ -50,13 +50,15 @@ class CurrentActiveSubmenu extends BlockBase {
 
       $markup .= '<h2 class="title">' .$title. '</h2>';
       $markup .= drupal_render($menu);
+
+      return array(
+        '#markup' => $markup,
+        '#cache' => array(
+          'contexts' => array('url'),
+        )
+      );
     }
 
-    return array(
-      '#markup' => $markup,
-      '#cache' => array(
-        'contexts' => array('url'),
-      )
-    );
+    return array();
   }
 }
