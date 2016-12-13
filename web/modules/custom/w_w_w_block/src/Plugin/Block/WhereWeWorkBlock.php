@@ -21,11 +21,6 @@ class WhereWeWorkBlock extends BlockBase {
   private $continent_vid = 'continent';
 
   public function build() {
-    $block = array(
-      '#cache' => array(
-        'contexts' => array('url'),
-      )
-    );
 
     $markup = '';
 
@@ -48,11 +43,13 @@ class WhereWeWorkBlock extends BlockBase {
       $data[$continent->id()] = array(
         'term' => array(
           'name' => str_replace(array('and', '/'), array('&', ' & '), $continent->getName()),
-          'image' => $continent->field_image->getValue(),
+          'image' => $continent->field_image->entity->getFileUri(),
         ),
         'nodes'=> array(),
       );
     }
+
+    $map_points = array();
 
     foreach ($nodes as $node) {
       $term_id = $node->field_continent->getValue()[0]['target_id'];
@@ -62,9 +59,15 @@ class WhereWeWorkBlock extends BlockBase {
         'title' => $node->getTitle(),
         'link' => $node->toLink(),
       );
+
+      $map_points[] = array(
+        'title' => $node->getTitle(),
+        'link' => $node->toLink()->toString(),
+        'geo' => $node->field_capital_city_coordinates->getValue(),
+      );
     }
 
-    $block = array(
+    $build = array(
       'www_block' => array(
         '#theme' => 'www_block',
         '#data' => $data,
@@ -74,6 +77,9 @@ class WhereWeWorkBlock extends BlockBase {
       )
     );
 
-    return $block;
+    $build['#attached']['library'][] = 'w_w_w_block/www-block-map';
+    $build['#attached']['drupalSettings']['where_we_work']['countries'] = $map_points;
+
+    return $build;
   }
 }

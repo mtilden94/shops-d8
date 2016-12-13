@@ -1,5 +1,5 @@
 <div id="where-we-work-map">
-    map
+    <div id="www-map-container" style="height: 400px;width: 100%;">Where We Work on map</div>
 </div>
 
 <div id="www-continents">
@@ -7,7 +7,7 @@
         <div class="continent-row">
 
             <div class="col-one">
-                {{ row['term']['image'] }}
+                <img src="{{ file_url(row['term']['image']) }}" alt="" />
             </div>
 
             <div class="col-two">
