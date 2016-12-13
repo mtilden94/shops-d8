@@ -1,0 +1,3 @@
+w_w_w_block_node_pages_links:
+  deriver: \Drupal\w_w_w_block\Plugin\Derivative\WhereWeWorkMenuLinkDerivative
+#  class: \Drupal\mymodule\Plugin\Menu\MyModuleMenuLink

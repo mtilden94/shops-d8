@@ -22,11 +22,6 @@ class WhereWeWorkBlock extends BlockBase {
 
   public function build() {
 
-    $markup = '';
-
-    $markup = 'W W W blocks';
-
-
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
     $q = $node_storage->getQuery();
     $nids = $q->condition('type', 'countries')
