@@ -1,0 +1,29 @@
+<div id="where-we-work-map">
+    map
+</div>
+
+<div id="www-continents">
+    {% for row in data %}
+        <div class="continent-row">
+
+            <div class="col-one">
+                {{ row['term']['image'] }}
+            </div>
+
+            <div class="col-two">
+                <h3>Location</h3>
+                <h2>{{ row['term']['name'] }}</h2>
+
+                <div class="countries">
+                    <ul>
+                        {% for country in row['nodes'] %}
+                            <li>{{ country['link'] }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    {% endfor %}
+</div>
