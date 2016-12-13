@@ -9,7 +9,6 @@
 
 				var map = new google.maps.Map(map_wrap, {
 					center: new google.maps.LatLng(0, 0),
-					zoom: 2,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				});
 
@@ -35,7 +34,7 @@
 				});
 
 				//for centering by points
-				//map.fitBounds(bounds);
+				map.fitBounds(bounds);
 			}
 
 		}
