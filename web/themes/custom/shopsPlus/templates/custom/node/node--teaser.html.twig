@@ -1,6 +1,6 @@
 {# Create classes array. The 'node' class is required for contextual edit links. #}
 {% set classes = [
-'node'
+'node node-all-teaser'
 ] %}
 <article{{ attributes.addClass(classes) }}>
 
@@ -12,7 +12,7 @@
         <header>
             {# {% if display_submitted %} #}
             <div class="submitted">
-                {{ node.createdtime | date("F d, Y") }}
+                <time>{{ node.createdtime | date("F d, Y") }}</time>
             </div>
 
             {{ title_prefix }}
