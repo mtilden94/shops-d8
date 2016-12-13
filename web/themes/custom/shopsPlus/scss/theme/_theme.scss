@@ -23,6 +23,14 @@
   }
 }
 
+h1 a, h2 a, h3 a{
+  color: $heading-color;
+  text-decoration: none;
+  &:hover{
+    color: $a_hover;
+  }
+}
+
 #header-image, .image-top-block {
   height: 200px;
   position: relative;
@@ -360,6 +368,75 @@
 
     form .field--type-language {
       display: none;
+    }
+  }
+}
+
+//hover image
+.head-shot a, .block-original-views_block__office_and_field_staff_block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a,
+.columns-2-block .line a.with-img{
+  display: inline-block;
+  margin: 0 auto;
+  &:before {
+    content: '';
+    transition: all 0.3s ease;
+  }
+  span {
+    display: block;
+    &:after, &:before {
+      content: "";
+      transition: all 0.3s ease;
+    }
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  position: relative;
+  &:hover {
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $breadcrumbs;
+      opacity: 0.7;
+    }
+    span {
+      &:after, &:before {
+        content: "\e907";
+        font-family: $icons-font-family;
+        position: absolute;
+        color: $white;
+        opacity: 0.6;
+        line-height: 1em;
+        width: 37px;
+        height: 38px;
+        font-size: 37px;
+      }
+      &:before {
+        content: "\e906";
+        top: 20px;
+        left: 20px;
+      }
+      &:after {
+        right: 20px;
+        bottom: 20px;
+      }
+    }
+  }
+  @include media($fullsize) {
+    &:hover {
+      span {
+        &:after, &:before {
+          width: 50px;
+          height: 52px;
+          overflow: hidden;
+          font-size: 50px;
+        }
+      }
     }
   }
 }

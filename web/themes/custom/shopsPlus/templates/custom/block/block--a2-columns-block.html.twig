@@ -1,0 +1,30 @@
+{% extends "@block/block.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for tabs.
+ */
+#}
+{% block content %}
+    {% if content %}
+        <div class="content">
+            {% for column in content.field_column['#items'] %}
+                <div class="line">
+                    <a class="with-img" href="{{ column.getFieldCollectionItem().field_link.uri }}"
+                       title="{{ column.getFieldCollectionItem().field_title.value }}">
+                        <span>
+                            <img src="{{ file_url(column.getFieldCollectionItem().field_image[0].entity.uri.value) }}"/>
+                        </span>
+                    </a>
+                    <h2>
+                        <a href="{{ column.getFieldCollectionItem().field_link.uri }}"
+                           title="{{ column.getFieldCollectionItem().field_title.value }}">
+                            {{ column.getFieldCollectionItem().field_title.value }}
+                        </a>
+                    </h2>
+                    <div class="sub-title">{{ column.getFieldCollectionItem().field_sub_title.value|raw }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

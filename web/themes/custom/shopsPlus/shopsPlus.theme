@@ -157,14 +157,28 @@ function shopsPlus_preprocess_field(&$variables, $hook)
  */
 function shopsPlus_preprocess_block(&$variables)
 {
-    $id = $variables['attributes']['id'];
+    $flag_atrr_id=false;
+    if (isset($variables['attributes']['id'])) $flag_atrr_id=true;
+
     if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
-        if (isset($variables['attributes']['id'])) {
+        if ($flag_atrr_id) {
             $variables['attributes']['class'][] = "image-top-block";
         }
     }
-    if (isset($variables['attributes']['id'])) {
+    if (isset($variables['content']['field_column']['#bundle']) && $variables['content']['field_column']['#bundle'] == 'a2_columns_block') {
+        if ($flag_atrr_id) {
+            $variables['attributes']['class'][] = "columns-2-block";
+        }
+    }
+    if ($flag_atrr_id) {
         $variables['attributes']['class'][] = "block-original-" . $variables['elements']['#id'];
+    }
+}
+
+function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables) {
+    $content = $variables['elements']['content'];
+    if (isset($content['#block_content']) && $content['#block_content'] instanceof \Drupal\block_content\BlockContentInterface) {
+        $suggestions[] = 'block__' . $content['#block_content']->bundle();
     }
 }
 
