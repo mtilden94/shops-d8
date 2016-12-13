@@ -281,7 +281,7 @@
 	@include media($tablet) {
 		display: block;
 		h2.title,
-		ul li a {
+		ul li a, ul li span{
 			font-family: $heading-font-family;
 			font-size: 14px;
 			font-weight: $header-bold;
@@ -355,7 +355,7 @@
 	}
 	@include media($fullsize) {
 		h2.title,
-		ul li a {
+		ul li a, ul li span{
 			font-size: 16px;
 			padding: 16px 65px 16px 19px;
 		}
