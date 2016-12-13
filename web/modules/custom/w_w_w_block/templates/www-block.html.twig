@@ -1,0 +1,30 @@
+<div id="where-we-work-map">
+    <div id="www-map-container" style="height: 500px;width: 100%;">Where We Work Map</div>
+    <h4>Click any location marker for project details</h4>
+</div>
+
+<div id="www-continents">
+    {% for row in data %}
+        <div class="continent-row">
+
+            <div class="col-one">
+                <img src="{{ file_url(row['term']['image']) }}" alt="" />
+            </div>
+
+            <div class="col-two">
+                <h3>Location</h3>
+                <h2>{{ row['term']['name'] }}</h2>
+
+                <div class="countries">
+                    <ul>
+                        {% for country in row['nodes'] %}
+                            <li>{{ country['link'] }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    {% endfor %}
+</div>

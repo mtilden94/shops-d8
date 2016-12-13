@@ -5,4 +5,11 @@
  * Code for the project_next_previous module.
  */
 
-
+function w_w_w_block_theme($existing, $type, $theme, $path) {
+  return array(
+    'www_block' => array(
+      'variables' => array('data' => NULL),
+      'template' => 'www-block',
+    ),
+  );
+}

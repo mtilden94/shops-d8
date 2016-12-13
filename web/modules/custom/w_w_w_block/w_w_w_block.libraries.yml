@@ -1,0 +1,13 @@
+www-google-map:
+  version: 1.x
+  js:
+    https://maps.googleapis.com/maps/api/js?v=3.25&sensor=false&key=AIzaSyDokNecjeghX966VGRv2fknmQWNFYXHNLE: {}
+
+www-block-map:
+  version: 1.x
+  js:
+    js/www-map.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - w_w_w_block/www-google-map
