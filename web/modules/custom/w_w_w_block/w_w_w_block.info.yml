@@ -1,0 +1,5 @@
+name: Where We Work Block
+description: Where We Work Block.
+core: 8.x
+package: Custom
+type: module
