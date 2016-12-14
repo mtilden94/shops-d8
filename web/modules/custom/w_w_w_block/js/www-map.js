@@ -9,7 +9,8 @@
 
 				var map = new google.maps.Map(map_wrap, {
 					center: new google.maps.LatLng(0, 0),
-					mapTypeId: google.maps.MapTypeId.ROADMAP
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					scrollwheel: false
 				});
 
 				var bounds = new google.maps.LatLngBounds();

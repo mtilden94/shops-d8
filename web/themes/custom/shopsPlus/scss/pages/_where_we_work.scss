@@ -1,0 +1,147 @@
+#where-we-work-map {
+	@include contentPadding();
+
+	#www-map-container {
+		height: 500px;
+		width: 100%;
+	}
+	.description {
+		color: $breadcrumbs;
+		font-size: 18px;
+		font-weight: $bold;
+		text-align: center;
+		padding: 20px;
+		padding-bottom: 60px;
+	}
+}
+
+#www-continents {
+	border-top: 1px solid #ccc;
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+	.col-two {
+		text-align: center;
+		.sub-title {
+			color: #02807f;
+			font-family: $heading-font-family;
+			font-size: 18px;
+			font-weight: 300;
+			padding-bottom: 20px;
+			line-height: 18px;
+		}
+		h2 {
+			color: #04326e;
+			font-family: $heading-font-family;
+			font-size: 32px;
+			line-height: 32px;
+		}
+
+		.countries {
+			&:before {
+				content: '';
+				display: block;
+				width: 40px;
+				background-color: #ccc;
+				height: 1px;
+				margin: 30px auto;
+			}
+			ul {
+				margin: 0;
+				padding: 0;
+				line-height: 1em;
+			}
+			li {
+				padding: 0;
+				display: inline-block;
+				font-family: $heading-font-family;
+				font-size: 18px;
+				line-height: 18px;
+				a {
+					text-transform: uppercase;
+					text-decoration: none;
+					font-family: $heading-font-family;
+					color: $active;
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+				&:after {
+					content: '';
+					border-right: 2px solid #aaa;
+					padding-right: 10px;
+					margin-right: 6px;
+					font-size: 12px;
+					vertical-align: top;
+				}
+				&:last-of-type:after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	@include media($tablet) {
+		.continent-row {
+			display: table;
+			width: 100%;
+			table-layout: fixed;
+		}
+
+		.col-one, .col-two {
+			width: 50%;
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		.col-one {
+			position: relative;
+			&:before {
+				content: '';
+				position: absolute;
+				background-color: white;
+				width: 60px;
+				height: 60px;
+				right: -30px;
+				top: 50%;
+				transform: scaleX(0.5) rotate(45deg);
+				margin-top: -40px;
+			}
+		}
+
+		.continent-row:nth-child(even) {
+			direction: rtl;
+			.col-one {
+				direction: ltr;
+				&:before {
+					left: -30px;
+				}
+			}
+			.col-two {
+				direction: ltr;
+			}
+		}
+	}
+
+}
+
+body.page-where-we-work {
+	#breadcrumb-layout {
+		display: none;
+	}
+	h1 {
+		text-align: center;
+	}
+	#content {
+		padding: 40px 0 0 0;
+		#block-shopsplus-page-title,
+		#block-shopsplus-content {
+			@include contentPadding();
+		}
+	}
+	#block-shopsplus-content {
+		margin-bottom: 60px;
+	}
+}
+
