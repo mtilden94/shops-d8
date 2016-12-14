@@ -196,6 +196,7 @@ h1 a, h2 a, h3 a {
   border: $base-border;
   padding: 20px;
   margin-bottom: 50px;
+  margin-top: 35px;
   .form-item {
     max-width: 100%;
     width: 100%;
@@ -235,6 +236,7 @@ h1 a, h2 a, h3 a {
   @include media($fullsize) {
     padding: 40px;
     margin-bottom: 70px;
+    margin-top: 60px;
     .form-item {
       max-width: 407px;
       width: 407px;
@@ -374,7 +376,7 @@ h1 a, h2 a, h3 a {
 
 //hover image
 .head-shot a, .block-original-views_block__office_and_field_staff_block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a,
-.columns-2-block .line a.with-img {
+.columns-2-block .line a.with-img , .resource-image a, .image a{
   display: inline-block;
   margin: 0 auto;
   &:before {
@@ -441,22 +443,120 @@ h1 a, h2 a, h3 a {
   }
 }
 
+.page-resource-center{
+  #block-shopsplus-page-title{
+    text-align: center;
+  }
+  .resource-view{
+    & > header{
+      font-family: $heading-font-family;
+      font-size: 20px;
+      color: $heading-color;
+      border-bottom: $base-border;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      @include media($fullsize){
+        font-size: 24px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
 .node-resource-teaser {
   float: left;
   width: 100%;
+  border-bottom: $base-border;
+  padding: 0 0 15px;
+  margin-bottom: 20px;
+  font-family: $heading-font-family;
+  position: relative;
+  h2{
+    font-size: 18px;
+  }
   .submitted {
     line-height: 1em;
+    margin-top: -4px;
+    margin-bottom: 10px;
     time {
-      font-family: $heading-font-family;
-      font-size: 16px;
+      font-size: 14px;
       color: $time;
+      font-weight: $header-normal;
     }
   }
   .resource-image {
     float: left;
-    margin-right: 30px;
+    margin-right: 10px;
+    width: 113px;
   }
-  border-bottom: $base-border;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
+  .content{
+    font-size: 14px;
+    font-weight: $header-normal;
+    padding-left: 123px;
+    & * {
+      display: inline-block;
+    }
+    .quickedit-field, .quickedit-field div{
+      &:after{
+        content: '';
+        border-left: $base-border;
+        display: inline-block;
+        height: 14px;
+        width: 1px;
+        margin: 0px 6px 0 10px;
+        position: relative;
+        top: 3px;
+      }
+    }
+    .quickedit-field:last-child, .quickedit-field div:last-child{
+      &:after{
+        content: none;
+      }
+    }
+    a{
+      text-decoration: none;
+    }
+  }
+  @include media($mobile_threshold){
+    h2{
+      text-overflow: ellipsis;
+      overflow: hidden;
+      height: 65px;
+    }
+  }
+  @include media($tablet){
+    padding: 0 12px 15px;
+    h2{
+      font-size: 20px;
+    }
+  }
+  @include media($fullsize){
+    padding: 0 20px 30px;
+    h2{
+      font-size: 30px;
+    }
+    .resource-image {
+      margin-right: 30px;
+      width: 165px;
+    }
+    .submitted {
+      margin-top: -5px;
+      margin-bottom: 10px;
+      time {
+        font-size: 16px;
+        font-weight: $header-bold;
+      }
+    }
+    .content{
+      font-size: 16px;
+      padding-left: 195px;
+      font-weight: $header-bold;
+      .quickedit-field, .quickedit-field div{
+        &:after{
+          height: 16px;
+        }
+      }
+    }
+  }
 }
