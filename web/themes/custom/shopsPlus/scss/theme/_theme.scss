@@ -533,6 +533,7 @@ h1 a, h2 a, h3 a {
   }
   @include media($fullsize){
     padding: 0 20px 30px;
+    margin-bottom: 35px;
     h2{
       font-size: 30px;
     }
