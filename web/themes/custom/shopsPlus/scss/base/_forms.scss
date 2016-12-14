@@ -346,12 +346,11 @@ textarea {
         top:3px;
         width: 16%;
       }
-      .open-form-true{
-        .select-wrap{
-          margin-top: 1.05em;
-        }
+    }
+    .open-form-true{
+      .select-wrap{
+        margin-top: 1.05em;
       }
-
     }
   }
   @include media($fullsize){
