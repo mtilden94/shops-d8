@@ -183,6 +183,12 @@ function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables) {
 }
 
 function shopsPlus_form_alter(&$form, $form_state, $form_id) {
+    foreach ($form as $key_form => $form_value){
+        if(isset($form_value['#type']) && $form_value['#type']=='select'){
+            $form[$key_form]['#prefix']='<div class="select-wrap">';
+            $form[$key_form]['#suffix']='</div>';
+        }
+    }
     if (strpos($form_id, 'contact_us') !== FALSE) {
         $form['field_name']['widget'][0]['value']['#placeholder'] = t('Enter full name');
         $form['field_email']['widget'][0]['value']['#placeholder'] = t('Enter email address');
@@ -190,5 +196,10 @@ function shopsPlus_form_alter(&$form, $form_state, $form_id) {
         $form['message']['widget'][0]['value']['#placeholder'] = t('Send us a message');
         $form['actions']['submit']['#value']='Submit';
         unset($form['actions']['preview']);
+    }
+    if ($form_id == 'views_exposed_form' && $form['#id']=='views-exposed-form-resource-center-page-1') {
+        $form['actions']['#weight']=0;
+        $form['more']['#weight']=0;
+        $form['more']['#markup']='<div class="open-form-more">EXPAND SEARCH FILTERS</div>';
     }
 }

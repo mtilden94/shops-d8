@@ -83,6 +83,16 @@
                 //
                 $('.menu--main ul.menu ul').wrap('<span class="pos-block"></span>');
 
+                // views-exposed-form more
+
+                $('.views-exposed-form .open-form-more').on('click',
+                    function(){
+                        $(this).parent('form').toggleClass('open-form-true');
+                        var text = $(this).text();
+                        $(this).text(text == "EXPAND SEARCH FILTERS" ? "CLOSE SEARCH FILTERS" : "EXPAND SEARCH FILTERS");
+                    }
+                );
+
                 //table responsive
                 $('table th').each(
                     function () {
