@@ -206,6 +206,26 @@
 }
 */
 
+@mixin contentPadding($opt: 'lr') {
+  @if $opt == 'all' {
+    padding: 0 20px 20px 18px;
+    @include media($tablet) {
+      padding: 0 39px 39px 39px;
+    }
+    @include media($desktop) {
+      padding: 0 39px 39px 39px;
+    }
+  } @else {
+    padding: 0 20px 0 20px;
+    @include media($tablet) {
+      padding: 0 40px 0 40px;
+    }
+    @include media($desktop) {
+      padding: 0 50px 0 50px;
+    }
+  }
+
+}
 
 #footer{
   float: none;
