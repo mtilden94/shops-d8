@@ -20,16 +20,16 @@ label {
   color: $table-color;
   font-size: 12px;
   font-weight: $header-bold;
-  &.form-required{
-    &:after{
+  &.form-required {
+    &:after {
       content: '*';
       color: $breadcrumbs;
       position: relative;
-      top:-2px;
+      top: -2px;
       padding-left: 5px;
     }
   }
-  @include media($fullsize){
+  @include media($fullsize) {
     font-size: 16px;
   }
 }
@@ -90,8 +90,10 @@ select {
   margin-bottom: $small-spacing;
   width: 100%;
   padding: 0 10px;
-  @include media($fullsize){
+  padding-right: 33px;
+  @include media($fullsize) {
     padding: $base-spacing / 3;
+    padding-right: 40px;
   }
 }
 
@@ -106,16 +108,253 @@ input, select {
     margin-bottom: 30px;
   }
 }
-textarea{
+
+textarea {
   border: $base-border;
   background-color: $white;
   border-radius: 0;
 }
-@include media($fullsize){
-  input, textarea, select{
+
+@include media($fullsize) {
+  input, textarea, select {
     font-size: 18px;
   }
 }
+
+.views-exposed-form {
+  background-color: $light-gray;
+  border: $base-border;
+  padding: 20px;
+  margin-bottom: 50px;
+  margin-top: 35px;
+  .select-wrap {
+    padding-top: 20px;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    label{
+      position: absolute;
+      top:0;
+    }
+    .form-item{
+      background-image: url("../images/optimized/select.svg");
+      background-position: 95% center;
+      background-repeat: no-repeat;
+      background-color: $white;
+      select {
+        background: transparent;
+        width: 100%;
+        appearance:none;
+        option{
+          font-size:14px;
+        }
+      }
+    }
+  }
+  .form-actions {
+    text-align: left;
+    .button {
+      margin: 0;
+    }
+  }
+  @include media($tablet) {
+    .form-actions {
+      display: inline-block;
+      width: 19%;
+      .button {
+        position: relative;
+        top: -2px;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    .select-wrap {
+      width: 37%;
+      display: inline-block;
+      margin-right: 2%;
+      margin-bottom: 20px;
+      .form-item{
+        select {
+          border: $base-border;
+          border-radius: 0;
+          margin-bottom: 0;
+          option{
+            font-size:16px;
+          }
+
+        }
+      }
+    }
+
+  }
+  @include media($fullsize) {
+    padding: 40px;
+    margin-bottom: 70px;
+    margin-top: 60px;
+    .select-wrap {
+      padding-top: 30px;
+      max-width: 407px;
+      width: 407px;
+      margin-right: 15px;
+      .form-item{
+        select {
+          option{
+            font-size:18px;
+          }
+        }
+      }
+    }
+    .form-actions {
+      width: 16%;
+    }
+  }
+}
+//page-resource-center
+.page-resource-center{
+  .views-exposed-form{
+    position: relative;
+    .js-form-type-textfield, .form-actions{
+      float: left;
+    }
+    .js-form-type-textfield{
+      width: 100%;
+      input{
+        margin-bottom: 0;
+      }
+    }
+    .select-wrap{
+      float: left;
+      width: 0;
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding-top: 0;
+      transition:all 0.3s ease;
+    }
+    .form-actions{
+      margin-top: 20px;
+      position: relative;
+      width: 100%;
+      input{
+        width: 100%;
+        padding: 0;
+      }
+    }
+    .open-form-more{
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      font-family: $heading-font-family;
+      font-size: 12px;
+      color: $heading-color;
+      height: 60px;
+      padding-top: 15px;
+      vertical-align: bottom;
+      float: left;
+      width: 100%;
+      &:after{
+        content: "\e905";
+        font-family: $icons-font-family;
+        position: absolute;
+        left: 50%;
+        top:35px;
+        font-size: 10px;
+        transition:all 0.3s ease;
+      }
+    }
+    .select-wrap:nth-child(4){
+      clear: both;
+    }
+    .select-wrap:nth-child(7){
+      margin-right: 0;
+    }
+    .select-wrap:last-child, .select-wrap:nth-child(8){
+      display: none;
+    }
+    &:after{
+      content: '';
+      clear: both;
+      display: block;
+      width: 100%;
+    }
+  }
+  .open-form-true{
+    .select-wrap{
+      width: 100%;
+      margin-right: 2%;
+      visibility: visible;
+      opacity: 1;
+      padding-top: 30px;
+      height: auto;
+      position: relative;
+    }
+    .open-form-more{
+      &:after{
+        top:38px;
+        transform: rotateX(180deg);
+      }
+    }
+  }
+
+  @include media($tablet){
+    .views-exposed-form{
+      .js-form-type-textfield{
+        width: 53%;
+      }
+      .open-form-more{
+        border-left: $base-border;
+        width: 27%;
+        margin-left: 17px;
+        padding-left: 17px;
+        padding-top: 7px;
+        height: 42px;
+        line-height: 1.1em;
+        &:after{
+          top:25px;
+        }
+      }
+      .select-wrap{
+        width: 23.5%;
+      }
+      .form-actions{
+        margin-top: 0px;
+        position: relative;
+        top:3px;
+        width: 16%;
+      }
+    }
+    .open-form-true{
+      .select-wrap{
+        margin-top: 1.05em;
+      }
+    }
+  }
+  @include media($fullsize){
+    .views-exposed-form{
+      .js-form-type-textfield{
+        width: 60%;
+      }
+      .open-form-more{
+        font-size: 15px;
+        height: 60px;
+        margin-left: 17px;
+        padding-left: 17px;
+        padding-top: 15px;
+        float: left;
+        width: 22%;
+        &:after{
+          top:35px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
 
 .form-actions {
   text-align: center;

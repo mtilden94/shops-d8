@@ -191,62 +191,6 @@ h1 a, h2 a, h3 a {
   }
 }
 
-.views-exposed-form {
-  background-color: $light-gray;
-  border: $base-border;
-  padding: 20px;
-  margin-bottom: 50px;
-  margin-top: 35px;
-  .form-item {
-    max-width: 100%;
-    width: 100%;
-    display: inline-block;
-  }
-  .form-actions {
-    text-align: left;
-    .button {
-      margin: 0;
-    }
-  }
-  @include media($tablet) {
-    .form-actions {
-      display: inline-block;
-      width: 19%;
-      .button {
-        position: relative;
-        top: -2px;
-        max-width: 100%;
-        width: 100%;
-      }
-    }
-    .form-item {
-      width: 37%;
-      display: inline-block;
-      margin-right: 2%;
-      margin-bottom: 20px;
-      input, select {
-        border: $base-border;
-        border-radius: 0;
-        margin-bottom: 0;
-        background-color: $white;
-      }
-    }
-
-  }
-  @include media($fullsize) {
-    padding: 40px;
-    margin-bottom: 70px;
-    margin-top: 60px;
-    .form-item {
-      max-width: 407px;
-      width: 407px;
-      margin-right: 15px;
-    }
-    .form-actions {
-      width: 16%;
-    }
-  }
-}
 
 //Contact Us
 .section-contact-us {
@@ -387,12 +331,14 @@ h1 a, h2 a, h3 a {
     display: block;
     &:after, &:before {
       content: "";
+      color: $white;
       transition: all 0.3s ease;
     }
   }
   img {
     display: block;
     margin: 0 auto;
+    width: 100%;
   }
   position: relative;
   &:hover {
@@ -411,7 +357,6 @@ h1 a, h2 a, h3 a {
         content: "\e907";
         font-family: $icons-font-family;
         position: absolute;
-        color: $white;
         opacity: 0.6;
         line-height: 1em;
         width: 37px;
@@ -495,7 +440,7 @@ h1 a, h2 a, h3 a {
     font-weight: $header-normal;
     padding-left: 123px;
     & * {
-      display: inline-block;
+      display: inline;
     }
     .quickedit-field, .quickedit-field div{
       &:after{

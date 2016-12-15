@@ -1,0 +1,13 @@
+<svg width="20" height="60" xmlns="http://www.w3.org/2000/svg">
+ <title>down arrow</title>
+ <desc>Created with Avocode.</desc>
+
+ <g>
+  <title>background</title>
+  <rect fill="#ffffff" id="canvas_background" height="62" width="22" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path fill="#000000" d="m10,34.999l5.999,-9.998l-11.998,0l5.999,9.998" id="SvgjsPath1007"/>
+ </g>
+</svg>

@@ -157,8 +157,8 @@ function shopsPlus_preprocess_field(&$variables, $hook)
  */
 function shopsPlus_preprocess_block(&$variables)
 {
-    $flag_atrr_id=false;
-    if (isset($variables['attributes']['id'])) $flag_atrr_id=true;
+    $flag_atrr_id = false;
+    if (isset($variables['attributes']['id'])) $flag_atrr_id = true;
 
     if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
         if ($flag_atrr_id) {
@@ -175,20 +175,75 @@ function shopsPlus_preprocess_block(&$variables)
     }
 }
 
-function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables) {
+function shopsPlus_preprocess_views_view(&$vars)
+{
+    $view = $vars['view'];
+    $display_id = $view->current_display;
+    $id = $vars['id'];
+    if ($id == 'resource_center') {
+        $exp_data_sort_order = '';
+        $exp_data_query = array();
+
+        $exp_data_sort_order = $view->exposed_data['sort_order'];
+        if ($view->exposed_data['country'] != 'All') $exp_data_query[] = 'country=' . $view->exposed_data['country'];
+        if ($view->exposed_data['health_area'] != 'All') $exp_data_query[] = 'health_area=' . $view->exposed_data['health_area'];
+        if ($view->exposed_data['technical_area'] != 'All') $exp_data_query[] = 'technical_area=' . $view->exposed_data['technical_area'];
+        if ($view->exposed_data['type'] != 'All') $exp_data_query[] = 'type=' . $view->exposed_data['type'];
+        if ($view->exposed_data['title'] != '') $exp_data_query[] = 'title=' . $view->exposed_data['title'];
+        $exp_data_query = implode('&', $exp_data_query);
+        $vars['sort_link'] = '';
+        if ($exp_data_query != '') $exp_data_query .= '&';
+        if ($exp_data_sort_order && $exp_data_sort_order != '') {
+
+            if (strtolower($exp_data_sort_order) == 'desc') {
+                $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+            } else {
+                $vars['sort_link'] = '<a class="order-desc" href="/resource-center?' . $exp_data_query . 'sort_order=DESC">SORT BY:  MOST OLDEST</a>';
+            }
+        } else {
+            $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+        }
+    }
+}
+
+
+function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables)
+{
     $content = $variables['elements']['content'];
     if (isset($content['#block_content']) && $content['#block_content'] instanceof \Drupal\block_content\BlockContentInterface) {
         $suggestions[] = 'block__' . $content['#block_content']->bundle();
     }
 }
 
-function shopsPlus_form_alter(&$form, $form_state, $form_id) {
+function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    foreach ($form as $key_form => $form_value) {
+        if (isset($form_value['#type']) && $form_value['#type'] == 'select') {
+            $form[$key_form]['#prefix'] = '<div class="select-wrap">';
+            $form[$key_form]['#suffix'] = '</div>';
+        }
+    }
     if (strpos($form_id, 'contact_us') !== FALSE) {
         $form['field_name']['widget'][0]['value']['#placeholder'] = t('Enter full name');
         $form['field_email']['widget'][0]['value']['#placeholder'] = t('Enter email address');
         $form['field_phone']['widget'][0]['value']['#placeholder'] = t('Enter best contact number');
         $form['message']['widget'][0]['value']['#placeholder'] = t('Send us a message');
-        $form['actions']['submit']['#value']='Submit';
+        $form['actions']['submit']['#value'] = 'Submit';
         unset($form['actions']['preview']);
+    }
+
+    if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
+        $form['actions']['#weight'] = 0;
+        $form['title']['#placeholder'] = t('Search the Resource Center');
+
+        $more_class = '';
+        $data_select = $form_state->getUserInput();
+        if ($data_select) {
+            if ($data_select['health_area'] != 'All' || $data_select['type'] != 'All' || $data_select['technical_area'] != 'All' || $data_select['country'] != 'All') {
+                $more_class = 'selected-filter ';
+            }
+        }
+        $form['more']['#weight'] = 0;
+        $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
     }
 }
