@@ -90,8 +90,10 @@ select {
   margin-bottom: $small-spacing;
   width: 100%;
   padding: 0 10px;
+  padding-right: 33px;
   @include media($fullsize) {
     padding: $base-spacing / 3;
+    padding-right: 40px;
   }
 }
 
@@ -270,27 +272,8 @@ textarea {
     .select-wrap:nth-child(7){
       margin-right: 0;
     }
-    .select-wrap:last-child{
-      position: absolute;
-      top:585px;
-      height: 60px;
-      right: 0;
-      width: 300px;
-      .form-item{
-        background: none;
-        label{
-          position: relative;
-          float: left;
-        }
-        select{
-          width: auto;
-          height: auto;
-          padding: 0;
-          line-height: 1em;
-          border: 0;
-          float: left;
-        }
-      }
+    .select-wrap:last-child, .select-wrap:nth-child(8){
+      display: none;
     }
     &:after{
       content: '';
@@ -337,9 +320,6 @@ textarea {
       .select-wrap{
         width: 23.5%;
       }
-      .select-wrap:last-child{
-        top:180px;
-      }
       .form-actions{
         margin-top: 0px;
         position: relative;
@@ -370,9 +350,6 @@ textarea {
           top:35px;
           font-size: 12px;
         }
-      }
-      .select-wrap:last-child{
-        top:285px;
       }
     }
   }

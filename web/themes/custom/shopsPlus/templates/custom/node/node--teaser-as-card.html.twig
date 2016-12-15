@@ -4,10 +4,10 @@
 ] %}
 <article{{ attributes.addClass(classes) }}>
 
-    {% if content.field_image %}
+    {% if content.field_image  and content.field_image[0]['#item'].value['_is_default'] is empty %}
         {{ content.field_image }}
     {% endif %}
-    {% if content.field_resource_image %}
+    {% if content.field_resource_image and content.field_resource_image[0]['#item'].value['_is_default'] is empty %}
         {{ content.field_resource_image }}
     {% endif %}
 

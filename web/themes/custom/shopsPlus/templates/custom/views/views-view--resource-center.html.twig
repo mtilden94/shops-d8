@@ -12,6 +12,9 @@ dom_id ? 'resource-view js-view-dom-id-' ~ dom_id,
     {% if header %}
         <header>
             {{ header }}
+            <div class="sort-block">
+                {{ sort_link|raw }}
+            </div>
         </header>
     {% endif %}
     {{ rows }}
