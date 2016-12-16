@@ -176,6 +176,8 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       $this->setConfigurationValue('access_token_secret', $config['access_token_secret']);
     }
 
+    $this->setConfigurationValue('user_id', $config['user_id']);
+
     $this->setConfigurationValue('tweets_count', $config_style['tweets_count']);
     $this->setConfigurationValue('wrapper_class', $config_style['wrapper_class']);
     $this->setConfigurationValue('more_link_display', $config_style['more_link_display']);
