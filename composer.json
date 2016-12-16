@@ -50,7 +50,8 @@
 		"drupal/recaptcha": "^2.2",
 		"drupal/better_exposed_filters": "3.x-dev",
 		"drupal/metatag": "1.x-dev",
-		"drupal/redirect": "1.x-dev"
+		"drupal/redirect": "1.x-dev",
+		"drupal/background_image_formatter": "^1.1"
 	},
 	"require-dev": {
 		"behat/mink": "~1.7",

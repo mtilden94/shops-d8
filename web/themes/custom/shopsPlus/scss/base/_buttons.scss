@@ -34,3 +34,19 @@
     }
   }
 }
+
+.button-one {
+  background-color: $active;
+  color: white;
+  font-size: 14px;
+  font-family: $heading-font-family;
+  padding: 20px;
+  border-bottom: 2px solid white;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.4s;
+  &:hover {
+    background-color: darken($active, 10);
+    color: white;
+  }
+}
