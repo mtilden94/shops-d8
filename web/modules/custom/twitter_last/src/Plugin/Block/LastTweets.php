@@ -90,6 +90,13 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       '#required' => TRUE,
     );
 
+    $form['twitter']['user_id'] = array (
+      '#type' => 'textfield',
+      '#title' => $this->t('User ID'),
+      '#default_value' => isset($config['user_id']) ? $config['user_id'] : '',
+      '#required' => TRUE,
+    );
+
     $form['style'] = array(
       '#type' => 'fieldset',
       '#title' => $this->t('Style'),
@@ -134,7 +141,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     );
 
     $user_timeline = $twitter->get("statuses/user_timeline", array(
-      "user_id" => 216718173,
+      "user_id" => !empty($config['user_id'])? $config['user_id'] : '',
       "count" => $config_style['tweets_count'],
       "exclude_replies" => true
     ));
@@ -186,7 +193,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     );
     
     return $twitter->get("statuses/user_timeline", array(
-      "user_id" => 123355425,
+      "user_id" => !empty($config['user_id'])? $config['user_id'] : '',
       "count" => $config['tweets_count'],
       "exclude_replies" => true
     ));
