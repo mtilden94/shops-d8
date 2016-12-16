@@ -134,7 +134,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     );
 
     $user_timeline = $twitter->get("statuses/user_timeline", array(
-      "user_id" => 123355425,
+      "user_id" => 216718173,
       "count" => $config_style['tweets_count'],
       "exclude_replies" => true
     ));
