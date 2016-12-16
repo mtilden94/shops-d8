@@ -120,17 +120,17 @@ function shopsPlus_preprocess_page(&$variables) {
       $variables['our_people_more'] = array('prev' => $old_item, 'next' => $item);
     }
 
-  }
-  if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
-    if (isset($term->field_header_image) AND isset($term->field_header_image->entity)) {
-      $variables['header_image'] = '';
-      $field_header_image = $term->field_header_image;
-      $original_image = $field_header_image->entity->getFileUri();
-      $style = \Drupal\image\Entity\ImageStyle::load('header_image');
-      $background_image = $style->buildUrl($original_image);
-      $variables['header_image'] = $background_image;
     }
-  }
+    if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
+        if (isset($term->field_header_image) AND isset($term->field_header_image->entity)) {
+            $variables['header_image'] = '';
+            $field_header_image = $term->field_header_image;
+            $original_image = $field_header_image->entity->getFileUri();
+            $style = \Drupal\image\Entity\ImageStyle::load('header_image');
+            $background_image = $style->buildUrl($original_image);
+            $variables['header_image'] = $background_image;
+        }
+    }
 }
 
 /**

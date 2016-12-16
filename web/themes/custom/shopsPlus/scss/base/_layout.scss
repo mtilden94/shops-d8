@@ -99,6 +99,19 @@ body.no-sidebar, body.one-sidebar {
   }
 }
 
+.front{
+  #content{
+    padding: 0;
+  }
+ #main > .container{
+    border: 0;
+  }
+  #block-shopsplus-content{
+    padding: 0 50px 50px 50px;
+    background-color: $light-gray;
+  }
+}
+
 /*
 
 .sidebar-second #main #content, .sidebar-second #sidebar-second, .sidebar-first #sidebar-first, .no-sidebar #main #content {

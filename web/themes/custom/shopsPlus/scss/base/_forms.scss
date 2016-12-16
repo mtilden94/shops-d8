@@ -121,6 +121,29 @@ textarea {
   }
 }
 
+.form-actions {
+  text-align: center;
+  .button {
+    padding: 0;
+    height: 42px;
+    border-radius: 0;
+    background-color: $breadcrumbs;
+    font-size: 14px;
+    font-family: $heading-font-family;
+    text-transform: uppercase;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  @include media($fullsize) {
+    .button {
+      width: 160px;
+      height: 60px;
+      font-size: 16px;
+    }
+  }
+}
+
 .views-exposed-form {
   background-color: $light-gray;
   border: $base-border;
@@ -128,17 +151,17 @@ textarea {
   margin-bottom: 50px;
   margin-top: 35px;
   .select-wrap {
-    padding-top: 20px;
+    padding-top: 24px;
     position: relative;
     max-width: 100%;
     width: 100%;
     display: inline-block;
     overflow: hidden;
-    label{
+    label {
       position: absolute;
-      top:0;
+      top: 0;
     }
-    .form-item{
+    .form-item {
       background-image: url("../images/optimized/select.svg");
       background-position: 95% center;
       background-repeat: no-repeat;
@@ -146,18 +169,18 @@ textarea {
       select {
         background: transparent;
         width: 100%;
-        appearance:none;
-        option{
-          font-size:14px;
+        appearance: none;
+        border: $base-border;
+        border-radius: 0;
+        margin-bottom: 0;
+        option {
+          font-size: 14px;
         }
       }
     }
   }
   .form-actions {
     text-align: left;
-    .button {
-      margin: 0;
-    }
   }
   @include media($tablet) {
     .form-actions {
@@ -165,7 +188,6 @@ textarea {
       width: 19%;
       .button {
         position: relative;
-        top: -2px;
         max-width: 100%;
         width: 100%;
       }
@@ -175,15 +197,11 @@ textarea {
       display: inline-block;
       margin-right: 2%;
       margin-bottom: 20px;
-      .form-item{
+      .form-item {
         select {
-          border: $base-border;
-          border-radius: 0;
-          margin-bottom: 0;
-          option{
-            font-size:16px;
+          option {
+            font-size: 16px;
           }
-
         }
       }
     }
@@ -194,14 +212,14 @@ textarea {
     margin-bottom: 70px;
     margin-top: 60px;
     .select-wrap {
-      padding-top: 30px;
+      padding-top: 32px;
       max-width: 407px;
       width: 407px;
       margin-right: 15px;
-      .form-item{
+      .form-item {
         select {
-          option{
-            font-size:18px;
+          option {
+            font-size: 18px;
           }
         }
       }
@@ -211,20 +229,34 @@ textarea {
     }
   }
 }
+
 //page-resource-center
-.page-resource-center{
-  .views-exposed-form{
+.page-resource-center {
+  .sort-block {
+    font-family: $heading-font-family;
+    font-size: 12px;
+    a{
+      text-decoration: none;
+      color: $heading-color;
+    }
+    &:after{
+      content: "\e905";
+      font-family: $icons-font-family;
+      color: $heading-color;
+    }
+  }
+  .views-exposed-form {
     position: relative;
-    .js-form-type-textfield, .form-actions{
+    .js-form-type-textfield, .form-actions {
       float: left;
     }
-    .js-form-type-textfield{
+    .js-form-type-textfield {
       width: 100%;
-      input{
+      input {
         margin-bottom: 0;
       }
     }
-    .select-wrap{
+    .select-wrap {
       float: left;
       width: 0;
       visibility: hidden;
@@ -233,18 +265,19 @@ textarea {
       overflow: hidden;
       margin: 0;
       padding-top: 0;
-      transition:all 0.3s ease;
+      transition: all 0.3s ease;
+      margin-top: 20px;
     }
-    .form-actions{
+    .form-actions {
       margin-top: 20px;
       position: relative;
       width: 100%;
-      input{
+      input {
         width: 100%;
         padding: 0;
       }
     }
-    .open-form-more{
+    .open-form-more {
       text-align: center;
       cursor: pointer;
       position: relative;
@@ -256,34 +289,34 @@ textarea {
       vertical-align: bottom;
       float: left;
       width: 100%;
-      &:after{
+      &:after {
         content: "\e905";
         font-family: $icons-font-family;
         position: absolute;
         left: 50%;
-        top:35px;
+        top: 35px;
         font-size: 10px;
-        transition:all 0.3s ease;
+        transition: all 0.3s ease;
       }
     }
-    .select-wrap:nth-child(4){
+    .select-wrap:nth-child(4) {
       clear: both;
     }
-    .select-wrap:nth-child(7){
+    .select-wrap:nth-child(7) {
       margin-right: 0;
     }
-    .select-wrap:last-child, .select-wrap:nth-child(8){
+    .select-wrap:last-child, .select-wrap:nth-child(8) {
       display: none;
     }
-    &:after{
+    &:after {
       content: '';
       clear: both;
       display: block;
       width: 100%;
     }
   }
-  .open-form-true{
-    .select-wrap{
+  .open-form-true {
+    .select-wrap {
       width: 100%;
       margin-right: 2%;
       visibility: visible;
@@ -292,20 +325,24 @@ textarea {
       height: auto;
       position: relative;
     }
-    .open-form-more{
-      &:after{
-        top:38px;
+    .open-form-more {
+      &:after {
+        top: 38px;
         transform: rotateX(180deg);
       }
     }
   }
 
-  @include media($tablet){
-    .views-exposed-form{
-      .js-form-type-textfield{
+  @include media($tablet) {
+    .sort-block {
+      float: right;
+      margin-top: 7px;
+    }
+    .views-exposed-form {
+      .js-form-type-textfield {
         width: 53%;
       }
-      .open-form-more{
+      .open-form-more {
         border-left: $base-border;
         width: 27%;
         margin-left: 17px;
@@ -313,32 +350,34 @@ textarea {
         padding-top: 7px;
         height: 42px;
         line-height: 1.1em;
-        &:after{
-          top:25px;
+        &:after {
+          top: 25px;
         }
       }
-      .select-wrap{
+      .select-wrap {
         width: 23.5%;
-      }
-      .form-actions{
         margin-top: 0px;
-        position: relative;
-        top:3px;
+      }
+      .form-actions {
+        margin-top: 0px;
         width: 16%;
       }
     }
-    .open-form-true{
-      .select-wrap{
+    .open-form-true {
+      .select-wrap {
         margin-top: 1.05em;
       }
     }
   }
-  @include media($fullsize){
-    .views-exposed-form{
-      .js-form-type-textfield{
+  @include media($fullsize) {
+    .sort-block {
+      font-size: 16px;
+    }
+    .views-exposed-form {
+      .js-form-type-textfield {
         width: 60%;
       }
-      .open-form-more{
+      .open-form-more {
         font-size: 15px;
         height: 60px;
         margin-left: 17px;
@@ -346,8 +385,8 @@ textarea {
         padding-top: 15px;
         float: left;
         width: 22%;
-        &:after{
-          top:35px;
+        &:after {
+          top: 35px;
           font-size: 12px;
         }
       }
@@ -355,34 +394,35 @@ textarea {
   }
 }
 
+.section-our-people .views-exposed-form{
 
-.form-actions {
-  text-align: center;
-  .button {
-    padding-top: 0;
-    padding-bottom: 0;
-    height: 40px;
-    border-radius: 0;
-    background-color: $breadcrumbs;
-    font-size: 14px;
-    font-family: $heading-font-family;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-top: 10px;
+  .form-item-title, .select-wrap{
+    width: 100%;
   }
-  @include media($fullsize) {
-    display: inline-block;
-    width: 159px;
-    .button {
-      width: 160px;
-      height: 59px;
-      margin-top: -2px;
-      position: relative;
-      border-radius: 0;
-      background-color: $breadcrumbs;
-      font-size: 16px;
-      font-family: $heading-font-family;
-      text-transform: uppercase;
+  .form-actions{
+    margin-top: 25px;
+    button{
+      top:0;
+    }
+  }
+  @include media($tablet){
+    .form-item-title, .select-wrap{
+      margin-bottom: 0;
+      width: 38%;
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 1.3%;
+    }
+    input{
+      margin-bottom: 0;
+    }
+  }
+  @include media($fullsize){
+    .form-item-title, .select-wrap{
+      width: 40%;
+    }
+    .form-actions{
+      margin-top: 32px;
     }
   }
 }

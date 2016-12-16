@@ -31,67 +31,7 @@
       }
     }
   }
-  .menu--social-links {
-    ul {
-      li {
-        margin: 20px 0 15px;
-        a {
-          position: relative;
-          width: 41px;
-          height: 41px;
-          display: inline-block;
-          overflow: hidden;
-          margin: 0 6px;
-          text-align: center;
-          text-indent: -200px;
-          &:after {
-            text-indent: 0px;
-            content: "\ea90";
-            position: absolute;
-            line-height: 41px;
-            color: $white;
-            font-family: $icons-font-family;
-            background-color: #02807f;
-            width: 41px;
-            top: 0;
-            left: 0;
-            border-radius: 50%;
-            transition: all 0.2s ease-in;
-          }
-          &:hover:after {
-            color: #02807f;
-            background-color: $white;
-          }
-        }
-        &:after {
-          content: none;
-        }
-      }
-      li:nth-of-type(2) a {
-        &:after{
-          content: "\ea96";
-        }
-      }
-      li:nth-of-type(3) a {
-        &:after{
-          content: "\ea9d";
-        }
-      }
-    }
-  }
-
   @include media($tablet) {
-    .menu--social-links {
-      float: right;
-      ul {
-        li {
-          margin: 0px 0 5px;
-          a {
-            margin: 0 0 0 12px;
-          }
-        }
-      }
-    }
     .menu--footer {
       float: right;
       clear: right;
@@ -104,24 +44,6 @@
     }
   }
   @include media($fullsize) {
-    .menu--social-links {
-      ul {
-        li {
-          margin: 0px 0 9px;
-          a {
-            width: 50px;
-            height: 50px;
-            margin: 0 0 0 11px;
-            &:after{
-              width: 50px;
-              height: 50px;
-              line-height: 50px;
-              font-size: 20px;
-            }
-          }
-        }
-      }
-    }
     .menu--footer {
       ul.menu {
         li {
@@ -131,6 +53,109 @@
             line-height: 25px;
           }
         }
+      }
+    }
+  }
+}
+
+.menu--social-links {
+  ul {
+    li {
+      list-style-type: none;
+      display: inline-block;
+      margin: 20px 0 15px;
+      &:after{
+        content: none !important;
+      }
+      a {
+        position: relative;
+        width: 41px;
+        height: 41px;
+        display: inline-block;
+        overflow: hidden;
+        margin: 0 6px;
+        text-align: center;
+        text-indent: -200px;
+        &:after {
+          text-indent: 0px;
+          content: "\ea90";
+          position: absolute;
+          line-height: 41px;
+          color: $white;
+          font-family: $icons-font-family;
+          background-color: #02807f;
+          width: 41px;
+          top: 0;
+          left: 0;
+          border-radius: 50%;
+          transition: all 0.2s ease-in;
+        }
+        &:hover:after {
+          color: #02807f;
+          background-color: $white;
+        }
+      }
+      &:after {
+        content: none;
+      }
+    }
+    li:nth-of-type(2) a {
+      &:after{
+        content: "\ea96";
+      }
+    }
+    li:nth-of-type(3) a {
+      &:after{
+        content: "\ea9d";
+      }
+    }
+  }
+}
+@include media($tablet) {
+  .menu--social-links {
+    float: right;
+    ul {
+      li {
+        margin: 0px 0 5px;
+        a {
+          margin: 0 0 0 12px;
+        }
+      }
+    }
+  }
+}
+@include media($fullsize) {
+  .menu--social-links {
+    ul {
+      li {
+        margin: 0px 0 9px;
+        a {
+          width: 50px;
+          height: 50px;
+          margin: 0 0 0 11px;
+          &:after{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+#block-sociallinks{
+  float: none;
+  text-align: center;
+  ul{
+    margin: 0;
+    li{
+      margin: 0;
+      &:before{
+        content: none;
+      }
+      a{
+        margin: 0 5px;
       }
     }
   }
