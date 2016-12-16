@@ -1,0 +1,109 @@
+.block-twitter-last {
+	background-color: #8bd8f4;
+
+	h2, .tweets {
+		@include outer-container();
+		@include pad();
+	}
+	h2 {
+		@include pad();
+	}
+
+	.views-rows {
+		.views-row {
+			background-color: white;
+			margin-bottom: 20px;
+
+			.content {
+				padding: 12px;
+				font-family: $heading-font-family;
+				font-size: 12px;
+				color: $time;
+
+				a {
+					color: $active;
+					text-decoration: none;
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+				.date {
+					margin-bottom: 10px;
+				}
+
+				@include media($tablet) {
+					font-size: 20px;
+				}
+			}
+
+			.created {
+				background-color: #54b9dd;
+				color: white;
+				padding: 8px 0 10px;
+				position: relative;
+				&:before {
+					content: '';
+					display: block;
+					position: absolute;
+					top: -20px;
+					width: 40px;
+					height: 40px;
+
+					background-color: red;
+					transform: rotate(45deg) scaleY(0.5);
+				}
+				.user {
+					padding-left: 32px;
+					font-size: 12px;
+					line-height: 12px;
+					&:before {
+						font-size: 14px;
+						padding-bottom: 2px;
+						vertical-align: middle;
+						content: '\ea96';
+						font-family: $icons-font-family;
+						display: inline-block;
+						padding-right: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	@include media($tablet) {
+
+		.views-rows {
+			@include fill-parent();
+			@include row(table);
+
+			& > div {
+
+			}
+
+			.views-row {
+				@include span-columns(4);
+				@include pad();
+				position: relative;
+
+				&:after {
+					content: '';
+					position: absolute;
+					right: 0;
+					background-color: #8bd8f4;
+					width: $gutter;
+					top: 0;
+					bottom: 0;
+				}
+				&:last-of-type {
+					&:after {
+						display: none;
+					}
+				}
+
+				.tweet {
+
+				}
+			}
+		}
+	}
+}
