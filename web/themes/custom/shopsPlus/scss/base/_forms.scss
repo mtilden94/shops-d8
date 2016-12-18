@@ -440,7 +440,7 @@ textarea {
 
 .section-our-people .views-exposed-form{
 
-  .form-item-title, .select-wrap{
+  .input-wrap, .select-wrap{
     width: 100%;
   }
   .form-actions{
@@ -450,7 +450,7 @@ textarea {
     }
   }
   @include media($tablet){
-    .form-item-title, .select-wrap{
+    .input-wrap, .select-wrap{
       margin-bottom: 0;
       width: 38%;
       display: inline-block;
@@ -462,7 +462,7 @@ textarea {
     }
   }
   @include media($fullsize){
-    .form-item-title, .select-wrap{
+    .input-wrap, .select-wrap{
       width: 40%;
     }
     .form-actions{

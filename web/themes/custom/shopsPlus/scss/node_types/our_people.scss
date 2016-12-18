@@ -334,6 +334,7 @@
         }
         .views-row {
           @include span-columns(4);
+          display: inline-block;
           margin-bottom: 25px;
         }
         .views-row:nth-child(3n+3) {

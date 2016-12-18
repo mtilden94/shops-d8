@@ -70,15 +70,14 @@ dd {
 			background-color: $breadcrumbs;
 			left: -15px;
 			position: absolute;
-			top: 14px;
+			top: 12px;
 		}
 		//position: relative;
 		@include media($fullsize){
 			&:before {
 				width: 8px;
 				height: 8px;
-				top: 16px;
-				top: 16px;
+				top: 12px;
 			}
 		}
 	}
