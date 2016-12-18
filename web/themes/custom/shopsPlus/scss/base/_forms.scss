@@ -232,17 +232,31 @@ textarea {
 
 //page-resource-center
 .page-resource-center {
+  h1{
+    margin-top: 25px
+  }
   .sort-block {
     font-family: $heading-font-family;
     font-size: 12px;
     a{
       text-decoration: none;
       color: $heading-color;
+      &:after{
+        content: "\e905";
+        font-family: $icons-font-family;
+        color: $heading-color;
+        top: -1px;
+        font-size: 10px;
+        position: relative;
+        margin-left: 10px;
+
+      }
     }
-    &:after{
-      content: "\e905";
-      font-family: $icons-font-family;
-      color: $heading-color;
+    a.order-desc{
+      &:after{
+        content: "\e904";
+        top: 2px;
+      }
     }
   }
   .views-exposed-form {
@@ -370,8 +384,14 @@ textarea {
     }
   }
   @include media($fullsize) {
+    h1{
+      margin-top: 35px
+    }
     .sort-block {
       font-size: 16px;
+      a:after{
+        font-size: 12px;
+      }
     }
     .views-exposed-form {
       .js-form-type-textfield {

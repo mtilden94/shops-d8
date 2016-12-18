@@ -81,9 +81,9 @@
         font-size: 14px;
         font-weight: $header-normal;
         & * {
-          display: inline-block;
+          display: inline;
         }
-        div div {
+        div.field a {
           &:after {
             content: '';
             border-left: $base-border;
@@ -95,11 +95,14 @@
             top: 3px;
           }
         }
-        div div:last-child {
-          &:after {
-            content: none;
+        div.field:last-child {
+          a {
+            &:after {
+              content: none;
+            }
           }
         }
+
         a {
           text-decoration: none;
         }
@@ -146,7 +149,7 @@
         .content {
           font-size: 16px;
           font-weight: $header-bold;
-          div div {
+          div.field a {
             &:after {
               height: 16px;
             }

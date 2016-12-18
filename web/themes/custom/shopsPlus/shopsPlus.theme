@@ -167,7 +167,7 @@ function shopsPlus_preprocess_block(&$variables)
     $flag_atrr_id = FALSE;
     $class = array();
 
-    if (isset($variables['attributes']['id']) && $variables['elements']['#derivative_plugin_id']) {
+    if (isset($variables['attributes']['id']) && $variables['elements']['#derivative_plugin_id']!=null) {
         $flag_atrr_id = TRUE;
         $class[] = "block-original-" . $variables['elements']['#derivative_plugin_id'];
     }
@@ -181,7 +181,11 @@ function shopsPlus_preprocess_block(&$variables)
     }
 
     if ($flag_atrr_id) {
-        $variables['attributes']['class'] = array_merge((array)$variables['attributes']['class'], $class);
+        if(isset($variables['attributes']['class'])){
+            $variables['attributes']['class'] = array_merge((array)$variables['attributes']['class'], $class);
+        }else{
+            $variables['attributes']['class']=$class;
+        }
     }
     //dsm($variables);
     //dsm($variables['attributes']['class']);
