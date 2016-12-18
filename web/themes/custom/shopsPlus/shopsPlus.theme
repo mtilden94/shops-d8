@@ -277,6 +277,8 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
         $form['actions']['#weight'] = 0;
         $form['title']['#placeholder'] = t('Search the Resource Center');
 
+        $form['country']['#options']['All']=$form['health_area']['#options']['All']=$form['type']['#options']['All']=$form['technical_area']['#options']['All']='Select an option';
+
         $more_class = '';
         $data_select = $form_state->getUserInput();
         if ($data_select) {
@@ -286,5 +288,9 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
         }
         $form['more']['#weight'] = 0;
         $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
+    }
+    if ($form_id == 'views_exposed_form' && $form['#id'] =='views-exposed-form-staff-page-1') {
+        $form['title']['#placeholder'] = t('Enter Name');
+        $form['location']['#options']['All']="All locations";
     }
 }
