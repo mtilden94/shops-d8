@@ -33,10 +33,11 @@ h1 a, h2 a, h3 a {
   }
 }
 
-#header-image, .image-top-block {
+#header-image, .image-top-block, .slide-image {
   height: 200px;
   position: relative;
   &:before, &:after {
+    line-height: 1em;
     content: "\e906";
     color: $white;
     opacity: 0.6;
@@ -58,7 +59,7 @@ h1 a, h2 a, h3 a {
     &:before, &:after {
       font-size: 37px;
       left: 20px;
-      top: 23px;
+      top: 20px;
     }
     &:after {
       left: auto;
@@ -72,12 +73,12 @@ h1 a, h2 a, h3 a {
     &:before, &:after {
       font-size: 50px;
       left: 30px;
-      top: 18px;
+      top: 30px;
     }
     &:after {
       left: auto;
       top: auto;
-      bottom: 18px;
+      bottom: 30px;
       right: 30px;
     }
   }
