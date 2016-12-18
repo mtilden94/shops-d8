@@ -58,7 +58,7 @@
   }
 }
 
-.menu--social-links {
+.block-original-social-links {
   ul {
     li {
       list-style-type: none;
@@ -112,7 +112,7 @@
   }
 }
 @include media($tablet) {
-  .menu--social-links {
+.block-original-social-links {
     float: right;
     ul {
       li {
@@ -125,7 +125,7 @@
   }
 }
 @include media($fullsize) {
-  .menu--social-links {
+.block-original-social-links {
     ul {
       li {
         margin: 0px 0 9px;
@@ -144,7 +144,7 @@
     }
   }
 }
-#block-sociallinks{
+#block-shopsplus-content .block-original-social-links{
   float: none;
   text-align: center;
   ul{
