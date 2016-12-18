@@ -51,7 +51,7 @@
 .block-original-latest_news_updates-block_1 {
   font-family: $heading-font-family;
   margin-bottom: 70px;
-  margin-top: 60px;
+  margin-top: 51px;
   & > h2 {
     font-size: 18px;
     margin-bottom: 20px;
@@ -63,12 +63,15 @@
   }
   .submitted {
     line-height: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     time {
       font-size: 14px;
       color: $time;
       font-weight: $header-normal;
     }
+  }
+  .image, .resource-image {
+    margin-bottom: 14px;
   }
   .views-row {
     .node {
@@ -76,6 +79,10 @@
       padding: 12px;
       h2 {
         font-size: 20px;
+        margin-bottom: 0px;
+      }
+      header{
+        margin-bottom: 38px;
       }
       .content {
         font-size: 14px;
@@ -112,22 +119,48 @@
   @include media($mobile_threshold) {
     .views-row {
       margin-bottom: 20px;
-      .node {
-        width: 280px;
-        margin: 0 auto;
+      .image a, .resource-image a {
+        display: block;
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  @include media($mobile2) {
+    .views-row {
+      @include span-columns(2);
+      .content header{
+        margin-bottom: 16px;
       }
     }
   }
   @include media($tablet) {
+    margin-top: 60px;
     .views-row {
-      @include span-columns(4);
+      display: inline-block;
+      vertical-align: top;
+      width: 31%;
+      margin-right: 25px;
+      .image, .resource-image {
+        margin-bottom: 0px;
+      }
+      .submitted {
+        margin-bottom: 8px;
+      }
+      .node {
+        header{
+          margin-bottom: 16px;
+        }
+      }
     }
   }
   @include media($fullsize) {
-    margin-top: 20px;
+    margin-top: 100px;
     margin-bottom: 80px;
     & > h2 {
-      font-size: 22px;
+      font-size: 24px;
       margin-bottom: 22px;
     }
     .resource-image, .image {
@@ -141,14 +174,19 @@
       }
     }
     .views-row {
+      width: 357px;
+      margin-right: 41px;
       .node {
         padding: 20px;
         h2 {
           font-size: 30px;
+
+        }
+        header{
+          margin-bottom: 40px;
         }
         .content {
           font-size: 16px;
-          font-weight: $header-bold;
           div.field a {
             &:after {
               height: 16px;

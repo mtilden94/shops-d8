@@ -259,6 +259,10 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
             $form[$key_form]['#prefix'] = '<div class="select-wrap">';
             $form[$key_form]['#suffix'] = '</div>';
         }
+        if (isset($form_value['#type']) && $form_value['#type'] == 'textfield') {
+            $form[$key_form]['#prefix'] = '<div class="input-wrap">';
+            $form[$key_form]['#suffix'] = '</div>';
+        }
     }
     if (strpos($form_id, 'contact_us') !== FALSE) {
         $form['field_name']['widget'][0]['value']['#placeholder'] = t('Enter full name');
