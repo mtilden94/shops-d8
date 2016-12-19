@@ -113,6 +113,12 @@ secondary_menu ? 'with-subnav'
         </div><!-- /.container -->
     </div><!-- /#main -->
 
+    {% if page.talk|render %}
+        <section id="talk">
+            {{ page.talk }}
+        </section><!-- /#Let’s Talk -->
+    {% endif %}
+
     <!-- ______________________ FOOTER _______________________ -->
 
     {% if page.footer|render %}

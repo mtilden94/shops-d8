@@ -3,16 +3,14 @@
 'node node-all-teaser'
 ] %}
 <article{{ attributes.addClass(classes) }}>
-
-    {% if content.field_image  and content.field_image[0]['#item'].value['_is_default'] is empty %}
-        {{ content.field_image }}
-    {% endif %}
-    {% if content.field_resource_image and content.field_resource_image[0]['#item'].value['_is_default'] is empty %}
-        {{ content.field_resource_image }}
-    {% endif %}
-
     {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
         <header>
+            {% if content.field_image  and content.field_image[0]['#item'].value['_is_default'] is empty %}
+                {{ content.field_image }}
+            {% endif %}
+            {% if content.field_resource_image and content.field_resource_image[0]['#item'].value['_is_default'] is empty %}
+                {{ content.field_resource_image }}
+            {% endif %}
             {# {% if display_submitted %} #}
             <div class="submitted">
                 <time>{{ node.createdtime | date("F d, Y") }}</time>

@@ -52,6 +52,7 @@
   font-family: $heading-font-family;
   margin-bottom: 70px;
   padding-top: 60px;
+
   & > h2 {
     font-size: 18px;
     margin-bottom: 20px;
@@ -63,12 +64,15 @@
   }
   .submitted {
     line-height: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     time {
       font-size: 14px;
       color: $time;
       font-weight: $header-normal;
     }
+  }
+  .image, .resource-image {
+    margin-bottom: 14px;
   }
   .views-row {
     .node {
@@ -77,14 +81,18 @@
       padding: 12px;
       h2 {
         font-size: 20px;
+        margin-bottom: 0px;
+      }
+      header{
+        margin-bottom: 38px;
       }
       .content {
         font-size: 14px;
         font-weight: $header-normal;
         & * {
-          display: inline-block;
+          display: inline;
         }
-        div div {
+        div.field a {
           &:after {
             content: '';
             border-left: $base-border;
@@ -96,11 +104,14 @@
             top: 3px;
           }
         }
-        div div:last-child {
-          &:after {
-            content: none;
+        div.field:last-child {
+          a {
+            &:after {
+              content: none;
+            }
           }
         }
+
         a {
           text-decoration: none;
         }
@@ -110,22 +121,48 @@
   @include media($mobile_threshold) {
     .views-row {
       margin-bottom: 20px;
-      .node {
-        width: 280px;
-        margin: 0 auto;
+      .image a, .resource-image a {
+        display: block;
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  @include media($mobile2) {
+    .views-row {
+      @include span-columns(2);
+      .content header{
+        margin-bottom: 16px;
       }
     }
   }
   @include media($tablet) {
+    margin-top: 60px;
     .views-row {
-      @include span-columns(4);
+      display: inline-block;
+      vertical-align: top;
+      width: 31%;
+      margin-right: 25px;
+      .image, .resource-image {
+        margin-bottom: 0px;
+      }
+      .submitted {
+        margin-bottom: 8px;
+      }
+      .node {
+        header{
+          margin-bottom: 16px;
+        }
+      }
     }
   }
   @include media($fullsize) {
-    margin-top: 20px;
+    margin-top: 100px;
     margin-bottom: 80px;
     & > h2 {
-      font-size: 22px;
+      font-size: 24px;
       margin-bottom: 22px;
     }
     .resource-image, .image {
@@ -139,15 +176,20 @@
       }
     }
     .views-row {
+      width: 357px;
+      margin-right: 41px;
       .node {
         padding: 20px;
         h2 {
           font-size: 30px;
+
+        }
+        header{
+          margin-bottom: 40px;
         }
         .content {
           font-size: 16px;
-          font-weight: $header-bold;
-          div div {
+          div.field a {
             &:after {
               height: 16px;
             }
@@ -158,12 +200,16 @@
   }
 }
 
+
 .front .block-original-latest_news_updates-block_1 {
   background-color: $light-gray;
-
+          margin-bottom: 40px;
 }
 
+
 .block-original-slider_on_front_page-block_1 {
+  margin-bottom: 40px;
+
   .flexslider {
     border: 0;
     margin-bottom: 0
@@ -173,12 +219,15 @@
   }
   .flex-control-nav {
     z-index: 2;
-    bottom: 0;
+    bottom: auto;
+    top:274px;
   }
   .flex-control-paging li a {
     background-color: transparent;
     box-shadow: none;
     border: 2px solid $white;
+    width: 7px;
+    height: 7px;
   }
   .flex-control-paging li a.flex-active {
     background-color: $white;
@@ -188,6 +237,7 @@
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-size: cover;
+    margin-bottom: 15px;
   }
   .content {
     text-align: center;
@@ -195,7 +245,9 @@
       color: $slide_mobile_color;
       font-size: 40px;
       line-height: 47px;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
+      font-weight: $header-normal;
+      padding: 0 20px;
     }
     .button-link a {
       font-family: $heading-font-family;
@@ -208,31 +260,44 @@
       border-bottom: 3px solid $white;
       background-color: $active;
       line-height: 1em;
+      &:hover{
+        background-color: $blue;
+      }
     }
   }
   @include media($tablet) {
+    margin-bottom: 0;
+    .flex-control-nav {
+      top:417px;
+    }
     .slide-image {
       height: 443px;
+      margin-bottom: 0;
     }
     .node .content {
       text-align: left;
       position: absolute;
-      top: 50%;
+      top: 54%;
       transform: translateY(-50%);
       left: 19px;
       h2 {
         color: $white;
-        max-width: 340px;
+        max-width: 355px;
+        padding: 0;
       }
       .button-link a {
         font-size: 14px;
-        padding: 22px 17px;
+        padding: 19px 17px;
       }
     }
   }
   @include media($fullsize) {
     .flex-control-nav {
-
+      top:566px;
+    }
+    .flex-control-paging li a {
+      width: 10px;
+      height: 10px;
     }
     .slide-image {
       height: 600px;
@@ -242,12 +307,12 @@
       h2 {
         font-size: 55px;
         line-height: 63px;
-        margin-bottom: 45px;
-        max-width: 465px;
+        margin-bottom: 30px;
+        max-width: 480px;
       }
       .button-link a {
         font-size: 16px;
-        padding: 24px 27px;
+        padding: 22px 27px;
       }
     }
   }

@@ -2,3 +2,26 @@
 	@extend .button-one;
 
 }
+#talk{
+  clear: both;
+}
+#block-shopsplus-content{
+	.content{
+		.body{
+			h1{
+				padding-top: 40px;
+				position: relative;
+				&:before{
+					content: "\e901";
+					font-family: $icons-font-family;
+					position: absolute;
+					height: 40px;
+					text-align: center;
+					width: 100%;
+					left: 0;
+					top:0;
+				}
+			}
+		}
+	}
+}

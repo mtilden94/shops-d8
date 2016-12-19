@@ -68,6 +68,37 @@
                     }
                 );
 
+
+                $.fn.equivalent = function (min_height) {
+                    min_height = min_height || 10;
+                    var $blocks = $(this),
+                        maxH = min_height;
+                    $blocks.css('min-height', maxH);
+                    $blocks.each(function () {
+                        maxH = ( $(this).outerHeight() > maxH ) ? $(this).outerHeight() : maxH;
+                    });
+                    $blocks.css('min-height', maxH);
+                }
+
+                var minHeightViewsRow = function ($views_origin_class) {
+                    if ($($views_origin_class).length) {
+                        w = window.innerWidth;
+                        $(window).resize(function () {
+                            w = window.innerWidth;
+                            if (w > 499) {
+                                $($views_origin_class).equivalent();
+                            }
+                        });
+                        if (w > 499) {
+                            $($views_origin_class).equivalent();
+                        }
+                    }
+                }
+
+                //news update block
+                minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node > header');
+                minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node');
+
             }
         };
         // jQuery(function ($) {
@@ -75,50 +106,6 @@
             //remove footer last link
             // var text_last_a_footer = $('#footer .menu--footer ul.menu li.menu-item:last-child a').text();
             // $('#footer .menu--footer ul.menu li.menu-item:last-child a').replaceWith("<span class='no-link'>" + text_last_a_footer + "</span>");
-            $.fn.equivalent = function (min_height) {
-                min_height = min_height || 10;
-                var $blocks = $(this),
-                    maxH = min_height;
-                $blocks.css('min-height', maxH);
-                $blocks.each(function () {
-                    maxH = ( $(this).outerHeight() > maxH ) ? $(this).outerHeight() : maxH;
-                });
-                $blocks.css('min-height', maxH);
-            }
-
-            var minHeightViewsRow = function ($views_origin_class) {
-                if ($($views_origin_class).length) {
-                    w = window.innerWidth;
-                    $(window).resize(function () {
-                        w = window.innerWidth;
-                        if (w > 767) {
-                            $($views_origin_class + ' .views-row .node').equivalent();
-                        }
-                    });
-                    if (w > 767) {
-                        $($views_origin_class + ' .views-row .node').equivalent();
-                    }
-                }
-            }
-
-            //news update block
-            minHeightViewsRow('.block-original-latest_news_updates-block_1');
-
-            //not use?
-            function block_list(type_block) {
-                w = window.innerWidth;
-                if (type_block == "block") {
-                    if (w > 767) {
-                        $('.block-views-block-news-and-updates .views-row').each(
-                            function () {
-                                $('.node', this).equivalent();
-                            }
-                        );
-                    }
-                } else if (type_block == 'user') {
-
-                }
-            }
 
             //wrap menu
             $('.menu--main ul.menu ul').wrap('<span class="pos-block"></span>');

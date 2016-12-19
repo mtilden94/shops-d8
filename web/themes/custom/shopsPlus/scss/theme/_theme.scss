@@ -33,10 +33,11 @@ h1 a, h2 a, h3 a {
   }
 }
 
-#header-image, .image-top-block {
+#header-image, .image-top-block, .slide-image {
   height: 200px;
   position: relative;
   &:before, &:after {
+    line-height: 1em;
     content: "\e906";
     color: $white;
     opacity: 0.6;
@@ -58,7 +59,7 @@ h1 a, h2 a, h3 a {
     &:before, &:after {
       font-size: 37px;
       left: 20px;
-      top: 23px;
+      top: 20px;
     }
     &:after {
       left: auto;
@@ -72,12 +73,12 @@ h1 a, h2 a, h3 a {
     &:before, &:after {
       font-size: 50px;
       left: 30px;
-      top: 18px;
+      top: 30px;
     }
     &:after {
       left: auto;
       top: auto;
-      bottom: 18px;
+      bottom: 30px;
       right: 30px;
     }
   }
@@ -321,7 +322,7 @@ h1 a, h2 a, h3 a {
 }
 
 //hover image
-.head-shot a, .block-original-views_block__office_and_field_staff_block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a,
+.head-shot a, .block-original-office_and_field_staff-block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a,
 .columns-2-block .line a.with-img , .resource-image a, .image a{
   display: inline-block;
   margin: 0 auto;
@@ -400,12 +401,12 @@ h1 a, h2 a, h3 a {
       font-size: 20px;
       color: $heading-color;
       border-bottom: $base-border;
-      margin-bottom: 15px;
-      padding-bottom: 5px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
       @include media($fullsize){
         font-size: 24px;
-        margin-bottom: 20px;
-        padding-bottom: 15px;
+        margin-bottom: 35px;
+        padding-bottom: 20px;
       }
     }
   }
@@ -437,10 +438,15 @@ h1 a, h2 a, h3 a {
     margin-right: 10px;
     width: 113px;
   }
+  h2{
+    padding-bottom: 18px;
+  }
   .content{
     font-size: 14px;
     font-weight: $header-normal;
     padding-left: 123px;
+    position: absolute;
+    bottom: 18px;
     & * {
       display: inline;
     }
@@ -483,6 +489,7 @@ h1 a, h2 a, h3 a {
     margin-bottom: 35px;
     h2{
       font-size: 30px;
+      padding-bottom: 35px;
     }
     .resource-image {
       margin-right: 30px;
@@ -499,7 +506,7 @@ h1 a, h2 a, h3 a {
     .content{
       font-size: 16px;
       padding-left: 195px;
-      font-weight: $header-bold;
+      bottom: 35px;
       .quickedit-field, .quickedit-field div{
         &:after{
           height: 16px;
