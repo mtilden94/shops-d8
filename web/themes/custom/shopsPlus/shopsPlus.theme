@@ -196,7 +196,7 @@ function shopsPlus_preprocess_views_view(&$vars)
     $view = $vars['view'];
     $display_id = $view->current_display;
     $id = $vars['id'];
-    if ($id == 'resource_center') {
+    if ($id == 'resource_center' && $display_id=='page_1') {
         $exp_data_sort_order = '';
         $exp_data_query = array();
 
@@ -272,14 +272,14 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
         $form['actions']['submit']['#value'] = 'Submit';
         unset($form['actions']['preview']);
     }
-
+    //------------------------------
+    $more_class = '';
     if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
         $form['actions']['#weight'] = 0;
         $form['title']['#placeholder'] = t('Search the Resource Center');
 
         $form['country']['#options']['All']=$form['health_area']['#options']['All']=$form['type']['#options']['All']=$form['technical_area']['#options']['All']='Select an option';
 
-        $more_class = '';
         $data_select = $form_state->getUserInput();
         if ($data_select) {
             if ($data_select['health_area'] != 'All' || $data_select['type'] != 'All' || $data_select['technical_area'] != 'All' || $data_select['country'] != 'All') {
@@ -292,5 +292,22 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     if ($form_id == 'views_exposed_form' && $form['#id'] =='views-exposed-form-staff-page-1') {
         $form['title']['#placeholder'] = t('Enter Name');
         $form['location']['#options']['All']="All locations";
+    }
+    if ($form_id == 'views_exposed_form' && $form['#id'] =='views-exposed-form-events-page-1') {
+        $form['title']['#placeholder'] = t('Search events');
+        $form['location']['#options']['All']='All locations';
+        $form['health_area']['#options']['All']='All areas';
+        $form['event_type']['#options']['All']='All types';
+
+        $data_select = $form_state->getUserInput();
+        if ($data_select) {
+            if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['location'] != 'All') {
+                $more_class = 'selected-filter ';
+            }
+        }
+
+        $form['actions']['#weight'] = 0;
+        $form['more']['#weight'] = 0;
+        $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
     }
 }

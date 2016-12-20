@@ -239,7 +239,7 @@ textarea {
 }
 
 //page-resource-center
-.page-resource-center {
+.page-resource-center, .page-events {
   h1{
     margin-top: 25px
   }
@@ -437,7 +437,18 @@ textarea {
     }
   }
 }
-
+.page-events{
+  .views-exposed-form{
+    .select-wrap:last-child {
+      display: block;
+    }
+    @include media($tablet){
+      .select-wrap{
+        width: 31%;
+      }
+    }
+  }
+}
 .section-our-people .views-exposed-form{
 
   .input-wrap, .select-wrap{
