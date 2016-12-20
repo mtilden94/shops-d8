@@ -51,7 +51,8 @@
 .block-original-latest_news_updates-block_1 {
   font-family: $heading-font-family;
   margin-bottom: 70px;
-  margin-top: 51px;
+  padding-top: 60px;
+
   & > h2 {
     font-size: 18px;
     margin-bottom: 20px;
@@ -75,6 +76,7 @@
   }
   .views-row {
     .node {
+      background-color: white;
       border: $base-border;
       padding: 12px;
       h2 {
@@ -198,8 +200,16 @@
   }
 }
 
+
+.front .block-original-latest_news_updates-block_1 {
+  background-color: $light-gray;
+          margin-bottom: 40px;
+}
+
+
 .block-original-slider_on_front_page-block_1 {
   margin-bottom: 40px;
+
   .flexslider {
     border: 0;
     margin-bottom: 0
