@@ -1,0 +1,40 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-resource-teaser'
+] %}
+<article{{ attributes.addClass(classes) }}>
+
+    {% if content.field_resource_image %}
+        {{ content.field_resource_image }}
+    {% endif %}
+
+    {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+        <header>
+            <div class="submitted">
+                <time>{{ node.createdtime | date("F d, Y") }}</time>
+            </div>
+            {{ title_prefix }}
+            {% if label %}
+                <h2{{ title_attributes.addClass(title_classes) }}>
+                    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+                </h2>
+            {% endif %}
+            {{ title_suffix }}
+
+            {% if not node.published %}
+                <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+            {% endif %}
+        </header>
+    {% endif %}
+
+    <div{{ content_attributes.addClass('content') }}>
+        {{ content|without('links', 'field_resource_image') }}
+    </div><!-- /.content -->
+
+    {% if content.links %}
+        <div class="links">
+            {{ content.links }}
+        </div><!-- /.links -->
+    {% endif %}
+
+</article><!-- /.node -->
