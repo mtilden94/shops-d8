@@ -10,11 +10,11 @@
 
     {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
         <header>
-            {# {% if display_submitted %} #}
-            <div class="submitted">
-                <time>{{ node.createdtime | date("F d, Y") }}</time>
-            </div>
-
+            {% if display_submitted %}
+                <div class="submitted">
+                    <time>{{ node.createdtime | date("F d, Y") }}</time>
+                </div>
+            {% endif %}
             {{ title_prefix }}
             {% if label %}
                 <h2{{ title_attributes.addClass(title_classes) }}>

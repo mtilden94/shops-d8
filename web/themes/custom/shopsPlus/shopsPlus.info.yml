@@ -28,6 +28,8 @@ regions:
   content: Content
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
+  white_bg_front: 'Front white bg block'
+  after_white_bg_front: 'Front after white block'
   talk: 'Let’s Talk'
   footer: Footer
 

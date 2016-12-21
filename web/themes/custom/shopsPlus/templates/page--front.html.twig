@@ -113,6 +113,16 @@ secondary_menu ? 'with-subnav'
         </div><!-- /.container -->
     </div><!-- /#main -->
 
+    {% if page.white_bg_front|render %}
+        <section id="wb">
+            {{ page.white_bg_front }}
+        </section>
+    {% endif %}
+    {% if page.after_white_bg_front|render %}
+        <section id="awb">
+            {{ page.after_white_bg_front }}
+        </section>
+    {% endif %}
     {% if page.talk|render %}
         <section id="talk">
             {{ page.talk }}

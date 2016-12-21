@@ -1,0 +1,22 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-infographic-teaser'
+] %}
+<article{{ attributes.addClass(classes) }}>
+    {% if content.field_impact_image %}
+        {{ content.field_impact_image }}
+    {% endif %}
+
+    {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+        <header>
+            {{ title_prefix }}
+            {{ title_suffix }}
+            {% if not node.published %}
+                <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+            {% endif %}
+        </header>
+    {% endif %}
+    <div{{ content_attributes.addClass('content') }}>
+        {{ content|without('links', 'field_impact_image') }}
+    </div><!-- /.content -->
+</article><!-- /.node -->

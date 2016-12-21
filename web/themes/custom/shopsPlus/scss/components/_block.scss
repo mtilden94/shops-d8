@@ -272,9 +272,10 @@
     }
   }
   @include media($fullsize) {
-    padding: 0 50px 144px 50px;
+    padding: 0 0 144px 0;
     .views-row {
       margin-bottom: 20px;
+      max-width: 1000px;
     }
     .pager {
       margin-top: 40px;
@@ -398,7 +399,8 @@
 }
 
 .block-original-hp_stories-block_1 {
-  margin-bottom: 0px;
+  max-width: 1200px;
+  margin: 0 auto;
   .node {
     .content{
       text-align: left;
@@ -509,4 +511,93 @@
     }
   }
 }
+.block-original-hp_info_graph-block_1{
+  max-width: 1200px;
+  margin: 36px auto 0;
+  padding: 0 50px;
+  text-align: center;
+  &:after{
+    content: '';
+    clear: both;
+    display: block;
+    width: 100%;
+  }
+  & > h2{
+    font-size: 24px;
+    text-align: center;
+    padding-top: 36px;
+    margin-bottom: 19px;
 
+    &:before {
+      content: "\e901";
+      font-family: $icons-font-family;
+      position: absolute;
+      text-align: center;
+      font-size: 28px;
+      width: 100%;
+      left: 0;
+      top: 0;
+      color: #c7c5c5;
+    }
+  }
+  .impact{
+    color: $heading-color;
+    font-family: $heading-font-family;
+    font-size: 26px;
+    font-weight: $header-normal;
+  }
+  .impact-summary{
+    color: #777;
+    font-size: 14px;
+  }
+  .views-row{
+    margin-bottom: 40px;
+  }
+  .views-row .impact-image div{
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: 135px;
+    padding-top: 129px;
+  }
+  @include media($tablet){
+    padding: 0 39px 60px 39px;
+    & > h2{
+      margin-bottom: 42px;
+    }
+    .views-row{
+      margin-bottom: 0;
+      @include span-columns(4);
+    }
+    .impact{
+      font-size: 28px;
+    }
+    .impact-summary{
+      font-size: 16px;
+    }
+    .views-row .impact-image div{
+      padding-top: 118px;
+    }
+  }
+  @include media($fullsize){
+    padding: 0 0 145px 0;
+    margin-top: 80px;
+    & > h2{
+      padding-top: 55px;
+      font-size: 28px;
+      margin-bottom: 50px;
+      &:before {
+        font-size: 42px;
+      }
+    }
+    .impact{
+      font-size: 44px;
+    }
+    .impact-summary{
+      font-size: 24px;
+    }
+    .views-row .impact-image div{
+      background-size: 201px;
+      padding-top: 178px;
+    }
+  }
+}

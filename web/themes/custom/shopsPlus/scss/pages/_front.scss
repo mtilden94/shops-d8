@@ -3,10 +3,13 @@
 
 }
 
-#talk {
+#talk, #awb, #wb{
   clear: both;
 }
-
+#wb{
+  background-color: $white;
+  border-bottom: $base-border;
+}
 #block-shopsplus-content {
   .content {
     .body {
