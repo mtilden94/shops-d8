@@ -51,7 +51,6 @@
     z-index: 101;
     width: 69px;
     height: 69px;
-    position: relative;
     .form-submit {
       margin: 0;
       position: relative;
@@ -69,8 +68,8 @@
         outline: none;
       }
     }
-
     &:before {
+      z-index: 11;
       position: absolute;
       content: "\e900";
       font-family: $icons-font-family;

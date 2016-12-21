@@ -260,6 +260,9 @@
   }
   @include media($tablet) {
     padding: 0 39px 75px 39px;
+    & > h2 {
+      text-align: left;
+    }
     .pager {
       margin-top: 24px;
       a {
@@ -506,3 +509,4 @@
     }
   }
 }
+
