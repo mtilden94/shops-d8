@@ -1,27 +1,62 @@
 .node-readmore a {
-	@extend .button-one;
+  @extend .button-one;
 
 }
-#talk{
+
+#talk {
   clear: both;
 }
-#block-shopsplus-content{
-	.content{
-		.body{
-			h1{
-				padding-top: 40px;
-				position: relative;
-				&:before{
-					content: "\e901";
-					font-family: $icons-font-family;
-					position: absolute;
-					height: 40px;
-					text-align: center;
-					width: 100%;
-					left: 0;
-					top:0;
-				}
-			}
-		}
-	}
+
+#block-shopsplus-content {
+  .content {
+    .body {
+      h1 {
+        padding-top: 36px;
+        position: relative;
+        font-size: 24px;
+        &:before {
+          content: "\e901";
+          font-family: $icons-font-family;
+          position: absolute;
+          text-align: center;
+          font-size: 28px;
+          width: 100%;
+          left: 0;
+          top: 0;
+          color: #c7c5c5;
+        }
+      }
+      p{
+        font-size: 26px;
+        line-height: 1.3em;
+      }
+    }
+  }
+  @include media($tablet) {
+    .content {
+      .body {
+        p{
+          font-size: 30px;
+        }
+      }
+    }
+  }
+  @include media($fullsize) {
+    .content {
+      .body {
+        h1 {
+          padding-top: 55px;
+          font-size: 28px;
+          &:before {
+            font-size: 42px;
+          }
+        }
+        p{
+          font-size: 36px;
+          line-height: 44px;
+          margin-bottom: 33px;
+        }
+      }
+    }
+  }
 }

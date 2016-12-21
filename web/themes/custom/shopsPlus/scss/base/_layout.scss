@@ -107,8 +107,19 @@ body.no-sidebar, body.one-sidebar {
     border: 0;
   }
   #block-shopsplus-content{
-    padding: 0 50px 50px 50px;
+    padding: 20px 20px 20px 18px;
     background-color: $light-gray;
+    border-top: $base-border;
+  }
+  @include media($tablet){
+    #block-shopsplus-content{
+      padding: 30px 39px 39px 39px;
+    }
+  }
+  @include media($fullsize){
+    #block-shopsplus-content{
+      padding: 35px 50px 50px 50px;
+    }
   }
 }
 

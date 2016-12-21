@@ -98,7 +98,8 @@
                 //news update block
                 minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node > header');
                 minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node');
-
+                minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node > header');
+                minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node');
             }
         };
         // jQuery(function ($) {
@@ -109,6 +110,13 @@
 
             //wrap menu
             $('.menu--main ul.menu ul').wrap('<span class="pos-block"></span>');
+
+            //add class infinite-scroll front news
+            $('.block-latest-news-updates-block-3 .button').click(
+              function () {
+                  $('.block-latest-news-updates-block-3 .views-content').addClass('more-true');
+              }  
+            );
 
             //table responsive
             $('table th').each(
