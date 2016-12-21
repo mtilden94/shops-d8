@@ -83,7 +83,7 @@
         font-size: 20px;
         margin-bottom: 0px;
       }
-      header{
+      header {
         margin-bottom: 38px;
       }
       .content {
@@ -118,6 +118,7 @@
       }
     }
   }
+
   @include media($mobile_threshold) {
     .views-row {
       margin-bottom: 20px;
@@ -133,9 +134,12 @@
   @include media($mobile2) {
     .views-row {
       @include span-columns(2);
-      .content header{
+      .content header {
         margin-bottom: 16px;
       }
+    }
+    .views-row:nth-child(3) {
+      display: none;
     }
   }
   @include media($tablet) {
@@ -152,10 +156,13 @@
         margin-bottom: 8px;
       }
       .node {
-        header{
+        header {
           margin-bottom: 16px;
         }
       }
+    }
+    .views-row:nth-child(3) {
+      display: block;
     }
   }
   @include media($fullsize) {
@@ -176,15 +183,14 @@
       }
     }
     .views-row {
-      width: 357px;
-      margin-right: 41px;
+      @include span-columns(4);
       .node {
         padding: 20px;
         h2 {
           font-size: 30px;
 
         }
-        header{
+        header {
           margin-bottom: 40px;
         }
         .content {
@@ -200,12 +206,10 @@
   }
 }
 
-
 .front .block-original-latest_news_updates-block_1 {
   background-color: $light-gray;
-          margin-bottom: 40px;
+  margin-bottom: 40px;
 }
-
 
 .block-original-slider_on_front_page-block_1 {
   margin-bottom: 40px;
@@ -220,7 +224,7 @@
   .flex-control-nav {
     z-index: 2;
     bottom: auto;
-    top:274px;
+    top: 274px;
   }
   .flex-control-paging li a {
     background-color: transparent;
@@ -260,7 +264,7 @@
       border-bottom: 3px solid $white;
       background-color: $active;
       line-height: 1em;
-      &:hover{
+      &:hover {
         background-color: $blue;
       }
     }
@@ -268,7 +272,7 @@
   @include media($tablet) {
     margin-bottom: 0;
     .flex-control-nav {
-      top:417px;
+      top: 417px;
     }
     .slide-image {
       height: 443px;
@@ -293,7 +297,7 @@
   }
   @include media($fullsize) {
     .flex-control-nav {
-      top:566px;
+      top: 566px;
     }
     .flex-control-paging li a {
       width: 10px;
