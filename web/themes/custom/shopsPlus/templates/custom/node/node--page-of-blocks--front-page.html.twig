@@ -1,0 +1,23 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-p-o-b-front'
+] %}
+<article{{ attributes.addClass(classes) }}>
+
+    {% if content.field__header_image %}
+        {{ content.field__header_image }}
+    {% endif %}
+
+    <div{{ content_attributes.addClass('content') }}>
+        {% if title_prefix or title_suffix or unpublished or page is empty and label %}
+            <header>
+                {{ title_prefix }}
+                {{ title_suffix }}
+                {% if not node.published %}
+                    <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+                {% endif %}
+            </header>
+        {% endif %}
+        {{ content|without('links', 'field__header_image') }}
+    </div><!-- /.content -->
+</article><!-- /.node -->

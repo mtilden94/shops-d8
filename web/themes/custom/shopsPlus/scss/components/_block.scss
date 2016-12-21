@@ -661,7 +661,7 @@
     .views-row:nth-child(2n+2) {
       margin-right: 0;
     }
-    footer{
+    footer {
       margin-bottom: 43px;
       margin-top: 20px;
       a {
@@ -691,7 +691,7 @@
         padding-left: 206px;
       }
     }
-    footer{
+    footer {
       margin-bottom: 98px;
       margin-top: 40px;
       a {
@@ -702,11 +702,121 @@
   }
 }
 
-.simplenews-subscriber-form{
-  @include media($tablet){
-
+.block-original-subscribe_block-block_1 {
+  min-height: 324px;
+  color: $white;
+  font-size: 18px;
+  text-align: center;
+  h2 {
+    color: $white;
+    font-size: 36px;
   }
-  @include media($fullsize){
+  .node > .field div {
+    min-height: 324px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 80% 50%;
+  }
+  .form-item-message {
+    padding: 0 35px;
+  }
+  .node > .content {
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .field--type-email, .form-actions {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 35px;
+    .description, label {
+      display: none;
+    }
+  }
+  .form-actions {
+    position: relative;
+    left: -5px;
+  }
+  .field--type-email {
+    color: $dark-gray;
+    width: 187px;
+    input {
+      height: 46px;
+    }
+  }
+  .form-actions .button {
+    padding: 0 18px;
+    height: 46px;
+    font-size: 12px;
+  }
+
+  @include media($tablet) {
+    text-align: left;
+    min-height: 265px;
+    .node > .field div {
+      min-height: 265px;
+    }
+    .node > .content {
+      padding-top: 43px;
+      padding-left: 20px;
+      padding-right: 0;
+    }
+    .form-item-message {
+      max-width: 380px;
+      padding: 0;
+    }
+    .field--type-email {
+      width: 365px;
+      input {
+        height: 55px;
+      }
+    }
+    .field--type-email, .form-actions {
+      margin-top: 14px;
+      float: left;
+    }
+    .form-actions{
+      left: 0;
+      .button {
+        padding: 0 20px;
+        height: 55px;
+      }
+    }
+  }
+  @include media($fullsize) {
+    font-size: 24px;
     min-height: 350px;
+    .node > .field div {
+      min-height: 350px;
+    }
+    .node > .content {
+      padding-top: 57px;
+      padding-left: 64px;
+    }
+    h2 {
+      font-size: 50px;
+    }
+    .field--type-email {
+      width: 350px;
+      input{
+        height: 60px;
+      }
+    }
+    .form-item-message {
+      max-width: 495px;
+    }
+    .field--type-email, .form-actions {
+      margin-top: 37px;
+    }
+    .form-actions{
+      .button {
+        height: 60px;
+        font-size: 16px;
+      }
+    }
   }
 }
