@@ -5,10 +5,18 @@
 
 #talk, #awb, #wb{
   clear: both;
+  .views-element-container{
+    position: relative;
+  }
+}
+#awb{
+  max-width: 1200px;
+  margin: 0 auto;
 }
 #wb{
   background-color: $white;
   border-bottom: $base-border;
+  border-top: $base-border;
 }
 #block-shopsplus-content {
   .content {

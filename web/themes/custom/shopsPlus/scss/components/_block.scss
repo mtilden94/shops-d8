@@ -402,7 +402,7 @@
   max-width: 1200px;
   margin: 0 auto;
   .node {
-    .content{
+    .content {
       text-align: left;
       padding: 20px;
       h2 {
@@ -426,14 +426,14 @@
       font-weight: $strong;
       line-height: 1em;
     }
-    .quote{
+    .quote {
       margin-bottom: 15px;
     }
     .bio {
       font-size: 12px;
       line-height: 1em;
     }
-    .more a{
+    .more a {
       display: block;
       background-color: $active;
       text-decoration: none;
@@ -445,7 +445,7 @@
       line-height: 1em;
       border-bottom: 3px solid $white;
       margin-top: 20px;
-      &:hover{
+      &:hover {
         background-color: $blue;
       }
     }
@@ -472,7 +472,7 @@
         padding: 0;
         line-height: 1.4em;
       }
-      .more a{
+      .more a {
         display: inline-block;
         padding: 20px 22px;
         margin-top: 50px;
@@ -503,26 +503,27 @@
       .bio {
         font-size: 16px;
       }
-      .more a{
+      .more a {
         margin-top: 52px;
         padding: 22px 24px;
         font-size: 16px;
-        }
+      }
     }
   }
 }
-.block-original-hp_info_graph-block_1{
+
+.block-original-hp_info_graph-block_1 {
   max-width: 1200px;
   margin: 36px auto 0;
   padding: 0 50px;
   text-align: center;
-  &:after{
+  &:after {
     content: '';
     clear: both;
     display: block;
     width: 100%;
   }
-  & > h2{
+  & > h2 {
     font-size: 24px;
     text-align: center;
     padding-top: 36px;
@@ -540,48 +541,48 @@
       color: #c7c5c5;
     }
   }
-  .impact{
+  .impact {
     color: $heading-color;
     font-family: $heading-font-family;
     font-size: 26px;
     font-weight: $header-normal;
   }
-  .impact-summary{
+  .impact-summary {
     color: #777;
     font-size: 14px;
   }
-  .views-row{
+  .views-row {
     margin-bottom: 40px;
   }
-  .views-row .impact-image div{
+  .views-row .impact-image div {
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-size: 135px;
     padding-top: 129px;
   }
-  @include media($tablet){
+  @include media($tablet) {
     padding: 0 39px 60px 39px;
-    & > h2{
+    & > h2 {
       margin-bottom: 42px;
     }
-    .views-row{
+    .views-row {
       margin-bottom: 0;
       @include span-columns(4);
     }
-    .impact{
+    .impact {
       font-size: 28px;
     }
-    .impact-summary{
+    .impact-summary {
       font-size: 16px;
     }
-    .views-row .impact-image div{
+    .views-row .impact-image div {
       padding-top: 118px;
     }
   }
-  @include media($fullsize){
+  @include media($fullsize) {
     padding: 0 0 145px 0;
     margin-top: 80px;
-    & > h2{
+    & > h2 {
       padding-top: 55px;
       font-size: 28px;
       margin-bottom: 50px;
@@ -589,15 +590,113 @@
         font-size: 42px;
       }
     }
-    .impact{
+    .impact {
       font-size: 44px;
     }
-    .impact-summary{
+    .impact-summary {
       font-size: 24px;
     }
-    .views-row .impact-image div{
+    .views-row .impact-image div {
       background-size: 201px;
       padding-top: 178px;
+    }
+  }
+}
+
+.block-original-resource_center-block_1 {
+  margin-top: 33px;
+  padding: 0 20px 0 20px;
+  float: left;
+  width: 100%;
+  & > h2 {
+    font-size: 26px;
+    border-bottom: $base-border;
+    text-align: center;
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+  }
+  header h2 {
+    font-weight: $header-normal;
+  }
+  footer {
+    clear: both;
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 50px;
+    a {
+      text-decoration: none;
+      color: $white;
+      background-color: $active;
+      line-height: 1em;
+      padding: 14px 20px;
+      display: inline-block;
+      font-family: $heading-font-family;
+      border: 1px solid $active;
+      font-size: 12px;
+      &:hover {
+        background-color: transparent;
+        color: $active;
+      }
+    }
+  }
+  @include media($tablet) {
+    margin-top: 60px;
+    padding: 0 39px 0px 39px;
+    & > h2 {
+      font-size: 24px;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    header h2 {
+      font-size: 20px;
+      max-height: 73px;
+      overflow: hidden;
+    }
+    .views-row {
+      @include span-columns(6);
+    }
+    .views-row:nth-child(2n+2) {
+      margin-right: 0;
+    }
+    footer{
+      margin-bottom: 43px;
+      margin-top: 20px;
+      a {
+        font-size: 14px;
+        padding: 19px 32px;
+      }
+    }
+  }
+  @include media($fullsize) {
+    margin-top: 136px;
+    padding: 0;
+    & > h2 {
+      font-size: 28px;
+      padding-bottom: 22px;
+      margin-bottom: 38px;
+    }
+    header h2 {
+      max-height: 110px;
+    }
+    .node-resource-teaser {
+      .resource-image {
+        width: 190px;
+        margin-right: 16px;
+      }
+      .content {
+        padding-left: 206px;
+      }
+    }
+    footer{
+      margin-bottom: 98px;
+      margin-top: 40px;
+      a {
+        font-size: 16px;
+        padding: 22px 40px;
+      }
     }
   }
 }
