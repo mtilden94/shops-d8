@@ -32,6 +32,7 @@ regions:
   after_white_bg_front: 'Front after white block'
   talk: 'Let’s Talk'
   footer: Footer
+  hidden_region: 'Hidden region'
 
 # Information added by Drupal.org packaging script on 2016-09-13
 version: '8.x-1.2'

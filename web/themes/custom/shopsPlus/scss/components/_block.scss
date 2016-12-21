@@ -680,6 +680,7 @@
     }
     header h2 {
       max-height: 110px;
+      font-size: 30px;
     }
     .node-resource-teaser {
       .resource-image {
@@ -698,5 +699,14 @@
         padding: 22px 40px;
       }
     }
+  }
+}
+
+.simplenews-subscriber-form{
+  @include media($tablet){
+
+  }
+  @include media($fullsize){
+    min-height: 350px;
   }
 }
