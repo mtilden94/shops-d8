@@ -91,6 +91,7 @@ function shopsPlus_preprocess_page(&$variables)
             $variables['header_image'] = $image;*/
 
         }
+
         //our people more
         if ($node_type == "our_people") {
             $node_nid = $node->id();
@@ -143,13 +144,18 @@ function shopsPlus_preprocess_field(&$variables, $hook)
     // Make additional variables available to the template.
     $variables['bundle'] = $variables['element']['#bundle'];
 
-    // Top image block style image
-    if ($variables['bundle'] == 'image_top_block' || $variables['field_name'] == 'field_slide_image') {
-        if ($variables['bundle'] == 'image_top_block') {
-            $style_img = 'header_image';
-        } else {
-            $style_img = 'slide_image';
-        }
+    $style_img ='';
+    if($variables['field_name'] == 'field_image' && $variables['bundle'] == 'story' && $variables['element']['#view_mode']=='front_page'){
+        $style_img = 'header_image';
+    }
+    if ($variables['bundle'] == 'image_top_block'){
+        $style_img = 'header_image';
+    }
+    if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode']=='teaser'){
+        $style_img = 'slide_image';
+    }
+    // Top image block style
+    if ($style_img!='') {
         $variables['image_top_block_url'] = '';
         $field = $variables['items'][0]['content']['#item']->getValue();
         $image_file = \Drupal\file\Entity\File::load($field['target_id']);

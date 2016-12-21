@@ -283,7 +283,7 @@
   }
 }
 
-.block-original-slider_on_front_page-block_1 {
+.block-original-slider_on_front_page-block_1, .block-original-hp_stories-block_1 {
   margin-bottom: 40px;
 
   .flexslider {
@@ -390,6 +390,119 @@
         font-size: 16px;
         padding: 22px 27px;
       }
+    }
+  }
+}
+
+.block-original-hp_stories-block_1 {
+  margin-bottom: 0px;
+  .node {
+    .content{
+      text-align: left;
+      padding: 20px;
+      h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+        padding-left: 0;
+      }
+    }
+    .slide-image {
+      margin-bottom: 0px;
+      height: 276px;
+      &:after, &:before {
+        content: none;
+      }
+    }
+    color: $dark-gray;
+    font-size: 18px;
+    .first-name, .last-name {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: $strong;
+      line-height: 1em;
+    }
+    .quote{
+      margin-bottom: 15px;
+    }
+    .bio {
+      font-size: 12px;
+      line-height: 1em;
+    }
+    .more a{
+      display: block;
+      background-color: $active;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 18px 25px;
+      color: $white;
+      font-size: 12px;
+      font-family: $heading-font-family;
+      line-height: 1em;
+      border-bottom: 3px solid $white;
+      margin-top: 20px;
+      &:hover{
+        background-color: $blue;
+      }
+    }
+  }
+  @include media ($tablet) {
+    .node {
+      color: $white;
+      .slide-image {
+        height: 434px;
+        &:after {
+          content: '';
+          position: absolute;
+          background: radial-gradient(circle at 70% 50%, #000, transparent, transparent);
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          opacity: 0.72;
+        }
+      }
+      .content {
+        width: 53%;
+        left: auto;
+        right: 39px;
+        padding: 0;
+        line-height: 1.4em;
+      }
+      .more a{
+        display: inline-block;
+        padding: 20px 22px;
+        margin-top: 50px;
+        font-size: 14px;
+      }
+    }
+  }
+  @include media($fullsize) {
+    .node {
+      font-size: 26px;
+      .slide-image {
+        height: 550px;
+      }
+      .content {
+        right: 50px;
+        width: 43.3%;
+        line-height: 1.4em;
+        h2 {
+          font-size: 46px;
+          margin-bottom: 10px;
+        }
+      }
+      .first-name, .last-name {
+        display: inline-block;
+        font-size: 22px;
+        font-weight: $strong;
+      }
+      .bio {
+        font-size: 16px;
+      }
+      .more a{
+        margin-top: 52px;
+        padding: 22px 24px;
+        font-size: 16px;
+        }
     }
   }
 }
