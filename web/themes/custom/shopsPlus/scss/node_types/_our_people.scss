@@ -333,7 +333,8 @@
           width: 100%;
         }
         .views-row {
-          @include span-columns(4);
+          width: 31%;
+          margin: 0 1%;
           display: inline-block;
           margin-bottom: 25px;
         }
@@ -358,8 +359,7 @@
         border-bottom: $base-border;
         margin-bottom: 50px;
         .views-row {
-          width: 350px;
-          margin: 0 18px 45px 0;
+          margin-bottom: 45px;
         }
       }
     }
