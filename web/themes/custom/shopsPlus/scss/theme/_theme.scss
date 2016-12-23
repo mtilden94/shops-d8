@@ -46,6 +46,7 @@ h1 a, h2 a, h3 a {
     position: absolute;
     left: 10px;
     top: 10px;
+    z-index: 100;
   }
   &:after {
     left: auto;
@@ -113,13 +114,15 @@ h1 a, h2 a, h3 a {
     p {
       margin: 0;
     }
+    .field{
+      text-indent: -250px;
+      overflow: hidden;
+    }
     float: right;
     display: block;
     border-left: 1px solid $medium-gray;
-    text-indent: -250px;
-    overflow: hidden;
     text-align: left;
-    a {
+    .field a {
       position: relative;
       display: block;
       width: 89px;
