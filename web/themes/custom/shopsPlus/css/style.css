@@ -2748,7 +2748,7 @@ table tr.footable-detail-row .footable-details tr:first-child td, table tr.foota
   min-height: 75px;
   position: fixed;
   width: 100%;
-  z-index: 555; }
+  z-index: 500; }
   #header .container {
     max-width: 100%;
     padding: 0; }
