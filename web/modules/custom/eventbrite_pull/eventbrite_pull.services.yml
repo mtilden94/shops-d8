@@ -1,0 +1,6 @@
+services:
+  eventbrite_pull.storage:
+    class: Drupal\eventbrite_pull\EventbritePullStorage
+    arguments: ['@database']
+    tags:
+      - { name: backend_overridable }
