@@ -60,7 +60,7 @@ function shopsPlus_preprocess_page_title(&$variables)
 
 
 function shopsPlus_preprocess_node(&$variables) {
-  $variables['content']['infographic_slideshow'] = FALSE;
+  $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
   
   if($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
