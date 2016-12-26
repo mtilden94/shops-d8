@@ -16,7 +16,8 @@
     "gulp-sourcemaps": "^2.1.1",
     "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.10",
-    "node-bourbon": "^4.2.8"
+    "node-bourbon": "^4.2.8",
+    "vinyl-fs": "^2.4.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
