@@ -99,7 +99,7 @@ class ConfigForm extends ConfigFormBase {
 
   public function runPull(array &$form, FormStateInterface $form_state) {
     $operations = $this->getBatchOperations();
-    
+
   }
 
   public function getBatchOperations() {
@@ -110,8 +110,8 @@ class ConfigForm extends ConfigFormBase {
     $data = $eventbrite->get('organizers/' . $config->get('organizer_id') . '/events');
 
     if($data) {
-      foreach ($data->events) {
-        $operations = ['sds', [$data->events]];
+      foreach ($data->events as $event) {
+        $operations = ['sds', [$event]];
       }
 
       return $operations;
