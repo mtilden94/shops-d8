@@ -1,4 +1,6 @@
 .node-infographic-slide {
+  @include clearfix();
+  
   .impact-image {
     text-align: center;
     margin-bottom: 15px;
