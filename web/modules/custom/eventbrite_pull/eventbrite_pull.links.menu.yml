@@ -1,0 +1,5 @@
+eventbrite_pull.config:
+  title: Eventbrite Pull
+  description: 'Setting up integration with eventbrite.'
+  parent: system.admin_config_content
+  route_name: eventbrite_pull.config_form

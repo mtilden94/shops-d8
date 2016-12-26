@@ -1,0 +1,7 @@
+name: Eventbrite Pull
+description: Eventbrite Pull.
+core: 8.x
+package: Custom
+type: module
+dependencies:
+  - node
