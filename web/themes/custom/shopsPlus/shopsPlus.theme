@@ -62,9 +62,13 @@ function shopsPlus_preprocess_page_title(&$variables)
 function shopsPlus_preprocess_node(&$variables) {
   $variables['content']['infographic_slideshow'] = FALSE;
   $node = &$variables['node'];
-  
+
   if($node->getType() == 'countries') {
-    $variables['content']['infographic_slideshow'] = views_embed_view('impact_infographic', 'block_slideshow');
+    $block_slideshow = views_embed_view('impact_infographic', 'block_slideshow');
+
+    if(!empty($block_slideshow)) {
+      $variables['content']['infographic_slideshow'] = $block_slideshow;
+    }
   }
 }
 
