@@ -1,0 +1,79 @@
+.node-infographic-slide {
+  @include clearfix();
+  
+  .impact-image {
+    text-align: center;
+    margin-bottom: 15px;
+
+    @include media($desktop) {
+      margin-bottom: 0;
+      float: left;
+      display: block;
+      margin-right: 30px;
+      width: 60px;
+    }
+
+    img {
+      width: 120px;
+      margin: 0 auto;
+    }
+
+    &:after {
+      display: block;
+      content: "";
+      position: absolute;
+      width: 100%;
+      margin-top: 15px;
+      border-bottom: 1px solid #cccccc;
+
+      @include media($desktop) {
+        width: auto;
+        height: 60px;
+        margin-top: 0;
+        border-right: 1px solid #cccccc;
+        border-bottom: none;
+        top: 0;
+        left: 90px;
+      }
+    }
+  }
+
+  .content {
+    margin-top: 15px;
+    text-align: center;
+
+    @include media($desktop) {
+      margin-top: 0;
+      text-align: left;
+      margin-left: 30px;
+      float: left;
+      display: block;
+      width: 80%;
+    }
+
+    .field {
+      &.impact {
+        font-size: 36px;
+        line-height: 1.3;
+        color: #002e6c;
+        font-family: $heading-font-family;
+        font-weight: $header-bold;
+
+        @include media($desktop) {
+          font-size: 56px;
+          line-height: 63px;
+        }
+      }
+
+      &.impact-summary {
+        font-size: 18px;
+        color: #777777;
+        line-height: 25px;
+
+        @include media($desktop) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}

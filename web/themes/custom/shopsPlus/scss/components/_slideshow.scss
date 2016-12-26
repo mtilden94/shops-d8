@@ -1,0 +1,66 @@
+.flexslider {
+  &.optionset-infographic {
+    border: 1px solid #cccccc;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    margin-bottom: 1.05em;
+
+    @include media($desktop) {
+      margin-bottom: 60px;
+    }
+
+    ul {
+      margin: 0 !important;
+      padding: 0 !important;
+
+      li {
+        &:before {
+          display: none;
+        }
+      }
+
+      &.slides {
+        padding: 22px !important;
+
+        @include media($desktop) {
+          padding: 42px !important;
+        }
+      }
+    }
+
+    .flex-control-paging {
+      display: block;
+      z-index: 3;
+      margin: 0 !important;
+      padding: 0 !important;
+      bottom: -12px;
+
+      @include media($desktop) {
+        bottom: -18px;
+      }
+
+      li {
+        margin: 0 5px;
+        a {
+          cursor: pointer;
+          -webkit-border-radius: 100%;
+          border-radius: 100%;
+          border: none;
+          opacity: 1;
+          background-color: #999999;
+          width: 5px;
+          height: 5px;
+          -webkit-box-shadow: none;
+          -o-box-shadow: none;
+          box-shadow: none;
+
+          &.flex-active,
+          &:hover {
+            background-color: #2eb9ea;
+          }
+        }
+      }
+    }
+  }
+}
