@@ -441,10 +441,11 @@ textarea {
   .views-exposed-form{
     .select-wrap:last-child {
       display: block;
+      margin-right: 0;
     }
     @include media($tablet){
       .select-wrap{
-        width: 31%;
+        width: 32%;
       }
     }
   }

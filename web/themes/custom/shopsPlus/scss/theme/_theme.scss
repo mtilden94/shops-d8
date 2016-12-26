@@ -10,7 +10,7 @@
   min-height: 75px;
   position: fixed;
   width: 100%;
-  z-index: 50;
+  z-index: 500;
 
   .container {
     max-width: 100%;
@@ -46,6 +46,7 @@ h1 a, h2 a, h3 a {
     position: absolute;
     left: 10px;
     top: 10px;
+    z-index: 100;
   }
   &:after {
     left: auto;
@@ -53,6 +54,23 @@ h1 a, h2 a, h3 a {
     bottom: 10px;
     right: 10px;
     content: "\e907";
+  }
+  .gradient {
+    &:after, &:before{
+      content: '';
+      background: linear-gradient(to right, #000, transparent);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0.39;
+      width: 50%;
+    }
+    &:after{
+      left: auto;
+      right: 0;
+      background: linear-gradient(to left, #000, transparent);
+    }
   }
   @include media($tablet) {
     height: 210px;
@@ -113,13 +131,15 @@ h1 a, h2 a, h3 a {
     p {
       margin: 0;
     }
+    .field {
+      text-indent: -250px;
+      overflow: hidden;
+    }
     float: right;
     display: block;
     border-left: 1px solid $medium-gray;
-    text-indent: -250px;
-    overflow: hidden;
     text-align: left;
-    a {
+    .field a {
       position: relative;
       display: block;
       width: 89px;
@@ -193,7 +213,6 @@ h1 a, h2 a, h3 a {
     }
   }
 }
-
 
 //Contact Us
 .section-contact-us {
@@ -323,7 +342,7 @@ h1 a, h2 a, h3 a {
 
 //hover image
 .head-shot a, .block-original-office_and_field_staff-block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a,
-.columns-2-block .line a.with-img , .resource-image a, .image a{
+.columns-2-block .line a.with-img, .resource-image a, .image a {
   display: inline-block;
   margin: 0 auto;
   &:before {
@@ -391,19 +410,19 @@ h1 a, h2 a, h3 a {
   }
 }
 
-.page-resource-center{
-  #block-shopsplus-page-title{
+.page-resource-center {
+  #block-shopsplus-page-title {
     text-align: center;
   }
-  .resource-view{
-    & > header{
+  .resource-view {
+    & > header {
       font-family: $heading-font-family;
       font-size: 20px;
       color: $heading-color;
       border-bottom: $base-border;
       margin-bottom: 20px;
       padding-bottom: 10px;
-      @include media($fullsize){
+      @include media($fullsize) {
         font-size: 24px;
         margin-bottom: 35px;
         padding-bottom: 20px;
@@ -420,7 +439,7 @@ h1 a, h2 a, h3 a {
   margin-bottom: 20px;
   font-family: $heading-font-family;
   position: relative;
-  h2{
+  h2 {
     font-size: 18px;
   }
   .submitted {
@@ -438,10 +457,10 @@ h1 a, h2 a, h3 a {
     margin-right: 10px;
     width: 113px;
   }
-  h2{
+  h2 {
     padding-bottom: 18px;
   }
-  .content{
+  .content {
     font-size: 14px;
     font-weight: $header-normal;
     padding-left: 123px;
@@ -450,8 +469,8 @@ h1 a, h2 a, h3 a {
     & * {
       display: inline;
     }
-    .quickedit-field, .quickedit-field div{
-      &:after{
+    .quickedit-field, .quickedit-field div {
+      &:after {
         content: '';
         border-left: $base-border;
         display: inline-block;
@@ -462,32 +481,32 @@ h1 a, h2 a, h3 a {
         top: 3px;
       }
     }
-    .quickedit-field:last-child, .quickedit-field div:last-child{
-      &:after{
+    .quickedit-field:last-child, .quickedit-field div:last-child {
+      &:after {
         content: none;
       }
     }
-    a{
+    a {
       text-decoration: none;
     }
   }
-  @include media($mobile_threshold){
-    h2{
+  @include media($mobile_threshold) {
+    h2 {
       text-overflow: ellipsis;
       overflow: hidden;
       height: 65px;
     }
   }
-  @include media($tablet){
+  @include media($tablet) {
     padding: 0 12px 15px;
-    h2{
+    h2 {
       font-size: 20px;
     }
   }
-  @include media($fullsize){
+  @include media($fullsize) {
     padding: 0 20px 30px;
     margin-bottom: 35px;
-    h2{
+    h2 {
       font-size: 30px;
       padding-bottom: 35px;
     }
@@ -503,12 +522,12 @@ h1 a, h2 a, h3 a {
         font-weight: $header-bold;
       }
     }
-    .content{
+    .content {
       font-size: 16px;
       padding-left: 195px;
       bottom: 35px;
-      .quickedit-field, .quickedit-field div{
-        &:after{
+      .quickedit-field, .quickedit-field div {
+        &:after {
           height: 16px;
         }
       }
@@ -516,8 +535,8 @@ h1 a, h2 a, h3 a {
   }
 }
 
-.page-events{
-  #block-shopsplus-page-title{
+.page-events {
+  #block-shopsplus-page-title {
     display: none;
   }
 }

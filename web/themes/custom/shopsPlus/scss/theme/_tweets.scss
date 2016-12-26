@@ -1,109 +1,193 @@
 .block-twitter-last {
-	background-color: #8bd8f4;
+  background-color: $light-blue;
+  h2, .tweets {
+    @include outer-container();
+  }
+  .tweets {
+    padding: 0 20px 36px 18px;
+  }
+  h2 {
+    font-size: 26px;
+    padding: 43px 0 21px 19px;
+  }
 
-	h2, .tweets {
-		@include outer-container();
-		@include pad();
-	}
-	h2 {
-		@include pad();
-	}
+  .views-rows {
+    .views-row {
+      background-color: white;
+      margin-bottom: 20px;
+      font-weight: $header-normal;
+      font-family: $heading-font-family;
+      .content {
+        padding: 9px 12px 14px;
+        font-size: 12px;
+        color: $time;
+        a {
+          color: $active;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .date {
+          margin-bottom: 4px;
+        }
+      }
+      .created {
+        background-color: #54b9dd;
+        color: $white;
+        padding: 8px 0 10px;
+        position: relative;
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: -15px;
+          width: 25px;
+          height: 25px;
+          background-color: $white;
+          transform: skewY(38deg);
+        }
+        .user {
+          padding-left: 32px;
+          font-size: 12px;
+          line-height: 12px;
+          &:before {
+            font-size: 17px;
+            vertical-align: middle;
+            content: '\ea96';
+            font-family: $icons-font-family;
+            display: inline-block;
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+  }
 
-	.views-rows {
-		.views-row {
-			background-color: white;
-			margin-bottom: 20px;
+  @include media($tablet) {
+    h2 {
+      font-size: 24px;
+      padding: 45px 0 9px 20px;
+    }
+    .tweets {
+      padding: 0 0 88px 20px;
+    }
+    .views-rows {
+      @include fill-parent();
+      @include row(table);
+      .views-row {
+        @include span-columns(6);
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          right: 0;
+          background-color: #8bd8f4;
+          width: $gutter;
+          top: 0;
+          bottom: 0;
+        }
+        &:last-of-type {
+          display: none;
+        }
+        .tweet {
+          padding-right: 20px;
+        }
+        .content {
+          font-size: 20px;
+          padding: 30px 20px 79px;
+        }
+        .created {
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          padding: 14px 0 16px;
+          &:before {
+            top: -15px;
+            width: 36px;
+            height: 32px;
+          }
+          .user {
+            padding-left: 52px;
+            font-size: 19px;
+            line-height: 19px;
+            &:before {
+              font-size: 28px;
+              vertical-align: middle;
+              content: '\ea96';
+              font-family: $icons-font-family;
+              display: inline-block;
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include media($tablet-wide) {
+    .views-rows {
+      .views-row{
+        @include span-columns(4);
+        &:last-of-type {
+          display: table-cell;
+        }
+      }
+    }
+  }
+  @include media($fullsize) {
+    h2 {
+      font-size: 28px;
+      padding: 85px 0 18px 0px;
+    }
+    .tweets {
+      padding: 0 0 140px 0;
+      overflow: hidden;
+    }
+    .views-rows{
+      .views-row{
+        &:before{
+          width: 3.335%;
+          content: '';
+          position: absolute;
+          left: 0;
+          background-color: #8bd8f4;
+          top: 0;
+          bottom: 0;
+        }
+        &:after{
+          width: 3.335%;
+        }
+        .tweet {
+          padding-right: 3.335%;
+          padding-left: 3.335%;
+        }
 
-			.content {
-				padding: 12px;
-				font-family: $heading-font-family;
-				font-size: 12px;
-				color: $time;
-
-				a {
-					color: $active;
-					text-decoration: none;
-					&:hover {
-						text-decoration: underline;
-					}
-				}
-				.date {
-					margin-bottom: 10px;
-				}
-
-				@include media($tablet) {
-					font-size: 20px;
-				}
-			}
-
-			.created {
-				background-color: #54b9dd;
-				color: white;
-				padding: 8px 0 10px;
-				position: relative;
-				&:before {
-					content: '';
-					display: block;
-					position: absolute;
-					top: -20px;
-					width: 40px;
-					height: 40px;
-
-					background-color: red;
-					transform: rotate(45deg) scaleY(0.5);
-				}
-				.user {
-					padding-left: 32px;
-					font-size: 12px;
-					line-height: 12px;
-					&:before {
-						font-size: 14px;
-						padding-bottom: 2px;
-						vertical-align: middle;
-						content: '\ea96';
-						font-family: $icons-font-family;
-						display: inline-block;
-						padding-right: 10px;
-					}
-				}
-			}
-		}
-	}
-
-	@include media($tablet) {
-
-		.views-rows {
-			@include fill-parent();
-			@include row(table);
-
-			& > div {
-
-			}
-
-			.views-row {
-				@include span-columns(4);
-				@include pad();
-				position: relative;
-
-				&:after {
-					content: '';
-					position: absolute;
-					right: 0;
-					background-color: #8bd8f4;
-					width: $gutter;
-					top: 0;
-					bottom: 0;
-				}
-				&:last-of-type {
-					&:after {
-						display: none;
-					}
-				}
-
-				.tweet {
-
-				}
-			}
-		}
-	}
+        &:nth-of-type(1){
+          .tweet {
+            padding-left: 0px;
+          }
+          &:before{
+            content: none;
+          }
+        }
+        &:nth-of-type(2){
+          .tweet {
+            padding-right: 1.67%;
+            padding-left: 1.67%;
+          }
+          &:before, &:after{
+            width: 1.67%;
+          }
+        }
+        &:last-of-type{
+          &:after{
+            content: none;
+          }
+          .tweet {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
 }

@@ -120,7 +120,10 @@ function shopsPlus_preprocess_page(&$variables)
                     $stop_flag = 1;
                 }
             }
-            $variables['our_people_more'] = array('prev' => $old_item, 'next' => $item);
+            $variables['our_people_more'] = array(
+                'prev' => $old_item,
+                'next' => $item
+            );
         }
 
     }
@@ -144,23 +147,24 @@ function shopsPlus_preprocess_field(&$variables, $hook)
     // Make additional variables available to the template.
     $variables['bundle'] = $variables['element']['#bundle'];
 
-    $style_img ='';
-    if($variables['field_name'] == 'field_image' && $variables['bundle'] == 'story' && $variables['element']['#view_mode']=='front_page'){
+    $style_img = '';
+    if ($variables['field_name'] == 'field_image' && $variables['bundle'] == 'story' && $variables['element']['#view_mode'] == 'front_page') {
         $style_img = 'header_image';
     }
-    if ($variables['bundle'] == 'image_top_block'){
+    if ($variables['bundle'] == 'image_top_block') {
         $style_img = 'header_image';
     }
-    if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode']=='teaser'){
+    if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode'] == 'teaser') {
         $style_img = 'slide_image';
     }
     // Top image block style
-    if ($style_img!='') {
+    if ($style_img != '') {
         $variables['image_top_block_url'] = '';
         $field = $variables['items'][0]['content']['#item']->getValue();
         $image_file = \Drupal\file\Entity\File::load($field['target_id']);
         $image_public_uri = $image_file->getFileUri();
-        $style = \Drupal\image\Entity\ImageStyle::load($style_img)->buildUrl($image_public_uri);
+        $style = \Drupal\image\Entity\ImageStyle::load($style_img)
+            ->buildUrl($image_public_uri);
         $variables['image_top_block_url'] = $style;
     }
 }
@@ -173,7 +177,7 @@ function shopsPlus_preprocess_block(&$variables)
     $flag_atrr_id = FALSE;
     $class = array();
 
-    if (isset($variables['attributes']['id']) && $variables['elements']['#derivative_plugin_id']!=null) {
+    if (isset($variables['attributes']['id']) && $variables['elements']['#derivative_plugin_id'] != NULL) {
         $flag_atrr_id = TRUE;
         $class[] = "block-original-" . $variables['elements']['#derivative_plugin_id'];
     }
@@ -187,10 +191,10 @@ function shopsPlus_preprocess_block(&$variables)
     }
 
     if ($flag_atrr_id) {
-        if(isset($variables['attributes']['class'])){
+        if (isset($variables['attributes']['class'])) {
             $variables['attributes']['class'] = array_merge((array)$variables['attributes']['class'], $class);
-        }else{
-            $variables['attributes']['class']=$class;
+        } else {
+            $variables['attributes']['class'] = $class;
         }
     }
     //dsm($variables);
@@ -202,7 +206,7 @@ function shopsPlus_preprocess_views_view(&$vars)
     $view = $vars['view'];
     $display_id = $view->current_display;
     $id = $vars['id'];
-    if ($id == 'resource_center' && $display_id=='page_1') {
+    if ($id == 'resource_center' && $display_id == 'page_1') {
         $exp_data_sort_order = '';
         $exp_data_query = array();
 
@@ -239,7 +243,7 @@ function shopsPlus_preprocess_views_view(&$vars)
         } else {
             $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
         }
-        $vars['header']['result']['#markup']=$view->total_rows." Results".$search_title;
+        $vars['header']['result']['#markup'] = $view->total_rows . " Results" . $search_title;
     }
 }
 
@@ -261,11 +265,11 @@ function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables)
 function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
     foreach ($form as $key_form => $form_value) {
-        if (isset($form_value['#type']) && $form_value['#type'] == 'select') {
+        if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'select') {
             $form[$key_form]['#prefix'] = '<div class="select-wrap">';
             $form[$key_form]['#suffix'] = '</div>';
         }
-        if (isset($form_value['#type']) && $form_value['#type'] == 'textfield') {
+        if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'textfield') {
             $form[$key_form]['#prefix'] = '<div class="input-wrap">';
             $form[$key_form]['#suffix'] = '</div>';
         }
@@ -278,13 +282,16 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
         $form['actions']['submit']['#value'] = 'Submit';
         unset($form['actions']['preview']);
     }
+    if (strpos($form_id, 'subscriptions') !== FALSE) {
+      if(isset($form['mail']['widget'][0]['value']))$form['mail']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+    }
     //------------------------------
     $more_class = '';
     if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
         $form['actions']['#weight'] = 0;
         $form['title']['#placeholder'] = t('Search the Resource Center');
 
-        $form['country']['#options']['All']=$form['health_area']['#options']['All']=$form['type']['#options']['All']=$form['technical_area']['#options']['All']='Select an option';
+        $form['country']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
 
         $data_select = $form_state->getUserInput();
         if ($data_select) {
@@ -295,15 +302,16 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
         $form['more']['#weight'] = 0;
         $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
     }
-    if ($form_id == 'views_exposed_form' && $form['#id'] =='views-exposed-form-staff-page-1') {
+    //------------------------------
+    if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-staff-page-1') {
         $form['title']['#placeholder'] = t('Enter Name');
-        $form['location']['#options']['All']="All locations";
+        $form['location']['#options']['All'] = "All locations";
     }
-    if ($form_id == 'views_exposed_form' && $form['#id'] =='views-exposed-form-events-page-1') {
+    if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-events-page-1') {
         $form['title']['#placeholder'] = t('Search events');
-        $form['location']['#options']['All']='All locations';
-        $form['health_area']['#options']['All']='All areas';
-        $form['event_type']['#options']['All']='All types';
+        $form['location']['#options']['All'] = 'All locations';
+        $form['health_area']['#options']['All'] = 'All areas';
+        $form['event_type']['#options']['All'] = 'All types';
 
         $data_select = $form_state->getUserInput();
         if ($data_select) {
@@ -316,4 +324,5 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
         $form['more']['#weight'] = 0;
         $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
     }
+
 }
