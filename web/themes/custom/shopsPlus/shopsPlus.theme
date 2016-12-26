@@ -58,6 +58,20 @@ function shopsPlus_preprocess_page_title(&$variables)
     }
 }
 
+
+function shopsPlus_preprocess_node(&$variables) {
+  $variables['content']['infographic_slideshow'] = array();
+  $node = &$variables['node'];
+  
+  if($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
+    $block_slideshow = views_embed_view('impact_infographic', 'block_slideshow');
+
+    if(!empty($block_slideshow)) {
+      $variables['content']['infographic_slideshow'] = $block_slideshow;
+    }
+  }
+}
+
 /**
  * @param $variables
  */
@@ -167,6 +181,21 @@ function shopsPlus_preprocess_field(&$variables, $hook)
             ->buildUrl($image_public_uri);
         $variables['image_top_block_url'] = $style;
     }
+
+
+    //disable country link
+    if ($variables['field_name'] == 'field_country') {
+      foreach ($variables['items'] as &$item) {
+
+        if ($item['content']['#options']['entity']->field_disable->getValue()) {
+          $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
+
+        }
+
+      }
+    }
+
+
 }
 
 /**

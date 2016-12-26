@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Code for the eventbrite_pull module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\eventbrite_pull\BatchPullEvent;
+
+/**
+ * Implements hook_cron().
+ */
+function eventbrite_pull_cron() {
+  $config = \Drupal::config('eventbrite_pull.settings');
+  if($config && $config->get('cron_enable')) {
+    $batch = new BatchPullEvent();
+    $batch->setRunCron();
+    $batch->start();
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for node entities.
+ */
+function eventbrite_pull_node_update(EntityInterface $node) {
+  if (isset($node->eventbrite)) {
+    \Drupal::service('eventbrite_pull.storage')->update($node);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node entities.
+ */
+function eventbrite_pull_node_insert(EntityInterface $node) {
+  if (isset($node->eventbrite)) {
+    \Drupal::service('eventbrite_pull.storage')->create($node);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for node entities.
+ */
+function eventbrite_pull_node_predelete(EntityInterface $node) {
+  \Drupal::service('eventbrite_pull.storage')->delete($node);
+}
