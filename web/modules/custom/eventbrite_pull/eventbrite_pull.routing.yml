@@ -1,0 +1,9 @@
+eventbrite_pull.config_form:
+  path: '/admin/config/content/eventbrite_pull'
+  defaults:
+    _title: 'Eventbrite Pull'
+    _form: '\Drupal\eventbrite_pull\Form\ConfigForm'
+  requirements:
+    _permission: 'administer content types'
+  options:
+    _admin_route: true
