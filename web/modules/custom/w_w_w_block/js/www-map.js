@@ -28,7 +28,7 @@
 
 					google.maps.event.addListener(marker, 'click', (function(marker, country) {
 						return function() {
-							infowindow.setContent('More details about <br/>'+country.link);
+							infowindow.setContent(country.link);
 							infowindow.open(map, marker);
 						}
 					})(marker, country));
