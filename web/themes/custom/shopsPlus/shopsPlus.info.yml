@@ -37,5 +37,5 @@ regions:
 # Information added by Drupal.org packaging script on 2016-09-13
 version: '8.x-1.2'
 core: '8.x'
-project: 'shopsPlus'
-datestamp: 1473787742
+# project: 'shopsPlus'
+# datestamp: 1473787742
