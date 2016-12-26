@@ -42,6 +42,11 @@ function eventbrite_pull_node_save($event, $published = 0, $uid = 0, &$context) 
       'end_value' => $event->end->local
     ]);
 
+    $node->set('field_register_link', [
+      'uri' => $event->url,
+      'title' => 'Register Now'
+    ]);
+
     $file = eventbrite_pull_create_image_file($event);
     if ($file) {
       $node->set('field_featured_image', [
