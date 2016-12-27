@@ -201,8 +201,8 @@ function shopsPlus_preprocess_field(&$variables, $hook)
 /**
  * Implements hook_preprocess_HOOK() for block templates.
  */
-function shopsPlus_preprocess_block(&$variables)
-{
+function shopsPlus_preprocess_block(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
   $flag_atrr_id = FALSE;
   $class = array();
 
@@ -226,13 +226,18 @@ function shopsPlus_preprocess_block(&$variables)
       $variables['attributes']['class'] = $class;
     }
   }
+
+  if(!empty($node) AND isset($variables['label']['#markup'])) {
+    $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
+  }
+
   //dsm($variables);
   //dsm($variables['attributes']['class']);
 }
 
 function shopsPlus_preprocess_views_view(&$vars)
 {
-  
+
   $view = $vars['view'];
   $display_id = $view->current_display;
   $id = $vars['id'];
