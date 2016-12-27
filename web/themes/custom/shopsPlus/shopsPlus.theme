@@ -214,6 +214,8 @@ function shopsPlus_preprocess_block(&$variables) {
     $class[] = "columns-2-block";
   }
 
+  $class[] = "clearfix";
+
   if ($flag_atrr_id) {
     if (isset($variables['attributes']['class'])) {
       $variables['attributes']['class'] = array_merge((array) $variables['attributes']['class'], $class);
