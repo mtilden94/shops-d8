@@ -63,22 +63,7 @@
         margin-right: 10px;
       }
     }
-    .pager__item a.button {
-      width: 210px;
-      height: 60px;
-      color: $white;
-      font-family: $heading-font-family;
-      font-size: $base-font-size;
-      font-weight: $strong;
-      text-transform: uppercase;
-      background-color: $active;
-      line-height: 62px;
-      text-decoration: none;
-      margin-bottom: 30px;
-      margin-top: 30px;
-    }
   }
-
   @include media($tablet-wide) {
     .views-row {
       @include span-columns(4);
@@ -136,6 +121,28 @@
   @include media($tablet) {
     .views-row {
       @include span-columns(6);
+    }
+  }
+}
+
+.events-view {
+  .pager {
+    li {
+      display: table;
+      margin: 0 auto;
+    }
+    a.button {
+      width: 210px;
+      text-align: center;
+      height: 60px;
+      color: $white;
+      font-family: $heading-font-family;
+      font-size: $base-font-size;
+      font-weight: $strong;
+      text-transform: uppercase;
+      background-color: $active;
+      line-height: 62px;
+      text-decoration: none;
     }
   }
 }

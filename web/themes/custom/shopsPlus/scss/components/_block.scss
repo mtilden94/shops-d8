@@ -224,7 +224,9 @@
   }
 }
 
-.block-original-latest_news_updates-block_4 {
+.block-original-latest_news_updates-block_4,
+.block-original-latest_news_updates-block_5,
+.block-original-latest_news_updates-block_6 {
   margin-top: 0;
   padding-top: 0;
   text-align: left;
@@ -253,6 +255,30 @@
   .pager__item {
     .button {
       @extend %button;
+    }
+  }
+}
+
+.block-original-activities-block_1,
+.block-original-resource_center-block_2,
+.block-original-resource_center-block_3,
+.block-original-resource_center-block_4 {
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .views-row {
+    &:first-child {
+      .node {
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+
+        @include media($desktop) {
+          padding-top: 30px;
+        }
+      }
     }
   }
 }
