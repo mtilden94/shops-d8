@@ -224,13 +224,40 @@
   }
 }
 
+.node-type-countries {
+  #content {
+    .block.block-views {
+      margin-bottom: 60px;
+
+      @include media($tablet-wide) {
+        margin-bottom: 90px;
+      }
+
+      .pager {
+        text-align: center;
+        margin-top: 10px;
+
+        @include media($tablet) {
+          margin-top: 20px;
+        }
+
+        .pager__item {
+          .button {
+            @extend %button;
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
 .block-original-latest_news_updates-block_4,
 .block-original-latest_news_updates-block_5,
 .block-original-latest_news_updates-block_6 {
   margin-top: 0;
   padding-top: 0;
   text-align: left;
-  margin-bottom: $gutter;
 
   h2 {
     font-size: 24px;
@@ -249,12 +276,6 @@
       &:nth-child(2) {
         @include omega();
       }
-    }
-  }
-
-  .pager__item {
-    .button {
-      @extend %button;
     }
   }
 }
