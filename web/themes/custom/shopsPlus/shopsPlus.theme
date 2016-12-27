@@ -232,7 +232,6 @@ function shopsPlus_preprocess_block(&$variables)
 
 function shopsPlus_preprocess_views_view(&$vars)
 {
-  dump($vars);
   
   $view = $vars['view'];
   $display_id = $view->current_display;
