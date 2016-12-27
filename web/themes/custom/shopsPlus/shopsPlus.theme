@@ -182,7 +182,7 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
 //disable country link
   if ($variables['field_name'] == 'field_country') {
     foreach ($variables['items'] as &$item) {
-      if (!empty($item['content']['#options']['entity']->field_disable->getValue())) {
+      if ($item['content']['#options']['entity']->field_disable->getValue()) {
         $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
       }
     }
