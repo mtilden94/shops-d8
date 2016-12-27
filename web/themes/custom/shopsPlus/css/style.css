@@ -3565,7 +3565,7 @@ h1 a, h2 a, h3 a {
 
 .node-infographic-slide .impact-image {
   text-align: center;
-  margin-bottom: 15px; }
+  margin-bottom: 20px; }
   @media screen and (min-width: 1040px) {
     .node-infographic-slide .impact-image {
       margin-bottom: 0;
@@ -3594,7 +3594,7 @@ h1 a, h2 a, h3 a {
         left: 90px; } }
 
 .node-infographic-slide .content {
-  margin-top: 15px;
+  margin-top: 20px;
   text-align: center; }
   @media screen and (min-width: 1040px) {
     .node-infographic-slide .content {
