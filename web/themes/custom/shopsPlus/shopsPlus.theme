@@ -220,6 +220,11 @@ function shopsPlus_preprocess_block(&$variables) {
       $variables['attributes']['class'] = $class;
     }
   }
+
+  if(!empty($node) AND !empty($variables['label']['#markup'])) {
+    $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
+  }
+
   //dsm($variables);
   //dsm($variables['attributes']['class']);
 }
