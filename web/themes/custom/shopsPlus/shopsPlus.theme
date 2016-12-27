@@ -158,6 +158,14 @@ function shopsPlus_preprocess_page(&$variables) {
  * Prepares variables for the field.html.twig template.
  */
 function shopsPlus_preprocess_field(&$variables, $hook) {
+  if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
+    $style_img = 'slide_image';
+  }
+  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' || $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
+    $variables['city'] = $variables['element']['#items']->first()
+      ->getLocality();
+    $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
+  }
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
 
