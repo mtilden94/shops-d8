@@ -10,8 +10,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 /**
  * Prepares variables for the html.html.twig template.
  */
-function shopsPlus_preprocess_html(&$variables)
-{
+function shopsPlus_preprocess_html(&$variables) {
   try {
     $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
   } catch (Exception $e) {
@@ -47,8 +46,7 @@ function shopsPlus_preprocess_html(&$variables)
 
 }
 
-function shopsPlus_preprocess_page_title(&$variables)
-{
+function shopsPlus_preprocess_page_title(&$variables) {
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $node_type = $node->getType();
     //hide title full view
@@ -63,10 +61,10 @@ function shopsPlus_preprocess_node(&$variables) {
   $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
 
-  if($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
+  if ($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
     $block_slideshow = views_embed_view('impact_infographic', 'block_slideshow');
 
-    if(!empty($block_slideshow)) {
+    if (!empty($block_slideshow)) {
       $variables['content']['infographic_slideshow'] = $block_slideshow;
     }
   }
@@ -75,8 +73,7 @@ function shopsPlus_preprocess_node(&$variables) {
 /**
  * @param $variables
  */
-function shopsPlus_preprocess_page(&$variables)
-{
+function shopsPlus_preprocess_page(&$variables) {
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     //dsm($node);
     //set header image
@@ -123,7 +120,8 @@ function shopsPlus_preprocess_page(&$variables)
           if ($stop_flag) {
             $item = array('nid' => $data->nid, 'title' => $data->title);
             $stop_flag == 2;
-          } else {
+          }
+          else {
             $old_item = array('nid' => $data->nid, 'title' => $data->title);
           }
         }
@@ -156,8 +154,7 @@ function shopsPlus_preprocess_page(&$variables)
 /**
  * Prepares variables for the field.html.twig template.
  */
-function shopsPlus_preprocess_field(&$variables, $hook)
-{
+function shopsPlus_preprocess_field(&$variables, $hook) {
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
 
@@ -182,19 +179,22 @@ function shopsPlus_preprocess_field(&$variables, $hook)
     $variables['image_top_block_url'] = $style;
   }
 
-
-  //disable country link
+//disable country link
   if ($variables['field_name'] == 'field_country') {
     foreach ($variables['items'] as &$item) {
+      //$disable = $item['content']['#options']['entity']->field_disable->getValue();
+      $disable = (bool)$item['content']['#options']['entity']->field_disable->value;
 
-      if ($item['content']['#options']['entity']->field_disable->getValue()) {
+      if ($disable) {
         $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
-
       }
-
     }
   }
 
+  //add field item class
+  foreach ($variables['items'] as &$item) {
+    $item['attributes']->addClass('f_item');
+  }
 
 }
 
@@ -223,13 +223,18 @@ function shopsPlus_preprocess_block(&$variables) {
 
   if ($flag_atrr_id) {
     if (isset($variables['attributes']['class'])) {
-      $variables['attributes']['class'] = array_merge((array)$variables['attributes']['class'], $class);
-    } else {
+      $variables['attributes']['class'] = array_merge((array) $variables['attributes']['class'], $class);
+    }
+    else {
       $variables['attributes']['class'] = $class;
     }
   }
 
+<<<<<<< HEAD
   if(!empty($node) AND !empty($variables['label']['#markup'])) {
+=======
+  if (!empty($node) AND isset($variables['label']['#markup'])) {
+>>>>>>> c49fbae68d49c2d2ccee49bc5e40ac785bee0db4
     $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
   }
 
@@ -237,8 +242,7 @@ function shopsPlus_preprocess_block(&$variables) {
   //dsm($variables['attributes']['class']);
 }
 
-function shopsPlus_preprocess_views_view(&$vars)
-{
+function shopsPlus_preprocess_views_view(&$vars) {
 
   $view = $vars['view'];
   $display_id = $view->current_display;
@@ -274,10 +278,12 @@ function shopsPlus_preprocess_views_view(&$vars)
 
       if (strtolower($exp_data_sort_order) == 'desc') {
         $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
-      } else {
+      }
+      else {
         $vars['sort_link'] = '<a class="order-desc" href="/resource-center?' . $exp_data_query . 'sort_order=DESC">SORT BY:  MOST OLDEST</a>';
       }
-    } else {
+    }
+    else {
       $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
     }
     $vars['header']['result']['#markup'] = $view->total_rows . " Results" . $search_title;
@@ -285,8 +291,7 @@ function shopsPlus_preprocess_views_view(&$vars)
 }
 
 
-function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables)
-{
+function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables) {
   $content = $variables['elements']['content'];
   if (isset($content['#block_content']) && $content['#block_content'] instanceof \Drupal\block_content\BlockContentInterface) {
     $tpl = 'block__' . $content['#block_content']->bundle();
@@ -299,8 +304,7 @@ function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables)
    }*/
 }
 
-function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
-{
+function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   foreach ($form as $key_form => $form_value) {
     if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'select') {
       $form[$key_form]['#prefix'] = '<div class="select-wrap">';
@@ -320,7 +324,9 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     unset($form['actions']['preview']);
   }
   if (strpos($form_id, 'subscriptions') !== FALSE) {
-    if(isset($form['mail']['widget'][0]['value']))$form['mail']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+    if (isset($form['mail']['widget'][0]['value'])) {
+      $form['mail']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+    }
   }
   //------------------------------
   $more_class = '';

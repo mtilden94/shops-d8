@@ -469,7 +469,7 @@ h1 a, h2 a, h3 a {
     & * {
       display: inline;
     }
-    .quickedit-field, .quickedit-field div {
+    .f_item {
       &:after {
         content: '';
         border-left: $base-border;
@@ -481,7 +481,7 @@ h1 a, h2 a, h3 a {
         top: 3px;
       }
     }
-    .quickedit-field:last-child, .quickedit-field div:last-child {
+    & div:last-child .f_item {
       &:after {
         content: none;
       }
@@ -526,7 +526,7 @@ h1 a, h2 a, h3 a {
       font-size: 16px;
       padding-left: 195px;
       bottom: 35px;
-      .quickedit-field, .quickedit-field div {
+      .f_item {
         &:after {
           height: 16px;
         }
