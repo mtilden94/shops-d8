@@ -5,6 +5,7 @@ namespace Drupal\eventbrite_pull\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\eventbrite_pull\Eventbrite;
+use Drupal\eventbrite_pull\BatchPullEvent;
 /**
  *  Build Eventbrite Pull settings form.s
  */
@@ -31,15 +32,6 @@ class ConfigForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('eventbrite_pull.settings');
-
-    /*$eventbrite = new Eventbrite('VV5E5YJU6MWUFKDZY6JW');
-    $eventbrite->get('organizers/'. 8460585411 .'/events');*/
-
-    /*$node->eventbrite = (object)[
-      'id' => md5(1),
-      'created' => time(),
-      'changed' => time()
-    ];*/
 
     $form['oauth_token'] = array(
       '#type' => 'textfield',
@@ -71,12 +63,6 @@ class ConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('node_published'),
     );
 
-    $form['delete_old'] = array(
-      '#type' => 'checkbox',
-      '#title' => $this->t('Delete old events'),
-      '#default_value' => $config->get('delete_old'),
-    );
-
     $form['actions']['pull'] = array(
       '#type' => 'submit',
       '#value' => $this->t('Save & Pull'),
@@ -98,25 +84,7 @@ class ConfigForm extends ConfigFormBase {
   }
 
   public function runPull(array &$form, FormStateInterface $form_state) {
-    $operations = $this->getBatchOperations();
-
-  }
-
-  public function getBatchOperations() {
-    $config = $this->config('eventbrite_pull.settings');
-    $operations = array();
-
-    $eventbrite = new Eventbrite($config->get('oauth_token'));
-    $data = $eventbrite->get('organizers/' . $config->get('organizer_id') . '/events');
-
-    if($data) {
-      foreach ($data->events as $event) {
-        $operations = ['sds', [$event]];
-      }
-
-      return $operations;
-    }
-
-    return FALSE;
+    $batch = new BatchPullEvent();
+    $batch->start();
   }
 }

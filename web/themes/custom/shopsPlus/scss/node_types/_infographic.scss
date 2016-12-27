@@ -1,9 +1,9 @@
 .node-infographic-slide {
   @include clearfix();
-  
+
   .impact-image {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 
     @include media($desktop) {
       margin-bottom: 0;
@@ -39,7 +39,7 @@
   }
 
   .content {
-    margin-top: 15px;
+    margin-top: 20px;
     text-align: center;
 
     @include media($desktop) {

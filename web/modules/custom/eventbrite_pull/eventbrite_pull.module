@@ -6,6 +6,19 @@
  */
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\eventbrite_pull\BatchPullEvent;
+
+/**
+ * Implements hook_cron().
+ */
+function eventbrite_pull_cron() {
+  $config = \Drupal::config('eventbrite_pull.settings');
+  if($config && $config->get('cron_enable')) {
+    $batch = new BatchPullEvent();
+    $batch->setRunCron();
+    $batch->start();
+  }
+}
 
 /**
  * Implements hook_ENTITY_TYPE_update() for node entities.
