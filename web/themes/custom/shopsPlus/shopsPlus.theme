@@ -179,7 +179,7 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     $variables['image_top_block_url'] = $style;
   }
 
-  //disable country link
+//disable country link
   if ($variables['field_name'] == 'field_country') {
     foreach ($variables['items'] as &$item) {
       //$disable = $item['content']['#options']['entity']->field_disable->getValue();

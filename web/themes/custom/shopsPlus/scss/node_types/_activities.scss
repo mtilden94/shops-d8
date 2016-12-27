@@ -1,0 +1,27 @@
+.node.activities {
+  &.node-view--teaser {
+    padding: 0 0 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+
+    @include media($tablet) {
+      padding: 0 12px 15px;
+    }
+
+    @include media($desktop) {
+      padding: 0 20px 30px;
+      margin-bottom: 35px;
+    }
+
+    .content {
+      .field {
+        &.body {
+          font-size: 18px;
+          color: #777;
+          font-family: $base-font-family;
+
+        }
+      }
+    }
+  }
+}

@@ -257,6 +257,28 @@
   }
 }
 
+.block-original-activities-block_1,
+.block-original-resource_center-block_2 {
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .views-row {
+    &:first-child {
+      .node {
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+        
+        @include media($desktop) {
+          padding-top: 30px;
+        }
+      }
+    }
+  }
+}
+
 .block-original-latest_news_updates-block_3 {
   background-color: $light-gray;
   margin-bottom: 0;

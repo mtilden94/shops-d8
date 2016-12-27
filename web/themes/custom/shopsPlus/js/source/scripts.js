@@ -100,6 +100,7 @@
                 minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node');
                 minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node > header');
                 minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node');
+                minHeightViewsRow('.block-original-latest_news_updates-block_4 .views-row .node');
             }
         };
         // jQuery(function ($) {
