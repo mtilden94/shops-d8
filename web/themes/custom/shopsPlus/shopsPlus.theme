@@ -189,8 +189,13 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
         $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
       }
     }
-
   }
+
+  //add field item class
+  foreach ($variables['items'] as &$item) {
+    $item['attributes']->addClass('f_item');
+  }
+
 }
 
 /**
