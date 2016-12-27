@@ -58,7 +58,7 @@ function shopsPlus_preprocess_page_title(&$variables) {
 
 
 function shopsPlus_preprocess_node(&$variables) {
-  if ($variables->getType() == 'event' && $variables['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
+  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
     $variables['city'] = $variables['node']->field_location->first()
       ->getLocality();
   }
