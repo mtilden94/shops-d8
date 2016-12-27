@@ -219,6 +219,8 @@ function shopsPlus_preprocess_block(&$variables) {
     $class[] = "columns-2-block";
   }
 
+  $class[] = "clearfix";
+
   if ($flag_atrr_id) {
     if (isset($variables['attributes']['class'])) {
       $variables['attributes']['class'] = array_merge((array)$variables['attributes']['class'], $class);
@@ -227,7 +229,7 @@ function shopsPlus_preprocess_block(&$variables) {
     }
   }
 
-  if(!empty($node) AND isset($variables['label']['#markup'])) {
+  if(!empty($node) AND !empty($variables['label']['#markup'])) {
     $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
   }
 

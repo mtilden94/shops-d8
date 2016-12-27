@@ -35,7 +35,7 @@
   }
 }
 
-.button-one {
+%button {
   background-color: $active;
   color: white;
   font-size: 14px;
@@ -45,8 +45,13 @@
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 0.4s;
+
   &:hover {
     background-color: darken($active, 10);
     color: white;
   }
+}
+
+.button-one {
+  @extend %button;
 }
