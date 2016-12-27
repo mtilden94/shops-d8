@@ -10,63 +10,61 @@ use Drupal\Core\Cache\CacheableMetadata;
 /**
  * Prepares variables for the html.html.twig template.
  */
-function shopsPlus_preprocess_html(&$variables)
-{
-    try {
-        $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
-    } catch (Exception $e) {
-        // If the database is not yet available, set default values for these
-        // variables.
-        $variables['is_front'] = FALSE;
-    }
+function shopsPlus_preprocess_html(&$variables) {
+  try {
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  } catch (Exception $e) {
+    // If the database is not yet available, set default values for these
+    // variables.
+    $variables['is_front'] = FALSE;
+  }
 
-    // If we're on the front page.
-    if (!$variables['is_front']) {
-        // Add unique classes for each page and website section.
-        $path = \Drupal::service('path.current')->getPath();
-        $alias = \Drupal::service('path.alias_manager')->getAliasByPath($path);
-        $alias = trim($alias, '/');
-        if (!empty($alias)) {
-            $name = str_replace('/', '-', $alias);
-            $variables['attributes']['class'][] = 'page-' . $name;
-            list($section,) = explode('/', $alias, 2);
-            if (!empty($section)) {
-                $variables['attributes']['class'][] = 'section-' . $section;
-            }
-        }
+  // If we're on the front page.
+  if (!$variables['is_front']) {
+    // Add unique classes for each page and website section.
+    $path = \Drupal::service('path.current')->getPath();
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath($path);
+    $alias = trim($alias, '/');
+    if (!empty($alias)) {
+      $name = str_replace('/', '-', $alias);
+      $variables['attributes']['class'][] = 'page-' . $name;
+      list($section,) = explode('/', $alias, 2);
+      if (!empty($section)) {
+        $variables['attributes']['class'][] = 'section-' . $section;
+      }
     }
+  }
 
-    // Add cachability metadata.
-    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
-    $theme_settings = \Drupal::config($theme_name . '.settings');
-    CacheableMetadata::createFromRenderArray($variables)
-        ->addCacheableDependency($theme_settings)
-        ->applyTo($variables);
-    // Union all theme setting variables to the html.html.twig template.
-    $variables += $theme_settings->getOriginal();
+  // Add cachability metadata.
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+  $theme_settings = \Drupal::config($theme_name . '.settings');
+  CacheableMetadata::createFromRenderArray($variables)
+    ->addCacheableDependency($theme_settings)
+    ->applyTo($variables);
+  // Union all theme setting variables to the html.html.twig template.
+  $variables += $theme_settings->getOriginal();
 
 }
 
-function shopsPlus_preprocess_page_title(&$variables)
-{
-    if ($node = \Drupal::routeMatch()->getParameter('node')) {
-        $node_type = $node->getType();
-        //hide title full view
-        if ($node_type == 'our_people') {
-            $variables['title'] = '';
-        }
+function shopsPlus_preprocess_page_title(&$variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $node_type = $node->getType();
+    //hide title full view
+    if ($node_type == 'our_people') {
+      $variables['title'] = '';
     }
+  }
 }
 
 
 function shopsPlus_preprocess_node(&$variables) {
   $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
-  
-  if($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
+
+  if ($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
     $block_slideshow = views_embed_view('impact_infographic', 'block_slideshow');
 
-    if(!empty($block_slideshow)) {
+    if (!empty($block_slideshow)) {
       $variables['content']['infographic_slideshow'] = $block_slideshow;
     }
   }
@@ -75,283 +73,285 @@ function shopsPlus_preprocess_node(&$variables) {
 /**
  * @param $variables
  */
-function shopsPlus_preprocess_page(&$variables)
-{
-    if ($node = \Drupal::routeMatch()->getParameter('node')) {
-        //dsm($node);
-        //set header image
-        $node_type = $node->getType();
+function shopsPlus_preprocess_page(&$variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    //dsm($node);
+    //set header image
+    $node_type = $node->getType();
 
-        if (isset($node->field__header_image) AND isset($node->field__header_image->entity)) {
-            $variables['header_image'] = '';
-            $field__header_image = $node->field__header_image;
-            $original_image = $field__header_image->entity->getFileUri();
+    if (isset($node->field__header_image) AND isset($node->field__header_image->entity)) {
+      $variables['header_image'] = '';
+      $field__header_image = $node->field__header_image;
+      $original_image = $field__header_image->entity->getFileUri();
 
-            $style = \Drupal\image\Entity\ImageStyle::load('header_image');
-            $background_image = $style->buildUrl($original_image);
-            $variables['header_image'] = $background_image;
+      $style = \Drupal\image\Entity\ImageStyle::load('header_image');
+      $background_image = $style->buildUrl($original_image);
+      $variables['header_image'] = $background_image;
 
 
-            /*$display_options = array(
-              'label'    => 'hidden',
-              'type'     => 'responsive_image',
-              'settings' => array(
-                'responsive_image_style' => 'header_image',
-              ),
-            );
+      /*$display_options = array(
+        'label'    => 'hidden',
+        'type'     => 'responsive_image',
+        'settings' => array(
+          'responsive_image_style' => 'header_image',
+        ),
+      );
 
-            $image = $node->field__header_image->view($display_options);
-            //$image = $node->field_image->view($display_options);
-            $variables['header_image'] = $image;*/
-
-        }
-
-        //our people more
-        if ($node_type == "our_people") {
-            $node_nid = $node->id();
-            $query = \Drupal::database()->select('node', 'n');
-            $query->addField('n', 'nid');
-            $query->condition('n.type', 'our_people');
-            $query->join('node_field_data', 'nfd', 'nfd.nid = n.nid');
-            $query->addField('nfd', 'title');
-            $query->condition('nfd.status', 1);
-            $our_people_data = $query->execute()->fetchAll();
-            $old_item = $item = array();
-            $stop_flag = 0;
-            foreach ($our_people_data as $data) {
-                if ($data->nid != $node_nid) {
-                    if ($stop_flag) {
-                        $item = array('nid' => $data->nid, 'title' => $data->title);
-                        $stop_flag == 2;
-                    } else {
-                        $old_item = array('nid' => $data->nid, 'title' => $data->title);
-                    }
-                }
-                if ($stop_flag == 2) {
-                    break;
-                }
-                if ($data->nid == $node_nid) {
-                    $stop_flag = 1;
-                }
-            }
-            $variables['our_people_more'] = array(
-                'prev' => $old_item,
-                'next' => $item
-            );
-        }
+      $image = $node->field__header_image->view($display_options);
+      //$image = $node->field_image->view($display_options);
+      $variables['header_image'] = $image;*/
 
     }
-    if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
-        if (isset($term->field_header_image) AND isset($term->field_header_image->entity)) {
-            $variables['header_image'] = '';
-            $field_header_image = $term->field_header_image;
-            $original_image = $field_header_image->entity->getFileUri();
-            $style = \Drupal\image\Entity\ImageStyle::load('header_image');
-            $background_image = $style->buildUrl($original_image);
-            $variables['header_image'] = $background_image;
+
+    //our people more
+    if ($node_type == "our_people") {
+      $node_nid = $node->id();
+      $query = \Drupal::database()->select('node', 'n');
+      $query->addField('n', 'nid');
+      $query->condition('n.type', 'our_people');
+      $query->join('node_field_data', 'nfd', 'nfd.nid = n.nid');
+      $query->addField('nfd', 'title');
+      $query->condition('nfd.status', 1);
+      $our_people_data = $query->execute()->fetchAll();
+      $old_item = $item = array();
+      $stop_flag = 0;
+      foreach ($our_people_data as $data) {
+        if ($data->nid != $node_nid) {
+          if ($stop_flag) {
+            $item = array('nid' => $data->nid, 'title' => $data->title);
+            $stop_flag == 2;
+          }
+          else {
+            $old_item = array('nid' => $data->nid, 'title' => $data->title);
+          }
         }
+        if ($stop_flag == 2) {
+          break;
+        }
+        if ($data->nid == $node_nid) {
+          $stop_flag = 1;
+        }
+      }
+      $variables['our_people_more'] = array(
+        'prev' => $old_item,
+        'next' => $item
+      );
     }
+
+  }
+  if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
+    if (isset($term->field_header_image) AND isset($term->field_header_image->entity)) {
+      $variables['header_image'] = '';
+      $field_header_image = $term->field_header_image;
+      $original_image = $field_header_image->entity->getFileUri();
+      $style = \Drupal\image\Entity\ImageStyle::load('header_image');
+      $background_image = $style->buildUrl($original_image);
+      $variables['header_image'] = $background_image;
+    }
+  }
 }
 
 /**
  * Prepares variables for the field.html.twig template.
  */
-function shopsPlus_preprocess_field(&$variables, $hook)
-{
-    // Make additional variables available to the template.
-    $variables['bundle'] = $variables['element']['#bundle'];
+function shopsPlus_preprocess_field(&$variables, $hook) {
+  // Make additional variables available to the template.
+  $variables['bundle'] = $variables['element']['#bundle'];
 
-    $style_img = '';
-    if ($variables['field_name'] == 'field_image' && $variables['bundle'] == 'story' && $variables['element']['#view_mode'] == 'front_page') {
-        $style_img = 'header_image';
-    }
-    if ($variables['bundle'] == 'image_top_block') {
-        $style_img = 'header_image';
-    }
-    if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode'] == 'teaser') {
-        $style_img = 'slide_image';
-    }
-    // Top image block style
-    if ($style_img != '') {
-        $variables['image_top_block_url'] = '';
-        $field = $variables['items'][0]['content']['#item']->getValue();
-        $image_file = \Drupal\file\Entity\File::load($field['target_id']);
-        $image_public_uri = $image_file->getFileUri();
-        $style = \Drupal\image\Entity\ImageStyle::load($style_img)
-            ->buildUrl($image_public_uri);
-        $variables['image_top_block_url'] = $style;
-    }
+  $style_img = '';
+  if ($variables['field_name'] == 'field_image' && $variables['bundle'] == 'story' && $variables['element']['#view_mode'] == 'front_page') {
+    $style_img = 'header_image';
+  }
+  if ($variables['bundle'] == 'image_top_block') {
+    $style_img = 'header_image';
+  }
+  if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode'] == 'teaser') {
+    $style_img = 'slide_image';
+  }
+  // Top image block style
+  if ($style_img != '') {
+    $variables['image_top_block_url'] = '';
+    $field = $variables['items'][0]['content']['#item']->getValue();
+    $image_file = \Drupal\file\Entity\File::load($field['target_id']);
+    $image_public_uri = $image_file->getFileUri();
+    $style = \Drupal\image\Entity\ImageStyle::load($style_img)
+      ->buildUrl($image_public_uri);
+    $variables['image_top_block_url'] = $style;
+  }
 
-
-    //disable country link
-    if ($variables['field_name'] == 'field_country') {
-      foreach ($variables['items'] as &$item) {
-
-        if (!empty($item['content']['#options']['entity']->field_disable->getValue())) {
-          $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
-
-        }
-
+//disable country link
+  if ($variables['field_name'] == 'field_country') {
+    foreach ($variables['items'] as &$item) {
+      if (!empty($item['content']['#options']['entity']->field_disable->getValue())) {
+        $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
       }
     }
 
-
+  }
 }
 
 /**
  * Implements hook_preprocess_HOOK() for block templates.
  */
-function shopsPlus_preprocess_block(&$variables)
-{
-    $flag_atrr_id = FALSE;
-    $class = array();
+function shopsPlus_preprocess_block(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $flag_atrr_id = FALSE;
+  $class = array();
 
-    if (isset($variables['attributes']['id']) && $variables['elements']['#derivative_plugin_id'] != NULL) {
-        $flag_atrr_id = TRUE;
-        $class[] = "block-original-" . $variables['elements']['#derivative_plugin_id'];
-    }
+  if (isset($variables['attributes']['id']) && $variables['elements']['#derivative_plugin_id'] != NULL) {
+    $flag_atrr_id = TRUE;
+    $class[] = "block-original-" . $variables['elements']['#derivative_plugin_id'];
+  }
 
-    if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
-        $class[] = "image-top-block";
-    }
+  if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
+    $class[] = "image-top-block";
+  }
 
-    if (isset($variables['content']['field_column']['#bundle']) && $variables['content']['field_column']['#bundle'] == 'a2_columns_block') {
-        $class[] = "columns-2-block";
-    }
+  if (isset($variables['content']['field_column']['#bundle']) && $variables['content']['field_column']['#bundle'] == 'a2_columns_block') {
+    $class[] = "columns-2-block";
+  }
 
-    if ($flag_atrr_id) {
-        if (isset($variables['attributes']['class'])) {
-            $variables['attributes']['class'] = array_merge((array)$variables['attributes']['class'], $class);
-        } else {
-            $variables['attributes']['class'] = $class;
-        }
+  if ($flag_atrr_id) {
+    if (isset($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = array_merge((array) $variables['attributes']['class'], $class);
     }
-    //dsm($variables);
-    //dsm($variables['attributes']['class']);
+    else {
+      $variables['attributes']['class'] = $class;
+    }
+  }
+
+  if (!empty($node) AND isset($variables['label']['#markup'])) {
+    $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
+  }
+
+  //dsm($variables);
+  //dsm($variables['attributes']['class']);
 }
 
-function shopsPlus_preprocess_views_view(&$vars)
-{
-    $view = $vars['view'];
-    $display_id = $view->current_display;
-    $id = $vars['id'];
-    if ($id == 'resource_center' && $display_id == 'page_1') {
-        $exp_data_sort_order = '';
-        $exp_data_query = array();
+function shopsPlus_preprocess_views_view(&$vars) {
 
-        $exp_data_sort_order = $view->exposed_data['sort_order'];
-        if ($view->exposed_data['country'] != 'All') {
-            $exp_data_query[] = 'country=' . $view->exposed_data['country'];
-        }
-        if ($view->exposed_data['health_area'] != 'All') {
-            $exp_data_query[] = 'health_area=' . $view->exposed_data['health_area'];
-        }
-        if ($view->exposed_data['technical_area'] != 'All') {
-            $exp_data_query[] = 'technical_area=' . $view->exposed_data['technical_area'];
-        }
-        if ($view->exposed_data['type'] != 'All') {
-            $exp_data_query[] = 'type=' . $view->exposed_data['type'];
-        }
-        $search_title = '';
-        if ($view->exposed_data['title'] != '') {
-            $exp_data_query[] = 'title=' . $view->exposed_data['title'];
-            $search_title = " for ‘" . $view->exposed_data['title'] . "’";
-        }
-        $exp_data_query = implode('&', $exp_data_query);
-        $vars['sort_link'] = '';
-        if ($exp_data_query != '') {
-            $exp_data_query .= '&';
-        }
-        if ($exp_data_sort_order && $exp_data_sort_order != '') {
+  $view = $vars['view'];
+  $display_id = $view->current_display;
+  $id = $vars['id'];
+  if ($id == 'resource_center' && $display_id == 'page_1') {
+    $exp_data_sort_order = '';
+    $exp_data_query = array();
 
-            if (strtolower($exp_data_sort_order) == 'desc') {
-                $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
-            } else {
-                $vars['sort_link'] = '<a class="order-desc" href="/resource-center?' . $exp_data_query . 'sort_order=DESC">SORT BY:  MOST OLDEST</a>';
-            }
-        } else {
-            $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
-        }
-        $vars['header']['result']['#markup'] = $view->total_rows . " Results" . $search_title;
+    $exp_data_sort_order = $view->exposed_data['sort_order'];
+    if ($view->exposed_data['country'] != 'All') {
+      $exp_data_query[] = 'country=' . $view->exposed_data['country'];
     }
+    if ($view->exposed_data['health_area'] != 'All') {
+      $exp_data_query[] = 'health_area=' . $view->exposed_data['health_area'];
+    }
+    if ($view->exposed_data['technical_area'] != 'All') {
+      $exp_data_query[] = 'technical_area=' . $view->exposed_data['technical_area'];
+    }
+    if ($view->exposed_data['type'] != 'All') {
+      $exp_data_query[] = 'type=' . $view->exposed_data['type'];
+    }
+    $search_title = '';
+    if ($view->exposed_data['title'] != '') {
+      $exp_data_query[] = 'title=' . $view->exposed_data['title'];
+      $search_title = " for ‘" . $view->exposed_data['title'] . "’";
+    }
+    $exp_data_query = implode('&', $exp_data_query);
+    $vars['sort_link'] = '';
+    if ($exp_data_query != '') {
+      $exp_data_query .= '&';
+    }
+    if ($exp_data_sort_order && $exp_data_sort_order != '') {
+
+      if (strtolower($exp_data_sort_order) == 'desc') {
+        $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+      }
+      else {
+        $vars['sort_link'] = '<a class="order-desc" href="/resource-center?' . $exp_data_query . 'sort_order=DESC">SORT BY:  MOST OLDEST</a>';
+      }
+    }
+    else {
+      $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+    }
+    $vars['header']['result']['#markup'] = $view->total_rows . " Results" . $search_title;
+  }
 }
 
 
-function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables)
-{
-    $content = $variables['elements']['content'];
-    if (isset($content['#block_content']) && $content['#block_content'] instanceof \Drupal\block_content\BlockContentInterface) {
-        $tpl = 'block__' . $content['#block_content']->bundle();
-        $suggestions[] = $tpl;
-    }
+function shopsPlus_theme_suggestions_block_alter(&$suggestions, $variables) {
+  $content = $variables['elements']['content'];
+  if (isset($content['#block_content']) && $content['#block_content'] instanceof \Drupal\block_content\BlockContentInterface) {
+    $tpl = 'block__' . $content['#block_content']->bundle();
+    $suggestions[] = $tpl;
+  }
 
-    /* if (!empty($content['#type']) AND $content['#type'] == 'view') {
-       $class = implode('_', array('__viewblock', $content['#name'], $content['#display_id']));
-       $suggestions[] = $class;
-     }*/
+  /* if (!empty($content['#type']) AND $content['#type'] == 'view') {
+     $class = implode('_', array('__viewblock', $content['#name'], $content['#display_id']));
+     $suggestions[] = $class;
+   }*/
 }
 
-function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
-{
-    foreach ($form as $key_form => $form_value) {
-        if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'select') {
-            $form[$key_form]['#prefix'] = '<div class="select-wrap">';
-            $form[$key_form]['#suffix'] = '</div>';
-        }
-        if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'textfield') {
-            $form[$key_form]['#prefix'] = '<div class="input-wrap">';
-            $form[$key_form]['#suffix'] = '</div>';
-        }
+function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  foreach ($form as $key_form => $form_value) {
+    if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'select') {
+      $form[$key_form]['#prefix'] = '<div class="select-wrap">';
+      $form[$key_form]['#suffix'] = '</div>';
     }
-    if (strpos($form_id, 'contact_us') !== FALSE) {
-        $form['field_name']['widget'][0]['value']['#placeholder'] = t('Enter full name');
-        $form['field_email']['widget'][0]['value']['#placeholder'] = t('Enter email address');
-        $form['field_phone']['widget'][0]['value']['#placeholder'] = t('Enter best contact number');
-        $form['message']['widget'][0]['value']['#placeholder'] = t('Send us a message');
-        $form['actions']['submit']['#value'] = 'Submit';
-        unset($form['actions']['preview']);
+    if (is_array($form_value) && isset($form_value['#type']) && $form_value['#type'] == 'textfield') {
+      $form[$key_form]['#prefix'] = '<div class="input-wrap">';
+      $form[$key_form]['#suffix'] = '</div>';
     }
-    if (strpos($form_id, 'subscriptions') !== FALSE) {
-      if(isset($form['mail']['widget'][0]['value']))$form['mail']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+  }
+  if (strpos($form_id, 'contact_us') !== FALSE) {
+    $form['field_name']['widget'][0]['value']['#placeholder'] = t('Enter full name');
+    $form['field_email']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+    $form['field_phone']['widget'][0]['value']['#placeholder'] = t('Enter best contact number');
+    $form['message']['widget'][0]['value']['#placeholder'] = t('Send us a message');
+    $form['actions']['submit']['#value'] = 'Submit';
+    unset($form['actions']['preview']);
+  }
+  if (strpos($form_id, 'subscriptions') !== FALSE) {
+    if (isset($form['mail']['widget'][0]['value'])) {
+      $form['mail']['widget'][0]['value']['#placeholder'] = t('Enter email address');
     }
-    //------------------------------
-    $more_class = '';
-    if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
-        $form['actions']['#weight'] = 0;
-        $form['title']['#placeholder'] = t('Search the Resource Center');
+  }
+  //------------------------------
+  $more_class = '';
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
+    $form['actions']['#weight'] = 0;
+    $form['title']['#placeholder'] = t('Search the Resource Center');
 
-        $form['country']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
+    $form['country']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
 
-        $data_select = $form_state->getUserInput();
-        if ($data_select) {
-            if ($data_select['health_area'] != 'All' || $data_select['type'] != 'All' || $data_select['technical_area'] != 'All' || $data_select['country'] != 'All') {
-                $more_class = 'selected-filter ';
-            }
-        }
-        $form['more']['#weight'] = 0;
-        $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
+    $data_select = $form_state->getUserInput();
+    if ($data_select) {
+      if ($data_select['health_area'] != 'All' || $data_select['type'] != 'All' || $data_select['technical_area'] != 'All' || $data_select['country'] != 'All') {
+        $more_class = 'selected-filter ';
+      }
     }
-    //------------------------------
-    if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-staff-page-1') {
-        $form['title']['#placeholder'] = t('Enter Name');
-        $form['location']['#options']['All'] = "All locations";
-    }
-    if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-events-page-1') {
-        $form['title']['#placeholder'] = t('Search events');
-        $form['location']['#options']['All'] = 'All locations';
-        $form['health_area']['#options']['All'] = 'All areas';
-        $form['event_type']['#options']['All'] = 'All types';
+    $form['more']['#weight'] = 0;
+    $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
+  }
+  //------------------------------
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-staff-page-1') {
+    $form['title']['#placeholder'] = t('Enter Name');
+    $form['location']['#options']['All'] = "All locations";
+  }
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-events-page-1') {
+    $form['title']['#placeholder'] = t('Search events');
+    $form['location']['#options']['All'] = 'All locations';
+    $form['health_area']['#options']['All'] = 'All areas';
+    $form['event_type']['#options']['All'] = 'All types';
 
-        $data_select = $form_state->getUserInput();
-        if ($data_select) {
-            if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['location'] != 'All') {
-                $more_class = 'selected-filter ';
-            }
-        }
-
-        $form['actions']['#weight'] = 0;
-        $form['more']['#weight'] = 0;
-        $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
+    $data_select = $form_state->getUserInput();
+    if ($data_select) {
+      if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['location'] != 'All') {
+        $more_class = 'selected-filter ';
+      }
     }
+
+    $form['actions']['#weight'] = 0;
+    $form['more']['#weight'] = 0;
+    $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
+  }
 
 }
