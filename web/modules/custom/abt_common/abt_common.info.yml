@@ -1,0 +1,4 @@
+name: ABT common module
+core: 8.x
+package: ABT
+type: module

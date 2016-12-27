@@ -1,0 +1,41 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-all-past-event-teaser'
+] %}
+<article{{ attributes.addClass(classes) }}>
+  <div class="location-date">
+    {% if content.field_event_date and content.field_location %}
+      {{ content.field_event_date }} {{ content.field_location }}
+    {% endif %}
+  </div>
+  {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+    <header>
+      {% if display_submitted %}
+        <div class="submitted">
+          <time>{{ node.createdtime | date("F d, Y") }}</time>
+        </div>
+      {% endif %}
+      {{ title_prefix }}
+      {% if label %}
+        <h2{{ title_attributes.addClass(title_classes) }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% endif %}
+      {{ title_suffix }}
+
+      {% if not node.published %}
+        <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+      {% endif %}
+    </header>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('content') }}>
+    {{ content|without('links', 'field_location', 'field_event_date') }}
+  </div><!-- /.content -->
+  {% if content.links %}
+    <div class="links">
+      {{ content.links }}
+    </div><!-- /.links -->
+  {% endif %}
+  <div class="event-recap"><a href="{{ url }}">{{ 'Event recap'|t }}</a></div>
+</article><!-- /.node -->
