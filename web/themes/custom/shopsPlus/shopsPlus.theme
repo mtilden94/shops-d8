@@ -230,11 +230,7 @@ function shopsPlus_preprocess_block(&$variables) {
     }
   }
 
-<<<<<<< HEAD
-  if(!empty($node) AND !empty($variables['label']['#markup'])) {
-=======
   if (!empty($node) AND isset($variables['label']['#markup'])) {
->>>>>>> c49fbae68d49c2d2ccee49bc5e40ac785bee0db4
     $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
   }
 
