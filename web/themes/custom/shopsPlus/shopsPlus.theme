@@ -58,10 +58,6 @@ function shopsPlus_preprocess_page_title(&$variables) {
 
 
 function shopsPlus_preprocess_node(&$variables) {
-  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
-    $variables['city'] = $variables['node']->field_location->first()
-      ->getLocality();
-  }
   $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
 
@@ -159,14 +155,6 @@ function shopsPlus_preprocess_page(&$variables) {
  * Prepares variables for the field.html.twig template.
  */
 function shopsPlus_preprocess_field(&$variables, $hook) {
-  if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
-    $style_img = 'slide_image';
-  }
-  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' || $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
-    $variables['city'] = $variables['element']['#items']->first()
-      ->getLocality();
-    $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
-  }
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
 
@@ -190,6 +178,24 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
       ->buildUrl($image_public_uri);
     $variables['image_top_block_url'] = $style;
   }
+
+//disable country link
+  if ($variables['field_name'] == 'field_country') {
+    foreach ($variables['items'] as &$item) {
+      //$disable = $item['content']['#options']['entity']->field_disable->getValue();
+      $disable = (bool)$item['content']['#options']['entity']->field_disable->value;
+
+      if ($disable) {
+        $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');
+      }
+    }
+  }
+
+  //add field item class
+  foreach ($variables['items'] as &$item) {
+    $item['attributes']->addClass('f_item');
+  }
+
 }
 
 /**
@@ -197,7 +203,6 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
  */
 function shopsPlus_preprocess_block(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
-
   $flag_atrr_id = FALSE;
   $class = array();
 
@@ -225,7 +230,7 @@ function shopsPlus_preprocess_block(&$variables) {
     }
   }
 
-  if(!empty($node) AND !empty($variables['label']['#markup'])) {
+  if (!empty($node) AND isset($variables['label']['#markup'])) {
     $variables['label']['#markup'] = str_replace("@node_title", $node->getTitle(), $variables['label']['#markup']);
   }
 
@@ -234,6 +239,7 @@ function shopsPlus_preprocess_block(&$variables) {
 }
 
 function shopsPlus_preprocess_views_view(&$vars) {
+
   $view = $vars['view'];
   $display_id = $view->current_display;
   $id = $vars['id'];
@@ -313,6 +319,11 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     $form['actions']['submit']['#value'] = 'Submit';
     unset($form['actions']['preview']);
   }
+  if (strpos($form_id, 'subscriptions') !== FALSE) {
+    if (isset($form['mail']['widget'][0]['value'])) {
+      $form['mail']['widget'][0]['value']['#placeholder'] = t('Enter email address');
+    }
+  }
   //------------------------------
   $more_class = '';
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
@@ -330,6 +341,7 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     $form['more']['#weight'] = 0;
     $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
   }
+  //------------------------------
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-staff-page-1') {
     $form['title']['#placeholder'] = t('Enter Name');
     $form['location']['#options']['All'] = "All locations";
@@ -351,4 +363,5 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     $form['more']['#weight'] = 0;
     $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
   }
+
 }
