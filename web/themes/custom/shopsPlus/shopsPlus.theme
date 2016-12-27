@@ -56,6 +56,14 @@ function shopsPlus_preprocess_page_title(&$variables) {
   }
 }
 
+
+/** Implementation theme_preprocess_node */
+function shopsPlus_preprocess_node(&$vars) {
+  if ($vars['node']->hasField('field_location')) {
+    $vars['city'] = $vars['node']->field_location->first()->getLocality();
+  }
+}
+
 /**
  * @param $variables
  */
@@ -154,6 +162,19 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
   if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode'] == 'teaser') {
     $style_img = 'slide_image';
   }
+  if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
+    $style_img = 'slide_image';
+  }
+  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' || $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
+    $variables['city'] = $variables['element']['#items']->first()
+      ->getLocality();
+    $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
+  }
+
+//  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'slider') {
+//    $variables['city'] = $variables['element']['#items']->first()->getLocality();
+//  }
+
   // Top image block style
   if ($style_img != '') {
     $variables['image_top_block_url'] = '';
