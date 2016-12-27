@@ -52,12 +52,12 @@ class WhereWeWorkBlock extends BlockBase {
       $data[$term_id]['nodes'][$node->id()] = array(
         'nid' => $node->id(),
         'title' => $node->getTitle(),
-        'link' => $node->toLink(),
+        'link' => ($node->field_disable->getValue()) ? $node->getTitle() : $node->toLink(),
       );
 
       $map_points[] = array(
         'title' => $node->getTitle(),
-        'link' => $node->toLink()->toString(),
+        'link' => ($node->field_disable->getValue()) ? $node->getTitle() : 'More details about <br/>'.$node->toLink()->toString(),
         'geo' => $node->field_capital_city_coordinates->getValue(),
       );
     }

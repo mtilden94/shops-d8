@@ -48,7 +48,9 @@
 }
 
 //.block-views-block-news-and-updates {
-.block-original-latest_news_updates-block_1, .block-original-latest_news_updates-block_3 {
+.block-original-latest_news_updates-block_1,
+.block-original-latest_news_updates-block_3,
+.block-original-latest_news_updates-block_4 {
   font-family: $heading-font-family;
   margin-bottom: 70px;
   padding-top: 60px;
@@ -222,6 +224,39 @@
   }
 }
 
+.block-original-latest_news_updates-block_4 {
+  margin-top: 0;
+  padding-top: 0;
+  text-align: left;
+  margin-bottom: $gutter;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .views-row {
+    max-width: 100%;
+    @include span-columns(12);
+    @include omega();
+    margin-bottom: $gutter;
+
+    @include media($tablet-wide) {
+      @include span-columns(6);
+
+      &:nth-child(2) {
+        @include omega();
+      }
+    }
+  }
+
+  .pager__item {
+    .button {
+      @extend %button;
+    }
+  }
+}
+
 .block-original-latest_news_updates-block_3 {
   background-color: $light-gray;
   margin-bottom: 0;
@@ -291,7 +326,19 @@
 .block-original-hp_stories-block_1,
 .block-original-slider_events-block_1 {
   margin-bottom: 40px;
-
+  .node {
+    &:after {
+      content: '';
+      background: linear-gradient(to right, #000, transparent);
+      opacity: 0.57;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 70%;
+      max-height: 293px;
+      z-index: 1;
+    }
+  }
   .flexslider {
     border: 0;
     margin-bottom: 0
@@ -348,6 +395,11 @@
     }
   }
   @include media($tablet) {
+    .node {
+      &:after {
+        max-height: 900px;
+      }
+    }
     margin-bottom: 0;
     .flex-control-nav {
       top: 417px;
@@ -362,6 +414,7 @@
       top: 54%;
       transform: translateY(-50%);
       left: 19px;
+      z-index: 111;
       h2 {
         color: $white;
         max-width: 355px;
@@ -470,6 +523,11 @@
 .block-original-hp_stories-block_1 {
   max-width: 1200px;
   margin: 0 auto;
+  .node {
+    &:after {
+      content: none;
+    }
+  }
   .node {
     .content {
       text-align: left;
@@ -583,7 +641,7 @@
 
 .block-original-hp_info_graph-block_1 {
   max-width: 1200px;
-  margin: 36px auto 0;
+  margin: 8px auto 0;
   padding: 0 50px;
   text-align: center;
   &:after {
@@ -619,6 +677,8 @@
   .impact-summary {
     color: #777;
     font-size: 14px;
+    margin: 0 auto;
+    max-width: 230px;
   }
   .views-row {
     margin-bottom: 40px;
@@ -630,7 +690,7 @@
     padding-top: 129px;
   }
   @include media($tablet) {
-    padding: 0 39px 60px 39px;
+    padding: 0 0 60px 0;
     & > h2 {
       margin-bottom: 42px;
     }
@@ -664,6 +724,7 @@
     }
     .impact-summary {
       font-size: 24px;
+      max-width: 350px;
     }
     .views-row .impact-image div {
       background-size: 201px;
@@ -679,10 +740,12 @@
   width: 100%;
   & > h2 {
     font-size: 26px;
-    border-bottom: $base-border;
     text-align: center;
-    padding-bottom: 22px;
-    margin-bottom: 25px;
+    margin-bottom: 23px;
+  }
+  .views-row:nth-child(1) {
+    border-top: $base-border;
+    padding-top: 20px;
   }
   header h2 {
     font-weight: $header-normal;
@@ -711,18 +774,21 @@
     }
   }
   @include media($tablet) {
-    margin-top: 60px;
+    margin-top: 67px;
     padding: 0 39px 0px 39px;
     & > h2 {
       font-size: 24px;
-      padding-bottom: 10px;
-      margin-bottom: 25px;
+      margin-bottom: 10px;
       text-align: left;
     }
     header h2 {
       font-size: 20px;
       max-height: 73px;
       overflow: hidden;
+    }
+    .views-row:nth-child(1), .views-row:nth-child(2) {
+      padding-top: 25px;
+      border-top: $base-border;
     }
     .views-row {
       @include span-columns(6);
@@ -744,8 +810,10 @@
     padding: 0;
     & > h2 {
       font-size: 28px;
-      padding-bottom: 22px;
-      margin-bottom: 38px;
+      margin-bottom: 20px;
+    }
+    .views-row:nth-child(1), .views-row:nth-child(2) {
+      padding-top: 40px;
     }
     header h2 {
       max-height: 110px;
@@ -785,6 +853,16 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 80% 50%;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to right, #000, transparent);
+      opacity: 0.57;
+    }
   }
   .form-item-message {
     padding: 0 35px;

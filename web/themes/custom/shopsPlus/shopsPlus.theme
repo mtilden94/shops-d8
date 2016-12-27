@@ -57,10 +57,19 @@ function shopsPlus_preprocess_page_title(&$variables) {
 }
 
 
-/** Implementation theme_preprocess_node */
-function shopsPlus_preprocess_node(&$vars) {
-  if ($vars['node']->hasField('field_location')) {
+function shopsPlus_preprocess_node(&$variables) {
+  if ($node->getType() == 'event' && $vars['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
     $vars['city'] = $vars['node']->field_location->first()->getLocality();
+  }
+  $variables['content']['infographic_slideshow'] = array();
+  $node = &$variables['node'];
+
+  if ($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
+    $block_slideshow = views_embed_view('impact_infographic', 'block_slideshow');
+
+    if (!empty($block_slideshow)) {
+      $variables['content']['infographic_slideshow'] = $block_slideshow;
+    }
   }
 }
 
@@ -162,19 +171,6 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
   if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode'] == 'teaser') {
     $style_img = 'slide_image';
   }
-  if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
-    $style_img = 'slide_image';
-  }
-  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' || $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
-    $variables['city'] = $variables['element']['#items']->first()
-      ->getLocality();
-    $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
-  }
-
-//  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'slider') {
-//    $variables['city'] = $variables['element']['#items']->first()->getLocality();
-//  }
-
   // Top image block style
   if ($style_img != '') {
     $variables['image_top_block_url'] = '';

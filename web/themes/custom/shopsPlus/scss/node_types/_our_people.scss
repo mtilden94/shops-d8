@@ -333,8 +333,10 @@
           width: 100%;
         }
         .views-row {
-          @include span-columns(4);
+          width: 31%;
+          margin: 0 1%;
           display: inline-block;
+          vertical-align: top;
           margin-bottom: 25px;
         }
         .views-row:nth-child(3n+3) {
@@ -358,8 +360,7 @@
         border-bottom: $base-border;
         margin-bottom: 50px;
         .views-row {
-          width: 353px;
-          margin: 0 18px 45px 0;
+          margin-bottom: 45px;
         }
       }
     }

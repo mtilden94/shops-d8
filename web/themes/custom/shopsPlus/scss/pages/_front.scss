@@ -18,7 +18,10 @@
   border-bottom: $base-border;
   border-top: $base-border;
 }
-#block-shopsplus-content {
+.front #main > .container {
+  margin-bottom: 0;
+}
+.front #block-shopsplus-content {
   .content {
     .body {
       h1 {

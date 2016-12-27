@@ -20,7 +20,6 @@
 {% if title %}
     <h3>{{ title }}</h3>
 {% endif %}
-<div class="views-content">
     {% for row in rows %}
         {% set row_classes = [
         default_row_class ? 'views-row',
@@ -29,4 +28,3 @@
             {{ row.content }}
         </div>
     {% endfor %}
-</div>
