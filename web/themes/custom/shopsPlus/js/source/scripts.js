@@ -210,6 +210,7 @@
                     $(this).toggleClass('open-sub-menu');
                 }
             );
+
             //sidebar menu active
             $('.block-current-active-submenu li a').each(
                 function () {

@@ -178,16 +178,16 @@ function shopsPlus_preprocess_field(&$variables, $hook)
                 if ($start_date[1] != $end_date[1]) {
                     $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . '-' . $end_date[1] . ', ' . $start_date[2];
                     $variables['items'][0]['content']['end_date']['#plain_text'] = '';
-                }else{
+                } else {
                     $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . ', ' . $start_date[2];
                     $variables['items'][0]['content']['end_date']['#plain_text'] = '';
                 }
             } else {
                 $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1];
-                $variables['items'][0]['content']['end_date']['#plain_text'] = ' - '.$end_date[0] . ' ' . $end_date[1] . ', ' . $end_date[2];
+                $variables['items'][0]['content']['end_date']['#plain_text'] = ' - ' . $end_date[0] . ' ' . $end_date[1] . ', ' . $end_date[2];
             }
         }
-    }
+    }//end date field
 
     // Make additional variables available to the template.
     $variables['bundle'] = $variables['element']['#bundle'];
