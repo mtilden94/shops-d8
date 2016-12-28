@@ -171,21 +171,26 @@ function shopsPlus_preprocess_field(&$variables, $hook)
     }
     #date field / Manage display custom M. j Y
     if ($variables['field_name'] == 'field_event_date' && $variables['element']['#view_mode'] == 'sidebar') {
-        $start_date = explode(' ', $variables['items'][0]['content']['start_date']['#plain_text']);
-        $end_date = explode(' ', $variables['items'][0]['content']['end_date']['#plain_text']);
-        if ($start_date[2] == $end_date[2]) {
-            if ($start_date[0] == $end_date[0]) {
-                if ($start_date[1] != $end_date[1]) {
-                    $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . '-' . $end_date[1] . ', ' . $start_date[2];
-                    $variables['items'][0]['content']['end_date']['#plain_text'] = '';
+        if (isset($variables['items'][0]['content']['start_date'])) {
+            $start_date = explode(' ', $variables['items'][0]['content']['start_date']['#plain_text']);
+            $end_date = explode(' ', $variables['items'][0]['content']['end_date']['#plain_text']);
+            if ($start_date[2] == $end_date[2]) {
+                if ($start_date[0] == $end_date[0]) {
+                    if ($start_date[1] != $end_date[1]) {
+                        $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . '-' . $end_date[1] . ', ' . $start_date[2];
+                        $variables['items'][0]['content']['end_date']['#plain_text'] = '';
+                    } else {
+                        $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . ', ' . $start_date[2];
+                        $variables['items'][0]['content']['end_date']['#plain_text'] = '';
+                    }
                 } else {
-                    $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . ', ' . $start_date[2];
-                    $variables['items'][0]['content']['end_date']['#plain_text'] = '';
+                    $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1];
+                    $variables['items'][0]['content']['end_date']['#plain_text'] = ' - ' . $end_date[0] . ' ' . $end_date[1] . ', ' . $end_date[2];
                 }
-            } else {
-                $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1];
-                $variables['items'][0]['content']['end_date']['#plain_text'] = ' - ' . $end_date[0] . ' ' . $end_date[1] . ', ' . $end_date[2];
             }
+        }else{
+            $start_date = explode(' ', $variables['items'][0]['content']['#plain_text']);
+            $variables['items'][0]['content']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . ', ' . $start_date[2];
         }
     }//end date field
 
