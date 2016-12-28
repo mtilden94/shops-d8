@@ -51,8 +51,8 @@
 .block-original-latest_news_updates-block_1,
 .block-original-latest_news_updates-block_3,
 .block-original-latest_news_updates-block_4,
-.block-original-latest_news_updates-block_5 {
-  
+.block-original-latest_news_updates-block_5,
+.block-original-latest_news_updates-block_7 {
   font-family: $heading-font-family;
   margin-bottom: 70px;
   padding-top: 60px;
@@ -366,6 +366,109 @@
       a {
         font-size: 16px;
         padding: 24px 27px;
+      }
+    }
+  }
+}
+
+.block-original-latest_news_updates-block_7 {
+  margin-top: 0;
+  padding-top: 0;
+  .views-row {
+    width: 100%;
+  }
+  @include media($tablet) {
+    & > h2 {
+      font-size: 16px;
+      text-align: left;
+      margin-bottom: 14px;
+    }
+    .views-row {
+      .node {
+        padding: 14px;
+        h2 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  @include media($fullsize) {
+    & > h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .views-row {
+      .node {
+        padding: 16px;
+        h2 {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+.block-original-hp_stories-block_2 {
+  display: none;
+  @include media($tablet) {
+    position: relative;
+    display: block;
+    .flexslider {
+      margin-bottom: 0;
+    }
+    .node-story-sidebar div:nth-child(1) > div {
+      min-height: 168px;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: cover;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 121px;
+        width: 100%;
+        background: linear-gradient(to top, #000, transparent);
+      }
+    }
+    .content {
+      font-family: $heading-font-family;
+      position: absolute;
+      bottom: 0;
+      padding: 14px;
+      left: 0;
+      width: 100%;
+      .fs {
+        color: #2eb9ea;
+        text-transform: uppercase;
+        font-weight: $header-bold;
+        line-height: 1em;
+        font-size: 14px;
+      }
+      .more {
+        a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  @include media($fullsize) {
+    .node-story-sidebar {
+      .node-story-sidebar > div:nth-child(1) > div {
+        min-height: 200px;
+        &:after {
+          height: 144px;
+        }
+      }
+      .content {
+        padding: 16px;
+        .more {
+          a {
+            font-size: 24px;
+          }
+        }
       }
     }
   }
@@ -1013,6 +1116,19 @@
         height: 60px;
         font-size: 16px;
       }
+    }
+  }
+}
+
+.sidebar {
+  .block-simplenews {
+    display: none;
+    @include media($tablet) {
+      display: block;
+      background-color: #54b9dd;
+    }
+    @include media($fullsize) {
+      padding: 16px;
     }
   }
 }
