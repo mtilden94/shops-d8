@@ -774,6 +774,7 @@
           bottom: 0;
           width: 100%;
           opacity: 0.72;
+          left: 0;
         }
       }
       .content {
@@ -941,7 +942,7 @@
     }
     .impact-summary {
       font-size: 24px;
-      max-width: 320px;
+      max-width: 347px;
     }
     .views-row {
       padding-bottom: 30px;
@@ -966,7 +967,7 @@
     margin-bottom: 23px;
     font-weight: 600;
   }
-  .views-row:nth-child(1) {
+  .views-row-1 {
     border-top: $base-border;
     padding-top: 20px;
   }
