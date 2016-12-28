@@ -1,0 +1,20 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-story-sidebar'
+] %}
+<article{{ attributes.addClass(classes) }}>
+
+    {% if content.field_image %}
+        {{ content.field_image }}
+    {% endif %}
+
+    <div{{ content_attributes.addClass('content') }}>
+        {{ title_prefix }}
+            {% if not node.published %}
+                <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+            {% endif %}
+        {{ title_suffix }}
+        <div class="fs">Featured story</div>
+        <div class="more"><a href="{{ url }}">{{ node.field_first_name.value }} {{ node.field_last_name.value }}</a></div>
+    </div><!-- /.content -->
+</article><!-- /.node -->
