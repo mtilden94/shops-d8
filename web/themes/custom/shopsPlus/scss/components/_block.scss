@@ -710,6 +710,7 @@
     }
     .more a {
       display: block;
+      text-align: center;
       background-color: $active;
       text-decoration: none;
       text-transform: uppercase;
@@ -802,7 +803,7 @@
     font-size: 24px;
     text-align: center;
     padding-top: 36px;
-    margin-bottom: 19px;
+    margin-bottom: 0;
 
     &:before {
       content: "\e901";
@@ -829,22 +830,51 @@
     max-width: 230px;
   }
   .views-row {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    &:hover{
+      background-color: rgba(0,173,255,.54);
+      .content *{
+        color: $white !important;
+      }
+    }
   }
-  .views-row .impact-image div {
-    background-repeat: no-repeat;
-    background-position: 50% 0;
-    background-size: 135px;
-    padding-top: 129px;
+  .views-row .impact-image {
+    width: 135px;
+    height: 135px;
+    margin: 0 auto;
+    border: 3px solid #002e6c;
+    background-color: #cfeef2;
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+    margin-bottom: 10px;
+    img{
+      position: relative;
+      top:50%;
+      transform: translateY(-50%);
+    }
   }
   @include media($tablet) {
-    padding: 0 0 60px 0;
+    margin-top: 25px;
+    padding: 0 0 40px 0;
     & > h2 {
-      margin-bottom: 42px;
+      margin-bottom: 22px;
+    }
+    .views-content{
+      display: table;
+      width: 100%;
+    }
+    @include display-context(table){
+      .views-row  {
+        @include span-columns(4);
+      }
     }
     .views-row {
       margin-bottom: 0;
-      @include span-columns(4);
+      padding-bottom: 20px;
+      padding-top: 20px;
     }
     .impact {
       font-size: 28px;
@@ -852,17 +882,17 @@
     .impact-summary {
       font-size: 16px;
     }
-    .views-row .impact-image div {
-      padding-top: 118px;
+    .views-row .impact-image  {
+
     }
   }
   @include media($fullsize) {
-    padding: 0 0 145px 0;
+    padding: 0 0 115px 0;
     margin-top: 80px;
     & > h2 {
       padding-top: 55px;
       font-size: 28px;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       &:before {
         font-size: 42px;
       }
@@ -872,11 +902,16 @@
     }
     .impact-summary {
       font-size: 24px;
-      max-width: 350px;
+      max-width: 320px;
     }
-    .views-row .impact-image div {
-      background-size: 201px;
-      padding-top: 178px;
+    .views-row {
+      padding-bottom: 30px;
+      padding-top: 30px;
+      .impact-image {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 15px;
+      }
     }
   }
 }
