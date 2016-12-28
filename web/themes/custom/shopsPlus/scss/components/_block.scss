@@ -314,9 +314,21 @@
   & > h2 {
     font-size: 24px;
     text-align: center;
+    font-weight: 600;
   }
   .views-row {
     margin-bottom: 20px;
+    .node{
+      h2 {
+        font-size: 18px;
+      }
+      .content{
+        font-size: 12px;
+      }
+    }
+  }
+  .submitted time{
+    font-size: 12px;
   }
   .pager {
     padding-top: 3px;
@@ -337,16 +349,30 @@
   }
   @include media($mobile2) {
     .more-true {
-      .views-row:nth-child(3) {
+      .views-row-3 {
         display: inline-block;
       }
     }
   }
   @include media($tablet) {
-    padding: 0 39px 75px 39px;
+    padding: 0 20px 75px 20px;
     & > h2 {
       text-align: left;
-      font-size: 28px;
+    }
+    .views-row {
+      width: 49%;
+      max-width: 355px;
+      .node {
+        h2{
+          font-size: 30px;
+        }
+        .content{
+          font-size: 16px;
+        }
+      }
+    }
+    .submitted time{
+      font-size: 14px;
     }
     .pager {
       margin-top: 24px;
@@ -358,9 +384,15 @@
   }
   @include media($fullsize) {
     padding: 0 0 144px 0;
+    & > h2{
+      font-size: 28px;
+    }
     .views-row {
       margin-bottom: 20px;
       max-width: 1000px;
+    }
+    .submitted time{
+      font-size: 16px;
     }
     .pager {
       margin-top: 40px;
@@ -679,8 +711,9 @@
   .node {
     .content {
       text-align: left;
-      padding: 20px;
+      padding: 20px 10px;
       h2 {
+        color: #555;
         font-size: 36px;
         margin-bottom: 15px;
         padding-left: 0;
@@ -804,13 +837,14 @@
     text-align: center;
     padding-top: 36px;
     margin-bottom: 0;
-
+    font-weight: 600;
     &:before {
       content: "\e901";
       font-family: $icons-font-family;
       position: absolute;
       text-align: center;
       font-size: 28px;
+      font-weight: normal;
       width: 100%;
       left: 0;
       top: 0;
@@ -833,9 +867,9 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
-    &:hover{
-      background-color: rgba(0,173,255,.54);
-      .content *{
+    &:hover {
+      background-color: rgba(0, 173, 255, .54);
+      .content * {
         color: $white !important;
       }
     }
@@ -850,9 +884,9 @@
     position: relative;
     text-align: center;
     margin-bottom: 10px;
-    img{
+    img {
       position: relative;
-      top:50%;
+      top: 50%;
       transform: translateY(-50%);
     }
   }
@@ -862,12 +896,12 @@
     & > h2 {
       margin-bottom: 22px;
     }
-    .views-content{
+    .views-content {
       display: table;
       width: 100%;
     }
-    @include display-context(table){
-      .views-row  {
+    @include display-context(table) {
+      .views-row {
         @include span-columns(4);
       }
     }
@@ -882,7 +916,7 @@
     .impact-summary {
       font-size: 16px;
     }
-    .views-row .impact-image  {
+    .views-row .impact-image {
 
     }
   }
@@ -925,13 +959,14 @@
     font-size: 26px;
     text-align: center;
     margin-bottom: 23px;
+    font-weight: 600;
   }
   .views-row:nth-child(1) {
     border-top: $base-border;
     padding-top: 20px;
   }
   header h2 {
-    font-weight: $header-normal;
+    font-weight: $header-bold;
   }
   footer {
     clear: both;
@@ -1063,6 +1098,7 @@
     display: inline-block;
     vertical-align: top;
     margin-top: 35px;
+    font-size: 12px;
     .description, label {
       display: none;
     }
@@ -1073,7 +1109,7 @@
   }
   .field--type-email {
     color: $dark-gray;
-    width: 187px;
+    width: 180px;
     input {
       height: 46px;
     }
@@ -1101,9 +1137,10 @@
       padding: 0;
     }
     .field--type-email {
-      width: 365px;
+      width: 265px;
       input {
         height: 55px;
+        font-size: 17px;
       }
     }
     .field--type-email, .form-actions {
@@ -1115,6 +1152,7 @@
       .button {
         padding: 0 20px;
         height: 55px;
+        font-size: 14px;
       }
     }
   }
@@ -1305,12 +1343,12 @@
     h2 {
       font-size: 18px;
     }
-    .event-date{
+    .event-date {
       font-family: $heading-font-family;
       color: $active;
       font-size: 16px;
     }
-    .country{
+    .country {
       font-size: 14px;
       color: #777;
     }
@@ -1325,7 +1363,7 @@
     h2 {
       font-size: 26px;
     }
-    .country, .event-date{
+    .country, .event-date {
       font-size: 18px;
     }
   }
