@@ -41,7 +41,7 @@ body.no-sidebar, body.one-sidebar {
   }
 }
 
-#content {
+#content, #sidebar-second {
   padding: 0 20px 20px 18px;
 }
 //one-sidebar.sidebar-second
@@ -49,6 +49,7 @@ body.no-sidebar, body.one-sidebar {
   @include media($tablet) {
     #sidebar-second {
       float: left;
+      padding: 0;
       width: 236px;
       position: relative;
       margin-right: 18px;

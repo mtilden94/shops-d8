@@ -1121,11 +1121,152 @@
   .block-simplenews {
     display: none;
     @include media($tablet) {
+      position: relative;
       display: block;
       background-color: #54b9dd;
+      padding: 13px 13px 23px;
+      &:after {
+        content: '';
+        position: absolute;
+        background: url('../images/optimized/mark.svg');
+        background-position: -55px -16px;
+        background-repeat: no-repeat;
+        background-size: 198px auto;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0.2;
+      }
+      .description, label {
+        display: none;
+      }
+      .form-item-message {
+        font-family: $heading-font-family;
+        color: #002f6c;
+        font-size: 22px;
+        line-height: 1.2em;
+        margin-bottom: 15px;
+      }
+      form {
+        position: relative;
+        z-index: 1;
+        .form-actions {
+          position: relative;
+          overflow: hidden;
+          width: 45px;
+          height: 45px;
+          .button {
+            width: 45px;
+            height: 45px;
+            background-color: #002f6c;
+            text-indent: -200px;
+            overflow: hidden;
+          }
+          &:after {
+            content: '\e902';
+            font-family: $icons-font-family;
+            top: 11px;
+            left: 13px;
+            color: #fff;
+            position: absolute;
+            text-indent: 0;
+            font-size: 16px;
+          }
+        }
+        .field--name-mail {
+          float: left;
+          width: 165px;
+          input {
+            height: 45px;
+            font-size: 14px;
+            font-family: $heading-font-family;
+            font-weight: $header-normal;
+          }
+        }
+      }
     }
     @include media($fullsize) {
-      padding: 16px;
+      padding: 16px 16px 28px;
+      &:after {
+        background-size: 343px auto;
+        background-position: -107px -32px;
+      }
+      .form-item-message {
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+      form {
+        .form-actions {
+          width: 53px;
+          height: 53px;
+          .button {
+            width: 53px;
+            height: 53px;
+          }
+          &:after {
+            top: 13px;
+            left: 15px;
+            font-size: 19px;
+          }
+        }
+        .field--name-mail {
+          width: 195px;
+          input {
+            height: 53px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.block-original-events-block_1 {
+  display: none;
+  @include media($tablet) {
+    text-align: center;
+    display: block;
+    border: $base-border;
+    padding: 26px;
+    &:before {
+      content: '';
+      width: 97px;
+      height: 97px;
+      border-radius: 50%;
+      display: block;
+      border: 2px solid #002f6c;
+      margin: 0 auto 20px;
+      background: url("../images/optimized/calendar-icon.png");
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-color: #cfeef2;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    .event-date{
+      font-family: $heading-font-family;
+      font-size: 16px;
+      color: $active;
+    }
+    .country{
+      font-size: 14px;
+      color: #777;
+    }
+  }
+  @include media($fullsize) {
+    padding: 31px;
+    &:before {
+      width: 115px;
+      height: 115px;
+      margin: 0 auto 23px;
+    }
+    h2 {
+      font-size: 26px;
+    }
+    .country, .event-date{
+      font-size: 18px;
     }
   }
 }
