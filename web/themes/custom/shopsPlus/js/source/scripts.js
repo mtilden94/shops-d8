@@ -78,7 +78,7 @@
                         maxH = ( $(this).outerHeight() > maxH ) ? $(this).outerHeight() : maxH;
                     });
                     $blocks.css('min-height', maxH);
-                }
+                };
 
                 var minHeightViewsRow = function ($views_origin_class) {
                     if ($($views_origin_class).length) {
@@ -93,7 +93,7 @@
                             $($views_origin_class).equivalent();
                         }
                     }
-                }
+                };
 
                 //news update block
                 minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node > header');
@@ -101,6 +101,27 @@
                 minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node > header');
                 minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node');
                 minHeightViewsRow('.block-original-latest_news_updates-block_4 .views-row .node');
+
+                $('.flexslider.optionset-gallery').on('start', function(event) {
+                    var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
+                    if ($pager.length <= 0) {
+                        $pager = $('<div class="flex-sidebar-direction-nav-pager-webksde"><span class="pager-current"></span><span class="pager-separator">/</span><span class="pager-total"></span></div>');
+                        $(this).find('ul.flex-direction-nav').prepend($pager);
+                    }
+                    $flexslider = $(this).data('flexslider');
+                    $pager.children('.pager-current').text($flexslider.currentSlide + 1);
+                    $pager.children('.pager-total').text($flexslider.count);
+                });
+
+                $('.flexslider.optionset-gallery').on('after', function(event) {
+                    var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
+                    if ($pager.length >= 0) {
+                        $flexslider = $(this).data('flexslider');
+                        $pager.children('.pager-current').text($flexslider.currentSlide + 1);
+                        $pager.children('.pager-total').text($flexslider.count);
+                    }
+                });
+
             }
         };
         // jQuery(function ($) {
