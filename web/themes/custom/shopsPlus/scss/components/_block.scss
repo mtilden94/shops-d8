@@ -934,14 +934,14 @@
       max-height: 73px;
       overflow: hidden;
     }
-    .views-row:nth-child(1), .views-row:nth-child(2) {
+    .views-row-1, .views-row-2 {
       padding-top: 25px;
       border-top: $base-border;
     }
     .views-row {
       @include span-columns(6);
     }
-    .views-row:nth-child(2n+2) {
+    .views-row.even {
       margin-right: 0;
     }
     footer {
@@ -960,7 +960,7 @@
       font-size: 28px;
       margin-bottom: 20px;
     }
-    .views-row:nth-child(1), .views-row:nth-child(2) {
+    .views-row-1, .views-row-2 {
       padding-top: 40px;
     }
     header h2 {
