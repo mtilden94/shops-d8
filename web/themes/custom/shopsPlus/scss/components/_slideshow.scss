@@ -1,14 +1,13 @@
+$slide--prev-img: "../images/optimized/left-arrow.png";
+$slide--next-img: "../images/optimized/right-arrow.png";
+
 .flexslider {
+  &.optionset-gallery,
   &.optionset-infographic {
-    border: 1px solid #cccccc;
     margin: 0;
     border-radius: 0;
     overflow: hidden;
     margin-bottom: 1.05em;
-
-    @include media($desktop) {
-      margin-bottom: 60px;
-    }
 
     ul {
       margin: 0 !important;
@@ -19,7 +18,17 @@
           display: none;
         }
       }
+    }
+  }
 
+  &.optionset-infographic {
+    border: 1px solid #cccccc;
+
+    @include media($desktop) {
+      margin-bottom: 60px;
+    }
+
+    ul {
       &.slides {
         padding: 22px !important;
 
@@ -59,6 +68,52 @@
           &:hover {
             background-color: #2eb9ea;
           }
+        }
+      }
+    }
+
+  }
+
+  &.optionset-gallery {
+    border: none;
+
+    li {
+      position: inherit;
+    }
+
+    .slides {
+      @include media($tablet) {
+        padding-left: 64px !important;
+        padding-right: 64px !important;
+      }
+    }
+
+    .flex-direction-nav {
+      display: none;
+
+      @include media($tablet) {
+        display: block;
+      }
+
+      a {
+        display: block;
+        width: 37px;
+        height: 54px;
+        font-size: 0;
+        transform: translateY(-50%);
+
+        &.flex-prev {
+          background: url($slide--prev-img) no-repeat 20% center;
+          left: 0;
+        }
+
+        &.flex-next {
+          background: url($slide--next-img) no-repeat 80% center;
+          right: 0;
+        }
+
+        &:before {
+          display: none;
         }
       }
     }

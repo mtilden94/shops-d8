@@ -1,0 +1,16 @@
+.node-image-slide {
+  font-family: $heading-font-family;
+  .field {
+    &.image {
+      margin-bottom: $gutter;
+    }
+  }
+
+  .slide-caption {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 18px;
+    color: #02807f;
+    text-align: center;
+  }
+}

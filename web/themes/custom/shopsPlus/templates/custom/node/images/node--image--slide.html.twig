@@ -1,0 +1,16 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+    'node node-image-slide'
+] %}
+<div {{ attributes.addClass(classes) }}>
+    {% if title_prefix or title_suffix%}
+        {{ title_prefix }}
+        {{ title_suffix }}
+    {% endif %}
+
+    {{ content }}
+
+    <div class="slide-caption">
+        {{ label }}
+    </div>
+</div><!-- /.node -->

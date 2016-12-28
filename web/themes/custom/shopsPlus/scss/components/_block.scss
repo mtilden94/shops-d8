@@ -1016,3 +1016,27 @@
     }
   }
 }
+
+.node-type-countries {
+  .field.image-gallery {
+    margin-bottom: $gutter;
+
+    @include media($tablet) {
+      margin-bottom: 58px;
+    }
+
+    .views-element-container {
+      header {
+        margin-bottom: 20px;
+
+        @include media($tablet) {
+          margin-bottom: 40px;
+        }
+
+        h3 {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
