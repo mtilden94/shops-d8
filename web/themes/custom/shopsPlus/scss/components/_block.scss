@@ -625,11 +625,6 @@
       font-weight: $normal;
       line-height: $base-line-height;
     }
-    .event-city {
-      &:before {
-        content: ', ';
-      }
-    }
     .event-details a {
       font-family: $heading-font-family;
       text-transform: uppercase;
