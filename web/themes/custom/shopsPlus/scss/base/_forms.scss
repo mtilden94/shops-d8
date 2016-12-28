@@ -128,7 +128,7 @@ textarea {
   text-align: center;
   .button {
     padding: 0;
-    height: 42px;
+    height: 40px;
     border-radius: 0;
     background-color: $breadcrumbs;
     font-size: 14px;
@@ -141,22 +141,23 @@ textarea {
     vertical-align: top;
     text-decoration: none;
     color: #fff;
+    border: 1px solid $breadcrumbs;
     &:hover{
       background-color: $white;
       color: $breadcrumbs;
     }
     a.button{
-      line-height: 42px;
+      line-height: 40px;
     }
   }
   @include media($fullsize) {
     .button {
       width: 160px;
-      height: 60px;
+      height: 58px;
       font-size: 16px;
     }
     a.button{
-      line-height: 60px;
+      line-height: 58px;
     }
   }
 }
