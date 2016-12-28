@@ -61,6 +61,10 @@ function shopsPlus_preprocess_node(&$variables) {
   $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
 
+  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
+    $variables['city'] = $variables['node']->field_location->first()->getLocality();
+  }
+
   if ($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
     $block_slideshow = views_embed_view('impact_infographic', 'block_slideshow');
 
@@ -155,6 +159,12 @@ function shopsPlus_preprocess_page(&$variables) {
  * Prepares variables for the field.html.twig template.
  */
 function shopsPlus_preprocess_field(&$variables, $hook) {
+  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' ||
+    $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
+    $variables['city'] = $variables['element']['#items']->first()->getLocality();
+    $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
+  }
+
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
 
@@ -166,6 +176,9 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     $style_img = 'header_image';
   }
   if ($variables['field_name'] == 'field_slide_image' && $variables['element']['#view_mode'] == 'teaser') {
+    $style_img = 'slide_image';
+  }
+  if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
     $style_img = 'slide_image';
   }
   // Top image block style
