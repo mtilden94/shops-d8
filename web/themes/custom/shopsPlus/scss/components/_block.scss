@@ -646,7 +646,7 @@
       color: $active;
       font-family: $heading-font-family;
       font-size: $base-font-size;
-      font-weight: $bold;
+      font-weight: $header-bold;
       line-height: $base-line-height;
     }
     .event-date-city > div {
@@ -667,7 +667,7 @@
       font-size: 12px;
       color: $white;
       display: inline-block;
-      padding: 17px;
+      padding: 23px 46px;
       border-bottom: 3px solid $white;
       background-color: $active;
       line-height: 1em;
@@ -679,11 +679,14 @@
   @include media($fullsize) {
     .node {
       .content {
-        top: 75%;
+        top: 65%;
         h2 {
           margin-bottom: 0;
           font-size: 38px;
           max-width: none;
+        }
+        .event-date-city {
+          margin-bottom: 30px;
         }
       }
     }
@@ -691,11 +694,14 @@
   @include media($tablet) {
     .node {
       .content {
-        top: 75%;
+        top: 65%;
         h2 {
           margin-bottom: 0;
           font-size: 38px;
           max-width: none;
+        }
+        .event-date-city {
+          margin-bottom: 30px;
         }
       }
     }
