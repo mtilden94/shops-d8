@@ -3,3 +3,7 @@ services:
     class: Drupal\abt_breadcrumbs\Breadcrumb\OurPeopleBreadcrumbBuilder
     tags:
       - { name: breadcrumb_builder, priority: 100 }
+  abt_breadcrumbs.events:
+    class: Drupal\abt_breadcrumbs\Breadcrumb\EventsBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
