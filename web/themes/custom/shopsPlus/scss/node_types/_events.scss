@@ -23,9 +23,6 @@
       header {
         text-align: center;
       }
-      .location-event-type {
-        bottom: 10px;
-      }
     }
     .views-field-title a {
       color: $heading-color;
@@ -52,15 +49,8 @@
       font-size: 16px;
       font-weight: $normal;
       line-height: $base-line-height;
-      .event-type {
-        &:before {
-          content: '|';
-          color: $time;
-          margin-right: 10px;
-        }
-      }
-      .location {
-        margin-right: 10px;
+      .separator {
+        margin: 0 10px 0 10px;
       }
     }
   }
@@ -96,15 +86,12 @@
         font-size: 18px;
         font-weight: $normal;
         line-height: $base-line-height;
-        margin-right: 10px;
       }
       .location {
         font-weight: $normal;
-        &:before {
-          content: '|';
-          color: $time;
-          margin-right: 10px;
-        }
+      }
+      .separator {
+        margin: 0 10px 0 10px;
       }
     }
     .event-recap {
