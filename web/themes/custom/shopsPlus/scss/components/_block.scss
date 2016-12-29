@@ -278,6 +278,11 @@
       &:nth-child(2) {
         @include omega();
       }
+
+      &:nth-child(3n + 3) {
+        @include span-columns(6);
+        
+      }
     }
   }
 }
