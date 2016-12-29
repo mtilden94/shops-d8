@@ -1,0 +1,40 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-event-slide'
+] %}
+<article{{ attributes.addClass(classes) }}>
+
+  {% if content.field_image %}
+    {{ content.field_image }}
+  {% endif %}
+
+  <div{{ content_attributes.addClass('content') }}>
+    {% if title_prefix or title_suffix or unpublished or page is empty and label %}
+      <header>
+        {{ content.field_is_featured }}
+        {{ title_prefix }}
+        {% if label %}
+          <h2{{ title_attributes.addClass(title_classes) }}>
+            {{ label }}
+          </h2>
+        {% endif %}
+        {{ title_suffix }}
+
+        {% if not node.published %}
+          <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+        {% endif %}
+      </header>
+    {% endif %}
+    {{ content|without('links', 'field_image', 'field_location', 'field_event_date', 'field_register_link') }}
+    {% if content.field_event_date %}
+    <div class="event-date-city">{{ content.field_event_date }}
+      {% if city %}
+        <div class="event-city">, {{ city }}</div>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% if content.field_register_link %}
+      {{ content.field_register_link }}
+    {% endif %}
+  </div><!-- /.content -->
+</article><!-- /.node -->

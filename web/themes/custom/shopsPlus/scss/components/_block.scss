@@ -677,6 +677,9 @@
     }
   }
   @include media($fullsize) {
+    .slide-image {
+      height: 450px;
+    }
     .node {
       .content {
         top: 65%;
@@ -692,6 +695,9 @@
     }
   }
   @include media($tablet) {
+    .slide-image {
+      height: 350px;
+    }
     .node {
       .content {
         top: 65%;

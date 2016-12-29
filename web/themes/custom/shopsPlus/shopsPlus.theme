@@ -61,7 +61,7 @@ function shopsPlus_preprocess_node(&$variables) {
   $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
 
-  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
+  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && ($variables['view_mode'] == 'slider' || $variables['view_mode'] == 'slide')) {
     $variables['city'] = $variables['node']->field_location->first()
       ->getLocality();
   }
