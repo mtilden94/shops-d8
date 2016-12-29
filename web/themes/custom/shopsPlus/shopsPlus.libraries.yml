@@ -34,7 +34,15 @@ fonts:
       https://s3.amazonaws.com/icomoon.io/49365/ShopsPlus/style.css?xw71q5: { type: external }
       https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700&amp;subset=vietnamese: { type: external }
 
+waitForImages:
+  version: VERSION
+  js:
+    libraries/waitForImages/src/jquery.waitforimages.js: {}
 
+matchHeight:
+  version: VERSION
+  js:
+    libraries/matchHeight/jquery.matchHeight-min.js: {}
 
 #tabs:
 #  version: VERSION

@@ -95,12 +95,6 @@
                     }
                 };
 
-                //news update block
-                minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node > header');
-                minHeightViewsRow('.block-original-latest_news_updates-block_1 .views-row .node');
-                minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node > header');
-                minHeightViewsRow('.block-original-latest_news_updates-block_3 .views-row .node');
-                minHeightViewsRow('.block-original-latest_news_updates-block_4 .views-row .node');
 
                 $('.flexslider.optionset-gallery').on('start', function(event) {
                     var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
@@ -120,6 +114,37 @@
                         $pager.children('.pager-current').text($flexslider.currentSlide + 1);
                         $pager.children('.pager-total').text($flexslider.count);
                     }
+                });
+
+                //news update block
+                $('.block-original-latest_news_updates-block_1' +
+                    ' .block-original-latest_news_updates-block_3' +
+                    ' .block-original-latest_news_updates-block_4').waitForImages({
+                    finished: function() {
+                        $(".block-original-latest_news_updates-block_1 .views-row .node > header").matchHeight();
+                        $(".block-original-latest_news_updates-block_1 .views-row .node").matchHeight();
+                        $(".block-original-latest_news_updates-block_3 .views-row .node > header").matchHeight();
+                        $(".block-original-latest_news_updates-block_3 .views-row .node").matchHeight();
+                        $(".block-original-latest_news_updates-block_4 .views-row .node > header").matchHeight();
+                        $(".block-original-latest_news_updates-block_4 .views-row .node").matchHeight();
+                    },
+                    waitForAll: true
+                });
+
+                $(".block-original-latest_news_updates-block_1 .views-row .node > header").matchHeight();
+                $(".block-original-latest_news_updates-block_1 .views-row .node").matchHeight();
+                $(".block-original-latest_news_updates-block_3 .views-row .node > header").matchHeight();
+                $(".block-original-latest_news_updates-block_3 .views-row .node").matchHeight();
+                $(".block-original-latest_news_updates-block_4 .views-row .node > header").matchHeight();
+                $(".block-original-latest_news_updates-block_4 .views-row .node").matchHeight();
+
+                $(window).resize(function () {
+                    $(".block-original-latest_news_updates-block_1 .views-row .node > header").matchHeight();
+                    $(".block-original-latest_news_updates-block_1 .views-row .node").matchHeight();
+                    $(".block-original-latest_news_updates-block_3 .views-row .node > header").matchHeight();
+                    $(".block-original-latest_news_updates-block_3 .views-row .node").matchHeight();
+                    $(".block-original-latest_news_updates-block_4 .views-row .node > header").matchHeight();
+                    $(".block-original-latest_news_updates-block_4 .views-row .node").matchHeight();
                 });
 
             }

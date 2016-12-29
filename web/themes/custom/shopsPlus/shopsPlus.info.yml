@@ -7,6 +7,8 @@ package: Core
 
 libraries:
   - core/normalize
+  - shopsPlus/waitForImages
+  - shopsPlus/matchHeight
   - shopsPlus/global
   - shopsPlus/fonts
 
