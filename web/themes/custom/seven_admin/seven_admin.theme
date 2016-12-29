@@ -38,3 +38,18 @@ function seven_admin_preprocess_field(&$variables, $hook) {
 function seven_admin_preprocess_links(&$variables) {
 
 }
+
+function seven_admin_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  //set random element for header image of node
+  if (!empty($form['field_header_image_from_list'])) {
+    $node = $form_state->getFormObject()->getEntity();
+    if ($node->isNew()) {
+      // This is a new node.
+      $opts = $form['field_header_image_from_list']['widget']['#options'];
+      unset($opts['_none']);
+      $form['field_header_image_from_list']['widget']['#default_value'] = array_rand($opts);
+      //dump($form['field_header_image_from_list']['widget']);
+    }
+  }
+}

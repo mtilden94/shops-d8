@@ -106,6 +106,19 @@ function shopsPlus_preprocess_page(&$variables) {
       //$image = $node->field_image->view($display_options);
       $variables['header_image'] = $image;*/
 
+    } else {
+      if ($node->field_header_image_from_list AND isset($node->field_header_image_from_list->entity)) {
+        //$image_field = $node->field_header_image_from_list->entity->field__header_image;
+        $variables['header_image'] = '';
+        $field__header_image = $node->field_header_image_from_list->entity->field__header_image;
+        $original_image = $field__header_image->entity->getFileUri();
+
+        $style = \Drupal\image\Entity\ImageStyle::load('header_image');
+        $background_image = $style->buildUrl($original_image);
+        $variables['header_image'] = $background_image;
+        //dump();
+      }
+
     }
 
     //our people more
