@@ -209,13 +209,15 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
   if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
     $style_img = '1200x450_sc';
   }
+  if ($variables['field_name'] == 'field_image' && $variables['element']['#view_mode'] == 'slide') {
+    $style_img = '1200x450_sc';
+  }
   // Top image block style
   if ($style_img != '') {
     $variables['image_top_block_url'] = '';
     $field = $variables['items'][0]['content']['#item']->getValue();
     $image_file = \Drupal\file\Entity\File::load($field['target_id']);
     $image_public_uri = $image_file->getFileUri();
-    if (isset($imagecache_style))
     $style = \Drupal\image\Entity\ImageStyle::load($style_img)
       ->buildUrl($image_public_uri);
     $variables['image_top_block_url'] = $style;
