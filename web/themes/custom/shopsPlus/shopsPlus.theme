@@ -243,6 +243,11 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     $item['attributes']->addClass('f_item');
   }
 
+  if ($variables['field_name'] == 'field_file') {
+    foreach ($variables['items'] as &$item) {
+      $item['content']['#description'] = t('Download');
+    }
+  }
 }
 
 /**

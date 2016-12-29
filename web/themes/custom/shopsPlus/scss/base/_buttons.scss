@@ -34,7 +34,6 @@
     }
   }
 }
-
 %button {
   background-color: $active;
   color: white;
@@ -49,6 +48,16 @@
   &:hover {
     background-color: darken($active, 10);
     color: white;
+  }
+}
+
+%button-light-gray {
+  background-color: $light-gray;
+  color: $green;
+
+  &:hover {
+    background-color: darken($light-gray, 10);
+    color: $green;
   }
 }
 

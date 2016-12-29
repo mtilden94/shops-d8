@@ -128,7 +128,7 @@ p.after-table {
   position: relative;
 }
 
-p.int-text, .introduction-text p {
+p.int-text, .introduction-text p, .field.subtitle p {
   color: $green;
   font-weight: $bold;
 }
