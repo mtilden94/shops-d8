@@ -61,8 +61,9 @@ function shopsPlus_preprocess_node(&$variables) {
   $variables['content']['infographic_slideshow'] = array();
   $node = &$variables['node'];
 
-  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && $variables['view_mode'] == 'slider') {
-    $variables['city'] = $variables['node']->field_location->first()->getLocality();
+  if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && ($variables['view_mode'] == 'slider' || $variables['view_mode'] == 'slide')) {
+    $variables['city'] = $variables['node']->field_location->first()
+      ->getLocality();
   }
 
   if ($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
@@ -159,11 +160,38 @@ function shopsPlus_preprocess_page(&$variables) {
  * Prepares variables for the field.html.twig template.
  */
 function shopsPlus_preprocess_field(&$variables, $hook) {
-  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' ||
-    $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
-    $variables['city'] = $variables['element']['#items']->first()->getLocality();
+  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' || $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
+    $variables['city'] = $variables['element']['#items']->first()
+      ->getLocality();
     $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
   }
+  #date field / Manage display custom M. j Y
+  if ($variables['field_name'] == 'field_event_date' && $variables['element']['#view_mode'] == 'sidebar') {
+    if (isset($variables['items'][0]['content']['start_date'])) {
+      $start_date = explode(' ', $variables['items'][0]['content']['start_date']['#plain_text']);
+      $end_date = explode(' ', $variables['items'][0]['content']['end_date']['#plain_text']);
+      if ($start_date[2] == $end_date[2]) {
+        if ($start_date[0] == $end_date[0]) {
+          if ($start_date[1] != $end_date[1]) {
+            $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . '-' . $end_date[1] . ', ' . $start_date[2];
+            $variables['items'][0]['content']['end_date']['#plain_text'] = '';
+          }
+          else {
+            $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . ', ' . $start_date[2];
+            $variables['items'][0]['content']['end_date']['#plain_text'] = '';
+          }
+        }
+        else {
+          $variables['items'][0]['content']['start_date']['#plain_text'] = $start_date[0] . ' ' . $start_date[1];
+          $variables['items'][0]['content']['end_date']['#plain_text'] = ' - ' . $end_date[0] . ' ' . $end_date[1] . ', ' . $end_date[2];
+        }
+      }
+    }
+    else {
+      $start_date = explode(' ', $variables['items'][0]['content']['#plain_text']);
+      $variables['items'][0]['content']['#plain_text'] = $start_date[0] . ' ' . $start_date[1] . ', ' . $start_date[2];
+    }
+  }//end date field
 
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
@@ -179,7 +207,10 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     $style_img = 'slide_image';
   }
   if ($variables['field_name'] == 'field_featured_image' && $variables['element']['#view_mode'] == 'slider') {
-    $style_img = 'slide_image';
+    $style_img = '1200x450_sc';
+  }
+  if ($variables['field_name'] == 'field_image' && $variables['element']['#view_mode'] == 'slide') {
+    $style_img = '1200x450_sc';
   }
   // Top image block style
   if ($style_img != '') {
@@ -196,7 +227,10 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
   if ($variables['field_name'] == 'field_country') {
     foreach ($variables['items'] as &$item) {
       //$disable = $item['content']['#options']['entity']->field_disable->getValue();
-      $disable = (bool)$item['content']['#options']['entity']->field_disable->value;
+      $disable = 0;
+      if (isset($item['content']['#options'])) {
+        $disable = (bool) $item['content']['#options']['entity']->field_disable->value;
+      }
 
       if ($disable) {
         $item['content']['#url'] = \Drupal\Core\Url::fromRoute('<nolink>');

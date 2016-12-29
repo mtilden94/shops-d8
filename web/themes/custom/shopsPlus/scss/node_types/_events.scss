@@ -23,9 +23,6 @@
       header {
         text-align: center;
       }
-      .location-event-type {
-        bottom: 10px;
-      }
     }
     .views-field-title a {
       color: $heading-color;
@@ -52,21 +49,9 @@
       font-size: 16px;
       font-weight: $normal;
       line-height: $base-line-height;
-      .event-type {
-        &:before {
-          content: '|';
-          color: $time;
-          margin-right: 10px;
-        }
+      .separator {
+        margin: 0 10px 0 10px;
       }
-      .location {
-        margin-right: 10px;
-      }
-    }
-  }
-  @include media($tablet-wide) {
-    .views-row {
-      @include span-columns(4);
     }
   }
 }
@@ -101,15 +86,12 @@
         font-size: 18px;
         font-weight: $normal;
         line-height: $base-line-height;
-        margin-right: 10px;
       }
       .location {
         font-weight: $normal;
-        &:before {
-          content: '|';
-          color: $time;
-          margin-right: 10px;
-        }
+      }
+      .separator {
+        margin: 0 10px 0 10px;
       }
     }
     .event-recap {
@@ -123,11 +105,6 @@
       font-weight: $bold;
     }
   }
-  @include media($tablet) {
-    .views-row {
-      @include span-columns(6);
-    }
-  }
 }
 
 .events-view {
@@ -137,17 +114,19 @@
       margin: 0 auto;
     }
     a.button {
-      width: 210px;
-      text-align: center;
-      height: 60px;
-      color: $white;
       font-family: $heading-font-family;
-      font-size: $base-font-size;
-      font-weight: $strong;
       text-transform: uppercase;
-      background-color: $active;
-      line-height: 62px;
       text-decoration: none;
+      font-size: 12px;
+      color: $white;
+      display: inline-block;
+      padding: 17px;
+      border-bottom: 3px solid $white;
+      background-color: $active;
+      line-height: 1em;
+      &:hover {
+        background-color: $blue;
+      }
     }
   }
 }

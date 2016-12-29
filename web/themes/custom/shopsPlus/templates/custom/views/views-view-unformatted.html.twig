@@ -21,10 +21,8 @@
     <h3>{{ title }}</h3>
 {% endif %}
     {% for row in rows %}
-        {% set row_classes = [
-        default_row_class ? 'views-row',
-        ] %}
-        <div{{ row.attributes.addClass(row_classes) }}>
+        {% set parity = 'views-row views-row-'~loop.index~cycle([' odd', ' even'], loop.index0) %}
+        <div{{ row.attributes.addClass(parity) }}>
             {{ row.content }}
         </div>
     {% endfor %}

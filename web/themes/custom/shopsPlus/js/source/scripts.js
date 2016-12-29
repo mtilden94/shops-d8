@@ -257,6 +257,15 @@
                 }
             );
 
+            //sidebar menu active
+            $('.block-current-active-submenu li a').each(
+                function () {
+                    if($(this).attr('class')=="is-active"){
+                        $(this).parents('.menu-item--expanded').addClass('open-sub-menu');
+                    }
+                }
+            );
+
             //Close on click outside
             $(document).click(function (e) {
                 var target = e.target;

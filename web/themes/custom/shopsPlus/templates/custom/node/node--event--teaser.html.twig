@@ -34,7 +34,7 @@
   </div><!-- /.content -->
   <div class="location-event-type">
     {% if content.field_location and content.field_event_type %}
-      {{ content.field_location }} {{ content.field_event_type }}
+      {{ content.field_location }}<div class="separator"> | </div>{{ content.field_event_type }}
     {% endif %}
   </div>
   {% if content.links %}

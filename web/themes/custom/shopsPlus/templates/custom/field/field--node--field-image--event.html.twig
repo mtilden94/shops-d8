@@ -1,0 +1,15 @@
+{% if image_top_block_url %}
+    <div class="slide-image" style="background-image: url({{ image_top_block_url }});"></div>
+{% else %}
+    {% if multiple %}
+        <div{{ attributes }}>
+            {% for item in items %}
+                <div{{ item.attributes }}>{{ item.content }}</div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% for item in items %}
+            <div{{ attributes }}>{{ item.content }}</div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
