@@ -1,23 +1,149 @@
 .node-view--teaser {
-	margin: 0 0 40px 0;
-	.content {
-		p {
-			margin-bottom: 10px;
-		}
-	}
-	h2 {
-		font-size: 20px;
-	}
-	ul.links {
-		margin: 0;
-		.node-readmore a {
-			background: transparent;
-			padding: 0;
-			color: $active;
-			font-size: 16px;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
+  margin: 0 0 40px 0;
+  .content {
+    p {
+      margin-bottom: 10px;
+    }
+  }
+  h2 {
+    font-size: 20px;
+  }
+  ul.links {
+    margin: 0;
+    .node-readmore a {
+      background: transparent;
+      padding: 0;
+      color: $active;
+      font-size: 16px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.field.image-gallery {
+  margin-bottom: $gutter;
+
+  @include media($tablet) {
+    margin-bottom: 58px;
+  }
+
+  .views-element-container {
+    header {
+      margin-bottom: 20px;
+
+      @include media($tablet) {
+        margin-bottom: 40px;
+      }
+
+      h3 {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.node-type-resource {
+  .node {
+    .content {
+
+      .field {
+        @include row();
+        margin-bottom: 10px;
+
+        &.file {
+          margin-bottom: $gutter;
+
+          @include media($tablet) {
+            margin-bottom: $gutter * 2;
+          }
+
+          .file {
+            a {
+              @extend %button;
+              @extend %button-light-gray;
+              padding-right: 0;
+
+              &:after {
+                color: white;
+                margin-left: 20px;
+                background-color: #02807f;
+                content: "\e902";
+                font-family: "icomoon" !important;
+                display: inline-block;
+                padding: 21px;
+                vertical-align: initial;
+                line-height: 1;
+                position: relative;
+                top: 1px;
+              }
+            }
+          }
+        }
+
+        .label.inline {
+          font-size: 20px;
+          color: $heading-color;
+          font-family: $heading-font-family;
+          @include span-columns(12);
+
+          @include media($mobile2) {
+            @include span-columns(2);
+          }
+          @include media($tablet) {
+            @include span-columns(4);
+          }
+          @include media($desktop) {
+            @include span-columns(3);
+          }
+
+          & + div {
+            @include span-columns(12);
+
+            @include media($mobile2) {
+              @include span-columns(2);
+            }
+
+            @include media($tablet) {
+              @include span-columns(8);
+            }
+
+            @include media($desktop) {
+              @include span-columns(9);
+            }
+
+            p {
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+
+            & > .f_item {
+              display: inline-block;
+
+              &:after {
+                content: ",";
+                display: inline-block;
+                margin-right: 10px;
+              }
+
+              &:last-child {
+                &:after {
+                  display: none;
+                }
+              }
+
+            }
+          }
+
+          &:after {
+            content: ":";
+            display: inline-block;
+          }
+        }
+      }
+
+    }
+  }
 }

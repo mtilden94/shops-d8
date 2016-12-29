@@ -1,132 +1,263 @@
-.events-view > header,
-.past-events-view > header {
-  color: $heading-color;
-  font-family: $heading-font-family;
-  font-size: $base-font-size;
-  font-weight: $bold;
-  line-height: $heading-line-height;
-  text-align: left;
-  margin-bottom: 10px;
-}
+//.events-view > header,
+//.past-events-view > header {
+//  color: $heading-color;
+//  font-family: $heading-font-family;
+//  font-size: $base-font-size;
+//  font-weight: $bold;
+//  line-height: $heading-line-height;
+//  text-align: left;
+//  margin-bottom: 10px;
+//}
+//
+//.events-view > .views-content {
+//  margin-bottom: 10px;
+//  .views-row {
+//    text-align: center;
+//    padding: 10px;
+//    height: 440px;
+//    article {
+//      padding: 20px;
+//      height: 100%;
+//      border: $base-border;
+//      background-color: $white;
+//      header {
+//        text-align: center;
+//      }
+//    }
+//    .views-field-title a {
+//      color: $heading-color;
+//      font-family: $heading-font-family;
+//      font-size: 26px;
+//      text-decoration: none;
+//      &:hover {
+//        color: darken($breadcrumbs, 30%);
+//      }
+//    }
+//    .location-event-type > div {
+//      float: left;
+//    }
+//    .event-date {
+//      color: $active;
+//      font-size: 18px;
+//      font-weight: $bold;
+//      line-height: $base-line-height;
+//    }
+//    .location-event-type {
+//      @include clearfix;
+//      display: inline-block;
+//      color: $a_hover;
+//      font-size: 16px;
+//      font-weight: $normal;
+//      line-height: $base-line-height;
+//      .separator {
+//        margin: 0 10px 0 10px;
+//      }
+//    }
+//  }
+//}
+//
+//.events-view .past-events-view {
+//  .views-row {
+//    float: left;
+//    padding: 10px;
+//    width: 100%;
+//    article {
+//      text-align: left;
+//      border-top: $base-border;
+//      border-bottom: $base-border;
+//      min-height: 190px;
+//
+//      header {
+//        text-align: left;
+//      }
+//    }
+//    .location-date > div {
+//      float: left;
+//    }
+//    .location-date {
+//      @include clearfix;
+//      color: $a_hover;
+//      padding-top: 10px;
+//      font-size: 16px;
+//      font-weight: $normal;
+//      line-height: $base-line-height;
+//      .event-date {
+//        color: $time;
+//        font-size: 18px;
+//        font-weight: $normal;
+//        line-height: $base-line-height;
+//      }
+//      .location {
+//        font-weight: $normal;
+//      }
+//      .separator {
+//        margin: 0 10px 0 10px;
+//      }
+//    }
+//    .event-recap {
+//      position: absolute;
+//      bottom: 20px;
+//    }
+//    .event-recap a {
+//      text-decoration: none;
+//      text-transform: uppercase;
+//      color: $active;
+//      font-weight: $bold;
+//    }
+//  }
+//}
+//
+//.events-view {
+//  .pager {
+//    li {
+//      display: table;
+//      margin: 0 auto;
+//    }
+//    a.button {
+//      font-family: $heading-font-family;
+//      text-transform: uppercase;
+//      text-decoration: none;
+//      font-size: 12px;
+//      color: $white;
+//      display: inline-block;
+//      padding: 17px;
+//      border-bottom: 3px solid $white;
+//      background-color: $active;
+//      line-height: 1em;
+//      &:hover {
+//        background-color: $blue;
+//      }
+//    }
+//  }
+//}
 
-.events-view > .views-content {
-  margin-bottom: 10px;
-  .views-row {
-    text-align: center;
-    padding: 10px;
-    height: 440px;
-    article {
-      padding: 20px;
-      height: 100%;
-      border: $base-border;
-      background-color: $white;
-      header {
+//.page-events {
+//
+//  @include media($tablet) {
+//    .line-group {
+//      width: 100%;
+//      float: left;
+//      &:after {
+//        content: '';
+//        clear: both;
+//        display: block;
+//        width: 100%;
+//      }
+//      .views-row {
+//        width: 31%;
+//        margin: 0 1%;
+//        display: inline-block;
+//        vertical-align: top;
+//        margin-bottom: 25px;
+//      }
+//      .views-row:nth-child(3n+3) {
+//        margin-right: 0;
+//      }
+//    }
+//  }
+//
+//  @include media($fullsize) {
+//    .views-row {
+//      header {
+//        h2 a {
+//          font-size: 26px;
+//        }
+//        .job-title {
+//          font-size: 20px;
+//        }
+//      }
+//    }
+//    .line-group {
+//      border-bottom: $base-border;
+//      margin-bottom: 50px;
+//      .views-row {
+//        margin-bottom: 45px;
+//      }
+//    }
+//  }
+//}
+
+.page-events{
+
+  .node-event-slider{
+    @include media($fullsize){
+      .slide-image{
+        height: 450px;
+      }
+    }
+    h2{
+      line-height: 100% !important;
+      span{
+        line-height: 100%;
+      }
+    }
+    .event-date-city{
+      padding-top: 5px;
+      margin-bottom: 20px;
+    }
+    .is-featured{
+      .f_item{
+        font-size: 0.8em;
+        font-weight: $bold;
+        font-family: $heading-font-family;
+        text-transform: uppercase;
+        padding-bottom: 5px;
+      }
+    }
+    .event-details{
+      a{
+        font-size: 16px;
+        font-weight:$strong;
+        padding: 25px 30px;
+      }
+    }
+  }
+
+  .block-original-events-page_1{
+    margin: 50px auto 70px auto;
+  }
+
+  .events-view{
+    header{
+      color: $heading-color;
+      font-family: $heading-font-family;
+      font-size: $tablet-font-size;
+      font-weight: $bold;
+    }
+    .line-group{
+      .views-row {
+        border: 1px solid $medium-gray;
+        width: 100%;
+        margin: 20px 0;
+        display: block;
+        padding: 20px;
         text-align: center;
       }
     }
-    .views-field-title a {
-      color: $heading-color;
-      font-family: $heading-font-family;
-      font-size: 26px;
-      text-decoration: none;
-      &:hover {
-        color: darken($breadcrumbs, 30%);
-      }
-    }
-    .location-event-type > div {
-      float: left;
-    }
-    .event-date {
-      color: $active;
-      font-size: 18px;
-      font-weight: $bold;
-      line-height: $base-line-height;
-    }
-    .location-event-type {
-      @include clearfix;
-      display: inline-block;
-      color: $a_hover;
-      font-size: 16px;
-      font-weight: $normal;
-      line-height: $base-line-height;
-      .separator {
-        margin: 0 10px 0 10px;
-      }
-    }
-  }
-}
 
-.events-view .past-events-view {
-  .views-row {
-    float: left;
-    padding: 10px;
-    width: 100%;
-    article {
-      text-align: left;
-      border-top: $base-border;
-      border-bottom: $base-border;
-      min-height: 190px;
+    @include media($tablet){
+      .line-group{
+        .views-row {
+          width: 32%;
+          margin: 2%;
+          display: inline-block;
+          float: left;
+        }
+        .views-row:nth-child(3n+3){
+          margin-right: 0;
+          margin-left: 0;
+        }
+        .views-row:nth-child(-2n+3){
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
 
-      header {
-        text-align: left;
-      }
-    }
-    .location-date > div {
-      float: left;
-    }
-    .location-date {
-      @include clearfix;
-      color: $a_hover;
-      padding-top: 10px;
-      font-size: 16px;
-      font-weight: $normal;
-      line-height: $base-line-height;
-      .event-date {
-        color: $time;
-        font-size: 18px;
-        font-weight: $normal;
-        line-height: $base-line-height;
-      }
-      .location {
-        font-weight: $normal;
-      }
-      .separator {
-        margin: 0 10px 0 10px;
-      }
-    }
-    .event-recap {
-      position: absolute;
-      bottom: 20px;
-    }
-    .event-recap a {
-      text-decoration: none;
-      text-transform: uppercase;
-      color: $active;
-      font-weight: $bold;
-    }
   }
-}
 
-.events-view {
-  .pager {
-    li {
-      display: table;
-      margin: 0 auto;
-    }
-    a.button {
-      font-family: $heading-font-family;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: 12px;
-      color: $white;
-      display: inline-block;
-      padding: 17px;
-      border-bottom: 3px solid $white;
-      background-color: $active;
-      line-height: 1em;
-      &:hover {
-        background-color: $blue;
-      }
-    }
-  }
+
+
+
+
 }

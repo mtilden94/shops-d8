@@ -52,6 +52,7 @@
 .block-original-latest_news_updates-block_3,
 .block-original-latest_news_updates-block_4,
 .block-original-latest_news_updates-block_5,
+.block-original-latest_news_updates-block_6,
 .block-original-latest_news_updates-block_7 {
   font-family: $heading-font-family;
   margin-bottom: 70px;
@@ -1209,30 +1210,6 @@
       .button {
         height: 60px;
         font-size: 16px;
-      }
-    }
-  }
-}
-
-.node-type-countries {
-  .field.image-gallery {
-    margin-bottom: $gutter;
-
-    @include media($tablet) {
-      margin-bottom: 58px;
-    }
-
-    .views-element-container {
-      header {
-        margin-bottom: 20px;
-
-        @include media($tablet) {
-          margin-bottom: 40px;
-        }
-
-        h3 {
-          font-size: 24px;
-        }
       }
     }
   }
