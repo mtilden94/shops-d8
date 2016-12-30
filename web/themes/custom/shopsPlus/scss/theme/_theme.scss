@@ -342,7 +342,7 @@ h1 a, h2 a, h3 a {
 
 //hover image
 .head-shot a, .block-original-office_and_field_staff-block_1 .views-field-field-group-image a, .views-row .views-field-field-head-shot a,
-.columns-2-block .line a.with-img, .resource-image a, .image a {
+.columns-2-block .line a.with-img, .resource-image a, .image a, .events-view .event-image-link a{
   display: inline-block;
   margin: 0 auto;
   &:before {
