@@ -16,5 +16,23 @@ function abt_common_theme($existing, $type, $theme, $path) {
         'year' => NULL,
       ],
     ],
+    'datetime_calendar' => [
+      'variables' => [
+        'combined' => FALSE,
+        'month' => NULL,
+        'dates' => NULL,
+        'start_month' => NULL,
+        'start_day' => NULL,
+        'start_date' => NULL,
+        'start_year' => NULL,
+        'start_time' => NULL,
+        'end_time' => NULL,
+        'end_month' => NULL,
+        'end_date' => NULL,
+        'end_year' => NULL,
+        'year' => NULL,
+        'button' => NULL,
+      ],
+    ],
   ];
 }

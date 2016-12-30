@@ -173,10 +173,20 @@ function shopsPlus_preprocess_page(&$variables) {
  * Prepares variables for the field.html.twig template.
  */
 function shopsPlus_preprocess_field(&$variables, $hook) {
-  if ($variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'teaser' || $variables['field_name'] == 'field_location' && $variables['element']['#view_mode'] == 'past_event_teaser') {
-    $variables['city'] = $variables['element']['#items']->first()
-      ->getLocality();
-    $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
+  if ($variables['field_name'] == 'field_location') {
+    if ($variables['element']['#view_mode'] == 'teaser' || $variables['element']['#view_mode'] == 'past_event_teaser') {
+      $variables['short_location'] = TRUE;
+      $variables['city'] = $variables['element']['#items']->first()->getLocality();
+      $variables['code'] = $variables['element'][0]['#administrative_area']['code'] ? $variables['element'][0]['#administrative_area']['code'] : $variables['element'][0]['#country']['name'];
+    }
+    elseif ($variables['element']['#view_mode'] == 'full') {
+      $variables['short_location'] = FALSE;
+      $variables['organization'] = $variables['element']['#items']->first()->getOrganization();
+      $variables['city'] = $variables['element']['#items']->first()->getLocality();
+      $variables['address'] = $variables['element']['#items']->first()->getAddressLine1();
+      $variables['postal_code'] = $variables['element']['#items']->first()->getPostalCode();
+      $variables['code'] = isset($variables['element'][0]['#administrative_area']['code']) ? $variables['element'][0]['#administrative_area']['code'] : NULL;
+    }
   }
   #date field / Manage display custom M. j Y
   if ($variables['field_name'] == 'field_event_date' && $variables['element']['#view_mode'] == 'sidebar') {
