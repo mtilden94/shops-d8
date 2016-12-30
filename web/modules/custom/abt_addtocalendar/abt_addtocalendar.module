@@ -27,7 +27,7 @@ function abt_addtocalendar_help($route_name, RouteMatchInterface $route_match) {
 function abt_addtocalendar_field_formatter_third_party_settings_form($plugin, $field_definition, $view_mode, $form, $form_state) {
   $element = [];
   if (in_array('daterange', $plugin->getPluginDefinition()['field_types'])) {
-    $settings = $plugin->getThirdPartySettings('addtocalendar');
+    $settings = $plugin->getThirdPartySettings('abt_addtocalendar');
     $element = _abt_addtocalendar_build_form($settings, $field_definition);
   }
   return $element;
@@ -38,7 +38,7 @@ function abt_addtocalendar_field_formatter_third_party_settings_form($plugin, $f
  */
 function abt_addtocalendar_field_formatter_settings_summary_alter(&$summary, $context) {
   if (in_array('daterange', $context['formatter']->getPluginDefinition()['field_types'])) {
-    if ($context['formatter']->getThirdPartySetting('addtocalendar', 'addtocalendar_show')) {
+    if ($context['formatter']->getThirdPartySetting('abt_addtocalendar', 'addtocalendar_show')) {
       $summary[] = t('Add to calendar enabled');
     }
   }

@@ -20,9 +20,9 @@ function _abt_addtocalendar_preprocess_field(&$variables) {
   $entity_display = EntityViewDisplay::collectRenderDisplay($entity, $view_mode);
   $field_display = $entity_display->getComponent($field_name);
 
-  if (!empty($field_display['third_party_settings']['addtocalendar'])) {
+  if (!empty($field_display['third_party_settings']['abt_addtocalendar'])) {
     $build['addtocalendar'] = [];
-    $settings = $field_display['third_party_settings']['addtocalendar'];
+    $settings = $field_display['third_party_settings']['abt_addtocalendar'];
     $style = [];
     if (isset($settings['addtocalendar_show']) && $settings['addtocalendar_show']) {
       $token_service = \Drupal::token();
