@@ -311,6 +311,21 @@
       }
     }
 
+     @include media($mobile) {
+       .node {
+         .content {
+           position: inherit;
+           padding-top: 30px;
+           text-align: center;
+           .register-link{
+             a{
+               margin: 15px auto;
+             }
+           }
+         }
+       }
+     }
+
     @include media($tablet) {
       .slide-image {
         height: 350px;
@@ -320,7 +335,9 @@
           position: absolute;
           top: 55%;
           left: 30px;
-          h2 {
+          padding-top: 0;
+          text-align: left;
+          h1 {
             margin-bottom: 0;
             font-size: 38px;
             max-width: none;
@@ -330,6 +347,11 @@
           .event-date-city {
             //margin-bottom: 30px;
             margin-bottom: 0;
+          }
+          .register-link{
+            a{
+              margin: 15px 0 0 0;
+            }
           }
         }
       }
@@ -341,9 +363,12 @@
       }
       .node {
         .content {
+          position: absolute;
           top: 55%;
           left: 30px;
-          h2 {
+          padding-top: 0;
+          text-align: left;
+          h1 {
             margin-bottom: 0;
             font-size: 38px;
             max-width: none;
@@ -352,9 +377,22 @@
             //margin-bottom: 30px;
             margin-bottom: 0;
           }
+          .register-link{
+            a{
+              margin: 15px 0 0 0;
+            }
+          }
         }
       }
     }
+  }
+
+  .left-side{
+    @include span-columns(4.5 of 12);
+    border-right: 1px solid $medium-gray;
+  }
+  .right-side{
+    @include span-columns(7.5 of 12);
   }
 
 }
