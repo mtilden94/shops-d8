@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Prepares variables for the html.html.twig template.
@@ -439,4 +442,26 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
   }
 
+}
+
+function shopsPlus_preprocess_file_link(&$variables) {
+  $file = $variables['file'];
+  $options = array();
+
+  $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+  $url = file_create_url($file_entity->getFileUri());
+  $mime_type = $file->getMimeType();
+  $options['attributes']['type'] = $mime_type . '; length=' . $file->getSize();
+
+  // Use the description as the link text if available.
+  if (empty($variables['description'])) {
+    $link_text = $file_entity->getFilename();
+  }
+  else {
+    $link_text = $variables['description'];
+    $options['attributes']['title'] = $file_entity->getFilename();
+    $options['attributes']['download'] = 'download';
+  }
+
+  $variables['link'] = \Drupal::l($link_text, Url::fromUri($url, $options));
 }
