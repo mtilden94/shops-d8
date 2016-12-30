@@ -3,11 +3,9 @@
 'node node-all-teaser'
 ] %}
 <article{{ attributes.addClass(classes) }}>
-
   {% if content.field_image %}
-    {{ content.field_image }}
+    <div class="event-image-link">{{ content.field_image }}</div>
   {% endif %}
-
   {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
     <header>
       {% if display_submitted %}
