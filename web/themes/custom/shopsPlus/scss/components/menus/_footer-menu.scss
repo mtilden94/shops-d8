@@ -31,6 +31,32 @@
       }
     }
   }
+  .block-original-social-links{
+    ul{
+      li{
+        a{
+          width: 31px;
+          height: 31px;
+          &:after{
+            width: 31px;
+            height: 31px;
+            line-height: 31px;
+          }
+        }
+      }
+    }
+  }
+  @include media($mobile_threshold){
+    nav{
+      padding: 0 15px;
+      ul.menu{
+        line-height: 1.3em;
+        a, span{
+          font-size: 12px;
+        }
+      }
+    }
+  }
   @include media($tablet) {
     .menu--footer {
       float: right;
@@ -39,6 +65,21 @@
         text-align: right;
         li:last-child {
           display: block;
+        }
+      }
+    }
+    .block-original-social-links{
+      ul{
+        li{
+          a{
+            width: 41px;
+            height: 41px;
+            &:after{
+              width: 41px;
+              height: 41px;
+              line-height: 41px;
+            }
+          }
         }
       }
     }

@@ -368,17 +368,27 @@
     .views-row {
       width: 49%;
       max-width: 355px;
+      .submitted{
+        margin-bottom: 15px;
+        time{
+          font-size: 14px;
+        }
+      }
+      .image{
+        margin-bottom: 13px;
+      }
       .node {
+        padding: 20px;
         h2{
           font-size: 30px;
         }
         .content{
           font-size: 16px;
         }
+        header{
+          margin-bottom: 40px;
+        }
       }
-    }
-    .submitted time{
-      font-size: 14px;
     }
     .pager {
       margin-top: 24px;
@@ -891,9 +901,10 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
+    transition: background 0.3s ease;
     &:hover {
       background-color: rgba(0, 173, 255, .54);
-      .content * {
+      .content .field * {
         color: $white !important;
       }
     }
