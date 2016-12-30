@@ -1,0 +1,7 @@
+name: File download count
+description: File download count.
+core: 8.x
+package: Custom
+type: module
+dependencies:
+  - node
