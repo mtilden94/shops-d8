@@ -139,7 +139,9 @@
       color: $white;
       text-transform: uppercase;
       font-weight: $bold;
+      font-family: $heading-font-family;
       margin: 30px auto 50px auto;
+      font-size: 16px;
       transition: all 0.5s ease-in-out;
       &:hover{
         background-color: $blue;
@@ -233,12 +235,126 @@
       color: $white;
       text-transform: uppercase;
       font-weight: $bold;
+      font-family: $heading-font-family;
       margin: 30px auto 50px auto;
+      font-size: 16px;
       transition: all 0.5s ease-in-out;
       &:hover{
         background-color: $blue;
       }
     }
-
   }
+}
+
+// styles for node event
+
+.node-type-event{
+
+   .block-views-block-events-header-block-1 {
+    position: relative;
+    .content {
+      .is-featured {
+        color: $active;
+        font-family: $heading-font-family;
+        font-size: $base-font-size;
+        font-weight: $header-bold;
+        line-height: $base-line-height;
+      }
+      .event-date-city > div {
+        float: left;
+      }
+      .event-date-city {
+        @include clearfix;
+        color: $white;
+        font-family: $base-font-family;
+        font-size: $base-font-size;
+        font-weight: $normal;
+        line-height: $base-line-height;
+      }
+      .event-details a {
+        font-family: $heading-font-family;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 12px;
+        color: $white;
+        display: inline-block;
+        padding: 23px 46px;
+        border-bottom: 3px solid $white;
+        background-color: $active;
+        line-height: 1em;
+        &:hover {
+          background-color: $blue;
+        }
+      }
+
+      .register-link{
+        a{
+          display: block;
+          background-color: $active;
+          text-align: center;
+          width: 200px;
+          height: 60px;
+          line-height: 60px;
+          text-decoration: none;
+          color: $white;
+          text-transform: uppercase;
+          font-weight: $bold;
+          font-family: $heading-font-family;
+          margin: 15px 0 0 0;
+          font-size: 16px;
+          transition: all 0.5s ease-in-out;
+          border-bottom: 3px solid $white;
+          &:hover{
+            background-color: $blue;
+          }
+        }
+      }
+    }
+
+    @include media($tablet) {
+      .slide-image {
+        height: 350px;
+      }
+      .node {
+        .content {
+          position: absolute;
+          top: 55%;
+          left: 30px;
+          h2 {
+            margin-bottom: 0;
+            font-size: 38px;
+            max-width: none;
+            color: $white;
+            font-weight: $header-normal;
+          }
+          .event-date-city {
+            //margin-bottom: 30px;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    @include media($desktop) {
+      .slide-image {
+        height: 450px;
+      }
+      .node {
+        .content {
+          top: 55%;
+          left: 30px;
+          h2 {
+            margin-bottom: 0;
+            font-size: 38px;
+            max-width: none;
+          }
+          .event-date-city {
+            //margin-bottom: 30px;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
 }
