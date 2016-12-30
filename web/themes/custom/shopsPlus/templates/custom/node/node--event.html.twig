@@ -1,0 +1,37 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+'node node-evente-full'
+] %}
+
+
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('content') }}>
+    <div class="left-side">
+      <div class="event-date-wrapper">
+        <div class="title">{{ "When"|t }}</div>
+        {{ content.field_event_date }}
+      </div>
+      <div class="location-wrapper">
+        <div class="title">{{ "Where"|t }}</div>
+        {{ content.field_location }}
+      </div>
+      <div class="share-wrapper">
+        <div class="title">{{ "Share"|t }}</div>
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+          <a class="a2a_button_facebook"></a>
+          <a class="a2a_button_twitter"></a>
+          <a class="a2a_button_linkedin"></a>
+          <a class="a2a_button_email"></a>
+        </div>
+      </div>
+    </div>
+    <div class="right-side">
+      {{ content.body }}
+    </div>
+  </div><!-- /.content -->
+  {% if content.links %}
+    <div class="links">
+      {{ content.links }}
+    </div><!-- /.links -->
+  {% endif %}
+</article><!-- /.node -->

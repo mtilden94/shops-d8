@@ -32,9 +32,25 @@
  * @ingroup themeable
  */
 #}
-{% if city and code %}
+{% if short_location and city and code %}
   <div class="location">
     {{ city }}, {{ code }}
+  </div>
+{% elseif short_location == FALSE and address and city and postal_code %}
+  <div{{ attributes }}>
+    {% if organization %}
+      <div class="organization">
+        {{ organization }}
+      </div>
+    {% endif %}
+    <div class="location">
+      {{ address }}, {{ city }}, {% if code %}{{ code }}{% endif %} {{ postal_code }}
+    </div>
+    <div class="view-on-map">
+      <a href="https://www.google.com/maps/place/{{ address }}+{{ city }}{% if code %}+{{ code }}{% endif %}+{{ postal_code }}"
+         target="_blank"
+         title="{{ 'View on Map'|t }}">{{ 'View on Map'|t }}</a>
+    </div>
   </div>
 {% else %}
   {% if multiple %}
