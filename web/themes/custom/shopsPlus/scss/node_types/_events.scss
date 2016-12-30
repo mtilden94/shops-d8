@@ -250,6 +250,10 @@
 
 .node-type-event{
 
+  .container{
+    padding-bottom: 40px;
+  }
+
    .block-views-block-events-header-block-1 {
     position: relative;
     .content {
@@ -388,11 +392,73 @@
   }
 
   .left-side{
-    @include span-columns(4.5 of 12);
-    border-right: 1px solid $medium-gray;
+    font-size: 18px;
+    color: $event_body_color;
+    padding-right: 0;
+    margin-right: 0px !important;
+    border-right: none;
+    @include span-columns(12 of 12);
+    @include media($tablet) {
+      @include span-columns(4.5 of 12);
+      padding-right: 50px;
+      border-right: 1px solid $medium-gray;
+      margin-right: -1px !important;
+    }
+    .title{
+      font-size: 18px;
+      color: $table-color;
+      font-weight: $bold;
+      padding-bottom: 5px;
+    }
+    .location-wrapper, .share-wrapper{
+      padding-top: 20px;
+    }
+
+    a.atcb-link{
+      background: none;
+      box-shadow: none;
+      color: $green;
+      text-decoration: underline;
+      padding-left: 0;
+    }
+    ul.atcb-list{
+      margin-left: 0;
+      list-style-type: none;
+      //box-shadow: none;
+      border: none;
+      li{
+        list-style-type: none;
+        &:before{
+          background-color: transparent;
+        }
+      }
+    }
+    .a2a_svg{
+      border-radius: 0px;
+      width: 45px;
+      height: 45px;
+      margin-right: 8px;
+      padding: 0;
+    }
   }
   .right-side{
-    @include span-columns(7.5 of 12);
+    border-left: none;
+    padding-left: 0;
+    @include span-columns(12 of 12);
+    @include media($tablet) {
+      border-left: 1px solid $medium-gray;
+      @include span-columns(7.5 of 12);
+      padding-left: 50px;
+    }
+    .body{
+      font-size: 18px;
+      color: $event_body_color;
+      .label{
+        color: $table-color;
+        font-weight: $bold;
+        padding-bottom: 5px;
+      }
+    }
   }
 
 }
