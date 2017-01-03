@@ -102,6 +102,7 @@
           display: inline;
         }
         div.field {
+          display: inline;
           a, span {
             &:after {
               content: '';
@@ -114,11 +115,36 @@
               top: 3px;
             }
           }
+
+          &:last-child {
+            a, span {
+              &:after {
+                content: none;
+              }
+            }
+          }
         }
-        div.field:last-child {
-          a, span{
+
+        div.field .f_item {
+          display: inline;
+          a, span {
             &:after {
-              content: none;
+              content: '';
+              border-left: $base-border;
+              display: inline-block;
+              height: 14px;
+              width: 1px;
+              margin: 0 6px 0 10px;
+              position: relative;
+              top: 3px;
+            }
+          }
+
+          &:last-child {
+            a, span {
+              &:after {
+                content: none;
+              }
             }
           }
         }
