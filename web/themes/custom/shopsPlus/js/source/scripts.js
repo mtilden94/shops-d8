@@ -39,9 +39,10 @@
         Drupal.behaviors.shopPlus = {
             attach: function (context, settings) {
                 //news update block
-                $('.block-original-latest_news_updates-block_1,' +
-                    ' .block-original-latest_news_updates-block_3,' +
-                    ' .block-original-latest_news_updates-block_4').waitForImages({
+                $('.block-original-latest_news_updates-block_1, ' +
+                    '.block-original-latest_news_updates-block_3, ' +
+                    '.block-original-latest_news_updates-block_4, ' +
+                    '.block-original-latest_news_updates-block_5').waitForImages({
                     finished: function() {
                         $(".block-original-latest_news_updates-block_1 .views-row .node").matchHeight();
                         $(".block-original-latest_news_updates-block_3 .views-row .node").matchHeight();
