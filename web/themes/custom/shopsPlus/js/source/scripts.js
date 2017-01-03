@@ -39,7 +39,12 @@
         Drupal.behaviors.shopPlus = {
             attach: function (context, settings) {
                 //news update block
-                $("div[class*='block-original-latest_news_updates-block_']").waitForImages({
+                $(".block-original-latest_news_updates-block_1, " +
+                    ".block-original-latest_news_updates-block_2, " +
+                    ".block-original-latest_news_updates-block_3, " +
+                    ".block-original-latest_news_updates-block_4, " +
+                    ".block-original-latest_news_updates-block_5, " +
+                    ".block-original-latest_news_updates-block_6").waitForImages({
                     finished: function() {
                         $("div[class*='block-original-latest_news_updates-block_'] .views-row .node").matchHeight();
                     },
@@ -49,6 +54,8 @@
                 $(window).resize(function () {
                     $("div[class*='block-original-latest_news_updates-block_'] .views-row .node").matchHeight();
                 });
+
+                $("div[class*='block-original-latest_news_updates-block_'] .views-row .node").matchHeight();
 
 
                 // views-exposed-form more
@@ -135,9 +142,6 @@
             //remove footer last link
             // var text_last_a_footer = $('#footer .menu--footer ul.menu li.menu-item:last-child a').text();
             // $('#footer .menu--footer ul.menu li.menu-item:last-child a').replaceWith("<span class='no-link'>" + text_last_a_footer + "</span>");
-
-            $("div[class*='block-original-latest_news_updates-block_'] .views-row .node").matchHeight();
-
             //wrap menu
             $('.menu--main ul.menu ul').wrap('<span class="pos-block"></span>');
 
