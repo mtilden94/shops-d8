@@ -36,7 +36,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     $build = [];
     $config = $this->getConfiguration();
     $tweets = $this->getTweets();
-    
+
     if(!empty($tweets)) {
 
       $render_tweets = [];
@@ -228,9 +228,19 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
     $endpoint = $config['endpoint'];
 
+    $query = $this->token_service->replace(
+      $config['query'],
+      static::getTokenData(),
+      ['clear' => TRUE]
+    );
+
+    if(empty($query)) {
+      return array();
+    }
+
     if($config['endpoint'] == 'statuses/user_timeline') {
       $parameters = array(
-        "user_id" => !empty($config['query'])? $config['query'] : '',
+        "user_id" => $query,
         "count" => $config['tweets_count'],
         "exclude_replies" => true
       );
@@ -246,7 +256,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     } else {
 
       $parameters = array(
-        "q" => $this->token_service->replace($config['query'], static::getTokenData(), ['clear' => TRUE]),
+        "q" => $query,
         "count" => $config['tweets_count'],
       );
 
