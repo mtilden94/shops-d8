@@ -81,3 +81,17 @@
 [submodule "web/modules/contrib/colorbox"]
 	path = web/modules/contrib/colorbox
 	url = https://git.drupal.org/project/colorbox
+
+[submodule "web/modules/contrib/colorbox_inline"]
+	path = web/modules/contrib/colorbox_inline
+	url = https://git.drupal.org/project/colorbox_inline
+
+[submodule "web/modules/contrib/colorbox_load"]
+	path = web/modules/contrib/colorbox_load
+	url = https://git.drupal.org/project/colorbox_load
+
+[submodule "web/modules/contrib/ng_lightbox"]
+	path = web/modules/contrib/ng_lightbox
+	url = https://git.drupal.org/project/ng_lightbox
+
+	
