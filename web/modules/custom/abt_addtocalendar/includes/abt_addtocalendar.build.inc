@@ -118,22 +118,6 @@ function _abt_addtocalendar_preprocess_field(&$variables) {
 
       $build['addtocalendar']['#attributes']['data-secure'] = $settings['addtocalendar_settings']['data_secure'];
 
-      // Styling
-      switch ($settings['addtocalendar_settings']['style']) {
-        case 'blue':
-          $style['class'] = 'atc-style-blue';
-          $style['library'] = 'abt_addtocalendar/blue';
-          break;
-
-        case 'glow_orange':
-          $style['class'] = 'atc-style-glow-orange';
-          $style['library'] = 'abt_addtocalendar/glow_orange';
-          break;
-      }
-      if (!empty($style)) {
-        $build['addtocalendar']['#attributes']['class'][] = $style['class'];
-        $variables['#attached']['library'][] = $style['library'];
-      }
     }
     $variables['items'][0]['content']['#button'] = render($build['addtocalendar']);
     $variables['#attached']['library'][] = 'abt_addtocalendar/base';
