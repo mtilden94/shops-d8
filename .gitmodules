@@ -22,6 +22,10 @@
 	path = web/modules/contrib/flexslider
 	url = https://git.drupal.org/project/flexslider
 
+[submodule "web/modules/contrib/focal_point"]
+	path = web/modules/contrib/focal_point
+	url = https://git.drupal.org/project/focal_point
+
 [submodule "web/modules/contrib/geofield"]
 	path = web/modules/contrib/geofield
 	url = https://git.drupal.org/project/geofield
@@ -50,3 +54,30 @@
 	path = web/modules/contrib/pathauto
 	url = https://git.drupal.org/project/pathauto
 
+[submodule "web/modules/contrib/tvi"]
+	path = web/modules/contrib/tvi
+	url = https://git.drupal.org/project/tvi
+
+[submodule "web/modules/contrib/better_exposed_filters"]
+	path = web/modules/contrib/better_exposed_filters
+	url = https://git.drupal.org/project/better_exposed_filters
+
+[submodule "web/modules/contrib/markup"]
+	path = web/modules/contrib/markup
+	url = https://git.drupal.org/project/markup
+
+[submodule "web/modules/contrib/metatag"]
+	path = web/modules/contrib/metatag
+	url = https://git.drupal.org/project/metatag
+
+[submodule "web/modules/contrib/redirect"]
+	path = web/modules/contrib/redirect
+	url = https://git.drupal.org/project/redirect
+
+[submodule "web/modules/contrib/simplenews"]
+	path = web/modules/contrib/simplenews
+	url = https://git.drupal.org/project/simplenews
+
+[submodule "web/modules/contrib/colorbox"]
+	path = web/modules/contrib/colorbox
+	url = https://git.drupal.org/project/colorbox
