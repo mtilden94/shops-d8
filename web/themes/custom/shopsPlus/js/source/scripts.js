@@ -188,6 +188,7 @@
             //================================================================================
 
             $('#block-shopsplus-search input.form-search').attr('placeholder', 'Search');
+            $('#block-searchform input.form-search').attr('placeholder', 'Search');
             $('#block-shopsplus-search .form-actions .form-submit').on('click',
                 function (e) {
                     var this_form = $(this).parents('form:first');
@@ -215,7 +216,10 @@
             );
 
             // mobile menu
-            $('#block-shopsplus-main-menu > ul.menu').clone().appendTo("#mobile-menu");
+
+            $('#block-shopsplus-main-menu > ul.menu').clone().appendTo("#mobile-menu .menu-wrapper");
+            $('#block-searchform').detach().prependTo("#mobile-menu .menu-wrapper > .menu");
+            $('#block-searchform').show();
             $('#mobile-menu .menu-item--expanded').append('<span class="prev-next"></span>');
             $('#mobile-menu .pos-block').each(
                 function () {

@@ -68,7 +68,7 @@
             height: 2.6em;
             overflow: hidden;
             padding-top: 5px;
-            text-align: left;
+            text-align: center;
           }
           span img{
 
@@ -251,6 +251,9 @@
       &:hover{
         background-color: $blue;
       }
+    }
+    h2{
+      text-align: left !important;
     }
   }
 }
