@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Drupal\Core\Template\Attribute;
 use Drupal\twitter_last\RenderTweet;
+use Drupal\Core\Cache\Cache;
 /**
  * @Block(
  *   id = "last_tweets",
@@ -18,12 +19,20 @@ use Drupal\twitter_last\RenderTweet;
  * )
  */
 class LastTweets extends BlockBase implements BlockPluginInterface {
+
+  private $token_service;
+
+  function __construct(array $configuration, $plugin_id, $plugin_definition) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->token_service = \Drupal::token();
+  }
+
   /**
    * {@inheritdoc}
    */
   public function build() {
     $config = $this->getConfiguration();
-
     $tweets = $this->getTweets();
 
     $render_tweets = array();
@@ -35,19 +44,57 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     $attributes = new Attribute();
     $attributes->addClass('tweets '.$config['wrapper_class']);
 
+    $more_link_url = "https://twitter.com/search?q=";
+    $more_link_url .= urlencode($this->token_service->replace(!empty($config['url'])? $config['url'] : '#', static::getTokenData()));
+
     $build = array(
       'tweets' => array(
         '#theme' => 'tweets_list',
         '#tweets' => $render_tweets,
         '#attributes' => $attributes,
-        '#more_link_display' => $config['more_link_display']
+        '#more_link_display' => $config['more_link_display'],
+        '#more_link' => array(
+          'url' => $more_link_url,
+          'link_title' => $this->token_service->replace(!empty($config['link_title'])? $config['link_title'] : 'More', static::getTokenData())
+        )
       ),
       '#cache' => array(
-        'max-age' => 300
+        'max-age' => 3000,
+        'tags' => $this->getCacheTags(),
+        'contexts' => $this->getCacheContexts(),
       )
     );
 
     return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+      return Cache::mergeTags(parent::getCacheTags(), array('node:' . $node->id()));
+    } else {
+      return parent::getCacheTags();
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return Cache::mergeContexts(parent::getCacheContexts(), array('route'));
+  }
+
+  static function getTokenData() {
+    $node = \Drupal::routeMatch()->getParameter('node');
+
+    $data = ['user' => \Drupal::currentUser()];
+    if($node) {
+      $data['node'] = $node;
+    }
+
+    return $data;
   }
 
   public function blockForm($form, FormStateInterface $form_state) {
@@ -61,7 +108,6 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
     );
-
 
     $form['twitter']['endpoint'] = array(
       '#type' => 'select',
@@ -112,6 +158,30 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       '#default_value' => isset($config['more_link_display']) ? $config['more_link_display'] : 0,
     );
 
+    $form['style']['url'] = array (
+      '#type' => 'textfield',
+      '#title' => $this->t('Link more: Query'),
+      '#default_value' => isset($config['url']) ? $config['url'] : '',
+    );
+
+    $form['style']['token_tree_url'] = array(
+      '#theme' => 'token_tree_link',
+      '#token_types' => array('node'),
+      '#show_restricted' => TRUE,
+    );
+
+    $form['style']['link_title'] = array (
+      '#type' => 'textfield',
+      '#title' => $this->t('Link more: Title'),
+      '#default_value' => isset($config['link_title']) ? $config['link_title']:'',
+    );
+
+    $form['style']['token_tree_link_title'] = array(
+      '#theme' => 'token_tree_link',
+      '#token_types' => array('node'),
+      '#show_restricted' => TRUE,
+    );
+
     return $form;
   }
 
@@ -129,6 +199,8 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     $this->setConfigurationValue('tweets_count', $config_style['tweets_count']);
     $this->setConfigurationValue('wrapper_class', $config_style['wrapper_class']);
     $this->setConfigurationValue('more_link_display', $config_style['more_link_display']);
+    $this->setConfigurationValue('url', $config_style['url']);
+    $this->setConfigurationValue('link_title', $config_style['link_title']);
   }
 
   private function getTweets() {
@@ -163,16 +235,8 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
       return $tweets;
     } else {
-      $token_service = \Drupal::token();
-      $node = \Drupal::routeMatch()->getParameter('node');
-      
-      $data = ['user' => \Drupal::currentUser()];
-      if($node) {
-        $data['node'] = $node;
-      }
-
       $parameters = array(
-        "q" => $token_service->replace($config['query'], $data),
+        "q" => $this->token_service->replace($config['query'], static::getTokenData()),
         "count" => $config['tweets_count'],
       );
 

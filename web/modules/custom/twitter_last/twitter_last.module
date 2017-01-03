@@ -13,7 +13,7 @@ function twitter_last_theme($existing, $type, $theme, $path) {
       'template' => 'tweet'
     ),
     'tweets_list' => array(
-      'variables' => array('tweets' => array(), 'attributes' => array(), 'more_link_display' => 0),
+      'variables' => array('tweets' => array(), 'attributes' => array(), 'more_link_display' => 0, 'more_link' => array()),
       'path' => drupal_get_path('module', 'twitter_last') . '/templates',
       'template' => 'tweets-list'
     ),
