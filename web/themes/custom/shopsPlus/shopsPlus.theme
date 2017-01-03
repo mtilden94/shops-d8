@@ -408,7 +408,8 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     $form['actions']['#weight'] = 0;
     $form['title']['#placeholder'] = t('Search the Resource Center');
 
-    $form['country']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
+    // $form['country']['#options']['All'] = removed.
+    $form['countries_target_id']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
 
     $data_select = $form_state->getUserInput();
     if ($data_select) {
