@@ -33,38 +33,46 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
    * {@inheritdoc}
    */
   public function build() {
+    $build = [];
     $config = $this->getConfiguration();
     $tweets = $this->getTweets();
 
-    $render_tweets = array();
-    foreach ($tweets as $tweet) {
-      $renderTweet = new RenderTweet($tweet);
-      $render_tweets[] = $renderTweet->build();
+    if(!empty($tweets)) {
+
+      $render_tweets = [];
+      foreach ($tweets as $tweet) {
+        $renderTweet = new RenderTweet($tweet);
+        $render_tweets[] = $renderTweet->build();
+      }
+
+      $attributes = new Attribute();
+      $attributes->addClass('tweets ' . $config['wrapper_class']);
+
+      $more_link_url = "https://twitter.com/search?q=";
+      $more_link_url .= urlencode($this->token_service->replace(!empty($config['url']) ? $config['url'] : '#', static::getTokenData(), ['clear' => TRUE]));
+
+      $build = [
+        'tweets' => [
+          '#theme' => 'tweets_list',
+          '#tweets' => $render_tweets,
+          '#attributes' => $attributes,
+          '#more_link_display' => $config['more_link_display'],
+          '#more_link' => [
+            'url' => $more_link_url,
+            'link_title' => $this->token_service->replace(
+              !empty($config['link_title']) ? $config['link_title'] : 'More',
+              static::getTokenData(), ['clear' => TRUE]
+            )
+          ]
+        ],
+      ];
     }
 
-    $attributes = new Attribute();
-    $attributes->addClass('tweets '.$config['wrapper_class']);
-
-    $more_link_url = "https://twitter.com/search?q=";
-    $more_link_url .= urlencode($this->token_service->replace(!empty($config['url'])? $config['url'] : '#', static::getTokenData()), ['clear' => TRUE]);
-
-    $build = array(
-      'tweets' => array(
-        '#theme' => 'tweets_list',
-        '#tweets' => $render_tweets,
-        '#attributes' => $attributes,
-        '#more_link_display' => $config['more_link_display'],
-        '#more_link' => array(
-          'url' => $more_link_url,
-          'link_title' => $this->token_service->replace(!empty($config['link_title'])? $config['link_title'] : 'More', static::getTokenData(), ['clear' => TRUE])
-        )
-      ),
-      '#cache' => array(
-        'max-age' => 3000,
-        'tags' => $this->getCacheTags(),
-        'contexts' => $this->getCacheContexts(),
-      )
-    );
+    $build['#cache'] = [
+      'max-age' => 3000,
+      'tags' => $this->getCacheTags(),
+      'contexts' => $this->getCacheContexts(),
+    ];
 
     return $build;
   }
@@ -220,9 +228,19 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
     $endpoint = $config['endpoint'];
 
+    $query = $this->token_service->replace(
+      $config['query'],
+      static::getTokenData(),
+      ['clear' => TRUE]
+    );
+
+    if(empty($query)) {
+      return array();
+    }
+
     if($config['endpoint'] == 'statuses/user_timeline') {
       $parameters = array(
-        "user_id" => !empty($config['query'])? $config['query'] : '',
+        "user_id" => $query,
         "count" => $config['tweets_count'],
         "exclude_replies" => true
       );
@@ -238,7 +256,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     } else {
 
       $parameters = array(
-        "q" => $this->token_service->replace($config['query'], static::getTokenData(), ['clear' => TRUE]),
+        "q" => $query,
         "count" => $config['tweets_count'],
       );
 

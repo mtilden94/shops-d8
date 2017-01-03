@@ -7,3 +7,11 @@ services:
     class: Drupal\abt_breadcrumbs\Breadcrumb\EventsBreadcrumbBuilder
     tags:
       - { name: breadcrumb_builder, priority: 100 }
+  abt_breadcrumbs.resource:
+    class: Drupal\abt_breadcrumbs\Breadcrumb\ResourceBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
+  abt_breadcrumbs.article:
+    class: Drupal\abt_breadcrumbs\Breadcrumb\ArticleBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
