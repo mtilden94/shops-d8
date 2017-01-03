@@ -1,5 +1,10 @@
+#block-searchform {
+
+}
+
 #block-shopsplus-search {
   float: right;
+  display: none;
   position: relative;
   width: 69px;
   border-left: 1px solid $medium-gray;
@@ -129,5 +134,6 @@
 @include media($fullsize) {
   #block-shopsplus-search {
     margin-right: 0px;
+    display: block;
   }
 }
