@@ -100,20 +100,22 @@
         & * {
           display: inline;
         }
-        div.field a {
-          &:after {
-            content: '';
-            border-left: $base-border;
-            display: inline-block;
-            height: 14px;
-            width: 1px;
-            margin: 0px 6px 0 10px;
-            position: relative;
-            top: 3px;
+        div.field{
+          a, span {
+            &:after {
+              content: '';
+              border-left: $base-border;
+              display: inline-block;
+              height: 14px;
+              width: 1px;
+              margin: 0 6px 0 10px;
+              position: relative;
+              top: 3px;
+            }
           }
         }
         div.field:last-child {
-          a {
+          a, span{
             &:after {
               content: none;
             }
@@ -330,6 +332,11 @@
       }
       .content{
         font-size: 12px;
+        position: absolute;
+        bottom: 12px;
+      }
+      header{
+        margin-bottom: 75px;
       }
     }
   }
@@ -384,9 +391,10 @@
         }
         .content{
           font-size: 16px;
+          bottom: 20px;
         }
         header{
-          margin-bottom: 40px;
+          margin-bottom: 64px;
         }
       }
     }

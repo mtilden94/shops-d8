@@ -7,10 +7,9 @@ namespace Drupal\twitter_last\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Template\Attribute;
-use Drupal\Core\Url;
-use Drupal\Core\Link;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Drupal\Core\Template\Attribute;
+use Drupal\twitter_last\RenderTweet;
 /**
  * @Block(
  *   id = "last_tweets",
@@ -29,7 +28,8 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
     $render_tweets = array();
     foreach ($tweets as $tweet) {
-      $render_tweets[] = $this->renderTweet($tweet);
+      $renderTweet = new RenderTweet($tweet);
+      $render_tweets[] = $renderTweet->build();
     }
 
     $attributes = new Attribute();
@@ -62,39 +62,28 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       '#collapsed' => FALSE,
     );
 
-    $form['twitter']['customer_key'] = array (
-      '#type' => 'textfield',
-      '#title' => $this->t('Customer key'),
-      '#default_value' => isset($config['customer_key']) ? $config['customer_key'] : '',
-      '#required' => TRUE
+
+    $form['twitter']['endpoint'] = array(
+      '#type' => 'select',
+      '#title' => t('Type'),
+      '#options' => array(
+        'search/tweets' => t('Search'),
+        'statuses/user_timeline' => t('User Timeline'),
+      ),
+      '#default_value' => !empty($config['endpoint']) ? $config['endpoint'] : '',
     );
 
-    $form['twitter']['customer_secret'] = array (
+    $form['twitter']['query'] = array (
       '#type' => 'textfield',
-      '#title' => $this->t('Customer secret'),
-      '#default_value' => isset($config['customer_secret']) ? $config['customer_secret'] : '',
-      '#required' => TRUE
-    );
-
-    $form['twitter']['access_token'] = array (
-      '#type' => 'textfield',
-      '#title' => $this->t('Access token'),
-      '#default_value' => isset($config['access_token']) ? $config['access_token'] : '',
-      '#required' => TRUE
-    );
-
-    $form['twitter']['access_token_secret'] = array (
-      '#type' => 'textfield',
-      '#title' => $this->t('Access token secret'),
-      '#default_value' => isset($config['access_token_secret']) ? $config['access_token_secret'] : '',
+      '#title' => $this->t('Query'),
+      '#default_value' => isset($config['query']) ? $config['query'] : '',
       '#required' => TRUE,
     );
 
-    $form['twitter']['user_id'] = array (
-      '#type' => 'textfield',
-      '#title' => $this->t('User ID'),
-      '#default_value' => isset($config['user_id']) ? $config['user_id'] : '',
-      '#required' => TRUE,
+    $form['twitter']['token_tree'] = array(
+      '#theme' => 'token_tree_link',
+      '#token_types' => array('user', 'node'),
+      '#show_restricted' => TRUE,
     );
 
     $form['style'] = array(
@@ -129,54 +118,13 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
   /**
    * {@inheritdoc}
    */
-  public function blockValidate($form, FormStateInterface $form_state) {
-    $config = $form_state->getValue('twitter');
-    $config_style = $form_state->getValue('style');
-
-    $twitter = new TwitterOAuth(
-      isset($config['customer_key']) ? $config['customer_key'] : '',
-      isset($config['customer_secret']) ? $config['customer_secret'] : '',
-      isset($config['access_token']) ? $config['access_token'] : '',
-      isset($config['access_token_secret']) ? $config['access_token_secret'] : ''
-    );
-
-    $user_timeline = $twitter->get("statuses/user_timeline", array(
-      "user_id" => !empty($config['user_id'])? $config['user_id'] : '',
-      "count" => $config_style['tweets_count'],
-      "exclude_replies" => true
-    ));
-
-    if(isset($user_timeline->errors)) {
-      $form_state->setErrorByName("twitter][access_token", $user_timeline->errors[0]->message);
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function blockSubmit($form, FormStateInterface $form_state) {
     // Save our custom settings when the form is submitted.
     $config = $form_state->getValue('twitter');
     $config_style = $form_state->getValue('style');
 
-    // Set customer key
-    if(isset($config['customer_key'])) {
-      $this->setConfigurationValue('customer_key', $config['customer_key']);
-    }
-    // Set customer secret
-    if(isset($config['customer_secret'])) {
-      $this->setConfigurationValue('customer_secret', $config['customer_secret']);
-    }
-    // Set access token
-    if(isset($config['access_token'])) {
-      $this->setConfigurationValue('access_token', $config['access_token']);
-    }
-    // Set access token secret
-    if(isset($config['access_token_secret'])) {
-      $this->setConfigurationValue('access_token_secret', $config['access_token_secret']);
-    }
-
-    $this->setConfigurationValue('user_id', $config['user_id']);
+    $this->setConfigurationValue('endpoint', $config['endpoint']);
+    $this->setConfigurationValue('query', $config['query']);
 
     $this->setConfigurationValue('tweets_count', $config_style['tweets_count']);
     $this->setConfigurationValue('wrapper_class', $config_style['wrapper_class']);
@@ -184,69 +132,58 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
   }
 
   private function getTweets() {
+    // Get module configuration
+    $access_config = \Drupal::config('twitter_last.settings');
+
     // Get block configuration
     $config = $this->getConfiguration();
 
     $twitter = new TwitterOAuth(
-      isset($config['customer_key']) ? $config['customer_key'] : '',
-      isset($config['customer_secret']) ? $config['customer_secret'] : '',
-      isset($config['access_token']) ? $config['access_token'] : '',
-      isset($config['access_token_secret']) ? $config['access_token_secret'] : ''
+      $access_config->get('customer_key'),
+      $access_config->get('customer_secret'),
+      $access_config->get('access_token'),
+      $access_config->get('access_token_secret')
     );
-    
-    return $twitter->get("statuses/user_timeline", array(
-      "user_id" => !empty($config['user_id'])? $config['user_id'] : '',
-      "count" => $config['tweets_count'],
-      "exclude_replies" => true
-    ));
-  }
 
-  private function renderTweet($tweet) {
-    $text = $tweet->text;
+    $endpoint = $config['endpoint'];
 
-    // Replace Tags
-    foreach ($tweet->entities->hashtags as $hashtag) {
-      $url = Url::fromUri("https://twitter.com/hashtag/". $hashtag->text);
-      $url->setOption('attributes', array(
-        'target' => '_blank'
-      ));
+    if($config['endpoint'] == 'statuses/user_timeline') {
+      $parameters = array(
+        "user_id" => !empty($config['query'])? $config['query'] : '',
+        "count" => $config['tweets_count'],
+        "exclude_replies" => true
+      );
 
-      $link = Link::fromTextAndUrl("#".$hashtag->text, $url)->toString();
-      $text = str_replace("#".$hashtag->text, $link, $text);
+      $tweets = $twitter->get($endpoint, $parameters);
+
+      if(isset($tweets->errors)) {
+        drupal_set_message($tweets->errors[0]->message, 'error');
+        return array();
+      }
+
+      return $tweets;
+    } else {
+      $token_service = \Drupal::token();
+      $node = \Drupal::routeMatch()->getParameter('node');
+      
+      $data = ['user' => \Drupal::currentUser()];
+      if($node) {
+        $data['node'] = $node;
+      }
+
+      $parameters = array(
+        "q" => $token_service->replace($config['query'], $data),
+        "count" => $config['tweets_count'],
+      );
+
+      $tweets = $twitter->get($endpoint, $parameters);
+
+      if(isset($tweets->errors)) {
+        drupal_set_message($tweets->errors[0]->message, 'error');
+        return array();
+      }
+
+      return $tweets->statuses;
     }
-
-    // Replace Users
-    foreach ($tweet->entities->user_mentions as $user) {
-      $url = Url::fromUri("https://twitter.com/". $user->screen_name);
-      $url->setOption('attributes', array(
-        'target' => '_blank'
-      ));
-
-      $link = Link::fromTextAndUrl("@".$user->screen_name, $url)->toString();
-      $text = str_replace("@".$user->screen_name, $link, $text);
-    }
-
-    // Replace Urls
-    foreach ($tweet->entities->urls as $url_value) {
-      $url = Url::fromUri($url_value->url);
-      $url->setOption('attributes', array(
-        'class' => array('external'),
-        'target' => '_blank'
-      ));
-
-      $link = Link::fromTextAndUrl($url_value->url, $url)->toString();
-      $text = str_replace($url_value->url, $link, $text);
-    }
-
-
-    return array(
-      '#theme' => 'tweet_display',
-      '#text' => array(
-        '#type' => 'inline_template',
-        '#template' => $text,
-      ),
-      '#created_at' => date('M j', strtotime($tweet->created_at)),
-      '#user' => $tweet->user->screen_name,
-    );
   }
 }

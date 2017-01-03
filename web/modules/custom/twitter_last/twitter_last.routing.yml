@@ -1,0 +1,9 @@
+twitter_last.config_form:
+  path: '/admin/config/content/twitter_last'
+  defaults:
+    _title: 'Last Tweets Settings'
+    _form: '\Drupal\twitter_last\Form\ConfigForm'
+  requirements:
+    _permission: 'administer content types'
+  options:
+    _admin_route: true

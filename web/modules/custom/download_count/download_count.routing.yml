@@ -1,0 +1,6 @@
+download_count.add:
+  path: '/download_count/add/{node}'
+  defaults:
+    _controller: 'Drupal\download_count\Controller\MainController::add'
+  requirements:
+    _permission: 'access content'

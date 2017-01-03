@@ -3,3 +3,5 @@ description: Last tweets block.
 core: 8.x
 package: Custom
 type: module
+dependencies:
+  - token
