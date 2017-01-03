@@ -45,7 +45,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     $attributes->addClass('tweets '.$config['wrapper_class']);
 
     $more_link_url = "https://twitter.com/search?q=";
-    $more_link_url .= urlencode($this->token_service->replace(!empty($config['url'])? $config['url'] : '#', static::getTokenData()));
+    $more_link_url .= urlencode($this->token_service->replace(!empty($config['url'])? $config['url'] : '#', static::getTokenData()), ['clear' => TRUE]);
 
     $build = array(
       'tweets' => array(
@@ -55,7 +55,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
         '#more_link_display' => $config['more_link_display'],
         '#more_link' => array(
           'url' => $more_link_url,
-          'link_title' => $this->token_service->replace(!empty($config['link_title'])? $config['link_title'] : 'More', static::getTokenData())
+          'link_title' => $this->token_service->replace(!empty($config['link_title'])? $config['link_title'] : 'More', static::getTokenData(), ['clear' => TRUE])
         )
       ),
       '#cache' => array(
@@ -235,12 +235,18 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
       return $tweets;
     } else {
+      $bubbleable_metadata = new BubbleableMetadata();
+
+      dump($this->token_service->replace($config['query'], static::getTokenData()), ['clear' => TRUE]);
+
       $parameters = array(
-        "q" => $this->token_service->replace($config['query'], static::getTokenData()),
+        "q" => $this->token_service->replace($config['query'], static::getTokenData(), ['clear' => TRUE]),
         "count" => $config['tweets_count'],
       );
 
       $tweets = $twitter->get($endpoint, $parameters);
+
+      dump($tweets);
 
       if(isset($tweets->errors)) {
         drupal_set_message($tweets->errors[0]->message, 'error');
