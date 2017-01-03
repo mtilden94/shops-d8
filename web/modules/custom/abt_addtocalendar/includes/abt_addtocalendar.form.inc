@@ -32,17 +32,6 @@ function _abt_addtocalendar_build_form($settings, $field_definition) {
     ],
   ];
 
-  $element['addtocalendar_settings']['style'] = [
-    '#type' => 'select',
-    '#title' => t('Select Style'),
-    '#options' => [
-      0 => t('No Styling'),
-      'blue' => t('Blue'),
-      'glow_orange' => t('Glow Orange'),
-    ],
-    '#default_value' => !empty($settings['addtocalendar_settings']['style']) ? $settings['addtocalendar_settings']['style'] : 'blue',
-  ];
-
   $element['addtocalendar_settings']['display_text'] = [
     '#type' => 'textfield',
     '#title' => t('Display Text'),
