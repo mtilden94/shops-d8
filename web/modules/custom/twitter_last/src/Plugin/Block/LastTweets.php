@@ -33,38 +33,46 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
    * {@inheritdoc}
    */
   public function build() {
+    $build = [];
     $config = $this->getConfiguration();
     $tweets = $this->getTweets();
+    
+    if(!empty($tweets)) {
 
-    $render_tweets = array();
-    foreach ($tweets as $tweet) {
-      $renderTweet = new RenderTweet($tweet);
-      $render_tweets[] = $renderTweet->build();
+      $render_tweets = [];
+      foreach ($tweets as $tweet) {
+        $renderTweet = new RenderTweet($tweet);
+        $render_tweets[] = $renderTweet->build();
+      }
+
+      $attributes = new Attribute();
+      $attributes->addClass('tweets ' . $config['wrapper_class']);
+
+      $more_link_url = "https://twitter.com/search?q=";
+      $more_link_url .= urlencode($this->token_service->replace(!empty($config['url']) ? $config['url'] : '#', static::getTokenData(), ['clear' => TRUE]));
+
+      $build = [
+        'tweets' => [
+          '#theme' => 'tweets_list',
+          '#tweets' => $render_tweets,
+          '#attributes' => $attributes,
+          '#more_link_display' => $config['more_link_display'],
+          '#more_link' => [
+            'url' => $more_link_url,
+            'link_title' => $this->token_service->replace(
+              !empty($config['link_title']) ? $config['link_title'] : 'More',
+              static::getTokenData(), ['clear' => TRUE]
+            )
+          ]
+        ],
+      ];
     }
 
-    $attributes = new Attribute();
-    $attributes->addClass('tweets '.$config['wrapper_class']);
-
-    $more_link_url = "https://twitter.com/search?q=";
-    $more_link_url .= urlencode($this->token_service->replace(!empty($config['url'])? $config['url'] : '#', static::getTokenData(), ['clear' => TRUE]));
-
-    $build = array(
-      'tweets' => array(
-        '#theme' => 'tweets_list',
-        '#tweets' => $render_tweets,
-        '#attributes' => $attributes,
-        '#more_link_display' => $config['more_link_display'],
-        '#more_link' => array(
-          'url' => $more_link_url,
-          'link_title' => $this->token_service->replace(!empty($config['link_title'])? $config['link_title'] : 'More', static::getTokenData(), ['clear' => TRUE])
-        )
-      ),
-      '#cache' => array(
-        'max-age' => 3000,
-        'tags' => $this->getCacheTags(),
-        'contexts' => $this->getCacheContexts(),
-      )
-    );
+    $build['#cache'] = [
+      'max-age' => 3000,
+      'tags' => $this->getCacheTags(),
+      'contexts' => $this->getCacheContexts(),
+    ];
 
     return $build;
   }
