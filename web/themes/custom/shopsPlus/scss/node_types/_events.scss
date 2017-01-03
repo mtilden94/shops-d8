@@ -1,5 +1,10 @@
 .page-events{
   .node-event-slider{
+    h1{
+      color: $white;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
     @include media($fullsize){
       .slide-image{
         height: 450px;
@@ -469,7 +474,11 @@
   }
 
   #block-shopsplus-content{
-    margin-bottom: 140px;
+
+    .content{
+      margin-bottom: 140px;
+    }
+    margin-bottom: 80px;
 
     @include media($mobile) {
       width: 100%;
@@ -499,6 +508,130 @@
     }
     @include media($fullsize){
       padding: 0 50px 0 50px;
+    }
+  }
+
+  .event-schedule{
+    .label.above{
+      font-size: $tablet-font-size;
+      color: $heading-color;
+      font-weight: $bold;
+      //margin-bottom: 15px;
+    }
+    .paragraph--type--schedule-item{
+      padding: 35px 0 15px 0;
+      @include clearfix;
+      .event-item{
+        .f_item{
+          width: 100%;
+          @include media($tablet) {
+            width: 48%;
+            float: left;
+            margin-right: 4%;
+          }
+        }
+        .f_item:nth-child(2n+2){
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+      .title{
+        float: left;
+        color: $breadcrumbs;
+        font-size: 16px;
+        &:after{
+          content: "|";
+          padding: 0 7px;
+          color: $medium-gray;
+        }
+        .f_item{
+          float: left;
+        }
+      }
+      .date{
+        color: $breadcrumbs;
+        font-size: 16px;
+      }
+      .event-item{
+        margin-top: 20px;
+
+        .f_item{
+          //border: 1px solid red;
+        }
+
+        .image{
+          .f_item{
+            width: auto;
+            border: none;
+          }
+          img{
+            width: 100%;
+            height: auto;
+            @include media($tablet) {
+              width: 100px;
+              height: 100px;
+            }
+          }
+
+        }
+        .event-item-right-side{
+          .title{
+            float: none;
+            font-size: $base-font-size;
+            color: $heading-color;
+            font-weight: $bold;
+            &:after{
+              content: "";
+            }
+          }
+          .date{
+            color: $time;
+            float: left;
+            .f_item{
+              width: 100%;
+              &:after{
+                  content: "|";
+                  padding: 0 7px;
+                  color: $medium-gray;
+                }
+            }
+          }
+          .speaker-name{
+            color: $breadcrumbs;
+            font-size: 16px;
+            height: 25px;
+            width: 100%;
+          }
+          .place{
+            color: $time;
+            font-size: 16px;
+            float: left;
+            .f_item{
+              width: 100%;
+              &:after{
+                content: "|";
+                padding: 0 7px;
+                color: $medium-gray;
+              }
+            }
+          }
+          .subject{
+            float: left;
+            color: $green;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .paragraph--type--event-item{
+      border: 1px solid $medium-gray;
+      border-left: none;
+      border-right: none;
+      margin-top: -1px;
+      padding: 30px 0px 25px 0px;
+      @include media($tablet){
+        padding: 30px 20px 25px 20px;
+      }
     }
   }
 
