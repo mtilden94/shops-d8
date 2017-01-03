@@ -28,6 +28,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
     $this->token_service = \Drupal::token();
   }
 
+
   /**
    * {@inheritdoc}
    */
@@ -235,9 +236,6 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
       return $tweets;
     } else {
-      $bubbleable_metadata = new BubbleableMetadata();
-
-      dump($this->token_service->replace($config['query'], static::getTokenData()), ['clear' => TRUE]);
 
       $parameters = array(
         "q" => $this->token_service->replace($config['query'], static::getTokenData(), ['clear' => TRUE]),
@@ -246,7 +244,6 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
 
       $tweets = $twitter->get($endpoint, $parameters);
 
-      dump($tweets);
 
       if(isset($tweets->errors)) {
         drupal_set_message($tweets->errors[0]->message, 'error');
