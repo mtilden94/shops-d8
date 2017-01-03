@@ -5,9 +5,9 @@
     </div>
 
     {% if more_link_display %}
-    <div class="more-link">
-        <a href="https://twitter.com/" target="_blank">{{ "Follow us"|t }}</a>
-    </div>
+        <div class="more-link">
+            <a href="{{ more_link.url }}" target="_blank">{{ more_link.link_title }}</a>
+        </div>
     {% endif %}
 
 </div>
