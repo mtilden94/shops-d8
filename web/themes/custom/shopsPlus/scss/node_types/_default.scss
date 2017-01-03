@@ -1,3 +1,58 @@
+.node {
+  &.node-resource-teaser {
+    .content {
+      div.field {
+        display: inline;
+        a, span {
+          &:after {
+            content: '';
+            border-left: $base-border;
+            display: inline-block;
+            height: 14px;
+            width: 1px;
+            margin: 0 6px 0 10px;
+            position: relative;
+            top: 3px;
+          }
+        }
+
+        &:last-child {
+          a, span {
+            &:after {
+              content: none;
+            }
+          }
+        }
+      }
+
+      div.field .f_item {
+        display: inline;
+        a, span {
+          &:after {
+            content: '';
+            border-left: $base-border;
+            display: inline-block;
+            height: 14px;
+            width: 1px;
+            margin: 0 6px 0 10px;
+            position: relative;
+            top: 3px;
+          }
+        }
+
+        &:last-child {
+          a, span {
+            &:after {
+              content: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .node-view--teaser {
   margin: 0 0 40px 0;
   .content {
