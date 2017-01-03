@@ -277,7 +277,6 @@
                 if (last == $(this).find('h2 a').attr('href')){
                   $(this).hide();
                 }
-                console.log($(this).find('h2 a').attr('href'));
                 last = $(this).find('h2 a').attr('href');
               });
             });
