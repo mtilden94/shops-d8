@@ -149,7 +149,7 @@
             $('.block-latest-news-updates-block-3 .button').click(
               function () {
                   $('.block-latest-news-updates-block-3 .views-content').addClass('more-true');
-              }  
+              }
             );
 
             //table responsive
@@ -267,6 +267,19 @@
                     $('#mobile-menu .pos-block').removeClass('right-none');
                     $('li.menu-item--expanded').removeClass('pos-stat');
                 }
+            });
+
+
+            /* Temp fix for duplicate staff members */
+            $(".line-group").each(function(){
+              var last = null;
+              $(this).find('.views-row').each(function(){
+                if (last == $(this).find('h2 a').attr('href')){
+                  $(this).hide();
+                }
+                console.log($(this).find('h2 a').attr('href'));
+                last = $(this).find('h2 a').attr('href');
+              });
             });
         });
         // });
