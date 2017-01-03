@@ -188,7 +188,10 @@
           clear: both;
           padding-top: 15px;
         }
-        margin-bottom: 2.5% !important;
+        //margin-bottom: 2.5% !important;
+        margin-bottom: -1px !important;
+        border-left: none;
+        border-right: none;
       }
     }
 
@@ -251,7 +254,11 @@
 .node-type-event{
 
   .container{
-    padding-bottom: 40px;
+    //padding-bottom: 40px;
+    padding-bottom: 0px;
+    #content{
+      padding: 0;
+    }
   }
 
    .block-views-block-events-header-block-1 {
@@ -458,6 +465,40 @@
         font-weight: $bold;
         padding-bottom: 5px;
       }
+    }
+  }
+
+  #block-shopsplus-content{
+    margin-bottom: 140px;
+
+    @include media($mobile) {
+      width: 100%;
+      padding: 0 20px 0 20px;
+    }
+    @include media($tablet) {
+        width: 100%;
+        padding: 0 39px 0 39px;
+    }
+    @include media($fullsize){
+        padding: 0 50px 0 50px;
+    }
+
+  }
+
+  .block-lasttweets-2{
+    h2{
+      padding-top: 60px;
+    }
+    @include media($mobile) {
+      width: 100%;
+      padding: 0 20px 0 20px;
+    }
+    @include media($tablet) {
+      width: 100%;
+      padding: 0 39px 0 39px;
+    }
+    @include media($fullsize){
+      padding: 0 50px 0 50px;
     }
   }
 
