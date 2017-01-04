@@ -1,9 +1,15 @@
 .page-events{
-  .node-event-slider{
+  .node-event-slider {
     h1{
-      color: $white;
+      color: $heading-color;
       margin-top: 0;
       margin-bottom: 0;
+
+      @include media($tablet){
+        color: $white;
+        font-size: 36px;
+        font-weight: 300;
+      }
     }
     @include media($fullsize){
       .slide-image{
@@ -18,7 +24,17 @@
     }
     .event-date-city{
       padding-top: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
       margin-bottom: 20px;
+      color: $heading-color;
+
+      @include media($tablet){
+        padding-left: 0;
+        padding-right: 0;
+        color: $white;
+        font-size: 21px;
+      }
     }
     .is-featured{
       .f_item{
