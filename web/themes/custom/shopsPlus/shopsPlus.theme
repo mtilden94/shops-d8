@@ -133,6 +133,7 @@ function shopsPlus_preprocess_page(&$variables) {
       $query->join('node_field_data', 'nfd', 'nfd.nid = n.nid');
       $query->addField('nfd', 'title');
       $query->condition('nfd.status', 1);
+      $query->orderBy('nfd.title');
       $our_people_data = $query->execute()->fetchAll();
       $old_item = $item = array();
       $stop_flag = 0;
@@ -140,7 +141,7 @@ function shopsPlus_preprocess_page(&$variables) {
         if ($data->nid != $node_nid) {
           if ($stop_flag) {
             $item = array('nid' => $data->nid, 'title' => $data->title);
-            $stop_flag == 2;
+            $stop_flag = 2;
           }
           else {
             $old_item = array('nid' => $data->nid, 'title' => $data->title);
@@ -158,7 +159,6 @@ function shopsPlus_preprocess_page(&$variables) {
         'next' => $item
       );
     }
-
   }
   if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
     if (isset($term->field_header_image) AND isset($term->field_header_image->entity)) {
