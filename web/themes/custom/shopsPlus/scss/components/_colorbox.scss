@@ -1,0 +1,10 @@
+.inline-colorbox-content {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+#colorbox .inline-colorbox-content {
+  height: auto;
+  width: auto;
+}
