@@ -57,7 +57,10 @@
 		"drupal/simplenews": "1.x-dev",
 		"drupal/views_field_formatter": "^1.4",
 		"drupal/addtoany": "^1.7",
-		"drupal/paragraphs": "^1.0"
+		"drupal/paragraphs": "^1.0",
+		"drupal/colorbox": "^1.2",
+		"drupal/colorbox_load": "^1.0@RC",
+		"drupal/colorbox_inline": "^1.0@RC"
 	},
 	"require-dev": {
 		"behat/mink": "~1.7",

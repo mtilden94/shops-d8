@@ -10,6 +10,14 @@
 		float: left;
 		margin-left: -200px;
 		margin-right: -200px;
+
+		ul.menu li {
+			text-transform: uppercase;
+		}
+
+		ul.menu ul ul li {
+			text-transform: none;
+		}
 		ul.menu {
 			display: block;
 			padding: 0;
@@ -86,7 +94,7 @@
 					font-weight: $header-normal;
 					display: inline-block;
 					color: $dark-gray2;
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					text-decoration: none;
 					padding: 29px 16px;
 					letter-spacing: 0.5px;
