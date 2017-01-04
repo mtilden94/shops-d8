@@ -188,6 +188,7 @@
             //================================================================================
 
             $('#block-shopsplus-search input.form-search').attr('placeholder', 'Search');
+            $('#block-searchform input.form-search').attr('placeholder', 'Search');
             $('#block-shopsplus-search .form-actions .form-submit').on('click',
                 function (e) {
                     var this_form = $(this).parents('form:first');

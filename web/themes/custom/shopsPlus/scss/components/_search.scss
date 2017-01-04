@@ -1,5 +1,75 @@
 #block-searchform {
+  //padding: 20px;
+  margin: 20px;
+  padding: 0 15px 0 0;
 
+  input.form-search {
+    padding: 0 0 0 15px;
+    margin: 0;
+    background-color: rgba(255,255,255, 0.65);
+    border: none;
+    color: $heading-color;
+    text-transform: uppercase;
+  }
+  ::-webkit-input-placeholder {
+    color: $heading-color;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: $heading-color;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: $heading-color;
+  }
+
+  :-ms-input-placeholder {
+    color: $heading-color;
+  }
+  .edit-actions{
+
+  }
+  .form-actions {
+    position: absolute;
+    right: 20px;
+    top: 28px;
+    z-index: 101;
+    width: 30px;
+    height: 30px;
+    .form-submit {
+      margin: 0;
+      position: relative;
+      z-index: 100;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      text-indent: -200px;
+      padding: 0;
+      border-radius: 0;
+      background-color: transparent;
+      border: 0;
+      &:focus {
+        border: 0;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+    &:before {
+      z-index: 11;
+      position: absolute;
+      content: "\e900";
+      font-family: $icons-font-family;
+      color: $blue;
+      background-color: transparent;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+    }
+    &:hover:before {
+      //color: $white;
+      //background-color: $blue;
+    }
+  }
 }
 
 #block-shopsplus-search {
