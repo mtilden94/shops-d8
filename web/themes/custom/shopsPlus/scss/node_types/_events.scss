@@ -763,4 +763,13 @@
   .tweets {
     padding-bottom: 55px;
   }
+  .recap_images {
+    .label.above {
+      font-size: $tablet-font-size;
+      color: $heading-color;
+      font-weight: $bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  }
 }
