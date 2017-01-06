@@ -1,43 +1,43 @@
-.page-events{
+.page-events {
   .node-event-slider {
-    h1{
+    h1 {
       color: $heading-color;
       margin-top: 0;
       margin-bottom: 0;
 
-      @include media($tablet){
+      @include media($tablet) {
         color: $white;
         font-size: 36px;
         font-weight: 300;
       }
     }
-    @include media($fullsize){
-      .slide-image{
+    @include media($fullsize) {
+      .slide-image {
         height: 450px;
       }
     }
-    h2{
+    h2 {
       line-height: 100% !important;
-      span{
+      span {
         line-height: 100%;
       }
     }
-    .event-date-city{
+    .event-date-city {
       padding-top: 5px;
       padding-left: 10px;
       padding-right: 10px;
       margin-bottom: 20px;
       color: $heading-color;
 
-      @include media($tablet){
+      @include media($tablet) {
         padding-left: 0;
         padding-right: 0;
         color: $white;
         font-size: 21px;
       }
     }
-    .is-featured{
-      .f_item{
+    .is-featured {
+      .f_item {
         font-size: 0.8em;
         font-weight: $bold;
         font-family: $heading-font-family;
@@ -45,29 +45,29 @@
         padding-bottom: 5px;
       }
     }
-    .event-details{
-      a{
+    .event-details {
+      a {
         font-size: 16px;
-        font-weight:$strong;
+        font-weight: $strong;
         padding: 25px 30px;
       }
     }
   }
 
-  .block-original-events-page_1{
+  .block-original-events-page_1 {
     margin: 50px auto 70px auto;
   }
 
-  .events-view{
+  .events-view {
 
-    header{
+    header {
       color: $heading-color;
       font-family: $heading-font-family;
       font-size: $tablet-font-size;
       font-weight: $bold;
       padding-bottom: 25px;
     }
-    .line-group{
+    .line-group {
       .views-row {
         border: 1px solid $medium-gray;
         width: 100%;
@@ -75,55 +75,55 @@
         display: block;
         padding: 20px;
         text-align: center;
-        article{
-          header{
+        article {
+          header {
             padding-bottom: 0;
           }
-          h2{
+          h2 {
             font-size: $base-font-size;
             height: 2.6em;
             overflow: hidden;
             padding-top: 5px;
             text-align: center;
           }
-          span img{
+          span img {
 
-            &:hover{
+            &:hover {
 
             }
           }
         }
-       .event-date{
+        .event-date {
           padding-top: 10px;
           color: $active;
           font-size: 18px;
           display: block;
           height: 60px !important;
         }
-        .location-event-type{
+        .location-event-type {
           color: $green;
           font-size: 16px;
-          @include media($mobile){
-            .location{
+          @include media($mobile) {
+            .location {
               display: block;
             }
-            .separator{
+            .separator {
               display: none;
               color: $time;
             }
-            .event-type{
+            .event-type {
               display: block;
             }
           }
-          @include media($fullsize){
-            .location{
+          @include media($fullsize) {
+            .location {
               display: inline-block;
             }
-            .separator{
+            .separator {
               display: inline-block;
               color: $time;
             }
-            .event-type{
+            .event-type {
               display: inline-block;
             }
           }
@@ -132,25 +132,25 @@
       }
     }
 
-    @include media($tablet){
-      .line-group{
+    @include media($tablet) {
+      .line-group {
         .views-row {
           width: 32%;
           margin: 0 2% 2.3% 2%;
           display: inline-block;
           float: left;
         }
-        .views-row:nth-child(3n+3){
+        .views-row:nth-child(3n+3) {
           margin-right: 0;
           margin-left: 0;
         }
-        .views-row:nth-child(-2n+3){
+        .views-row:nth-child(-2n+3) {
           margin-right: 0;
           margin-left: 0;
         }
       }
     }
-    a.button{
+    a.button {
       display: block;
       background-color: $active;
       text-align: center;
@@ -165,14 +165,14 @@
       margin: 30px auto 50px auto;
       font-size: 16px;
       transition: all 0.5s ease-in-out;
-      &:hover{
+      &:hover {
         background-color: $blue;
       }
     }
   }
 
-  .past-events-view{
-    .line-group{
+  .past-events-view {
+    .line-group {
       .views-row {
         .event-date {
           padding-top: 0;
@@ -184,29 +184,29 @@
           font-size: 16px;
           height: 20px !important;
         }
-        div.separator{
+        div.separator {
           display: inline-block;
           float: left;
           color: $time;
           font-size: 15px;
           padding: 2px 7px 0 7px;
         }
-        .location{
+        .location {
           display: inline-block;
           float: left;
           color: $green;
           font-size: 16px;
         }
-        .event-recap{
+        .event-recap {
           text-align: left;
-          a{
+          a {
             text-decoration: none;
             text-transform: uppercase;
             color: $active !important;
             font-size: 16px;
           }
         }
-        header{
+        header {
           clear: both;
           padding-top: 15px;
         }
@@ -217,16 +217,16 @@
       }
     }
 
-    @include media($mobile){
-      .line-group{
-        .end-date, span.separator{
+    @include media($mobile) {
+      .line-group {
+        .end-date, span.separator {
           display: none;
         }
       }
     }
 
-    @include media($tablet){
-      .line-group{
+    @include media($tablet) {
+      .line-group {
         .views-row {
           width: 48%;
           margin: 0;
@@ -235,21 +235,21 @@
           border-left: none;
           border-right: none;
         }
-        .views-row:nth-child(-2n+3){
+        .views-row:nth-child(-2n+3) {
           margin-right: 4%;
           margin-left: 0;
         }
       }
     }
 
-    @include media($desktop){
-      .line-group{
-        .end-date, span.separator{
+    @include media($desktop) {
+      .line-group {
+        .end-date, span.separator {
           display: inline-block;
         }
       }
     }
-    a.button{
+    a.button {
       display: block;
       background-color: $active;
       text-align: center;
@@ -264,11 +264,11 @@
       margin: 30px auto 50px auto;
       font-size: 16px;
       transition: all 0.5s ease-in-out;
-      &:hover{
+      &:hover {
         background-color: $blue;
       }
     }
-    h2{
+    h2 {
       text-align: left !important;
     }
   }
@@ -276,17 +276,17 @@
 
 // styles for node event
 
-.node-type-event{
+.node-type-event {
 
-  .container{
+  .container {
     //padding-bottom: 40px;
     padding-bottom: 0px;
-    #content{
+    #content {
       padding: 0;
     }
   }
 
-   .block-views-block-events-header-block-1 {
+  .block-views-block-events-header-block-1 {
     position: relative;
     .content {
       .is-featured {
@@ -323,8 +323,8 @@
         }
       }
 
-      .register-link{
-        a{
+      .register-link {
+        a {
           display: block;
           background-color: $active;
           text-align: center;
@@ -340,27 +340,27 @@
           font-size: 16px;
           transition: all 0.5s ease-in-out;
           border-bottom: 3px solid $white;
-          &:hover{
+          &:hover {
             background-color: $blue;
           }
         }
       }
     }
 
-     @include media($mobile) {
-       .node {
-         .content {
-           position: inherit;
-           padding-top: 30px;
-           text-align: center;
-           .register-link{
-             a{
-               margin: 15px auto;
-             }
-           }
-         }
-       }
-     }
+    @include media($mobile) {
+      .node {
+        .content {
+          position: inherit;
+          padding-top: 30px;
+          text-align: center;
+          .register-link {
+            a {
+              margin: 15px auto;
+            }
+          }
+        }
+      }
+    }
 
     @include media($tablet) {
       .slide-image {
@@ -384,8 +384,8 @@
             //margin-bottom: 30px;
             margin-bottom: 0;
           }
-          .register-link{
-            a{
+          .register-link {
+            a {
               margin: 15px 0 0 0;
             }
           }
@@ -413,8 +413,8 @@
             //margin-bottom: 30px;
             margin-bottom: 0;
           }
-          .register-link{
-            a{
+          .register-link {
+            a {
               margin: 15px 0 0 0;
             }
           }
@@ -423,7 +423,7 @@
     }
   }
 
-  .left-side{
+  .left-side {
     font-size: 18px;
     color: $event_body_color;
     padding-right: 0;
@@ -436,36 +436,36 @@
       border-right: 1px solid $medium-gray;
       margin-right: -1px !important;
     }
-    .title{
+    .title {
       font-size: 18px;
       color: $table-color;
       font-weight: $bold;
       padding-bottom: 5px;
     }
-    .location-wrapper, .share-wrapper{
+    .location-wrapper, .share-wrapper {
       padding-top: 20px;
     }
 
-    a.atcb-link{
+    a.atcb-link {
       background: none;
       box-shadow: none;
       color: $green;
       text-decoration: underline;
       padding-left: 0;
     }
-    ul.atcb-list{
+    ul.atcb-list {
       margin-left: 0;
       list-style-type: none;
       //box-shadow: none;
       border: none;
-      li{
+      li {
         list-style-type: none;
-        &:before{
+        &:before {
           background-color: transparent;
         }
       }
     }
-    .a2a_svg{
+    .a2a_svg {
       border-radius: 0px;
       width: 45px;
       height: 45px;
@@ -473,7 +473,7 @@
       padding: 0;
     }
   }
-  .right-side{
+  .right-side {
     border-left: none;
     padding-left: 0;
     @include span-columns(12 of 12);
@@ -482,10 +482,10 @@
       @include span-columns(7.5 of 12);
       padding-left: 50px;
     }
-    .body{
+    .body {
       font-size: 18px;
       color: $event_body_color;
-      .label{
+      .label {
         color: $table-color;
         font-weight: $bold;
         padding-bottom: 5px;
@@ -493,9 +493,9 @@
     }
   }
 
-  #block-shopsplus-content{
+  #block-shopsplus-content {
 
-    .content{
+    .content {
       margin-bottom: 140px;
     }
     margin-bottom: 80px;
@@ -505,17 +505,17 @@
       padding: 0 20px 0 20px;
     }
     @include media($tablet) {
-        width: 100%;
-        padding: 0 39px 0 39px;
+      width: 100%;
+      padding: 0 39px 0 39px;
     }
-    @include media($fullsize){
-        padding: 0 50px 0 50px;
+    @include media($fullsize) {
+      padding: 0 50px 0 50px;
     }
 
   }
 
-  .block-lasttweets-2{
-    h2{
+  .block-lasttweets-2 {
+    h2 {
       padding-top: 60px;
     }
     @include media($mobile) {
@@ -526,23 +526,23 @@
       width: 100%;
       padding: 0 39px 0 39px;
     }
-    @include media($fullsize){
+    @include media($fullsize) {
       padding: 0 50px 0 50px;
     }
   }
 
-  .event-schedule, .presentations{
-    .label.above{
+  .event-schedule {
+    .label.above {
       font-size: $tablet-font-size;
       color: $heading-color;
       font-weight: $bold;
       //margin-bottom: 15px;
     }
-    .paragraph--type--schedule-item{
+    .paragraph--type--schedule-item {
       padding: 35px 0 15px 0;
       @include clearfix;
-      .event-item{
-        .f_item{
+      .event-item {
+        .f_item {
           width: 100%;
           @include media($tablet) {
             width: 48%;
@@ -550,41 +550,41 @@
             margin-right: 4%;
           }
         }
-        .f_item:nth-child(2n+2){
+        .f_item:nth-child(2n+2) {
           margin-right: 0;
           margin-left: 0;
         }
       }
-      .title{
+      .title {
         float: left;
         color: $breadcrumbs;
         font-size: 16px;
-        &:after{
+        &:after {
           content: "|";
           padding: 0 7px;
           color: $medium-gray;
         }
-        .f_item{
+        .f_item {
           float: left;
         }
       }
-      .date{
+      .date {
         color: $breadcrumbs;
         font-size: 16px;
       }
-      .event-item{
+      .event-item {
         margin-top: 20px;
 
-        .f_item{
+        .f_item {
           //border: 1px solid red;
         }
 
-        .image{
-          .f_item{
+        .image {
+          .f_item {
             width: auto;
             border: none;
           }
-          img{
+          img {
             width: 100%;
             height: auto;
             margin-top: 4px;
@@ -595,8 +595,8 @@
           }
 
         }
-        .event-item-right-side{
-          .title{
+        .event-item-right-side {
+          .title {
             float: none;
             font-size: $base-font-size;
             color: $heading-color;
@@ -604,43 +604,43 @@
             line-height: 100%;
             height: 50px;
             overflow: hidden;
-            &:after{
+            &:after {
               content: "";
             }
           }
-          .date{
+          .date {
             color: $time;
             float: left;
-            .f_item{
+            .f_item {
               width: 100%;
-              &:after{
-                  content: "|";
-                  padding: 0 7px;
-                  color: $medium-gray;
-                }
-            }
-          }
-          .speaker-name{
-            color: $breadcrumbs;
-            font-size: 16px;
-            height: 25px;
-            width: 100%;
-            margin-top: 8px;
-          }
-          .place{
-            color: $time;
-            font-size: 16px;
-            float: left;
-            .f_item{
-              width: 100%;
-              &:after{
+              &:after {
                 content: "|";
                 padding: 0 7px;
                 color: $medium-gray;
               }
             }
           }
-          .subject{
+          .speaker-name {
+            color: $breadcrumbs;
+            font-size: 16px;
+            height: 25px;
+            width: 100%;
+            margin-top: 8px;
+          }
+          .place {
+            color: $time;
+            font-size: 16px;
+            float: left;
+            .f_item {
+              width: 100%;
+              &:after {
+                content: "|";
+                padding: 0 7px;
+                color: $medium-gray;
+              }
+            }
+          }
+          .subject {
             float: left;
             color: $green;
             font-size: 16px;
@@ -648,131 +648,123 @@
         }
       }
     }
-    .paragraph--type--event-item{
+    .paragraph--type--event-item {
       border: 1px solid $medium-gray;
       border-left: none;
       border-right: none;
       margin-top: -1px;
       padding: 30px 0px 25px 0px;
-      @include media($tablet){
+      @include media($tablet) {
         padding: 30px 20px 25px 20px;
       }
     }
   }
-  .paragraph--type--presentations{
+  .paragraph--type--presentations {
     padding: 35px 0 15px 0;
     @include clearfix;
-    .event-item{
-      .f_item{
-        width: 100%;
-        @include media($tablet) {
-          width: 48%;
-          float: left;
-          margin-right: 4%;
-        }
-      }
-      .f_item:nth-child(2n+2){
-        margin-right: 0;
-        margin-left: 0;
+    .f_item {
+      width: 100%;
+      @include media($tablet) {
+        width: 48%;
+        float: left;
+        margin-right: 4%;
       }
     }
-    .title{
+    .f_item:nth-child(2n+2) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    .title {
       float: left;
       color: $breadcrumbs;
       font-size: 16px;
-      &:after{
+      &:after {
         content: "|";
         padding: 0 7px;
         color: $medium-gray;
       }
-      .f_item{
+      .f_item {
         float: left;
       }
     }
-    .date{
+    .date {
       color: $breadcrumbs;
       font-size: 16px;
     }
-    .event-item{
-      margin-top: 20px;
 
-      .f_item{
-        //border: 1px solid red;
+    .image {
+      .f_item {
+        width: auto;
+        border: none;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        margin-top: 4px;
+        @include media($tablet) {
+          width: 100px;
+          height: 100px;
+        }
       }
 
-      .image{
-        .f_item{
-          width: auto;
-          border: none;
+    }
+    .event-item-right-side {
+      .title {
+        float: none;
+        font-size: $base-font-size;
+        color: $heading-color;
+        font-weight: $bold;
+        line-height: 100%;
+        height: 50px;
+        overflow: hidden;
+        &:after {
+          content: "";
         }
-        img{
-          width: 100%;
-          height: auto;
-          margin-top: 4px;
-          @include media($tablet) {
-            width: 100px;
-            height: 100px;
-          }
-        }
-
       }
-      .event-item-right-side{
-        .title{
-          float: none;
-          font-size: $base-font-size;
-          color: $heading-color;
-          font-weight: $bold;
-          line-height: 100%;
-          height: 50px;
-          overflow: hidden;
-          &:after{
-            content: "";
-          }
-        }
-        .date{
-          color: $time;
-          float: left;
-          .f_item{
-            width: 100%;
-            &:after{
-              content: "|";
-              padding: 0 7px;
-              color: $medium-gray;
-            }
-          }
-        }
-        .speaker-name{
-          color: $breadcrumbs;
-          font-size: 16px;
-          height: 25px;
+      .date {
+        color: $time;
+        float: left;
+        .f_item {
           width: 100%;
-          margin-top: 8px;
-        }
-        .place{
-          color: $time;
-          font-size: 16px;
-          float: left;
-          .f_item{
-            width: 100%;
-            &:after{
-              content: "|";
-              padding: 0 7px;
-              color: $medium-gray;
-            }
+          &:after {
+            content: "|";
+            padding: 0 7px;
+            color: $medium-gray;
           }
         }
-        .subject{
-          float: left;
-          color: $green;
-          font-size: 16px;
+      }
+      .speaker-name {
+        color: $breadcrumbs;
+        font-size: 16px;
+        height: 25px;
+        width: 100%;
+        margin-top: 8px;
+      }
+      .place {
+        color: $time;
+        font-size: 16px;
+        float: left;
+        .f_item {
+          width: 100%;
+          &:after {
+            content: "|";
+            padding: 0 7px;
+            color: $medium-gray;
+          }
         }
+      }
+      .subject {
+        float: left;
+        color: $green;
+        font-size: 16px;
       }
     }
+
   }
-  .block-views-block-events-header-block-2{
+  .block-views-block-events-header-block-2 {
     background-color: $event_bottom;
     text-align: center;
-    header{
+    header {
       text-align: center;
       font-size: 38px;
       color: $white;
@@ -795,7 +787,7 @@
       }
     }
   }
-  .tweets{
+  .tweets {
     padding-bottom: 55px;
   }
 
