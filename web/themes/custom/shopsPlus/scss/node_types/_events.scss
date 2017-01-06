@@ -659,39 +659,20 @@
       }
     }
   }
-  .paragraph--type--presentations {
-    padding: 35px 0 15px 0;
-    @include clearfix;
-    .f_item {
-      width: 100%;
-      @include media($tablet) {
-        width: 48%;
-        float: left;
-        margin-right: 4%;
-      }
+  .presentations {
+    .label.above {
+      font-size: $tablet-font-size;
+      color: $heading-color;
+      font-weight: $bold;
+      //margin-bottom: 15px;
     }
-    .f_item:nth-child(2n+2) {
-      margin-right: 0;
-      margin-left: 0;
-    }
-    .title {
-      float: left;
-      color: $breadcrumbs;
-      font-size: 16px;
-      &:after {
-        content: "|";
-        padding: 0 7px;
-        color: $medium-gray;
-      }
-      .f_item {
-        float: left;
-      }
-    }
-    .date {
-      color: $breadcrumbs;
-      font-size: 16px;
-    }
+    border: 1px solid $medium-gray;
+    border-left: none;
+    border-right: none;
+    margin-top: -1px;
+  }
 
+  .paragraph--type--presentations {
     .image {
       .f_item {
         width: auto;
@@ -721,18 +702,6 @@
           content: "";
         }
       }
-      .date {
-        color: $time;
-        float: left;
-        .f_item {
-          width: 100%;
-          &:after {
-            content: "|";
-            padding: 0 7px;
-            color: $medium-gray;
-          }
-        }
-      }
       .speaker-name {
         color: $breadcrumbs;
         font-size: 16px;
@@ -740,55 +709,36 @@
         width: 100%;
         margin-top: 8px;
       }
-      .place {
-        color: $time;
-        font-size: 16px;
-        float: left;
-        .f_item {
-          width: 100%;
-          &:after {
-            content: "|";
-            padding: 0 7px;
-            color: $medium-gray;
-          }
+
+    }
+    .block-views-block-events-header-block-2 {
+      background-color: $event_bottom;
+      text-align: center;
+      header {
+        text-align: center;
+        font-size: 38px;
+        color: $white;
+        font-weight: $bold;
+        padding: 60px 0 35px 0;
+      }
+      a {
+        @extend %button;
+        display: inline-block;
+        border: 1px solid $white;
+        background-color: $event_bottom;
+        padding: 25px 40px;
+        line-height: 1;
+        margin-bottom: 70px;
+
+        @include media($tablet) {
+          border: 3px solid $white;
+          font-size: 16px;
+          padding: 25px 40px;
         }
       }
-      .subject {
-        float: left;
-        color: $green;
-        font-size: 16px;
-      }
     }
-
-  }
-  .block-views-block-events-header-block-2 {
-    background-color: $event_bottom;
-    text-align: center;
-    header {
-      text-align: center;
-      font-size: 38px;
-      color: $white;
-      font-weight: $bold;
-      padding: 60px 0 35px 0;
-    }
-    a {
-      @extend %button;
-      display: inline-block;
-      border: 1px solid $white;
-      background-color: $event_bottom;
-      padding: 25px 40px;
-      line-height: 1;
-      margin-bottom: 70px;
-
-      @include media($tablet) {
-        border: 3px solid $white;
-        font-size: 16px;
-        padding: 25px 40px;
-      }
+    .tweets {
+      padding-bottom: 55px;
     }
   }
-  .tweets {
-    padding-bottom: 55px;
-  }
-
 }
