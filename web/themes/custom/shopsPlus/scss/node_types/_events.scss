@@ -659,20 +659,41 @@
       }
     }
   }
+  .presentations > div {
+    @include clearfix;
+    .f_item {
+      width: 100%;
+      @include media($tablet) {
+        width: 48%;
+        float: left;
+        margin-right: 4%;
+      }
+      &:nth-child(2n+2) {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
   .presentations {
     .label.above {
       font-size: $tablet-font-size;
       color: $heading-color;
       font-weight: $bold;
-      //margin-bottom: 15px;
     }
-    border: 1px solid $medium-gray;
-    border-left: none;
-    border-right: none;
-    margin-top: -1px;
-  }
+    .paragraph--type--presentations {
+      border: 1px solid $medium-gray;
+      border-left: none;
+      border-right: none;
+      margin-top: -1px;
+      margin-bottom: 15px;
+      padding: 30px 0px 25px 0px;
+      @include media($tablet) {
+        padding: 30px 20px 25px 20px;
+      }
+      @include clearfix;
 
-  .paragraph--type--presentations {
+    }
     .image {
       .f_item {
         width: auto;
