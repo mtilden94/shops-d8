@@ -15,11 +15,16 @@
 
     .content {
       .field {
+        &.summary {
+          font-size: 18px;
+          color: #777;
+          font-family: $base-font-family;
+        }
+
         &.body {
           font-size: 18px;
           color: #777;
           font-family: $base-font-family;
-
         }
       }
     }
