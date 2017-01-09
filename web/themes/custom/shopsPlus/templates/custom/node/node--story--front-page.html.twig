@@ -25,6 +25,14 @@
             </header>
         {% endif %}
         {{ content|without('links', 'field_image') }}
-        <div class="more"><a href="{{ url }}">Read more about {{ node.field_first_name.value }} experience</a></div>
+        <div class="more">
+            <a href="{{ url }}">
+                {% if node.field_button_label.value is not empty %}
+                    {{ node.field_button_label.value }}
+                {% else %}
+                    Read more about {{ node.field_first_name.value }} experience
+                {% endif %}
+            </a>
+        </div>
     </div><!-- /.content -->
 </article><!-- /.node -->
