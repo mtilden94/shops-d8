@@ -15,3 +15,7 @@ services:
     class: Drupal\abt_breadcrumbs\Breadcrumb\ArticleBreadcrumbBuilder
     tags:
       - { name: breadcrumb_builder, priority: 100 }
+  abt_breadcrumbs.story:
+    class: Drupal\abt_breadcrumbs\Breadcrumb\StoryBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }

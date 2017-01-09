@@ -102,6 +102,21 @@ h1 a, h2 a, h3 a {
   }
 }
 
+.node-type-story {
+  #header-image {
+    height: 300px;
+
+    @include media($tablet) {
+      height: 310px;
+    }
+
+    @include media($fullsize) {
+      height: 410px;
+    }
+  }
+}
+
+
 #block-linktocontactpage {
   display: none;
 }

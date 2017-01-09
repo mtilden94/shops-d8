@@ -1,0 +1,33 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+    'node',
+    node.bundle|clean_class,
+    view_mode ? node.bundle|clean_class ~ '--layout-' ~ view_mode|clean_class
+] %}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {% if title_prefix or title_suffix %}
+      {{ title_prefix }}
+      {{ title_suffix }}
+  {% endif %}
+
+  <div{{ content_attributes.addClass('content') }}>
+      <blockquote>
+        {{ content.field_quote }}
+
+          <p class="author">
+              {% if full_name %}
+                  <b style="color: #000000">{{ full_name }}</b><br/>
+              {% endif %}
+
+              {% if bio %}
+                  {{ bio }}
+              {% endif %}
+          </p>
+      </blockquote>
+
+      {{ content|without('links', 'field_quote', 'field_first_name', 'field_last_name', 'field_bio') }}
+  </div>
+
+</article>
