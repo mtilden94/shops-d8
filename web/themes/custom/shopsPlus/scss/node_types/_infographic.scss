@@ -48,7 +48,6 @@
   }
 
   .content {
-    @include outer-container;
     margin-top: 20px;
     text-align: center;
 
@@ -57,11 +56,17 @@
       text-align: left;
       margin-left: 30px;
       float: left;
-      display: block;
       width: 80%;
+      display: flex;
     }
 
     .field {
+      @include media($desktop) {
+        align-items: stretch;
+        align-content: space-between;
+        flex-direction: row;
+      }
+
       &.impact {
         font-size: 36px;
         line-height: 1.3;
@@ -70,10 +75,11 @@
         font-weight: $header-bold;
 
         @include media($desktop) {
-          margin-top: 0;
-          text-align: left;
+          flex-grow: 6;
+          flex-shrink: 6;
+          flex-basis: 0;
+          white-space: nowrap;
           margin-right: 30px;
-          float: left;
 
           font-size: 56px;
           line-height: 63px;
@@ -86,11 +92,6 @@
         line-height: 25px;
 
         @include media($desktop) {
-          margin-top: 0;
-          text-align: left;
-          float: left;
-          width: 71%;
-
           font-size: 24px;
           line-height: 1.2;
         }
