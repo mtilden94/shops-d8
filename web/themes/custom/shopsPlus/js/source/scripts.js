@@ -63,7 +63,8 @@
                     var $url = $(this).attr('src');
                     $.colorbox({
                         width: "70%",
-                        href: $url
+                        href: $url,
+                        opacity: 0.4
                     });
 
                     return false;
