@@ -39,7 +39,7 @@
     .is-featured {
       .f_item {
         font-size: 0.8em;
-        font-weight: $bold;
+        font-weight: $header-bold;
         font-family: $heading-font-family;
         text-transform: uppercase;
         padding-bottom: 5px;
@@ -64,7 +64,7 @@
       color: $heading-color;
       font-family: $heading-font-family;
       font-size: $tablet-font-size;
-      font-weight: $bold;
+      font-weight: $header-bold;
       padding-bottom: 25px;
     }
     .line-group {
@@ -162,7 +162,7 @@
       text-transform: uppercase;
       font-weight: $bold;
       font-family: $heading-font-family;
-      margin: 30px auto 50px auto;
+      margin: 30px auto 100px auto;
       font-size: 16px;
       transition: all 0.5s ease-in-out;
       &:hover {
@@ -199,11 +199,13 @@
         }
         .event-recap {
           text-align: left;
+          margin-top: 10px;
           a {
             text-decoration: none;
             text-transform: uppercase;
             color: $active !important;
             font-size: 16px;
+            font-weight: $bold;
           }
         }
         header {
