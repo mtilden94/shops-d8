@@ -65,6 +65,8 @@
                         width: "70%",
                         href: $url
                     });
+
+                    return false;
                 });
 
                 // views-exposed-form more
