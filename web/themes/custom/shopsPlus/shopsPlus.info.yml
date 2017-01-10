@@ -10,6 +10,8 @@ libraries:
   - shopsPlus/waitForImages
   - shopsPlus/matchHeight
   - shopsPlus/fancybox
+  - colorbox/colorbox
+  - colorbox/default
   - shopsPlus/global
   - shopsPlus/fonts
 

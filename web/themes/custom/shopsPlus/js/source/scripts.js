@@ -136,10 +136,11 @@
                     }
                 });
 
+                $('.field.body figure img').attr('style', 'cursor: pointer;');
                 $('.field.body figure img', context).on('click', function () {
                     var $url = $(this).attr('src');
 
-                    $.fancybox({
+                    $.colorbox({
                         href: $url
                     });
                 });
