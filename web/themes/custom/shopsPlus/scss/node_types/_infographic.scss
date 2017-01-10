@@ -75,9 +75,6 @@
         font-weight: $header-bold;
 
         @include media($desktop) {
-          flex-grow: 6;
-          flex-shrink: 6;
-          flex-basis: 0;
           white-space: nowrap;
           margin-right: 30px;
 
