@@ -116,7 +116,7 @@
                 };
 
 
-                $('.flexslider.optionset-gallery').on('start', function(event) {
+                $('.flexslider.optionset-gallery', context).on('start', function(event) {
                     var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
                     if ($pager.length <= 0) {
                         $pager = $('<div class="flex-sidebar-direction-nav-pager-webksde"><span class="pager-current"></span><span class="pager-separator">/</span><span class="pager-total"></span></div>');
@@ -127,13 +127,21 @@
                     $pager.children('.pager-total').text($flexslider.count);
                 });
 
-                $('.flexslider.optionset-gallery').on('after', function(event) {
+                $('.flexslider.optionset-gallery', context).on('after', function(event) {
                     var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
                     if ($pager.length >= 0) {
                         $flexslider = $(this).data('flexslider');
                         $pager.children('.pager-current').text($flexslider.currentSlide + 1);
                         $pager.children('.pager-total').text($flexslider.count);
                     }
+                });
+
+                $('.field.body figure img', context).on('click', function () {
+                    var $url = $(this).attr('src');
+
+                    $.fancybox({
+                        href: $url
+                    });
                 });
             }
         };

@@ -9,6 +9,7 @@ libraries:
   - core/normalize
   - shopsPlus/waitForImages
   - shopsPlus/matchHeight
+  - shopsPlus/fancybox
   - shopsPlus/global
   - shopsPlus/fonts
 

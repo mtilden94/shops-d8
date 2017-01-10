@@ -44,6 +44,14 @@ matchHeight:
   js:
     libraries/matchHeight/jquery.matchHeight-min.js: {}
 
+fancybox:
+  version: VERSION
+  css:
+    component:
+      libraries/fancyapps/source/jquery.fancybox.css: {}
+  js:
+    libraries/fancyapps/source/jquery.fancybox.js: {}
+
 #tabs:
 #  version: VERSION
 #  css:
