@@ -58,6 +58,15 @@
                 $("div[class*='block-original-latest_news_updates-block_'] .views-row .node").matchHeight();
 
 
+                $('.field.body figure img').attr('style', 'cursor: pointer;');
+                $('.field.body figure img', context).on('click', function () {
+                    var $url = $(this).attr('src');
+                    $.colorbox({
+                        width: "70%",
+                        href: $url
+                    });
+                });
+
                 // views-exposed-form more
 
                 function exposed_form_view($el) {
@@ -134,16 +143,6 @@
                         $pager.children('.pager-current').text($flexslider.currentSlide + 1);
                         $pager.children('.pager-total').text($flexslider.count);
                     }
-                });
-
-                $('.field.body figure img').attr('style', 'cursor: pointer;');
-                $('.field.body figure img', context).on('click', function () {
-                    var $url = $(this).attr('src');
-
-                    $.colorbox({
-                        width: "70%",
-                        href: $url
-                    });
                 });
             }
         };
