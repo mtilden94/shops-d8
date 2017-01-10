@@ -38,6 +38,10 @@ $slide--next-img: "../images/optimized/right-arrow.png";
       }
     }
 
+    .flex-control-nav {
+      display: none;
+    }
+
     .flex-control-paging {
       display: block;
       z-index: 3;
