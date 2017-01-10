@@ -62,7 +62,7 @@
                 $('.field.body figure img', context).on('click', function () {
                     var $url = $(this).attr('src');
                     $.colorbox({
-                        width: "70%",
+                        maxWidth: "70%",
                         href: $url,
                         opacity: 0.4
                     });
