@@ -141,6 +141,7 @@
                     var $url = $(this).attr('src');
 
                     $.colorbox({
+                        width: "70%",
                         href: $url
                     });
                 });
