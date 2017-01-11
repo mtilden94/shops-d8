@@ -361,9 +361,9 @@ function shopsPlus_preprocess_views_view(&$vars) {
       $exp_data_query[] = 'type=' . $view->exposed_data['type'];
     }
     $search_title = '';
-    if ($view->exposed_data['title'] != '') {
-      $exp_data_query[] = 'title=' . $view->exposed_data['title'];
-      $search_title = " for ‘" . $view->exposed_data['title'] . "’";
+    if ($view->exposed_data['combine'] != '') {
+      $exp_data_query[] = 'title=' . $view->exposed_data['combine'];
+      $search_title = " for ‘" . $view->exposed_data['combine'] . "’";
     }
     $exp_data_query = implode('&', $exp_data_query);
     $vars['sort_link'] = '';
@@ -428,7 +428,7 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
   $more_class = '';
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
     $form['actions']['#weight'] = 0;
-    $form['title']['#placeholder'] = t('Search the Resource Center');
+    $form['combine']['#placeholder'] = t('Search the Resource Center');
 
     // $form['country']['#options']['All'] = removed.
     $form['countries_target_id']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
