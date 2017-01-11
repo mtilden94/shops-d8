@@ -303,11 +303,12 @@
       }
       .event-date-city {
         @include clearfix;
-        color: $white;
+        color: $blue;
         font-family: $base-font-family;
         font-size: $base-font-size;
         font-weight: $normal;
         line-height: $base-line-height;
+        display: inline-block;
       }
       .event-details a {
         font-family: $heading-font-family;
@@ -327,21 +328,16 @@
 
       .register-link {
         a {
-          display: block;
-          background-color: $active;
-          text-align: center;
-          width: 200px;
-          height: 60px;
-          line-height: 60px;
-          text-decoration: none;
-          color: $white;
-          text-transform: uppercase;
-          font-weight: $bold;
           font-family: $heading-font-family;
-          margin: 15px 0 0 0;
-          font-size: 16px;
-          transition: all 0.5s ease-in-out;
+          text-transform: uppercase;
+          text-decoration: none;
+          font-size: 12px;
+          color: $white;
+          display: inline-block;
+          padding: 17px;
           border-bottom: 3px solid $white;
+          background-color: $active;
+          line-height: 1em;
           &:hover {
             background-color: $blue;
           }
@@ -385,10 +381,14 @@
           .event-date-city {
             //margin-bottom: 30px;
             margin-bottom: 0;
+            color: $white;
+
           }
           .register-link {
             a {
               margin: 15px 0 0 0;
+              font-size: 14px;
+              padding: 19px 17px;
             }
           }
         }
@@ -414,10 +414,13 @@
           .event-date-city {
             //margin-bottom: 30px;
             margin-bottom: 0;
+            font-size: 24px;
           }
           .register-link {
             a {
               margin: 15px 0 0 0;
+              font-size: 16px;
+              padding: 22px 27px;
             }
           }
         }
