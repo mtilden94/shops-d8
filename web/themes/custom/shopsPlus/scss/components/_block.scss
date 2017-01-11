@@ -731,27 +731,6 @@
       }
     }
   }
-  @include media($fullsize) {
-    .flex-control-nav {
-      top: 440px;
-    }
-    .slide-image {
-      height: 450px;
-    }
-    .node {
-      .content {
-        top: 65%;
-        h2 {
-          margin-bottom: 0;
-          font-size: 38px;
-          max-width: none;
-        }
-        .event-date-city {
-          margin-bottom: 30px;
-        }
-      }
-    }
-  }
   @include media($tablet) {
     .flex-control-nav {
       top: 338px;
@@ -773,6 +752,28 @@
       }
     }
   }
+  @include media($fullsize) {
+    .flex-control-nav {
+      top: 430px;
+    }
+    .slide-image {
+      height: 450px;
+    }
+    .node {
+      .content {
+        top: 65%;
+        h2 {
+          margin-bottom: 0;
+          font-size: 38px;
+          max-width: none;
+        }
+        .event-date-city {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+
 }
 
 .block-original-hp_stories-block_1 {
