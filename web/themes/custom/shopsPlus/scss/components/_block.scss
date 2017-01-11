@@ -713,6 +713,7 @@
       font-size: $base-font-size;
       font-weight: $normal;
       line-height: $base-line-height;
+      display: inline-block;
     }
     .event-details a {
       font-family: $heading-font-family;
