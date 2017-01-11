@@ -713,7 +713,9 @@
       font-size: $base-font-size;
       font-weight: $normal;
       line-height: $base-line-height;
+      display: inline-block;
     }
+
     .event-details a {
       font-family: $heading-font-family;
       text-transform: uppercase;
@@ -721,7 +723,7 @@
       font-size: 12px;
       color: $white;
       display: inline-block;
-      padding: 23px 46px;
+      padding: 17px;
       border-bottom: 3px solid $white;
       background-color: $active;
       line-height: 1em;
@@ -730,25 +732,10 @@
       }
     }
   }
-  @include media($fullsize) {
-    .slide-image {
-      height: 450px;
-    }
-    .node {
-      .content {
-        top: 65%;
-        h2 {
-          margin-bottom: 0;
-          font-size: 38px;
-          max-width: none;
-        }
-        .event-date-city {
-          margin-bottom: 30px;
-        }
-      }
-    }
-  }
   @include media($tablet) {
+    .flex-control-nav {
+      top: 338px;
+    }
     .slide-image {
       height: 350px;
     }
@@ -763,9 +750,39 @@
         .event-date-city {
           margin-bottom: 30px;
         }
+        .event-details a {
+          font-size: 14px;
+          padding: 19px 17px;
+        }
       }
     }
   }
+  @include media($fullsize) {
+    .flex-control-nav {
+      top: 430px;
+    }
+    .slide-image {
+      height: 450px;
+    }
+    .node {
+      .content {
+        top: 65%;
+        h2 {
+          margin-bottom: 0;
+          font-size: 38px;
+          max-width: none;
+        }
+        .event-date-city {
+          margin-bottom: 30px;
+        }
+        .event-details a {
+          font-size: 16px;
+          padding: 22px 27px;
+        }
+      }
+    }
+  }
+
 }
 
 .block-original-hp_stories-block_1 {

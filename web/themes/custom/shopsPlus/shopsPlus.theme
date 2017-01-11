@@ -65,9 +65,13 @@ function shopsPlus_preprocess_node(&$variables) {
   $node = &$variables['node'];
 
   if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && ($variables['view_mode'] == 'slider' || $variables['view_mode'] == 'slide')) {
-    if (!empty($variables['node']->field_location)) {
-      $variables['city'] = $variables['node']->field_location->first()
-        ->getLocality();
+    $field_location = $variables['node']->field_location;
+    if (!empty($field_location) && method_exists ($field_location,'first')) {
+      $first = $field_location->first();
+      if (!empty($first) && method_exists ($first, 'getLocality')) {
+        $variables['city'] = $first->getLocality();
+      }
+
     }
   }
 
@@ -384,9 +388,9 @@ function shopsPlus_preprocess_views_view(&$vars) {
       $exp_data_query[] = 'type=' . $view->exposed_data['type'];
     }
     $search_title = '';
-    if ($view->exposed_data['title'] != '') {
-      $exp_data_query[] = 'title=' . $view->exposed_data['title'];
-      $search_title = " for ‘" . $view->exposed_data['title'] . "’";
+    if ($view->exposed_data['combine'] != '') {
+      $exp_data_query[] = 'title=' . $view->exposed_data['combine'];
+      $search_title = " for ‘" . $view->exposed_data['combine'] . "’";
     }
     $exp_data_query = implode('&', $exp_data_query);
     $vars['sort_link'] = '';
@@ -451,7 +455,7 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
   $more_class = '';
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
     $form['actions']['#weight'] = 0;
-    $form['title']['#placeholder'] = t('Search the Resource Center');
+    $form['combine']['#placeholder'] = t('Search the Resource Center');
 
     // $form['country']['#options']['All'] = removed.
     $form['countries_target_id']['#options']['All'] = $form['health_area']['#options']['All'] = $form['type']['#options']['All'] = $form['technical_area']['#options']['All'] = 'Select an option';
@@ -472,10 +476,9 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
   }
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-events-page-1') {
     $form['title']['#placeholder'] = t('Search events');
-    $form['location']['#options']['All'] = 'All locations';
+    $form['field_location_country_code']['#options']['All'] = 'All locations';
     $form['health_area']['#options']['All'] = 'All areas';
     $form['event_type']['#options']['All'] = 'All types';
-
     $data_select = $form_state->getUserInput();
     if ($data_select) {
       if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['location'] != 'All') {
