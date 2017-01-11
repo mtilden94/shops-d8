@@ -731,6 +731,9 @@
     }
   }
   @include media($fullsize) {
+    .flex-control-nav {
+      top: 440px;
+    }
     .slide-image {
       height: 450px;
     }
@@ -749,6 +752,9 @@
     }
   }
   @include media($tablet) {
+    .flex-control-nav {
+      top: 338px;
+    }
     .slide-image {
       height: 350px;
     }
