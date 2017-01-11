@@ -340,6 +340,7 @@ function shopsPlus_preprocess_block(&$variables) {
 
   if (isset($variables['content']['field_image']['#bundle']) && $variables['content']['field_image']['#bundle'] == 'image_top_block') {
     $class[] = "image-top-block";
+    $variables['#cache']['max-age'] = 0;
   }
 
   if (isset($variables['content']['field_column']['#bundle']) && $variables['content']['field_column']['#bundle'] == 'a2_columns_block') {
