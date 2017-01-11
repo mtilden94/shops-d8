@@ -65,9 +65,13 @@ function shopsPlus_preprocess_node(&$variables) {
   $node = &$variables['node'];
 
   if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && ($variables['view_mode'] == 'slider' || $variables['view_mode'] == 'slide')) {
-    if (!empty($variables['node']->field_location)) {
-      $variables['city'] = $variables['node']->field_location->first()
-        ->getLocality();
+    $field_location = $variables['node']->field_location;
+    if (!empty($field_location) && method_exists ($field_location,'first')) {
+      $first = $field_location->first();
+      if (!empty($first) && method_exists ($first, 'getLocality')) {
+        $variables['city'] = $first->getLocality();
+      }
+
     }
   }
 
