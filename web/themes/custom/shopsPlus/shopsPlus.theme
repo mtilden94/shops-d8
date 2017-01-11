@@ -65,8 +65,10 @@ function shopsPlus_preprocess_node(&$variables) {
   $node = &$variables['node'];
 
   if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && ($variables['view_mode'] == 'slider' || $variables['view_mode'] == 'slide')) {
-    $variables['city'] = $variables['node']->field_location->first()
-      ->getLocality();
+    if (!empty($variables['node']->field_location)) {
+      $variables['city'] = $variables['node']->field_location->first()
+        ->getLocality();
+    }
   }
 
   if ($node->getType() == 'countries' AND $variables['view_mode'] == 'full') {
