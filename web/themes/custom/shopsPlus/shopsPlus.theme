@@ -265,6 +265,29 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     $variables['image_top_block_url'] = $style;
   }
 
+  //for random header image in block
+  $random_block_id = '97843fb3-945d-48c2-8df3-58f2d1393c6c';
+  if ($variables['element']['#bundle'] == 'image_top_block' AND !empty($variables['element']['#object'] AND $variables['element']['#object']->uuid() == $random_block_id)) {
+    $style_img = 'header_image';
+    $variables['image_top_block_url'] = '';
+//    $field = $variables['items'][1]['content']['#item']->getValue();
+
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    $q = $node_storage->getQuery();
+    $nids = $q->condition('type', 'header_image')
+      ->condition('status', 1)
+      ->execute();
+
+    $img_nid = array_rand($nids);
+    $node = $node_storage->loadMultiple(array($nids[$img_nid]))[$nids[$img_nid]];
+
+    $image_file = \Drupal\file\Entity\File::load($node->field__header_image->getValue()[0]['target_id']);
+    $image_public_uri = $image_file->getFileUri();
+    $style = \Drupal\image\Entity\ImageStyle::load($style_img)
+      ->buildUrl($image_public_uri);
+    $variables['image_top_block_url'] = $style;
+  }
+
 //disable country link
   if ($variables['field_name'] == 'field_country') {
     foreach ($variables['items'] as &$item) {
