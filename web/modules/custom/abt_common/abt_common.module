@@ -85,6 +85,7 @@ function _getAvailableTerms () {
   $query->fields('td', array('name'));
   $query->groupBy('n.field_event_type_target_id');
   $query->groupBy('td.name');
+  $query->groupBy('td.tid');
   $data = $query->execute();
   $results = $data->fetchAll();
   if ($results) {
