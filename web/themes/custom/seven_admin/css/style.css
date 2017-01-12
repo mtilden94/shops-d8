@@ -13,6 +13,10 @@
 	width: 20%;
 }
 
+.views-display-column.third {
+	overflow: hidden;
+}
+
 @media screen and (max-width: 1200px) {
 	.layout-region-node-main, .layout-region-node-footer {
 		width: 100%;
