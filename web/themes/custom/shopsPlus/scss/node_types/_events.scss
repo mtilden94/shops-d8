@@ -808,13 +808,20 @@
 }
 
 .event-res-row {
-  @include row();
+  @include media($tablet) {
+    @include row();
+  }
 }
 .event-res-image {
-  @include span-columns(2);
+  text-align: center;
+  @include media($tablet) {
+    @include span-columns(2);
+  }
 }
 .event-res-content {
-  @include span-columns(10);
+  @include media($tablet) {
+    @include span-columns(10);
+  }
 }
 
 .presentations-resources {
