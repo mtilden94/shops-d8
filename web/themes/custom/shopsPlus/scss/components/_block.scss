@@ -1307,7 +1307,13 @@
 }
 
 .sidebar {
-  .block-simplenews {
+  //block-original-e0bad7a6-d29c-464b-aa0a-d15ae915c878 - prod
+  //block-original-592e92dd-3e53-460c-8015-e27863ea073b - stage
+  //block-original-8fd785a7-554a-4542-ab52-b979f4352c0f - dev
+  .block-simplenews,
+  .block-original-592e92dd-3e53-460c-8015-e27863ea073b,
+  .block-original-e0bad7a6-d29c-464b-aa0a-d15ae915c878,
+  .block-original-8fd785a7-554a-4542-ab52-b979f4352c0f{
     display: none;
     @include media($tablet) {
       position: relative;
@@ -1316,16 +1322,34 @@
       padding: 13px 13px 23px;
       &:after {
         content: '';
+        display: block;
         position: absolute;
         background: url('../images/optimized/mark.svg');
         background-position: -55px -16px;
         background-repeat: no-repeat;
         background-size: 198px auto;
-        width: 100%;
         top: 0;
+        right: 0;
         left: 0;
         bottom: 0;
         opacity: 0.2;
+      }
+      .body {
+        z-index: 40;
+        position: relative;
+        h2 {
+          margin-bottom: 20px;
+        }
+        a {
+          @extend .button-one;
+          display: inline-block;
+          padding: 15px;
+          background-color: $blue;
+          &:hover {
+            background-color: darken($active, 10);
+            color: white;
+          }
+        }
       }
       .description, label {
         display: none;
