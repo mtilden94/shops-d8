@@ -794,4 +794,48 @@
       margin-bottom: 10px;
     }
   }
+
+  .resources > .label {
+    font-weight:$bold;
+    color: $heading-color;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+}
+
+.node-type-event #block-shopsplus-content .resources .content {
+  margin-bottom: 0;
+}
+
+.event-res-row {
+  @include row();
+}
+.event-res-image {
+  @include span-columns(2);
+}
+.event-res-content {
+  @include span-columns(10);
+}
+
+.presentations-resources {
+  time {
+    font-size: 16px;
+  }
+  article {
+    margin-bottom: 20px;
+  }
+  .author {
+    font-size: 16px;
+    color: $action-color;
+    p {
+      margin: 0;
+    }
+  }
+  .contributor {
+    font-size: 16px;
+    p {
+      margin: 0;
+    }
+  }
+
 }
