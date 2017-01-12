@@ -5005,7 +5005,7 @@ h1 a, h2 a, h3 a {
   .page-events .events-view .line-group .views-row article h2 {
     font-size: 1em;
     overflow: hidden;
-    height: 2.6px;
+    height: 2.6em;
     padding-top: 5px;
     text-align: center; }
   .page-events .events-view .line-group .views-row .event-date {
