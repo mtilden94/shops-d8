@@ -2,10 +2,12 @@
   @include clearfix();
 
   .impact-image {
+    display: none;
     text-align: center;
     margin-bottom: 20px;
 
     @include media($desktop) {
+      display: block;
       margin-bottom: 0;
       float: left;
       display: block;
@@ -48,7 +50,6 @@
   }
 
   .content {
-    margin-top: 20px;
     text-align: center;
 
     @include media($desktop) {
@@ -82,7 +83,6 @@
           line-height: 63px;
         }
       }
-
       &.impact-summary {
         font-size: 18px;
         color: #777777;
