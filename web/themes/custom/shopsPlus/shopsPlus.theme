@@ -66,12 +66,22 @@ function shopsPlus_preprocess_node(&$variables) {
 
   if ($variables['node']->getType() == 'event' && $variables['node']->hasField('field_location') && ($variables['view_mode'] == 'slider' || $variables['view_mode'] == 'slide')) {
     $field_location = $variables['node']->field_location;
-    if (!empty($field_location) && method_exists ($field_location,'first')) {
+    if (!empty($field_location) && method_exists($field_location, 'first')) {
       $first = $field_location->first();
-      if (!empty($first) && method_exists ($first, 'getLocality')) {
+      if (!empty($first) && method_exists($first, 'getLocality')) {
         $variables['city'] = $first->getLocality();
       }
 
+    }
+  }
+
+  if ($variables['node']->getType() == 'event') {
+    $variables['is_past'] = FALSE;
+    $end_date = $variables['node']->get('field_event_date')->getValue()[0]['end_value'];
+    $end_date = strtotime($end_date);
+    $now_date = time();
+    if ($end_date < $now_date) {
+      $variables['is_past'] = TRUE;
     }
   }
 
@@ -89,7 +99,7 @@ function shopsPlus_preprocess_node(&$variables) {
     $bio = $node->field_bio->first()->getValue();
 
     if (!empty($first_name['value']) AND !empty($last_name['value'])) {
-      $variables['full_name'] = $first_name['value'] .' '.$last_name['value'];
+      $variables['full_name'] = $first_name['value'] . ' ' . $last_name['value'];
     }
 
     if (!empty($bio['value'])) {
@@ -129,7 +139,8 @@ function shopsPlus_preprocess_page(&$variables) {
       //$image = $node->field_image->view($display_options);
       $variables['header_image'] = $image;*/
 
-    } else {
+    }
+    else {
       if ($node->field_header_image_from_list AND isset($node->field_header_image_from_list->entity)) {
         //$image_field = $node->field_header_image_from_list->entity->field__header_image;
         $variables['header_image'] = '';
@@ -318,7 +329,7 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     foreach ($variables['items'] as &$item) {
       $item['content']['#description'] = t('Download');
 
-      if($node->getType() == 'story') {
+      if ($node->getType() == 'story') {
         $item['content']['#description'] = t('Download BIO');
       }
     }
