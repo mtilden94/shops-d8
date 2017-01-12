@@ -254,7 +254,7 @@ textarea {
 }
 
 //page-resource-center
-.page-resource-center, .page-events {
+.page-resource-center, .page-resource-center-results, .page-events {
   h1 {
     margin-top: 25px
   }
@@ -454,7 +454,7 @@ textarea {
 }
 
 //temp hide form expand
-.page-resource-center {
+.page-resource-center, .page-resource-center-results {
   .open-form-more, .select-wrap {
     display: none;
   }

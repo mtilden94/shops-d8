@@ -1,46 +1,74 @@
 {# Create classes array. The 'node' class is required for contextual edit links. #}
 {% set classes = [
-'node node-evente-full'
+'node node-evente-full',
+is_past ? 'event-is-past' : 'event-is-up'
 ] %}
 
 
 <article{{ attributes.addClass(classes) }}>
-  <div{{ content_attributes.addClass('content', 'clearfix') }}>
-    <div class="left-side">
-      <div class="event-date-wrapper">
-        <div class="title">{{ "When"|t }}</div>
-        {{ content.field_event_date }}
-      </div>
-      <div class="location-wrapper">
-        <div class="title">{{ "Where"|t }}</div>
-        {{ content.field_location }}
-      </div>
-      <div class="share-wrapper">
-        <div class="title">{{ "Share"|t }}</div>
-        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-          <a class="a2a_button_facebook"></a>
-          <a class="a2a_button_twitter"></a>
-          <a class="a2a_button_linkedin"></a>
-          <a class="a2a_button_email"></a>
+    <div{{ content_attributes.addClass('content', 'clearfix') }}>
+        {% if is_past %}
+            <div class="left-side">
+                <div class="recap-wrap">
+                    {{ content.field_recap }}
+                </div>
+                <div class="share-wrapper">
+                    <div class="title">{{ "Share"|t }}</div>
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_twitter"></a>
+                        <a class="a2a_button_linkedin"></a>
+                        <a class="a2a_button_email"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="recap_images">
+                    {{ content.field_recap_images }}
+                </div>
+            </div>
+        {% else %}
+            <div class="left-side">
+                <div class="event-date-wrapper">
+                    <div class="title">{{ "When"|t }}</div>
+                    {{ content.field_event_date }}
+                </div>
+                <div class="location-wrapper">
+                    <div class="title">{{ "Where"|t }}</div>
+                    {{ content.field_location }}
+                </div>
+                <div class="share-wrapper">
+                    <div class="title">{{ "Share"|t }}</div>
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_twitter"></a>
+                        <a class="a2a_button_linkedin"></a>
+                        <a class="a2a_button_email"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="right-side">
+                {{ content.body }}
+            </div>
+        {% endif %}
+
+    </div><!-- /.content -->
+
+    {% if is_past %}
+        <div class="presentations-resources">
+            {{ content.field_resources }}
         </div>
-      </div>
-    </div>
-    <div class="right-side">
-      {{ content.body }}
-    </div>
-  </div><!-- /.content -->
-  <div class="presentations">
-    {{ content.field_presentations }}
-  </div>
-  <div class="recap_images">
-    {{ content.field_recap_images }}
-  </div>
-  <div class="event-schedule">
-    {{ content.field_event_schedule }}
-  </div>
-  {% if content.links %}
-    <div class="links">
-      {{ content.links }}
-    </div><!-- /.links -->
-  {% endif %}
+    {% endif %}
+
+    {% if not is_past %}
+        <div class="event-schedule">
+            {{ content.field_event_schedule }}
+        </div>
+    {% endif %}
+
+    {% if content.links %}
+        <div class="links">
+            {{ content.links }}
+        </div><!-- /.links -->
+    {% endif %}
 </article><!-- /.node -->
