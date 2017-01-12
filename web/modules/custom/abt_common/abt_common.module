@@ -1,6 +1,6 @@
 <?php
 
-function abt_common_theme($existing, $type, $theme, $path) {
+function abt_common_theme ($existing, $type, $theme, $path) {
   return [
     'datetime_summary' => [
       'variables' => [
@@ -35,4 +35,88 @@ function abt_common_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
+}
+
+function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form') {
+    $view_executable = $form_state->getStorage()['view'];
+    if ($view_executable->id() == 'events') {
+      $available_types = _getAvailableTerms();
+      if ($available_types) {
+        $types_to_select = [];
+        foreach ($available_types as $term) {
+          $types_to_select[$term->tid] = $term->name;
+        }
+        if ($types_to_select && isset($form['event_type']['#options'])) {
+          $form['event_type']['#options'] = ['All' => t('All types')] + $types_to_select;
+        }
+      }
+      $available_countries = _getAvailableCountries();
+      if ($available_countries) {
+        $countries_to_select = [];
+        foreach ($available_countries as $country_code) {
+          $country_code = reset($country_code);
+          if ($form['field_location_country_code']['#options'][$country_code]) {
+            $countries_to_select[$country_code] = $form['field_location_country_code']['#options'][$country_code];
+          }
+        }
+        if ($countries_to_select && isset($form['field_location_country_code']['#options'])) {
+          $form['field_location_country_code']['#options'] = ['All' => t('All locations')] + $countries_to_select;
+        }
+      }
+      $available_areas = _getAvailableAreas();
+      if ($available_areas) {
+        $areas_to_select = [];
+        foreach ($available_areas as $area) {
+          $areas_to_select[$area->nid] = $area->title;
+        }
+        if ($areas_to_select && isset($form['health_area']['#options'])) {
+          $form['health_area']['#options'] = ['All' => t('All areas')] + $areas_to_select;
+        }
+      }
+    }
+  }
+}
+
+function _getAvailableTerms () {
+  $query = \Drupal::database()->select('node__field_event_type', 'n');
+  $query->join('taxonomy_term_field_data', 'td', 'n.field_event_type_target_id = td.tid');
+  $query->fields('td', array('tid'));
+  $query->fields('td', array('name'));
+  $query->groupBy('n.field_event_type_target_id');
+  $query->groupBy('td.name');
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
+}
+
+function _getAvailableAreas () {
+  $query = \Drupal::database()->select('node__field_health_area', 'n');
+  $query->join('node_field_data', 'nd', 'n.field_health_area_target_id = nd.nid');
+  $query->fields('nd', array('title'));
+  $query->fields('nd', array('nid'));
+  $query->where('n.bundle = :bundle', [':bundle' => 'event']);
+  $query->groupBy('nd.nid');
+  $query->groupBy('nd.title');
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
+}
+
+function _getAvailableCountries () {
+  $query = \Drupal::database()->select('node__field_location', 'n');
+  $query->distinct();
+  $query->fields('n', array('field_location_country_code'));
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
 }
