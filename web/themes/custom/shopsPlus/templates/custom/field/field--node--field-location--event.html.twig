@@ -52,16 +52,4 @@
          title="{{ 'View on Map'|t }}">{{ 'View on Map'|t }}</a>
     </div>
   </div>
-{% else %}
-  {% if multiple %}
-    <div{{ attributes }}>
-      {% for item in items %}
-        <div{{ item.attributes }}>{{ item.content }}</div>
-      {% endfor %}
-    </div>
-  {% else %}
-    {% for item in items %}
-      <div{{ attributes }}>{{ item.content }}</div>
-    {% endfor %}
-  {% endif %}
 {% endif %}

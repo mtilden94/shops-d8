@@ -27,9 +27,14 @@
     {% endif %}
     {{ content|without('links', 'field_image', 'field_location', 'field_event_date', 'field_register_link') }}
     {% if content.field_event_date %}
-    <div class="event-date-city">{{ content.field_event_date }}
+    <div class="event-date-city">
+      {{ content.field_event_date }}
       {% if city %}
         <div class="event-city">, {{ city }}</div>
+      {% else %}
+        <div class="location">
+        , {{ 'Online'|t }}
+        </div>
       {% endif %}
     </div>
     {% endif %}
