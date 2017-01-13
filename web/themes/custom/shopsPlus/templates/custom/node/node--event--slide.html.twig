@@ -33,7 +33,7 @@
       {% endif %}
     </div>
     {% endif %}
-    {% if content.field_register_link %}
+    {% if content.field_register_link and is_past == FALSE %}
       {{ content.field_register_link }}
     {% endif %}
   </div><!-- /.content -->
