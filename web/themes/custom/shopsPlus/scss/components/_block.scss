@@ -53,7 +53,8 @@
 .block-original-latest_news_updates-block_4,
 .block-original-latest_news_updates-block_5,
 .block-original-latest_news_updates-block_6,
-.block-original-latest_news_updates-block_7 {
+div[class*='block-original-latest_news_updates-block_'] {
+
   font-family: $heading-font-family;
   margin-bottom: 70px;
   padding-top: 60px;
@@ -460,7 +461,8 @@
   }
 }
 
-.block-original-latest_news_updates-block_7 {
+.sidebar-second div[class*='block-original-latest_news_updates-block_'] {
+  
   margin-top: 0;
   padding-top: 0;
   .views-row {
