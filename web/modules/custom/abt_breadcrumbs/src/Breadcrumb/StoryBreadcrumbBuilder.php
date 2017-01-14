@@ -33,7 +33,7 @@ class StoryBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     $breadcrumb = new Breadcrumb();
     $breadcrumb->addLink(Link::createFromRoute($this->t('Home'), '<front>'));
     $breadcrumb->addLink(Link::createFromRoute($this->t('What We Do'), '<none>'));
-    $breadcrumb->addLink(Link::createFromRoute($this->t('Success Stories'), '<none>'));
+    $breadcrumb->addLink(Link::createFromRoute($this->t('Up Close'), '<none>'));
 
     $parameters = $route_match->getParameters()->all();
     if (!empty($parameters['node']->get('title')->getValue())) {
