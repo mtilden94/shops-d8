@@ -444,7 +444,7 @@
     .title {
       font-size: 18px;
       color: $table-color;
-      font-weight: $bold;
+      font-weight: $strong;
       padding-bottom: 5px;
     }
     .location-wrapper, .share-wrapper {
@@ -498,7 +498,7 @@
       color: $event_body_color;
       .label {
         color: $table-color;
-        font-weight: $bold;
+        font-weight: $strong;
         padding-bottom: 5px;
       }
     }
@@ -552,7 +552,7 @@
     .label.above {
       font-size: $tablet-font-size;
       color: $heading-color;
-      font-weight: $bold;
+      font-weight: $strong;
       //margin-bottom: 15px;
     }
     .paragraph--type--schedule-item {
@@ -786,7 +786,7 @@
     .label.above {
       font-size: $tablet-font-size;
       color: $heading-color;
-      font-weight: $bold;
+      font-weight: $strong;
       text-align: center;
       margin-bottom: 10px;
     }
@@ -795,14 +795,14 @@
     .label.above {
       font-size: 25px;
       color: $heading-color;
-      font-weight: $bold;
+      font-weight: $strong;
       text-align: left;
       margin-bottom: 10px;
     }
   }
 
   .resources > .label {
-    font-weight:$bold;
+    font-weight: $strong;
     color: $heading-color;
     margin-bottom: 20px;
     font-size: 28px;
