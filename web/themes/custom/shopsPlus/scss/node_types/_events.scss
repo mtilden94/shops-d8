@@ -476,6 +476,12 @@
       height: 45px;
       margin-right: 8px;
       padding: 0;
+      @include media($mobile2) {
+        margin-right: 0;
+      }
+      @include media($fullsize) {
+        margin-right: 8px;
+      }
     }
   }
   .right-side {
