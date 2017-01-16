@@ -708,7 +708,7 @@
     .event-date-city > div {
       float: left;
     }
-    .event-date-city, .timezone {
+    .event-date-city {
       @include clearfix;
       color: $blue;
       font-family: $base-font-family;
@@ -716,10 +716,6 @@
       font-weight: $normal;
       line-height: $base-line-height;
       display: inline-block;
-    }
-    .timezone {
-      display: block;
-      margin-bottom: 15px;
     }
     .event-details a {
       font-family: $heading-font-family;
