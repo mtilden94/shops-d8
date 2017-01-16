@@ -1,7 +1,10 @@
 {
-	"patches": {
-		"drupal/drupal": {
-			"Add <nolink> support": "patches/add_no_link_support_in_menu.patch"
-		}
-	}
+  "patches": {
+    "drupal/drupal": {
+      "Add <nolink> support": "patches/add_no_link_support_in_menu.patch"
+    },
+    "drupal/address": {
+      "Field behavior overrides": "patches/address_field_behavior_overrides.patch"
+    }
+  }
 }

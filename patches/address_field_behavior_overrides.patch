@@ -1,0 +1,149 @@
+diff --git a/address.install b/address.install
+index 903fcc4..9e91c76 100644
+--- a/address.install
++++ b/address.install
+@@ -1,5 +1,6 @@
+ <?php
+ 
++use CommerceGuys\Addressing\AddressFormat\AddressField;
+ use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
+ use Drupal\Core\Entity\Sql\SqlContentEntityStorageException;
+ use Drupal\Core\Utility\UpdateException;
+@@ -190,3 +191,23 @@ function address_update_8101() {
+   // Used by address_post_update_convert_names_subdivisions.
+   \Drupal::state()->set('address_8101_processed', $processed_fields);
+ }
++
++/**
++ * Update existing fields to initialize the field behavior setting.
++ */
++function address_update_8102() {
++  $entity_field_manager = \Drupal::service('entity_field.manager');
++  $entity_field_map = $entity_field_manager->getFieldMapByFieldType('address');
++  $all_fields = AddressField::getAll();
++  foreach ($entity_field_map as $entity_type_id => $fields) {
++    foreach ($fields as $field_name => $field_info) {
++      foreach ($field_info['bundles'] as $bundle) {
++        $field = FieldConfig::loadByName($entity_type_id, $bundle, $field_name);
++        if (is_null($field->getSetting('field_behavior'))) {
++          $field->setSetting('field_behavior', array_fill_keys($all_fields, 'default'));
++          $field->save();
++        }
++      }
++    }
++  }
++}
+diff --git a/config/schema/address.schema.yml b/config/schema/address.schema.yml
+index c68463e..b02b431 100644
+--- a/config/schema/address.schema.yml
++++ b/config/schema/address.schema.yml
+@@ -132,6 +132,11 @@ field.field_settings.address:
+       label: 'Used fields'
+       sequence:
+         - type: string
++    field_behavior:
++      type: sequence
++      label: 'Global field behavior overrides'
++      sequence:
++        - type: string
+     langcode_override:
+       type: string
+       label: 'Language override'
+diff --git a/src/Plugin/Field/FieldType/AddressItem.php b/src/Plugin/Field/FieldType/AddressItem.php
+index 4e02bd4..2e8b697 100644
+--- a/src/Plugin/Field/FieldType/AddressItem.php
++++ b/src/Plugin/Field/FieldType/AddressItem.php
+@@ -141,10 +141,12 @@ class AddressItem extends FieldItemBase implements AddressInterface {
+    * {@inheritdoc}
+    */
+   public static function defaultFieldSettings() {
++    $fields = AddressField::getAll();
+     return [
+       'available_countries' => [],
+-      'fields' => array_values(AddressField::getAll()),
++      'fields' => array_values($fields),
+       'langcode_override' => '',
++      'field_behavior' => array_fill_keys(array_values($fields), 'default'),
+     ] + parent::defaultFieldSettings();
+   }
+ 
+@@ -189,6 +191,34 @@ class AddressItem extends FieldItemBase implements AddressInterface {
+       '#access' => \Drupal::languageManager()->isMultilingual(),
+     ];
+ 
++    $element['field_behavior'] = [
++      '#type' => 'details',
++      '#title' => $this->t('Global field behavior overrides'),
++      '#description' => $this->t('Each country defines an address format that controls which fields are used and which ones are required. You can optionally override the field behavior for all countries here.'),
++      '#open' => FALSE,
++    ];
++    $all_fields = AddressField::getAll();
++    $labels = LabelHelper::getGenericFieldLabels();
++    $field_behavior = $this->getSetting('field_behavior');
++    $behavior_options = [
++      'default' => $this->t('Country-specific default'),
++      'required' => $this->t('Required'),
++      'optional' => $this->t('Optional'),
++    ];
++    foreach ($all_fields as $field_name) {
++      $parent_setting_name = ':input[name="settings[fields][' . $field_name . ']"]';
++      $element['field_behavior'][$field_name] = [
++        '#type' => 'select',
++        '#title' => $labels[$field_name],
++        '#options' => $behavior_options,
++        '#default_value' => $field_behavior[$field_name],
++        '#states' => array(
++          'visible' => array(
++            $parent_setting_name => array('checked' => TRUE),
++          ),
++        ),
++      ];
++    }
+     return $element;
+   }
+ 
+@@ -264,9 +294,20 @@ class AddressItem extends FieldItemBase implements AddressInterface {
+     $constraints = parent::getConstraints();
+     $manager = \Drupal::typedDataManager()->getValidationConstraintManager();
+     $available_countries = $this->getAvailableCountries();
+-    $enabled_fields = array_filter($this->getSetting('fields'));
+     $constraints[] = $manager->create('Country', ['availableCountries' => $available_countries]);
+-    $constraints[] = $manager->create('AddressFormat', ['fields' => $enabled_fields]);
++
++    $enabled_fields = array_filter($this->getSetting('fields'));
++    $field_behavior = $this->getSetting('field_behavior');
++    $required_fields = [];
++    foreach ($enabled_fields as $field) {
++      // Both required and default should generate a constraint.
++      if ($field_behavior[$field] != 'optional') {
++        $required_fields[] = $field;
++      }
++    }
++    if (!empty($required_fields)) {
++      $constraints[] = $manager->create('AddressFormat', ['fields' => $required_fields]);
++    }
+ 
+     return $constraints;
+   }
+diff --git a/src/Plugin/Field/FieldWidget/AddressDefaultWidget.php b/src/Plugin/Field/FieldWidget/AddressDefaultWidget.php
+index 87c7db6..cbfc8b8 100644
+--- a/src/Plugin/Field/FieldWidget/AddressDefaultWidget.php
++++ b/src/Plugin/Field/FieldWidget/AddressDefaultWidget.php
+@@ -371,7 +371,16 @@ class AddressDefaultWidget extends WidgetBase implements ContainerFactoryPluginI
+    */
+   protected function addressElements(array $element, array $values) {
+     $address_format = $this->addressFormatRepository->get($values['country_code']);
+-    $required_fields = $address_format->getRequiredFields();
++    $all_fields = AddressField::getAll();
++    $format_required_fields = $address_format->getRequiredFields();
++    $format_required_map = array_fill_keys($format_required_fields, $format_required_fields);
++    $field_behavior = $this->getFieldSetting('field_behavior');
++    $required_fields = [];
++    foreach ($all_fields as $field) {
++      if ($field_behavior[$field] == 'required' || ($field_behavior[$field] == 'default' && !empty($format_required_map[$field]))) {
++        $required_fields[] = $field;
++      }
++    }      
+     $labels = LabelHelper::getFieldLabels($address_format);
+     $locale = $this->languageManager->getConfigOverrideLanguage()->getId();
+     if (LocaleHelper::match($address_format->getLocale(), $locale)) {
