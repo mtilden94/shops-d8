@@ -38,6 +38,21 @@
 (function (Drupal, $, window) {
         Drupal.behaviors.shopPlus = {
             attach: function (context, settings) {
+                function triggerSubmit (e) {
+                    $(this).find('[data-bef-auto-submit-click]').click();
+                }
+
+                // The change event bubbles so we only need to bind it to the outer form.
+                $('#views-exposed-form-events-page-1')
+                    .add('[data-bef-auto-submit]', context)
+                    .filter('form, select, input:not(:text, :submit)')
+                    .change(function (e) {
+                        // don't trigger on text change for full-form
+                        if ($(e.target).is(':not(:text, :submit, [data-bef-auto-submit-exclude])')) {
+                            triggerSubmit.call(e.target.form);
+                        }
+                    });
+
                 //news update block
                 $(".block-original-latest_news_updates-block_1, " +
                     ".block-original-latest_news_updates-block_2, " +
