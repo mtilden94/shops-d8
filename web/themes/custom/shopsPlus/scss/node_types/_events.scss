@@ -22,19 +22,20 @@
         line-height: 100%;
       }
     }
-    .event-date-city {
+    .event-date-city, .timezone {
       padding-top: 5px;
       padding-left: 10px;
       padding-right: 10px;
-      margin-bottom: 20px;
       color: $heading-color;
-
       @include media($tablet) {
         padding-left: 0;
         padding-right: 0;
         color: $white;
         font-size: 24px;
       }
+    }
+    .timezone {
+      margin-bottom: 20px;
     }
     .is-featured {
       .f_item {
@@ -301,7 +302,7 @@
       .event-date-city > div {
         float: left;
       }
-      .event-date-city {
+      .event-date-city, .timezone {
         @include clearfix;
         color: $blue;
         font-family: $base-font-family;
@@ -309,6 +310,9 @@
         font-weight: $normal;
         line-height: $base-line-height;
         display: inline-block;
+      }
+      .timezone {
+        display: block;
       }
       .event-details a {
         font-family: $heading-font-family;
@@ -367,7 +371,7 @@
       .node {
         .content {
           position: absolute;
-          top: 55%;
+          top: 45%;
           left: 30px;
           padding-top: 0;
           text-align: left;
@@ -378,11 +382,9 @@
             color: $white;
             font-weight: $header-normal;
           }
-          .event-date-city {
-            //margin-bottom: 30px;
+          .event-date-city, .timezone {
             margin-bottom: 0;
             color: $white;
-
           }
           .register-link {
             a {
@@ -402,7 +404,7 @@
       .node {
         .content {
           position: absolute;
-          top: 55%;
+          top: 50%;
           left: 30px;
           padding-top: 0;
           text-align: left;
@@ -411,8 +413,7 @@
             font-size: 38px;
             max-width: none;
           }
-          .event-date-city {
-            //margin-bottom: 30px;
+          .event-date-city, .timezone {
             margin-bottom: 0;
             font-size: 24px;
           }
