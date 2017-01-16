@@ -33,6 +33,7 @@ is_past ? 'event-is-past' : 'event-is-up'
           <div class="event-date-wrapper">
             <div class="title">{{ "When"|t }}</div>
             {{ content.field_event_date }}
+            {{ content.field_timezone }}
           </div>
         {% endif %}
         {% if content.field_location %}

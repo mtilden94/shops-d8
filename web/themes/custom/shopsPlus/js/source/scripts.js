@@ -38,7 +38,7 @@
 (function (Drupal, $, window) {
         Drupal.behaviors.shopPlus = {
             attach: function (context, settings) {
-                function triggerSubmit (e) {
+                function triggerSubmit(e) {
                     $(this).find('[data-bef-auto-submit-click]').click();
                 }
 
@@ -60,7 +60,7 @@
                     ".block-original-latest_news_updates-block_4, " +
                     ".block-original-latest_news_updates-block_5, " +
                     ".block-original-latest_news_updates-block_6").waitForImages({
-                    finished: function() {
+                    finished: function () {
                         $("div[class*='block-original-latest_news_updates-block_'] .views-row .node").matchHeight();
                     },
                     waitForAll: true
@@ -143,7 +143,7 @@
                 };
 
 
-                $('.flexslider.optionset-gallery', context).on('start', function(event) {
+                $('.flexslider.optionset-gallery', context).on('start', function (event) {
                     var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
                     if ($pager.length <= 0) {
                         $pager = $('<div class="flex-sidebar-direction-nav-pager-webksde"><span class="pager-current"></span><span class="pager-separator">/</span><span class="pager-total"></span></div>');
@@ -154,7 +154,7 @@
                     $pager.children('.pager-total').text($flexslider.count);
                 });
 
-                $('.flexslider.optionset-gallery', context).on('after', function(event) {
+                $('.flexslider.optionset-gallery', context).on('after', function (event) {
                     var $pager = $(this).find('.flex-sidebar-direction-nav-pager-webksde');
                     if ($pager.length >= 0) {
                         $flexslider = $(this).data('flexslider');
@@ -174,9 +174,9 @@
 
             //add class infinite-scroll front news
             $('.block-latest-news-updates-block-3 .button').click(
-              function () {
-                  $('.block-latest-news-updates-block-3 .views-content').addClass('more-true');
-              }
+                function () {
+                    $('.block-latest-news-updates-block-3 .views-content').addClass('more-true');
+                }
             );
 
             //table responsive
@@ -245,7 +245,6 @@
             // mobile menu
 
             $('#block-shopsplus-main-menu > ul.menu').clone().appendTo("#mobile-menu .menu-wrapper");
-            $('#block-searchform').detach().prependTo("#mobile-menu .menu-wrapper > .menu");
             $('#block-searchform').show();
             $('#mobile-menu .menu-item--expanded').append('<span class="prev-next"></span>');
             $('#mobile-menu .pos-block').each(
@@ -278,7 +277,7 @@
             //sidebar menu active
             $('.block-current-active-submenu li a').each(
                 function () {
-                    if($(this).attr('class')=="is-active"){
+                    if ($(this).attr('class') == "is-active") {
                         $(this).parents('.menu-item--expanded').addClass('open-sub-menu');
                     }
                 }
@@ -298,15 +297,19 @@
             });
 
 
+            // Timezone
+
+            $('.event-date-wrapper .field.timezone').detach().appendTo(".field.event-date .time");
+
             /* Temp fix for duplicate staff members */
-            $(".line-group").each(function(){
-              var last = null;
-              $(this).find('.views-row').each(function(){
-                if (last == $(this).find('h2 a').attr('href')){
-                  $(this).hide();
-                }
-                last = $(this).find('h2 a').attr('href');
-              });
+            $(".line-group").each(function () {
+                var last = null;
+                $(this).find('.views-row').each(function () {
+                    if (last == $(this).find('h2 a').attr('href')) {
+                        $(this).hide();
+                    }
+                    last = $(this).find('h2 a').attr('href');
+                });
             });
         });
         // });

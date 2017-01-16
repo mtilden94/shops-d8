@@ -33,20 +33,6 @@
         font-size: 24px;
       }
     }
-    .timezone {
-      margin-bottom: 20px;
-      padding-top: 0;
-      font-style: italic;
-      padding-left: 10px;
-      padding-right: 10px;
-      color: $heading-color;
-      @include media($tablet) {
-        font-size: 20px;
-        padding-left: 0;
-        padding-right: 0;
-        color: $white;
-      }
-    }
     .is-featured {
       .f_item {
         font-size: 0.8em;
@@ -326,17 +312,6 @@
         line-height: $base-line-height;
         display: inline-block;
       }
-      .timezone {
-        display: block;
-        color: $blue;
-        font-family: $base-font-family;
-        font-weight: $normal;
-        line-height: $base-line-height;
-        font-style: italic;
-        @include media($tablet) {
-          font-size: 20px;
-        }
-      }
       .event-details a {
         font-family: $heading-font-family;
         text-transform: uppercase;
@@ -405,7 +380,7 @@
             color: $white;
             font-weight: $header-normal;
           }
-          .event-date-city, .timezone {
+          .event-date-city {
             margin-bottom: 0;
             color: $white;
           }
