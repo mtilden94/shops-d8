@@ -54,13 +54,11 @@
       }
     }
   }
-
   .block-original-events-page_1 {
     margin: 50px auto 70px auto;
   }
 
   .events-view {
-
     header {
       color: $heading-color;
       font-family: $heading-font-family;
@@ -77,20 +75,17 @@
         padding: 20px;
         text-align: center;
         article {
+          height: 383px;
           header {
             padding-bottom: 0;
           }
           h2 {
             font-size: $base-font-size;
-            overflow: hidden;
-            height: 2.6em;
             padding-top: 5px;
             text-align: center;
           }
           span img {
-
             &:hover {
-
             }
           }
         }
@@ -99,9 +94,14 @@
           color: $active;
           font-size: 18px;
           display: block;
-          height: 100px !important;
         }
         .location-event-type {
+          position: absolute;
+          bottom: 0;
+          margin-left: auto;
+          margin-right: auto;
+          left: 0;
+          right: 0;
           color: $green;
           font-size: 16px;
           @include media($mobile) {
