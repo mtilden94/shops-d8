@@ -567,7 +567,9 @@ div[class*='block-original-latest_news_updates-block_'] {
 
 .block-original-slider_on_front_page-block_1,
 .block-original-hp_stories-block_1,
-.block-original-slider_events-block_1 {
+.block-original-slider_events-block_1,
+.block-original-slider_events-block_2,
+.block-original-slider_events-block_3 {
   margin-bottom: 40px;
   .node {
     &:after {
@@ -696,7 +698,9 @@ div[class*='block-original-latest_news_updates-block_'] {
   }
 }
 
-.block-original-slider_events-block_1 {
+.block-original-slider_events-block_1
+.block-original-slider_events-block_2,
+.block-original-slider_events-block_3 {
   .content {
     .is-featured {
       color: $active;
