@@ -712,16 +712,19 @@ div[class*='block-original-latest_news_updates-block_'] {
     .event-date-city > div {
       float: left;
     }
-    .event-date-city {
+    .event-date-city, .timezone {
       @include clearfix;
-      color: $white;
+      color: $blue;
       font-family: $base-font-family;
       font-size: $base-font-size;
       font-weight: $normal;
       line-height: $base-line-height;
       display: inline-block;
     }
-
+    .timezone {
+      display: block;
+      margin-bottom: 15px;
+    }
     .event-details a {
       font-family: $heading-font-family;
       text-transform: uppercase;
@@ -754,7 +757,10 @@ div[class*='block-original-latest_news_updates-block_'] {
           max-width: none;
         }
         .event-date-city {
-          margin-bottom: 30px;
+          margin-bottom: 0;
+        }
+        .timezone {
+          margin-bottom: 15px;
         }
         .event-details a {
           font-size: 14px;
@@ -778,7 +784,7 @@ div[class*='block-original-latest_news_updates-block_'] {
           font-size: 38px;
           max-width: none;
         }
-        .event-date-city {
+        .timezone {
           margin-bottom: 30px;
         }
         .event-details a {

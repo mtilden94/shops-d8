@@ -22,19 +22,20 @@
         line-height: 100%;
       }
     }
-    .event-date-city {
+    .event-date-city, .timezone {
       padding-top: 5px;
       padding-left: 10px;
       padding-right: 10px;
-      margin-bottom: 20px;
       color: $heading-color;
-
       @include media($tablet) {
         padding-left: 0;
         padding-right: 0;
         color: $white;
         font-size: 24px;
       }
+    }
+    .timezone {
+      margin-bottom: 20px;
     }
     .is-featured {
       .f_item {
@@ -301,7 +302,7 @@
       .event-date-city > div {
         float: left;
       }
-      .event-date-city {
+      .event-date-city, .timezone {
         @include clearfix;
         color: $blue;
         font-family: $base-font-family;
@@ -309,6 +310,9 @@
         font-weight: $normal;
         line-height: $base-line-height;
         display: inline-block;
+      }
+      .timezone {
+        display: block;
       }
       .event-details a {
         font-family: $heading-font-family;
@@ -367,7 +371,7 @@
       .node {
         .content {
           position: absolute;
-          top: 55%;
+          top: 45%;
           left: 30px;
           padding-top: 0;
           text-align: left;
@@ -378,11 +382,9 @@
             color: $white;
             font-weight: $header-normal;
           }
-          .event-date-city {
-            //margin-bottom: 30px;
+          .event-date-city, .timezone {
             margin-bottom: 0;
             color: $white;
-
           }
           .register-link {
             a {
@@ -402,7 +404,7 @@
       .node {
         .content {
           position: absolute;
-          top: 55%;
+          top: 50%;
           left: 30px;
           padding-top: 0;
           text-align: left;
@@ -411,8 +413,7 @@
             font-size: 38px;
             max-width: none;
           }
-          .event-date-city {
-            //margin-bottom: 30px;
+          .event-date-city, .timezone {
             margin-bottom: 0;
             font-size: 24px;
           }
@@ -444,13 +445,15 @@
     .title {
       font-size: 18px;
       color: $table-color;
-      font-weight: $bold;
+      font-weight: $strong;
       padding-bottom: 5px;
     }
     .location-wrapper, .share-wrapper {
       padding-top: 20px;
     }
-
+    .share-wrapper {
+      margin-bottom: 10px;
+    }
     a.atcb-link {
       background: none;
       box-shadow: none;
@@ -476,6 +479,12 @@
       height: 45px;
       margin-right: 8px;
       padding: 0;
+      @include media($mobile2) {
+        margin-right: 0;
+      }
+      @include media($fullsize) {
+        margin-right: 8px;
+      }
     }
   }
   .right-side {
@@ -492,7 +501,7 @@
       color: $event_body_color;
       .label {
         color: $table-color;
-        font-weight: $bold;
+        font-weight: $strong;
         padding-bottom: 5px;
       }
     }
@@ -546,7 +555,7 @@
     .label.above {
       font-size: $tablet-font-size;
       color: $heading-color;
-      font-weight: $bold;
+      font-weight: $strong;
       //margin-bottom: 15px;
     }
     .paragraph--type--schedule-item {
@@ -780,7 +789,7 @@
     .label.above {
       font-size: $tablet-font-size;
       color: $heading-color;
-      font-weight: $bold;
+      font-weight: $strong;
       text-align: center;
       margin-bottom: 10px;
     }
@@ -789,14 +798,14 @@
     .label.above {
       font-size: 25px;
       color: $heading-color;
-      font-weight: $bold;
+      font-weight: $strong;
       text-align: left;
       margin-bottom: 10px;
     }
   }
 
   .resources > .label {
-    font-weight:$bold;
+    font-weight: $strong;
     color: $heading-color;
     margin-bottom: 20px;
     font-size: 28px;
