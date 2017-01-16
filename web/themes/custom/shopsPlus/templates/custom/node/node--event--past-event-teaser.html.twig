@@ -5,7 +5,15 @@
 <article{{ attributes.addClass(classes) }}>
   <div class="location-date">
     {% if content.field_event_date and content.field_location %}
-      {{ content.field_event_date }}<div class="separator"> | </div>{{ content.field_location }}
+      {{ content.field_event_date }}
+      <div class="separator"> |</div>
+      {% if content.field_location|render %}
+        {{ content.field_location }}
+      {% else %}
+        <div class="location">
+          {{ 'Online'|t }}
+        </div>
+      {% endif %}
     {% endif %}
   </div>
   {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}

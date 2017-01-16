@@ -25,15 +25,21 @@
         {% endif %}
       </header>
     {% endif %}
-    {{ content|without('links', 'field_is_featured', 'field_featured_image', 'field_location', 'field_event_date') }}
+    {{ content|without('links', 'field_is_featured', 'field_featured_image', 'field_location', 'field_event_date', 'field_timezone') }}
     {% if content.field_event_date %}
       <div class="event-date-city">{{ content.field_event_date }}
         {% if city %}
           <div class="event-city">, {{ city }}</div>
+        {% else %}
+          <div class="location">
+            , {{ 'Online'|t }}
+          </div>
         {% endif %}
       </div>
     {% endif %}
-    <div class="event-details"><a href="{{ url }}">{{ 'Event details'|t }}</a>
+    {{ content.field_timezone }}
+    <div class="event-details">
+      <a href="{{ url }}">{{ 'Event details'|t }}</a>
     </div>
   </div><!-- /.content -->
 </article><!-- /.node -->

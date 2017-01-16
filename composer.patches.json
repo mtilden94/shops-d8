@@ -1,7 +1,12 @@
 {
-	"patches": {
-		"drupal/drupal": {
-			"Add <nolink> support": "patches/add_no_link_support_in_menu.patch"
-		}
-	}
+  "patches": {
+    "drupal/core": {
+      "Add <nolink> support": "patches/add_no_link_support_in_menu.patch",
+      "Daterange views integration": "patches/daterange-views-integration.patch",
+      "Views display mode fix": "patches/views-display-mode-fix.patch"
+    },
+    "drupal/address": {
+      "Field behavior overrides": "patches/address_field_behavior_overrides.patch"
+    }
+  }
 }
