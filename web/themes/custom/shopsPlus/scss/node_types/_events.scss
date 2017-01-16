@@ -375,7 +375,7 @@
           text-align: left;
           h1 {
             margin-bottom: 0;
-            font-size: 38px;
+            font-size: 36px;
             max-width: none;
             color: $white;
             font-weight: $header-normal;
@@ -408,7 +408,7 @@
           text-align: left;
           h1 {
             margin-bottom: 0;
-            font-size: 38px;
+            font-size: 36px;
             max-width: none;
           }
           .event-date-city {
@@ -620,7 +620,8 @@
             color: $heading-color;
             font-weight: $bold;
             line-height: 100%;
-            height: 50px;
+            height: 46px;
+            margin-bottom: 16px;
             overflow: hidden;
             &:after {
               content: "";
