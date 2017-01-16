@@ -53,7 +53,7 @@
 .block-original-latest_news_updates-block_4,
 .block-original-latest_news_updates-block_5,
 .block-original-latest_news_updates-block_6,
-div[class*='block-original-latest_news_updates-block_'] {
+.sidebar-second div[class*='block-original-latest_news_updates-block_'] {
 
   font-family: $heading-font-family;
   margin-bottom: 70px;
@@ -1443,7 +1443,9 @@ div[class*='block-original-latest_news_updates-block_'] {
   }
 }
 
-.block-original-events-block_1 {
+.block-original-events-block_1,
+.block-original-events-block_2,
+.block-original-events-block_3 {
   display: none;
   @include media($tablet) {
     text-align: center;
