@@ -172,10 +172,13 @@
   .past-events-view {
     margin-top: 100px;
     article {
-      height: auto !important;
+      min-height: auto !important;
       h2 {
         overflow: hidden;
         height: 2.6em;
+      }
+      .content {
+        height: auto;
       }
     }
     .line-group {
