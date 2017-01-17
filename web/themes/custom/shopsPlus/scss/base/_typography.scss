@@ -128,9 +128,17 @@ p.after-table {
   position: relative;
 }
 
-p.int-text, .introduction-text p, .field.subtitle p {
+p.int-text, .introduction-text, .field.subtitle {
   color: $green;
   font-weight: $bold;
+}
+
+.int-text, .introduction-text {
+  blockquote {
+    color: #04326d;
+    font-style: italic;
+    font-weight: 100;
+  }
 }
 
 figure.align-left, div[data-cke-display-name="image"].align-left {
