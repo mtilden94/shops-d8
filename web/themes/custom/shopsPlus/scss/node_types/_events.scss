@@ -87,9 +87,6 @@
           font-size: 18px;
           display: block;
         }
-        .timezone {
-          font-style: italic;
-        }
         .location-event-type {
           position: absolute;
           bottom: 0;
@@ -462,6 +459,9 @@
     }
     .share-wrapper {
       margin-bottom: 10px;
+    }
+    .timezone {
+      font-style: italic;
     }
     a.atcb-link {
       background: none;
