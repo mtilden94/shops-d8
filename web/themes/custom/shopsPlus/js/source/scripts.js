@@ -245,6 +245,7 @@
             // mobile menu
 
             $('#block-shopsplus-main-menu > ul.menu').clone().appendTo("#mobile-menu .menu-wrapper");
+            $('#block-searchform').detach().prependTo("#mobile-menu .menu-wrapper .menu");
             $('#block-searchform').show();
             $('#mobile-menu .menu-item--expanded').append('<span class="prev-next"></span>');
             $('#mobile-menu .pos-block').each(
