@@ -84,6 +84,8 @@
     text-align: left;
     width: 84%;
     margin: 0 auto;
+    margin-bottom: 20px;
+
     .node {
       position: relative;
       background-color: white;
@@ -252,6 +254,26 @@
     .views-row:nth-child(3n + 3) {
       margin-right: 0;
       display: block;
+    }
+  }
+}
+
+.block-original-latest_news_updates-block_1,
+.block-original-latest_news_updates-block_3,
+.block-original-latest_news_updates-block_4,
+.block-original-latest_news_updates-block_5,
+.block-original-latest_news_updates-block_6 {
+  header  {
+    @include media($tablet) {
+      margin-bottom: 140px !important;
+    }
+  }
+
+  .content {
+    @include media($tablet) {
+      font-size: 16px;
+      bottom: 20px;
+      position: absolute;
     }
   }
 }
@@ -425,7 +447,7 @@
           position: absolute;
         }
         header{
-          margin-bottom: 120px;
+          margin-bottom: 140px;
         }
       }
     }
@@ -462,12 +484,13 @@
 }
 
 .sidebar-second div[class*='block-original-latest_news_updates-block_'] {
-  
   margin-top: 0;
   padding-top: 0;
   .views-row {
+    margin-bottom: 0;
     width: 100%;
   }
+
   @include media($tablet) {
     & > h2 {
       font-size: 16px;
