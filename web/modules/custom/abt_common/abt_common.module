@@ -56,12 +56,12 @@ function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $fo
         $countries_to_select = [];
         foreach ($available_countries as $country_code) {
           $country_code = reset($country_code);
-          if ($form['field_location_country_code']['#options'][$country_code]) {
-            $countries_to_select[$country_code] = $form['field_location_country_code']['#options'][$country_code];
+          if ($form['location']['#options'][$country_code]) {
+            $countries_to_select[$country_code] = $form['location']['#options'][$country_code];
           }
         }
-        if ($countries_to_select && isset($form['field_location_country_code']['#options'])) {
-          $form['field_location_country_code']['#options'] = ['All' => t('All locations')] + $countries_to_select;
+        if ($countries_to_select && isset($form['location']['#options'])) {
+          $form['location']['#options'] = ['All' => t('All locations')] + $countries_to_select;
         }
       }
       $available_areas = _getAvailableAreas();
