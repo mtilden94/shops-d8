@@ -155,7 +155,7 @@
       display: block;
       background-color: $active;
       text-align: center;
-      width: 210px;
+      width: 180px;
       height: 60px;
       line-height: 60px;
       text-decoration: none;
@@ -164,10 +164,15 @@
       font-weight: $bold;
       font-family: $heading-font-family;
       margin: 30px auto 100px auto;
-      font-size: 16px;
+      font-size: 14px;
       transition: all 0.5s ease-in-out;
       &:hover {
         background-color: $blue;
+      }
+      @include media($tablet) {
+        font-size: 16px;
+        width: 210px;
+        height: 60px;
       }
     }
   }
