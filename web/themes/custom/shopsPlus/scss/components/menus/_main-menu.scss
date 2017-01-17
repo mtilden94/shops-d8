@@ -284,12 +284,15 @@
 }
 
 //right sidebar menu
+.sidebar.second .block-menu,
 .block-current-active-submenu {
 	display: none;
 	@include media($tablet) {
 		display: block;
+
+		& > h2,
 		h2.title,
-		ul li a, ul li span{
+		ul.menu li a, ul.menu li span {
 			font-family: $heading-font-family;
 			font-size: 14px;
 			font-weight: $header-bold;
@@ -306,13 +309,16 @@
 				background-color: $menu_sidebar_bg_hover;
 			}
 		}
+
+		& > h2, & > h2:hover,
 		h2.title, h2.title:hover {
 			background-color: $table-color;
 			color: $white;
 			margin: 0;
 			border: 0;
 		}
-		ul {
+
+		ul.menu {
 			li {
 				&.menu-item--expanded {
 					position: relative;
@@ -363,12 +369,14 @@
 	}
 	@include media($fullsize) {
 		margin-bottom: 50px !important;
+
+		& > h2,
 		h2.title,
-		ul li a, ul li span{
+		ul.menu li a, ul.menu li span{
 			font-size: 16px;
 			padding: 16px 65px 16px 19px;
 		}
-		ul {
+		ul.menu {
 			li {
 				&.menu-item--expanded {
 					&:after {

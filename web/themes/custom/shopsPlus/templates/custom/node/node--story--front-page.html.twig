@@ -24,7 +24,14 @@
                 {% endif %}
             </header>
         {% endif %}
-        {{ content|without('links', 'field_image') }}
+
+        {% set field_quote =  content.field_more_infos|render|trim %}
+        {% if field_quote is not empty %}
+            {{ content|without('links', 'field_image', 'field_introduction_text') }}
+        {% else %}
+            {{ content.field_introduction_text }}
+        {% endif %}
+
         <div class="more">
             <a href="{{ url }}">
                 {% if node.field_button_label.value is not empty %}

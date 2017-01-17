@@ -77,6 +77,9 @@ class LinkWidget extends WidgetBase {
         $displayable_string = EntityAutocomplete::getEntityLabels(array($entity));
       }
     }
+    elseif ($uri == 'route:<nolink>') {
+      $displayable_string = '<nolink>';
+    }
 
     return $displayable_string;
   }
@@ -108,6 +111,9 @@ class LinkWidget extends WidgetBase {
       // @todo Support entity types other than 'node'. Will be fixed in
       //    https://www.drupal.org/node/2423093.
       $uri = 'entity:node/' . $entity_id;
+    }
+    elseif ($string == '<nolink>') {
+      $uri = 'route:<nolink>';
     }
     // Detect a schemeless string, map to 'internal:' URI.
     elseif (!empty($string) && parse_url($string, PHP_URL_SCHEME) === NULL) {

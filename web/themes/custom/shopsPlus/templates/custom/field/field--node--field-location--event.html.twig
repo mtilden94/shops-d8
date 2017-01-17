@@ -47,9 +47,14 @@
       {{ address }}, {{ city }}, {% if code %}{{ code }}{% endif %} {{ postal_code }}
     </div>
     <div class="view-on-map">
-      <a href="https://www.google.com/maps/place/{{ address }}+{{ city }}{% if code %}+{{ code }}{% endif %}+{{ postal_code }}"
-         target="_blank"
-         title="{{ 'View on Map'|t }}">{{ 'View on Map'|t }}</a>
+      <a
+        href="https://www.google.com/maps/place/{{ address }}+{{ city }}{% if code %}+{{ code }}{% endif %}+{{ postal_code }}"
+        target="_blank"
+        title="{{ 'View on Map'|t }}">{{ 'View on Map'|t }}</a>
     </div>
+  </div>
+{% elseif code %}
+  <div class="location">
+    {{ code }}
   </div>
 {% endif %}

@@ -25,7 +25,7 @@
         {% endif %}
       </header>
     {% endif %}
-    {{ content|without('links', 'field_image', 'field_location', 'field_event_date', 'field_register_link', 'field_timezone') }}
+    {{ content|without('links', 'field_image', 'field_location', 'field_event_date', 'field_register_link') }}
     {% if content.field_event_date %}
       <div class="event-date-city">
         {{ content.field_event_date }}
@@ -38,7 +38,6 @@
         {% endif %}
       </div>
     {% endif %}
-    {{ content.field_timezone }}
     {% if content.field_register_link and is_past == FALSE %}
       {{ content.field_register_link }}
     {% endif %}

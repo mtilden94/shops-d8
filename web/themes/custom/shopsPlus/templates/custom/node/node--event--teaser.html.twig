@@ -31,17 +31,19 @@
     {{ content|without('links', 'field_image', 'field_location', 'field_event_type') }}
   </div><!-- /.content -->
   <div class="location-event-type">
-    {% if content.field_location and content.field_event_type %}
-      {% if content.field_location|render %}
-        {{ content.field_location }}
-      {% else %}
-        <div class="location">
-          {{ 'Online'|t }}
-        </div>
+    <div class="location-event-type-inner">
+      {% if content.field_location and content.field_event_type %}
+        {% if content.field_location|render %}
+          {{ content.field_location }}
+        {% else %}
+          <div class="location">
+            {{ 'Online'|t }}
+          </div>
+        {% endif %}
+        <div class="separator"> |</div>
+        {{ content.field_event_type }}
       {% endif %}
-      <div class="separator"> |</div>
-      {{ content.field_event_type }}
-    {% endif %}
+    </div>
   </div>
   {% if content.links %}
     <div class="links">
