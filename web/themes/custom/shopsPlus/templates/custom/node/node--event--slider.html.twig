@@ -25,7 +25,7 @@
         {% endif %}
       </header>
     {% endif %}
-    {{ content|without('links', 'field_is_featured', 'field_featured_image', 'field_location', 'field_event_date', 'field_timezone') }}
+    {{ content|without('links', 'field_is_featured', 'field_featured_image', 'field_location', 'field_event_date') }}
     {% if content.field_event_date %}
       <div class="event-date-city">{{ content.field_event_date }}
         {% if city %}
@@ -37,7 +37,6 @@
         {% endif %}
       </div>
     {% endif %}
-    {{ content.field_timezone }}
     <div class="event-details">
       <a href="{{ url }}">{{ 'Event details'|t }}</a>
     </div>
