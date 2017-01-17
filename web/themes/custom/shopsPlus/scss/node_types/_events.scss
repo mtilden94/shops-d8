@@ -192,6 +192,12 @@
           display: inline-block;
           float: left;
           font-size: 16px;
+          @include media($tablet) {
+            font-size: 14px;
+          }
+          @include media($fullsize) {
+            font-size: 16px;
+          }
           height: 20px !important;
         }
         div.separator {
@@ -199,6 +205,12 @@
           float: left;
           color: $time;
           font-size: 15px;
+          @include media($tablet) {
+            font-size: 13px;
+          }
+          @include media($fullsize) {
+            font-size: 15;
+          }
           padding: 2px 7px 0 7px;
         }
         .location {
@@ -206,6 +218,12 @@
           float: left;
           color: $green;
           font-size: 16px;
+          @include media($tablet) {
+            font-size: 14px;
+          }
+          @include media($fullsize) {
+            font-size: 16px;
+          }
         }
         .event-recap {
           text-align: left;
@@ -635,11 +653,17 @@
             color: $heading-color;
             font-weight: $bold;
             line-height: 100%;
-            height: 46px;
+            height: 44px;
             margin-bottom: 16px;
             overflow: hidden;
             &:after {
               content: "";
+            }
+            @include media($tablet) {
+              height: 35px;
+            }
+            @include media($fullsize) {
+              height: 44px;
             }
           }
           .date {
