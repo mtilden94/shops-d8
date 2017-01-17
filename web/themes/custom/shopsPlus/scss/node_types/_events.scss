@@ -48,6 +48,9 @@
   }
 
   .events-view {
+    .content {
+      height: 90px;
+    }
     header {
       color: $heading-color;
       font-family: $heading-font-family;
