@@ -292,7 +292,7 @@
 
 		& > h2,
 		h2.title,
-		ul li a, ul li span {
+		ul.menu li a, ul.menu li span {
 			font-family: $heading-font-family;
 			font-size: 14px;
 			font-weight: $header-bold;
@@ -318,7 +318,7 @@
 			border: 0;
 		}
 
-		ul {
+		ul.menu {
 			li {
 				&.menu-item--expanded {
 					position: relative;
@@ -372,11 +372,11 @@
 
 		& > h2,
 		h2.title,
-		ul li a, ul li span{
+		ul.menu li a, ul.menu li span{
 			font-size: 16px;
 			padding: 16px 65px 16px 19px;
 		}
-		ul {
+		ul.menu {
 			li {
 				&.menu-item--expanded {
 					&:after {
