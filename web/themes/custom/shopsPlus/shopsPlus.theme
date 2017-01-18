@@ -488,12 +488,9 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
   }
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-events-page-1') {
     $form['title']['#placeholder'] = t('Search events');
-    $form['field_location_country_code']['#options']['All'] = 'All locations';
-    $form['health_area']['#options']['All'] = 'All areas';
-    $form['event_type']['#options']['All'] = 'All types';
     $data_select = $form_state->getUserInput();
     if ($data_select) {
-      if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['field_location_country_code'] != 'All') {
+      if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['location'] != 'All') {
         $more_class = 'selected-filter ';
       }
     }

@@ -246,7 +246,7 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       );
 
       $tweets = $twitter->get($endpoint, $parameters);
-      
+
 
       if(isset($tweets->errors)) {
         drupal_set_message($tweets->errors[0]->message, 'error');
