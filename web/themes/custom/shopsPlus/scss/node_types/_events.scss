@@ -4,10 +4,11 @@
       color: $heading-color;
       margin-top: 0;
       margin-bottom: 0;
-      font-weight: $header-normal;
+
       @include media($tablet) {
         color: $white;
         font-size: 36px;
+        font-weight: 300;
       }
     }
     @include media($fullsize) {
@@ -21,7 +22,7 @@
         line-height: 100%;
       }
     }
-    .event-date-city {
+    .event-date-city, .timezone {
       padding-top: 5px;
       padding-left: 10px;
       padding-right: 10px;
@@ -33,6 +34,9 @@
         font-size: 24px;
       }
     }
+    .timezone {
+      margin-bottom: 20px;
+    }
     .is-featured {
       .f_item {
         font-size: 0.8em;
@@ -42,7 +46,15 @@
         padding-bottom: 5px;
       }
     }
+    .event-details {
+      a {
+        font-size: 16px;
+        font-weight: $strong;
+        padding: 25px 30px;
+      }
+    }
   }
+
   .block-original-events-page_1 {
     margin: 50px auto 70px auto;
   }
@@ -51,6 +63,7 @@
     .content {
       height: 90px;
     }
+
     header {
       color: $heading-color;
       font-family: $heading-font-family;
@@ -74,11 +87,15 @@
           }
           h2 {
             font-size: $base-font-size;
+            overflow: hidden;
+            height: 2.6em;
             padding-top: 5px;
             text-align: center;
           }
           span img {
+
             &:hover {
+
             }
           }
         }
@@ -87,14 +104,9 @@
           color: $active;
           font-size: 18px;
           display: block;
+          height: 100px !important;
         }
         .location-event-type {
-          position: absolute;
-          bottom: 0;
-          margin-left: auto;
-          margin-right: auto;
-          left: 0;
-          right: 0;
           color: $green;
           font-size: 16px;
           @include media($mobile) {
@@ -156,8 +168,8 @@
       text-transform: uppercase;
       font-weight: $bold;
       font-family: $heading-font-family;
+      margin: 30px auto 100px auto;
       font-size: 14px;
-      margin: 30px auto 0 auto;
       transition: all 0.5s ease-in-out;
       &:hover {
         background-color: $blue;
@@ -171,6 +183,7 @@
   }
 
   .past-events-view {
+
     margin-top: 100px;
     article {
       min-height: initial !important;
@@ -182,6 +195,7 @@
         height: auto;
       }
     }
+
     .line-group {
       .views-row {
         .event-date {
@@ -318,9 +332,6 @@
 
   .block-views-block-events-header-block-1 {
     position: relative;
-    h1 {
-      font-weight: $header-normal;
-    }
     .content {
       .is-featured {
         color: $active;
@@ -332,8 +343,7 @@
       .event-date-city > div {
         float: left;
       }
-
-      .event-date-city {
+      .event-date-city, .timezone {
         @include clearfix;
         color: $blue;
         font-family: $base-font-family;
@@ -342,6 +352,9 @@
         line-height: $base-line-height;
         display: inline-block;
       }
+      .timezone {
+        display: block;
+      }
       .event-details a {
         font-family: $heading-font-family;
         text-transform: uppercase;
@@ -349,7 +362,7 @@
         font-size: 12px;
         color: $white;
         display: inline-block;
-        padding: 17px;
+        padding: 23px 46px;
         border-bottom: 3px solid $white;
         background-color: $active;
         line-height: 1em;
@@ -405,12 +418,12 @@
           text-align: left;
           h1 {
             margin-bottom: 0;
-            font-size: 36px;
+            font-size: 38px;
             max-width: none;
             color: $white;
             font-weight: $header-normal;
           }
-          .event-date-city {
+          .event-date-city, .timezone {
             margin-bottom: 0;
             color: $white;
           }
@@ -438,10 +451,10 @@
           text-align: left;
           h1 {
             margin-bottom: 0;
-            font-size: 36px;
+            font-size: 38px;
             max-width: none;
           }
-          .event-date-city {
+          .event-date-city, .timezone {
             margin-bottom: 0;
             font-size: 24px;
           }
