@@ -387,20 +387,20 @@ function shopsPlus_preprocess_views_view(&$vars) {
     $exp_data_query = array();
 
     $exp_data_sort_order = $view->exposed_data['sort_order'];
-    if ($view->exposed_data['country'] != 'All') {
+    if (isset($view->exposed_data['country']) and $view->exposed_data['country'] != 'All') {
       $exp_data_query[] = 'country=' . $view->exposed_data['country'];
     }
-    if ($view->exposed_data['health_area'] != 'All') {
+    if (isset($view->exposed_data['health_area']) and $view->exposed_data['health_area'] != 'All') {
       $exp_data_query[] = 'health_area=' . $view->exposed_data['health_area'];
     }
-    if ($view->exposed_data['technical_area'] != 'All') {
+    if (isset($view->exposed_data['technical_area']) and $view->exposed_data['technical_area'] != 'All') {
       $exp_data_query[] = 'technical_area=' . $view->exposed_data['technical_area'];
     }
-    if ($view->exposed_data['type'] != 'All') {
+    if (isset($view->exposed_data['type']) and $view->exposed_data['type'] != 'All') {
       $exp_data_query[] = 'type=' . $view->exposed_data['type'];
     }
     $search_title = '';
-    if ($view->exposed_data['combine'] != '') {
+    if (isset($view->exposed_data['combine']) and $view->exposed_data['combine'] != '') {
       $exp_data_query[] = 'title=' . $view->exposed_data['combine'];
       $search_title = " for ‘" . $view->exposed_data['combine'] . "’";
     }
