@@ -474,7 +474,10 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
 
     $data_select = $form_state->getUserInput();
     if ($data_select) {
-      if ($data_select['health_area'] != 'All' || $data_select['type'] != 'All' || $data_select['technical_area'] != 'All' || $data_select['country'] != 'All') {
+      if ((isset($data_select['health_area']) and $data_select['health_area'] != 'All') ||
+      (isset($data_select['type']) and $data_select['type'] != 'All') ||
+      (isset($data_select['technical_area']) and $data_select['technical_area'] != 'All') ||
+      (isset($data_select['country']) and $data_select['country'] != 'All')) {
         $more_class = 'selected-filter ';
       }
     }
