@@ -2,20 +2,31 @@
 {% set classes = [
 'node node-infographic-teaser'
 ] %}
+
+{% if content.field_link_to[0]['#url'] %}
+  <a href="{{ content.field_link_to[0]['#url'] }}"
+    {% if content.field_link_to[0]['#title'] %}
+      title="{{ content.field_link_to[0]['#title'] }}"
+    {% endif %}
+  >
+{% endif %}
 <article{{ attributes.addClass(classes) }}>
-    {% if content.field_impact_image %}
-        {{ content.field_impact_image }}
-    {% endif %}
-    {% if unpublished  %}
-        <header>
-            {% if not node.published %}
-                <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
-            {% endif %}
-        </header>
-    {% endif %}
-    <div{{ content_attributes.addClass('content') }}>
-        {{ title_prefix }}
-        {{ title_suffix }}
-        {{ content|without('links', 'field_impact_image') }}
-    </div><!-- /.content -->
+  {% if content.field_impact_image %}
+    {{ content.field_impact_image }}
+  {% endif %}
+  {% if unpublished %}
+    <header>
+      {% if not node.published %}
+        <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+      {% endif %}
+    </header>
+  {% endif %}
+  <div{{ content_attributes.addClass('content') }}>
+    {{ title_prefix }}
+    {{ title_suffix }}
+    {{ content|without('links', 'field_impact_image', 'field_link_to') }}
+  </div><!-- /.content -->
 </article><!-- /.node -->
+{% if content.field_link_to[0]['#url'] %}
+  </a>
+{% endif %}
