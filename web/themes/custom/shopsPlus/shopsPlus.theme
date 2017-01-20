@@ -518,7 +518,7 @@ function shopsPlus_preprocess_file_link(&$variables) {
   else {
     $link_text = $variables['description'];
     $options['attributes']['title'] = $file_entity->getFilename();
-    $options['attributes']['download'] = '';
+    //$options['attributes']['download'] = '';
   }
 
   $variables['link'] = \Drupal::l($link_text, Url::fromUri($url, $options));
