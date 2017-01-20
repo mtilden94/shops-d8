@@ -1516,3 +1516,91 @@
     }
   }
 }
+
+#block-mailchimpsidebarsubscriptionforevents {
+  min-height: 324px;
+  color: #002e6c;
+  background-color: #54b9dd;
+  font-size: 18px;
+  text-align: center;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: url(../images/optimized/mark.svg);
+    background-position: right 0px;
+    background-repeat: no-repeat;
+    background-size: 616px auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0.2;
+  }
+  .f_item {
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .body {
+    z-index: 40;
+    position: relative;
+    h2 {
+      font-size: 36px;
+    }
+    .button-link {
+      width: 100%;
+      a {
+        font-family: $heading-font-family;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 12px;
+        color: $white;
+        display: inline-block;
+        padding: 17px;
+        border-bottom: 3px solid $white;
+        background-color: $blue;
+        line-height: 1em;
+        &:hover {
+          background-color: $active;
+        }
+      }
+    }
+  }
+  @include media($tablet) {
+    text-align: left;
+    min-height: 265px;
+    .f_item {
+      padding-top: 43px;
+      padding-left: 20px;
+      padding-right: 0;
+    }
+    &:after {
+      background-size: 419px auto;
+    }
+    .button-link {
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+  @include media($fullsize) {
+    font-size: 24px;
+    min-height: 350px;
+    .f_item {
+      padding-top: 57px;
+      padding-left: 64px;
+    }
+    &:after {
+      background-size: 515px auto;
+    }
+    .button-link {
+      a {
+        font-size: 16px;
+      }
+    }
+    h2 {
+      font-size: 50px;
+    }
+  }
+}
