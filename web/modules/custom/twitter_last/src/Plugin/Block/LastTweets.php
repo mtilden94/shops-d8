@@ -242,10 +242,11 @@ class LastTweets extends BlockBase implements BlockPluginInterface {
       $parameters = array(
         "user_id" => $query,
         "count" => $config['tweets_count'],
-        "exclude_replies" => true
+        // "exclude_replies" => true
       );
 
       $tweets = $twitter->get($endpoint, $parameters);
+
 
       if(isset($tweets->errors)) {
         drupal_set_message($tweets->errors[0]->message, 'error');

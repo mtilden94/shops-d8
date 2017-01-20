@@ -141,6 +141,14 @@ p.int-text, .introduction-text, .field.subtitle {
   }
 }
 
+blockquote {
+  .int-text, .introduction-text {
+    color: #04326d;
+    font-style: italic;
+    font-weight: 100;
+  }
+}
+
 figure.align-left, div[data-cke-display-name="image"].align-left {
   border: 1px solid $medium-gray;
   width: 100%;

@@ -8,6 +8,7 @@
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\file\Entity\File;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -222,6 +223,18 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
       $variables['code'] = isset($variables['element'][0]['#administrative_area']['code']) ? $variables['element'][0]['#administrative_area']['code'] : NULL;
     }
   }
+
+  if ($variables['field_name'] == 'field_url' AND !empty($variables['items'][0])) {
+    $value = $variables['items'][0]['content']['#context']['value'];
+
+    $url = Url::fromUri($value);
+    $url->setOption('attributes', array(
+      'target' => '_blank'
+    ));
+
+    $variables['items'][0]['content']['#context']['value'] = Link::fromTextAndUrl($value, $url);
+  }
+
   #date field / Manage display custom M. j Y
   if ($variables['field_name'] == 'field_event_date' && $variables['element']['#view_mode'] == 'sidebar') {
     if (isset($variables['items'][0]['content']['start_date'])) {
@@ -521,7 +534,8 @@ function shopsPlus_preprocess_file_link(&$variables) {
   else {
     $link_text = $variables['description'];
     $options['attributes']['title'] = $file_entity->getFilename();
-    $options['attributes']['download'] = '';
+    $options['attributes']['target'] = '_blank';
+    //$options['attributes']['download'] = '';
   }
 
   $variables['link'] = \Drupal::l($link_text, Url::fromUri($url, $options));

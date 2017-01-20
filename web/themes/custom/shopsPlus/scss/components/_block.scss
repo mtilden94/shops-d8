@@ -53,7 +53,7 @@
 .block-original-latest_news_updates-block_4,
 .block-original-latest_news_updates-block_5,
 .block-original-latest_news_updates-block_6,
-.sidebar-second div[class*='block-original-latest_news_updates-block_'] {
+.sidebar.second div[class*='block-original-latest_news_updates-block_'] {
 
   font-family: $heading-font-family;
   margin-bottom: 70px;
@@ -84,6 +84,8 @@
     text-align: left;
     width: 84%;
     margin: 0 auto;
+    margin-bottom: 20px;
+
     .node {
       position: relative;
       background-color: white;
@@ -256,6 +258,26 @@
   }
 }
 
+.block-original-latest_news_updates-block_1,
+.block-original-latest_news_updates-block_3,
+.block-original-latest_news_updates-block_4,
+.block-original-latest_news_updates-block_5,
+.block-original-latest_news_updates-block_6 {
+  header  {
+    @include media($tablet) {
+      margin-bottom: 140px !important;
+    }
+  }
+
+  .content {
+    @include media($tablet) {
+      font-size: 16px;
+      bottom: 20px;
+      position: absolute;
+    }
+  }
+}
+
 .node-type-technical-area,
 .node-type-health-areas,
 .node-type-countries {
@@ -299,6 +321,7 @@
   }
 
   .views-row {
+    display: none;
     max-width: 100%;
     @include span-columns(12);
     @include omega();
@@ -425,7 +448,7 @@
           position: absolute;
         }
         header{
-          margin-bottom: 120px;
+          margin-bottom: 140px;
         }
       }
     }
@@ -461,13 +484,14 @@
   }
 }
 
-.sidebar-second div[class*='block-original-latest_news_updates-block_'] {
-  
+.sidebar.second div[class*='block-original-latest_news_updates-block_'] {
   margin-top: 0;
   padding-top: 0;
   .views-row {
+    margin-bottom: 0;
     width: 100%;
   }
+
   @include media($tablet) {
     & > h2 {
       font-size: 16px;
@@ -957,6 +981,9 @@
     max-width: 230px;
   }
   .views-row {
+    a {
+      text-decoration: none;
+    }
     margin-bottom: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -1486,6 +1513,94 @@
     }
     .country, .event-date {
       font-size: 18px;
+    }
+  }
+}
+
+#block-mailchimpsidebarsubscriptionforevents {
+  min-height: 324px;
+  color: #002e6c;
+  background-color: #54b9dd;
+  font-size: 18px;
+  text-align: center;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: url(../images/optimized/mark.svg);
+    background-position: right 0px;
+    background-repeat: no-repeat;
+    background-size: 616px auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0.2;
+  }
+  .f_item {
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .body {
+    z-index: 40;
+    position: relative;
+    h2 {
+      font-size: 36px;
+    }
+    .button-link {
+      width: 100%;
+      a {
+        font-family: $heading-font-family;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 12px;
+        color: $white;
+        display: inline-block;
+        padding: 17px;
+        border-bottom: 3px solid $white;
+        background-color: $blue;
+        line-height: 1em;
+        &:hover {
+          background-color: $active;
+        }
+      }
+    }
+  }
+  @include media($tablet) {
+    text-align: left;
+    min-height: 265px;
+    .f_item {
+      padding-top: 43px;
+      padding-left: 20px;
+      padding-right: 0;
+    }
+    &:after {
+      background-size: 419px auto;
+    }
+    .button-link {
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+  @include media($fullsize) {
+    font-size: 24px;
+    min-height: 350px;
+    .f_item {
+      padding-top: 57px;
+      padding-left: 64px;
+    }
+    &:after {
+      background-size: 515px auto;
+    }
+    .button-link {
+      a {
+        font-size: 16px;
+      }
+    }
+    h2 {
+      font-size: 50px;
     }
   }
 }
