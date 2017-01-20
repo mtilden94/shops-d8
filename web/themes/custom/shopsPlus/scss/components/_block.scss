@@ -53,7 +53,7 @@
 .block-original-latest_news_updates-block_4,
 .block-original-latest_news_updates-block_5,
 .block-original-latest_news_updates-block_6,
-.sidebar-second div[class*='block-original-latest_news_updates-block_'] {
+.sidebar.second div[class*='block-original-latest_news_updates-block_'] {
 
   font-family: $heading-font-family;
   margin-bottom: 70px;
@@ -321,6 +321,7 @@
   }
 
   .views-row {
+    display: none;
     max-width: 100%;
     @include span-columns(12);
     @include omega();
@@ -483,7 +484,7 @@
   }
 }
 
-.sidebar-second div[class*='block-original-latest_news_updates-block_'] {
+.sidebar.second div[class*='block-original-latest_news_updates-block_'] {
   margin-top: 0;
   padding-top: 0;
   .views-row {
