@@ -4,7 +4,7 @@
       color: $heading-color;
       margin-top: 0;
       margin-bottom: 0;
-
+      font-weight: $header-normal;
       @include media($tablet) {
         color: $white;
         font-size: 36px;
@@ -22,7 +22,7 @@
         line-height: 100%;
       }
     }
-    .event-date-city, .timezone {
+    .event-date-city {
       padding-top: 5px;
       padding-left: 10px;
       padding-right: 10px;
@@ -34,9 +34,6 @@
         font-size: 24px;
       }
     }
-    .timezone {
-      margin-bottom: 20px;
-    }
     .is-featured {
       .f_item {
         font-size: 0.8em;
@@ -44,13 +41,6 @@
         font-family: $heading-font-family;
         text-transform: uppercase;
         padding-bottom: 5px;
-      }
-    }
-    .event-details {
-      a {
-        font-size: 16px;
-        font-weight: $strong;
-        padding: 25px 30px;
       }
     }
   }
@@ -87,8 +77,6 @@
           }
           h2 {
             font-size: $base-font-size;
-            overflow: hidden;
-            height: 2.6em;
             padding-top: 5px;
             text-align: center;
           }
@@ -107,6 +95,12 @@
           height: 100px !important;
         }
         .location-event-type {
+          position: absolute;
+          bottom: 0;
+          margin-left: auto;
+          margin-right: auto;
+          left: 0;
+          right: 0;
           color: $green;
           font-size: 16px;
           @include media($mobile) {
@@ -168,7 +162,7 @@
       text-transform: uppercase;
       font-weight: $bold;
       font-family: $heading-font-family;
-      margin: 30px auto 100px auto;
+      margin: 30px auto 0 auto;
       font-size: 14px;
       transition: all 0.5s ease-in-out;
       &:hover {
@@ -332,6 +326,9 @@
 
   .block-views-block-events-header-block-1 {
     position: relative;
+    h1 {
+      font-weight: $header-normal;
+    }
     .content {
       .is-featured {
         color: $active;
@@ -343,7 +340,7 @@
       .event-date-city > div {
         float: left;
       }
-      .event-date-city, .timezone {
+      .event-date-city {
         @include clearfix;
         color: $blue;
         font-family: $base-font-family;
@@ -352,9 +349,6 @@
         line-height: $base-line-height;
         display: inline-block;
       }
-      .timezone {
-        display: block;
-      }
       .event-details a {
         font-family: $heading-font-family;
         text-transform: uppercase;
@@ -362,7 +356,7 @@
         font-size: 12px;
         color: $white;
         display: inline-block;
-        padding: 23px 46px;
+        padding: 17px;
         border-bottom: 3px solid $white;
         background-color: $active;
         line-height: 1em;
@@ -418,12 +412,12 @@
           text-align: left;
           h1 {
             margin-bottom: 0;
-            font-size: 38px;
+            font-size: 36px;
             max-width: none;
             color: $white;
             font-weight: $header-normal;
           }
-          .event-date-city, .timezone {
+          .event-date-city {
             margin-bottom: 0;
             color: $white;
           }
@@ -451,10 +445,10 @@
           text-align: left;
           h1 {
             margin-bottom: 0;
-            font-size: 38px;
+            font-size: 36px;
             max-width: none;
           }
-          .event-date-city, .timezone {
+          .event-date-city {
             margin-bottom: 0;
             font-size: 24px;
           }
@@ -666,8 +660,7 @@
             color: $heading-color;
             font-weight: $bold;
             line-height: 100%;
-            height: 44px;
-            margin-bottom: 16px;
+            height: 50px;
             overflow: hidden;
             &:after {
               content: "";
