@@ -25,11 +25,14 @@
             </header>
         {% endif %}
 
-        {% set field_quote =  content.field_more_infos|render|trim %}
-        {% if field_quote is not empty %}
-            {{ content|without('links', 'field_image', 'field_introduction_text') }}
+        {% set introduction_text =  content.field_introduction_text|render|trim %}
+
+        {{ dump(introduction_text) }}
+
+        {% if introduction_text is not empty %}
+            {{ content|without('links', 'field_image', 'body') }}
         {% else %}
-            {{ content.field_introduction_text }}
+            {{ content.body }}
         {% endif %}
 
         <div class="more">
