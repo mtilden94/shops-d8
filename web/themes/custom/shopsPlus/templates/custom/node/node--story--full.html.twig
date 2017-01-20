@@ -14,7 +14,7 @@
 
   <div{{ content_attributes.addClass('content') }}>
       <blockquote>
-        {{ content.field_quote }}
+        {{ content.field_introduction_text }}
 
           <p class="author">
               {% if full_name %}
@@ -27,7 +27,7 @@
           </p>
       </blockquote>
 
-      {{ content|without('links', 'field_quote', 'field_first_name', 'field_last_name', 'field_bio') }}
+      {{ content|without('links', 'field_introduction_text', 'field_first_name', 'field_last_name', 'field_bio') }}
   </div>
 
 </article>
