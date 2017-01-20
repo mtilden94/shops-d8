@@ -518,6 +518,7 @@ function shopsPlus_preprocess_file_link(&$variables) {
   else {
     $link_text = $variables['description'];
     $options['attributes']['title'] = $file_entity->getFilename();
+    $options['attributes']['target'] = '_blank';
     //$options['attributes']['download'] = '';
   }
 
