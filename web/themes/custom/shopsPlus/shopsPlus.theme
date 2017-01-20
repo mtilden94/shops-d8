@@ -227,12 +227,14 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
   if ($variables['field_name'] == 'field_url' AND !empty($variables['items'][0])) {
     $value = $variables['items'][0]['content']['#context']['value'];
 
-    $url = Url::fromUri($value);
-    $url->setOption('attributes', array(
-      'target' => '_blank'
-    ));
+    if (filter_var($value, FILTER_VALIDATE_URL) !== FALSE) {
+      $url = Url::fromUri($value);
+      $url->setOption('attributes', array(
+        'target' => '_blank'
+      ));
 
-    $variables['items'][0]['content']['#context']['value'] = Link::fromTextAndUrl($value, $url);
+      $variables['items'][0]['content']['#context']['value'] = Link::fromTextAndUrl($value, $url);
+    }
   }
 
   #date field / Manage display custom M. j Y
