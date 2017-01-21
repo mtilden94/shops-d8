@@ -9,7 +9,7 @@
       "Field behavior overrides": "patches/address_field_behavior_overrides.patch"
     },
     "drupal/search_api_attachments": {
-      "Method doesn't exist : filterForPropertyPath()": "patches/patch-filterForPropertyPath.diff.patch"
+      "Method doesn't exist : filterForPropertyPath()": "patches/patch-filterForPropertyPath.patch"
     }
   }
 }
