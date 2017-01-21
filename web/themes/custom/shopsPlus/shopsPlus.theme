@@ -441,25 +441,27 @@ function shopsPlus_preprocess_views_view(&$vars) {
 
   if ($id == 'index_resource_center' && $display_id == 'page_1') {
     $vars['sort_link'] = '';
+    $exposed_data = $view->exposed_data;
+    $exposed_data['sort_order'] = "ASC";
     $exp_data_sort_order = $view->exposed_data['sort_order'];
+
+    unset($exposed_data['submit'], $exposed_data['form_build_id'], $exposed_data['form_id'], $exposed_data['']);
 
     $search_title = '';
     if (isset($view->exposed_data['search_api_fulltext']) and $view->exposed_data['search_api_fulltext'] != '') {
       $search_title = " for ‘" . $view->exposed_data['search_api_fulltext'] . "’";
     }
 
-    $exp_data_query = "";
 
     if ($exp_data_sort_order && $exp_data_sort_order != '') {
       if (strtolower($exp_data_sort_order) == 'desc') {
-        $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+        $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  MOST RECENT</a>';
+      } else {
+        $exposed_data['sort_order'] = "DESC";
+        $vars['sort_link'] = '<a class="order-desc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  MOST OLDEST</a>';
       }
-      else {
-        $vars['sort_link'] = '<a class="order-desc" href="/resource-center-results?' . $exp_data_query . 'sort_order=DESC">SORT BY:  MOST OLDEST</a>';
-      }
-    }
-    else {
-      $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+    } else {
+      $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  MOST RECENT</a>';
     }
 
     $vars['header']['result']['#markup'] = $view->total_rows . " Results" . $search_title;

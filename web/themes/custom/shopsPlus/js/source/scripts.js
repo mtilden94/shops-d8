@@ -99,15 +99,14 @@
                     exposed_form_view(form_more);
                 }
 
-                $('.sort-block a', context).click(
-                    function () {
-                        var selected = $('.form-item-sort-order option:selected');
-                        var not_selected = $('.form-item-sort-order option:not(":selected")');
-                        selected.attr('selected', false);
-                        not_selected.attr('selected', true).change();
-                        return false;
-                    }
-                );
+                $('.sort-block a', context).on('click', function () {
+                    var selected = $('.form-item-sort-order option:selected');
+                    var not_selected = $('.form-item-sort-order option:not(":selected")');
+                    selected.attr('selected', false);
+                    not_selected.attr('selected', true).change();
+
+                    return false;
+                });
 
                 $('.views-exposed-form .open-form-more', context).on('click',
                     function () {
