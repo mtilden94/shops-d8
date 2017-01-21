@@ -1,0 +1,14 @@
+diff --git a/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php b/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php
+index c411572..496104e 100644
+--- a/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php
++++ b/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php
+@@ -171,7 +171,9 @@ public function addFieldValues(ItemInterface $item) {
+         $property_path = static::SAA_PREFIX . $field_name;
+ 
+         // A way to load $field.
+-        foreach ($this->filterForPropertyPath($item->getFields(), $property_path) as $field) {
++        $fields = $this->getFieldsHelper()
++          ->filterForPropertyPath($item->getFields(), NULL, $property_path);
++        foreach ($fields as $field) {
+           if ($entity->hasField($field_name)) {
+             $filefield_values = $entity->get($field_name)->getValue();
