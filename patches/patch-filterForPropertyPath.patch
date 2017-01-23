@@ -1,7 +1,7 @@
-diff --git a/web/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php b/web/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php
+diff --git a/src/Plugin/search_api/processor/FilesExtrator.php b/src/Plugin/search_api/processor/FilesExtrator.php
 index e3d2b76..fefbb75 100644
---- a/web/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php
-+++ b/web/modules/contrib/search_api_attachments/src/Plugin/search_api/processor/FilesExtrator.php
+--- a/src/Plugin/search_api/processor/FilesExtrator.php
++++ b/src/Plugin/search_api/processor/FilesExtrator.php
 @@ -171,7 +171,9 @@ public function addFieldValues(ItemInterface $item) {
          $property_path = static::SAA_PREFIX . $field_name;
  
