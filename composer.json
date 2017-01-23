@@ -15,6 +15,9 @@
 			"url": "https://packages.drupal.org/8"
 		}
 	],
+	"config": {
+		"discard-changes": true
+	},
 	"require": {
 		"composer/installers": "^1.2",
 		"drupal-composer/drupal-scaffold": "^2.2",
@@ -34,7 +37,7 @@
 		"drupal/weight": "^3.0",
 		"drupal/flexslider_fields": "2.x-dev",
 		"drupal/flexslider_views": "2.x-dev",
-		"drupal/address": "1.x-dev",
+		"drupal/address": "1.0-rc3",
 		"drupal/migrate_plus": "3.x-dev",
 		"drupal/menu_block": "^1.4",
 		"drupal/imce": "^1.4",
@@ -48,7 +51,7 @@
 		"drupal/easy_breadcrumb": "^1.5",
 		"drupal/markup": "1.x-dev",
 		"drupal/recaptcha": "^2.2",
-		"drupal/better_exposed_filters": "3.x-dev",
+		"drupal/better_exposed_filters": "3.x",
 		"drupal/metatag": "1.x-dev",
 		"drupal/redirect": "1.x-dev",
 		"drupal/background_image_formatter": "^1.1",

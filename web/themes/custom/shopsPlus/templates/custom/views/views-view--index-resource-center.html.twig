@@ -1,0 +1,34 @@
+{%
+set classes = [
+dom_id ? 'resource-view js-view-dom-id-' ~ dom_id,
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    {{ title }}
+    {{ title_suffix }}
+    {{ exposed }}
+    {{ attachment_before }}
+    {% if header %}
+        <header>
+            {{ header }}
+            <div class="resource-sort-block">
+                {{ sort_link|raw }}
+            </div>
+        </header>
+    {% endif %}
+    {{ rows }}
+    {{ empty }}
+    {{ pager }}
+
+    {{ attachment_after }}
+    {{ more }}
+
+    {% if footer %}
+        <footer>
+            {{ footer }}
+        </footer>
+    {% endif %}
+
+    {{ feed_icons }}
+</div>

@@ -846,7 +846,7 @@
     }
 
     .introduction-text {
-      color: $white;
+      color: $black;
       font-weight: 100;
     }
 
@@ -888,6 +888,11 @@
           left: 0;
         }
       }
+
+      .introduction-text {
+        color: $white;
+      }
+
       .content {
         width: 53%;
         left: auto;
