@@ -37,7 +37,7 @@
 		"drupal/weight": "^3.0",
 		"drupal/flexslider_fields": "2.x-dev",
 		"drupal/flexslider_views": "2.x-dev",
-		"drupal/address": "1.x-dev",
+		"drupal/address": "1.0-rc3",
 		"drupal/migrate_plus": "3.x-dev",
 		"drupal/menu_block": "^1.4",
 		"drupal/imce": "^1.4",
