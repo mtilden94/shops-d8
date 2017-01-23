@@ -761,7 +761,7 @@
       margin-bottom: 10px;
     }
   }
-  .recap, .resources {
+  .recap {
     .label.above {
       font-size: 25px;
       color: $heading-color;
@@ -770,11 +770,19 @@
       margin-bottom: 10px;
     }
   }
+  .resources {
+    .label.above {
+      font-size: 25px;
+      color: $heading-color;
+      font-weight: $normal;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+  }
   .presentations-resources {
     float: left;
     width: 100%;
     padding: 0;
-    margin-bottom: 20px;
     font-family: $heading-font-family;
     position: relative;
     h2 {
@@ -794,6 +802,9 @@
       float: left;
       margin-right: 10px;
       width: 113px;
+      @include media(max-width 340px) {
+        margin-bottom: 15px;
+      }
     }
     h2 {
       padding-bottom: 18px;
@@ -846,7 +857,6 @@
       }
     }
     @include media($fullsize) {
-      margin-bottom: 35px;
       h2 {
         font-size: 30px;
         padding-bottom: 35px;
