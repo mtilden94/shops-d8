@@ -5,7 +5,7 @@ is_past ? 'event-is-past' : 'event-is-up'
 ] %}
 
 
-<article{{ attributes.addClass(classes) }}>
+<article{{ attributes.addClass(classes, 'clearfix') }}>
   <div{{ content_attributes.addClass('content', 'clearfix') }}>
     {% if is_past %}
       <div class="left-side">

@@ -723,83 +723,6 @@
       }
     }
   }
-  .presentations > div {
-    @include clearfix;
-    .f_item {
-      width: 100%;
-      @include media($tablet) {
-        width: 48%;
-        float: left;
-        margin-right: 4%;
-      }
-      &:nth-child(2n+2) {
-        margin-right: 0;
-        margin-left: 0;
-      }
-    }
-  }
-
-  .presentations {
-    .label.above {
-      font-size: $tablet-font-size;
-      color: $heading-color;
-      font-weight: $bold;
-    }
-    .paragraph--type--presentations {
-      border: 1px solid $medium-gray;
-      border-left: none;
-      border-right: none;
-      margin-top: -1px;
-      margin-bottom: 15px;
-      padding: 30px 0px 25px 0px;
-      @include media($tablet) {
-        padding: 30px 20px 25px 20px;
-      }
-      @include clearfix;
-
-    }
-    .image {
-      .f_item {
-        width: auto;
-        border: none;
-      }
-      img {
-        width: 100%;
-        height: auto;
-        margin-top: 4px;
-        @include media($tablet) {
-          width: 100px;
-          height: 100px;
-        }
-      }
-
-    }
-    .event-item-right-side {
-      .title {
-        float: none;
-        font-size: $base-font-size;
-        color: $heading-color;
-        font-weight: $bold;
-        line-height: 100%;
-        height: 50px;
-        overflow: hidden;
-        &:after {
-          content: "";
-        }
-      }
-      .speaker-name {
-        color: $breadcrumbs;
-        font-size: 16px;
-        height: 25px;
-        width: 100%;
-        margin-top: 4px;
-      }
-      a {
-        font-size: 16px;
-      }
-    }
-
-  }
   .block-views-block-events-header-block-2 {
     background-color: $event_bottom;
     text-align: center;
@@ -847,55 +770,119 @@
       margin-bottom: 10px;
     }
   }
-
-  .resources > .label {
-    font-weight: $strong;
-    color: $heading-color;
-    margin-bottom: 20px;
-    font-size: 28px;
-  }
-}
-
-.node-type-event #block-shopsplus-content .resources .content {
-  margin-bottom: 0;
-}
-
-.event-res-row {
-  @include media($tablet) {
-    @include row();
-  }
-}
-.event-res-image {
-  text-align: center;
-  @include media($tablet) {
-    @include span-columns(2);
-  }
-}
-.event-res-content {
-  @include media($tablet) {
-    @include span-columns(10);
-  }
-}
-
-.presentations-resources {
-  time {
-    font-size: 16px;
-  }
-  article {
-    margin-bottom: 20px;
-  }
-  .author {
-    font-size: 16px;
-    color: $action-color;
-    p {
-      margin: 0;
+  .resources {
+    .label.above {
+      font-size: 25px;
+      color: $heading-color;
+      font-weight: $normal;
+      text-align: left;
+      margin-bottom: 10px;
     }
   }
-  .contributor {
-    font-size: 16px;
-    p {
-      margin: 0;
+  .presentations-resources {
+    float: left;
+    width: 100%;
+    padding: 0;
+    font-family: $heading-font-family;
+    position: relative;
+    h2 {
+      font-size: 18px;
+    }
+    .submitted {
+      line-height: 1em;
+      margin-top: -4px;
+      margin-bottom: 10px;
+      time {
+        font-size: 14px;
+        color: $time;
+        font-weight: $header-normal;
+      }
+    }
+    .resource-image {
+      float: left;
+      margin-right: 10px;
+      width: 113px;
+      @include media(max-width 340px) {
+        margin-bottom: 15px;
+      }
+    }
+    h2 {
+      padding-bottom: 18px;
+    }
+    .content {
+      font-size: 14px;
+      font-weight: $header-normal;
+      padding-left: 123px;
+      position: absolute;
+      bottom: 14px;
+      margin-bottom: 0 !important;
+      & * {
+        display: inline;
+      }
+      .f_item {
+        @include clearfix;
+        &:after {
+          content: '';
+          border-left: $base-border;
+          display: inline-block;
+          height: 14px;
+          width: 1px;
+          margin: 0px 6px 0 10px;
+          position: relative;
+          top: 3px;
+        }
+      }
+      & div:last-child .f_item {
+        &:after {
+          content: none;
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+    @include media($mobile_threshold) {
+      h2 {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        height: 65px;
+      }
+    }
+    @include media($tablet) {
+      h2 {
+        font-size: 20px;
+      }
+      .content {
+        bottom: 18px;
+      }
+    }
+    @include media($fullsize) {
+      h2 {
+        font-size: 30px;
+        padding-bottom: 35px;
+      }
+      .resource-image {
+        margin-right: 30px;
+        width: 165px;
+      }
+      .submitted {
+        margin-top: -5px;
+        margin-bottom: 10px;
+        time {
+          font-size: 16px;
+          font-weight: $header-bold;
+        }
+      }
+      .content {
+        font-size: 16px;
+        padding-left: 195px;
+        bottom: 35px;
+        .f_item {
+          &:after {
+            height: 16px;
+          }
+        }
+      }
     }
   }
-
 }
