@@ -28,7 +28,9 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('content') }}>
-        {{ content|without('links', 'field_resource_image') }}
+        <div class="content-field">
+            {{ content|without('links', 'field_resource_image') }}
+        </div>
     </div><!-- /.content -->
 
     {% if content.links %}

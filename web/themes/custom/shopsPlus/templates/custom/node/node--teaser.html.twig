@@ -29,8 +29,10 @@
         </header>
     {% endif %}
 
-    <div{{ content_attributes.addClass('content') }}>
-        {{ content|without('links', 'field_image') }}
+    <div{{ content_attributes.addClass('content') }} dsdsd>
+        <div class="content-field">
+            {{ content|without('links', 'field_image') }}
+        </div>
     </div><!-- /.content -->
 
     {% if content.links %}
