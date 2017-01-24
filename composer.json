@@ -67,7 +67,8 @@
 		"drupal/advanced_text_formatter": "1.x-dev",
 		"drupal/search_api": "1.x-dev",
 		"drupal/search_api_solr": "1.x-dev",
-		"drupal/search_api_attachments": "1.x-dev"
+		"drupal/search_api_attachments": "1.x-dev",
+		"drupal/flood_unblock": "^1.2"
 	},
 	"require-dev": {
 		"behat/mink": "~1.7",
