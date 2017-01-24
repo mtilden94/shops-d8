@@ -5,7 +5,6 @@
   .author {
     font-size: 14px;
     margin-top: 8px;
-    margin-left: 50px;
     font-style: normal;
     color: #666;
     font-weight: 400;
@@ -20,6 +19,9 @@
       margin-top: 20px;
       strong {
         font-weight: 700;
+      }
+      &.indented {
+        margin-left: 50px;
       }
     }
   }

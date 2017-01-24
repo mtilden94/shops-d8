@@ -21,7 +21,7 @@
 </ol>
 
 
-        {% if 'blockquote' in content.field_introduction_text.value %}
+        {% if 'blockquote' in content.field_introduction_text[0]['#text'] %}
 
         {{ content.field_introduction_text }}
 
