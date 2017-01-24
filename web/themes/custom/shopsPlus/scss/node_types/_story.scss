@@ -1,0 +1,22 @@
+.node-type-story {
+  .author {
+    font-size: 14px;
+    margin-top: 8px;
+    font-style: normal;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.4em;
+    strong {
+      color: #444;
+      font-weight: 700;
+    }
+
+    @include media($fullsize) {
+      font-size: 16px;
+      margin-top: 20px;
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+}
