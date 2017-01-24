@@ -528,9 +528,13 @@ h1 a, h2 a, h3 a {
   .content {
     font-size: 14px;
     font-weight: $header-normal;
-    padding-left: 123px;
     position: absolute;
     bottom: 18px;
+
+    @include media($tablet) {
+      padding-left: 123px;
+    }
+
     & * {
       display: inline;
     }
