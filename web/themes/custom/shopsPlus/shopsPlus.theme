@@ -232,7 +232,7 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
       $url->setOption('attributes', array(
         'target' => '_blank'
       ));
-
+      $variables['label'] = "Click to visit the website:";
       $variables['items'][0]['content']['#context']['value'] = Link::fromTextAndUrl($value, $url);
     }
   }
