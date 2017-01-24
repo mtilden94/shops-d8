@@ -300,7 +300,15 @@
         .pager__item {
           .button {
             @extend %button;
+            text-align: center;
+            width: 180px;
+            height: 60px;
             line-height: 1;
+            @include media($tablet) {
+              font-size: 16px;
+              width: 210px;
+              height: 60px;
+            }
           }
         }
       }
@@ -523,7 +531,9 @@
   }
 }
 
-.block-original-hp_stories-block_2 {
+.block-original-hp_stories-block_2,
+.block-original-hp_stories-block_3,
+.block-original-hp_stories-block_4 {
   display: none;
   @include media($tablet) {
     position: relative;
@@ -1609,4 +1619,8 @@
       font-size: 50px;
     }
   }
+}
+
+.block-original-latest_news_updates-block_7 {
+  margin-bottom: 30px !important;
 }
