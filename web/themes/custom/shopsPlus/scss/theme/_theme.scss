@@ -432,6 +432,13 @@ h1 a, h2 a, h3 a {
 }
 
 .page-resource-center {
+  .resource-view{
+    @include media($mobile_threshold) {
+      h2 {
+        height: 71px;
+      }
+    }
+  }
   #block-views-block-news-and-updates {
     margin-top: 0;
   }
