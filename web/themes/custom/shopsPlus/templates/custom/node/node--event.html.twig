@@ -40,14 +40,15 @@ is_past ? 'event-is-past' : 'event-is-up'
               {% if content.field_location[0]['country']['#value'] != "" %}
               <div class="title">{{ "Where"|t }}</div>
                 {% if content.field_location[0]['organization']['#value'] != "" %}
-                  {{ content.field_location[0]['organization']['#value'] }}<br />
+                  <div>{{ content.field_location[0]['organization']['#value'] }}</div>
                 {% endif %}
                 {% if content.field_location[0]['address_line1']['#value'] != "" %}
-                  {{ content.field_location[0]['address_line1']['#value'] }}<br />
+                  <div>{{ content.field_location[0]['address_line1']['#value'] }}</div>
                 {% endif %}
                 {% if content.field_location[0]['address_line2']['#value'] != "" %}
-                  {{ content.field_location[0]['address_line2']['#value'] }}<br />
+                  <div>{{ content.field_location[0]['address_line2']['#value'] }}</div>
                 {% endif %}
+                <div>
                 {% if content.field_location[0]['locality']['#value'] != "" %}
                   {{ content.field_location[0]['locality']['#value'] }}&nbsp;
                 {% endif %}
@@ -60,8 +61,9 @@ is_past ? 'event-is-past' : 'event-is-up'
                   {{ content.field_location[0]['postal_code']['#value'] }}
                 {% endif %}
                 {% if content.field_location[0]['country']['#value'] != "" %}
-                  <br />{{ content.field_location[0]['country']['#value'] }}
+                  <div>{{ content.field_location[0]['country']['#value'] }}</div>
                 {% endif %}
+                </div>
               {% else %}
                 <div class="title">{{ "Online"|t }}</div>
               {% endif %}
