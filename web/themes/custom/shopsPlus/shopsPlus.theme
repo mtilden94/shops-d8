@@ -94,6 +94,22 @@ function shopsPlus_preprocess_node(&$variables) {
     }
   }
 
+  if ($node->getType() == 'technical_area' AND $variables['view_mode'] == 'full') {
+    $block_slideshow = views_embed_view('impact_infographic', 'block_1');
+
+    if (!empty($block_slideshow)) {
+      $variables['content']['infographic_slideshow'] = $block_slideshow;
+    }
+  }
+
+  if ($node->getType() == 'health_areas' AND $variables['view_mode'] == 'full') {
+    $block_slideshow = views_embed_view('impact_infographic', 'block_2');
+
+    if (!empty($block_slideshow)) {
+      $variables['content']['infographic_slideshow'] = $block_slideshow;
+    }
+  }
+
   if ($node->getType() == 'story' AND $variables['view_mode'] == 'full') {
     $first_name = $node->field_first_name->first()->getValue();
     $last_name = $node->field_last_name->first()->getValue();
