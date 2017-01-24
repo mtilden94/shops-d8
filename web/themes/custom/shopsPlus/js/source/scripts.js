@@ -161,10 +161,34 @@
                         $pager.children('.pager-total').text($flexslider.count);
                     }
                 });
+
+                //spoller for tags in resources teaser
+                function resourse_tags_spoller() {
+                    if ($(window).width() > 720) {
+                        $('.content-field', context).each(function () {
+                            if ($(this).height() > 28) {
+                                // adding spoller functional
+                                $(this).addClass('collapsed');
+                                $(this).parent().append('<a class="open" href="#open" title="Show more tags"/>');
+                                $(this).parent().find('a.open').on('click', function () {
+                                    $(this).parent().toggleClass('opened');
+                                    return false;
+                                })
+                            }
+                        })
+                    }
+                }
+
+                resourse_tags_spoller();
             }
         };
+
+
+
         // jQuery(function ($) {
         $(document).ready(function () {
+
+
             //remove footer last link
             // var text_last_a_footer = $('#footer .menu--footer ul.menu li.menu-item:last-child a').text();
             // $('#footer .menu--footer ul.menu li.menu-item:last-child a').replaceWith("<span class='no-link'>" + text_last_a_footer + "</span>");

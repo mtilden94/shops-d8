@@ -1,222 +1,269 @@
 .node {
-  &.node-resource-teaser {
-    .content {
-      height: 28px;
-      overflow: hidden;
+	&.node-resource-teaser {
+		.content {
+			position: relative;
+			bottom: 0;
 
-      .content-field {
-        background-color: white;
-      }
+			a.open {
+				display: none;
+			}
+			@include media($tablet) {
+				.content-field {
+					&.collapsed {
+						background-color: white;
+						height: 25px;
+						overflow: hidden;
+						display: block;
+						padding-right: 30px;
 
-      position: relative;
-      bottom: 0;
+					}
+				}
+				&.opened {
+					.collapsed {
+						overflow: auto;
+						height: auto;
+					}
 
-      @include media($tablet) {
-        position: absolute;
-        bottom: 18px;
-      }
+					a.open {
+						background-color: $blue;
+						&:after {
+							margin-top: -1px;
+							transform: rotate(90deg);
+						}
+					}
+				}
 
-      div.field {
-        display: inline;
-        &:after {
-          content: '';
-          border-left: $base-border;
-          display: inline-block;
-          height: 14px;
-          width: 1px;
-          margin: 0 6px 0 10px;
-          position: relative;
-          top: 3px;
-        }
+				a.open {
+					display: block;
+					position: absolute;
+					width: 28px;
+					height: 28px;
+					right: 0;
+					bottom: 0;
+					background-color: $active;
+					border-radius: 50%;
+					&:after {
+						content: "\e902";
+						font-family: icomoon !important;
+						color: white;
+						line-height: 28px;
+						text-align: center;
+						width: 28px;
+						display: block;
+						transform: rotate(-90deg);
+						transition: all 0.3s linear;
+						margin-top: 2px;
+					}
 
-        &:last-child {
-          &:after {
-            content: none;
-          }
-        }
-      }
 
-      div.field .f_item {
-        display: inline;
+				}
+			}
 
-        &:after {
-          display: none;
-        }
+			@include media($tablet) {
+				position: absolute;
+				bottom: 18px;
+			}
 
-        a, span {
-          &:after {
-            content: '';
-            border-left: $base-border;
-            display: inline-block;
-            height: 14px;
-            width: 1px;
-            margin: 0 6px 0 10px;
-            position: relative;
-            top: 3px;
-          }
-        }
+			div.field {
+				display: inline;
+				&:after {
+					content: '';
+					border-left: $base-border;
+					display: inline-block;
+					height: 14px;
+					width: 1px;
+					margin: 0 6px 0 10px;
+					position: relative;
+					top: 3px;
+				}
 
-        &:last-child {
-          a, span {
-            &:after {
-              content: none;
-            }
-          }
-        }
-      }
-    }
-  }
+				&:last-child {
+					&:after {
+						content: none;
+					}
+				}
+			}
+
+			div.field .f_item {
+				display: inline;
+
+				&:after {
+					display: none;
+				}
+
+				a, span {
+					&:after {
+						content: '';
+						border-left: $base-border;
+						display: inline-block;
+						height: 14px;
+						width: 1px;
+						margin: 0 6px 0 10px;
+						position: relative;
+						top: 3px;
+					}
+				}
+
+				&:last-child {
+					a, span {
+						&:after {
+							content: none;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
-
 .node-view--teaser {
-  margin: 0 0 40px 0;
-  .content {
-    p {
-      margin-bottom: 10px;
-    }
-  }
-  h2 {
-    font-size: 20px;
-  }
-  ul.links {
-    margin: 0;
-    .node-readmore a {
-      background: transparent;
-      padding: 0;
-      color: $active;
-      font-size: 16px;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+	margin: 0 0 40px 0;
+	.content {
+		p {
+			margin-bottom: 10px;
+		}
+	}
+	h2 {
+		font-size: 20px;
+	}
+	ul.links {
+		margin: 0;
+		.node-readmore a {
+			background: transparent;
+			padding: 0;
+			color: $active;
+			font-size: 16px;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 .field.image-gallery {
-  margin-bottom: $gutter;
+	margin-bottom: $gutter;
 
-  @include media($tablet) {
-    margin-bottom: 58px;
-  }
+	@include media($tablet) {
+		margin-bottom: 58px;
+	}
 
-  .views-element-container {
-    header {
-      margin-bottom: 20px;
+	.views-element-container {
+		header {
+			margin-bottom: 20px;
 
-      @include media($tablet) {
-        margin-bottom: 40px;
-      }
+			@include media($tablet) {
+				margin-bottom: 40px;
+			}
 
-      h3 {
-        font-size: 24px;
-      }
-    }
-  }
+			h3 {
+				font-size: 24px;
+			}
+		}
+	}
 }
 
 .node-type-article,
 .node-type-resource,
 .node-type-story {
-  .node {
-    .content {
+	.node {
+		.content {
 
-      .field {
-        @include row();
-        margin-bottom: 10px;
+			.field {
+				@include row();
+				margin-bottom: 10px;
 
-        &.file {
-          margin-bottom: $gutter;
+				&.file {
+					margin-bottom: $gutter;
 
-          @include media($tablet) {
-            margin-bottom: $gutter * 2;
-          }
+					@include media($tablet) {
+						margin-bottom: $gutter * 2;
+					}
 
-          .file {
-            a {
-              @extend %button;
-              @extend %button-light-gray;
-              padding-right: 0;
+					.file {
+						a {
+							@extend %button;
+							@extend %button-light-gray;
+							padding-right: 0;
 
-              &:after {
-                color: white;
-                margin-left: 20px;
-                background-color: #02807f;
-                content: "\e902";
-                font-family: "icomoon" !important;
-                display: inline-block;
-                padding: 21px;
-                vertical-align: initial;
-                line-height: 1;
-                position: relative;
-                top: 1px;
-              }
-            }
-          }
-        }
+							&:after {
+								color: white;
+								margin-left: 20px;
+								background-color: #02807f;
+								content: "\e902";
+								font-family: "icomoon" !important;
+								display: inline-block;
+								padding: 21px;
+								vertical-align: initial;
+								line-height: 1;
+								position: relative;
+								top: 1px;
+							}
+						}
+					}
+				}
 
-        .label.inline {
-          font-size: 20px;
-          color: $heading-color;
-          font-family: $heading-font-family;
-          @include span-columns(12);
+				.label.inline {
+					font-size: 20px;
+					color: $heading-color;
+					font-family: $heading-font-family;
+					@include span-columns(12);
 
-          @include media($mobile2) {
-            @include span-columns(2);
-          }
-          @include media($tablet) {
-            @include span-columns(4);
-          }
-          @include media($desktop) {
-            @include span-columns(3);
-          }
+					@include media($mobile2) {
+						@include span-columns(2);
+					}
+					@include media($tablet) {
+						@include span-columns(4);
+					}
+					@include media($desktop) {
+						@include span-columns(3);
+					}
 
-          & + div {
-            @include span-columns(12);
+					& + div {
+						@include span-columns(12);
 
-            @include media($mobile2) {
-              @include span-columns(2);
-            }
+						@include media($mobile2) {
+							@include span-columns(2);
+						}
 
-            @include media($tablet) {
-              @include span-columns(8);
-            }
+						@include media($tablet) {
+							@include span-columns(8);
+						}
 
-            @include media($desktop) {
-              @include span-columns(9);
-            }
+						@include media($desktop) {
+							@include span-columns(9);
+						}
 
-            p {
-              &:last-child {
-                margin-bottom: 0;
-              }
-            }
+						p {
+							&:last-child {
+								margin-bottom: 0;
+							}
+						}
 
-            & > .f_item {
-              display: inline-block;
+						& > .f_item {
+							display: inline-block;
 
-              &:after {
-                content: ",";
-                display: inline-block;
-                margin-right: 10px;
-              }
+							&:after {
+								content: ",";
+								display: inline-block;
+								margin-right: 10px;
+							}
 
-              &:last-child {
-                &:after {
-                  display: none;
-                }
-              }
+							&:last-child {
+								&:after {
+									display: none;
+								}
+							}
 
-            }
-          }
+						}
+					}
 
-          &:after {
-            content: ":";
-            display: inline-block;
-          }
-        }
-      }
+					&:after {
+						content: ":";
+						display: inline-block;
+					}
+				}
+			}
 
-    }
-  }
+		}
+	}
 }
