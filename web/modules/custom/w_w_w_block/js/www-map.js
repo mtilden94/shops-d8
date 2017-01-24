@@ -10,7 +10,8 @@
 				var map = new google.maps.Map(map_wrap, {
 					center: new google.maps.LatLng(0, 0),
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
-					scrollwheel: false
+					scrollwheel: false,
+					disableDefaultUI: true
 				});
 
 				var bounds = new google.maps.LatLngBounds();
