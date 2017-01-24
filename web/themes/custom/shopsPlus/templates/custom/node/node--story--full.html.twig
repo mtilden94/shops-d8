@@ -13,7 +13,6 @@
   {% endif %}
 
   <div{{ content_attributes.addClass('content') }}>
-      <blockquote>
         {{ content.field_introduction_text }}
 
           <p class="author">
@@ -25,7 +24,6 @@
                   {{ bio }}
               {% endif %}
           </p>
-      </blockquote>
 
       {{ content|without('links', 'field_introduction_text', 'field_first_name', 'field_last_name', 'field_bio') }}
   </div>
