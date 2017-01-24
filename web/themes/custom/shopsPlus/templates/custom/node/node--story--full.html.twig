@@ -14,13 +14,6 @@
 
   <div{{ content_attributes.addClass('content') }}>
 
-  <ol>
-  {% for key, value in content.field_introduction_text  %}
-    <li>{{ key }}</li>
-  {% endfor %}
-</ol>
-
-
         {% if 'blockquote' in content.field_introduction_text[0]['#text'] %}
 
         {{ content.field_introduction_text }}
