@@ -80,9 +80,11 @@ function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $fo
 
 function _getAvailableTerms () {
   $query = \Drupal::database()->select('node__field_event_type', 'n');
+  $query->join('node_field_data', 'nd', 'n.entity_id = nd.nid');
   $query->join('taxonomy_term_field_data', 'td', 'n.field_event_type_target_id = td.tid');
   $query->fields('td', array('tid'));
   $query->fields('td', array('name'));
+  $query->where('nd.status = :status', [':status' => 1]);
   $query->groupBy('n.field_event_type_target_id');
   $query->groupBy('td.name');
   $query->groupBy('td.tid');
@@ -97,9 +99,11 @@ function _getAvailableTerms () {
 function _getAvailableAreas () {
   $query = \Drupal::database()->select('node__field_health_area', 'n');
   $query->join('node_field_data', 'nd', 'n.field_health_area_target_id = nd.nid');
+  $query->join('node_field_data', 'nde', 'n.entity_id = nde.nid');
   $query->fields('nd', array('title'));
   $query->fields('nd', array('nid'));
   $query->where('n.bundle = :bundle', [':bundle' => 'event']);
+  $query->where('nde.status = :status', [':status' => 1]);
   $query->groupBy('nd.nid');
   $query->groupBy('nd.title');
   $data = $query->execute();
@@ -112,7 +116,9 @@ function _getAvailableAreas () {
 
 function _getAvailableCountries () {
   $query = \Drupal::database()->select('node__field_location', 'n');
+  $query->join('node_field_data', 'nd', 'n.entity_id = nd.nid');
   $query->distinct();
+  $query->where('nd.status = :status', [':status' => 1]);
   $query->fields('n', array('field_location_country_code'));
   $data = $query->execute();
   $results = $data->fetchAll();
