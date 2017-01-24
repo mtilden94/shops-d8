@@ -1,6 +1,13 @@
 .node {
   &.node-resource-teaser {
     .content {
+      height: 28px;
+      overflow: hidden;
+
+      .content-field {
+        background-color: white;
+      }
+
       position: relative;
       bottom: 0;
 
