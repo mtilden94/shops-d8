@@ -7,6 +7,9 @@
 			a.open {
 				display: none;
 			}
+			@include media($mobile_threshold) {
+				float: left;
+			}
 			@include media($tablet) {
 				.content-field {
 					&.collapsed {
@@ -62,6 +65,10 @@
 			@include media($tablet) {
 				position: absolute;
 				bottom: 18px;
+			}
+			@include media($desktop) {
+				position: absolute;
+				bottom: 34px;
 			}
 
 			div.field {
