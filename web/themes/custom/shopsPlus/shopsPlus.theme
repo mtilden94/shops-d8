@@ -524,6 +524,11 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
   }
   //------------------------------
   $more_class = '';
+
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-index-resource-center-page-1') {
+    $form['fulltext']['#placeholder'] = t('Search the Resource Center');
+  }
+
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
     $form['actions']['#weight'] = 0;
     $form['combine']['#placeholder'] = t('Search the Resource Center');
