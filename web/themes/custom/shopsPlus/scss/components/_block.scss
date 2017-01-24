@@ -523,7 +523,9 @@
   }
 }
 
-.block-original-hp_stories-block_2 {
+.block-original-hp_stories-block_2,
+.block-original-hp_stories-block_3,
+.block-original-hp_stories-block_4 {
   display: none;
   @include media($tablet) {
     position: relative;
