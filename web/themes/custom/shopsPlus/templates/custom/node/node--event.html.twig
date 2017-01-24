@@ -4,12 +4,6 @@
 is_past ? 'event-is-past' : 'event-is-up'
 ] %}
 
-<ol>
-  {% for key, value in content.field_location[0] %}
-    <li>{{ key }}</li>
-  {% endfor %}
-</ol>
-
 <article{{ attributes.addClass(classes, 'clearfix') }}>
   <div{{ content_attributes.addClass('content', 'clearfix') }}>
     {% if is_past %}
