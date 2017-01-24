@@ -180,7 +180,7 @@
 
     margin-top: 100px;
     article {
-      min-height: initial !important;
+      min-height: inherit !important;
       h2 {
         overflow: hidden;
         height: 2.6em;
@@ -810,11 +810,13 @@
       padding-bottom: 18px;
     }
     .content {
+      float: none;
       font-size: 14px;
       font-weight: $header-normal;
       padding-left: 123px;
-      position: absolute;
-      bottom: 14px;
+      position: relative;
+      bottom: 0;
+      margin-top: 10px;
       margin-bottom: 0 !important;
       & * {
         display: inline;
@@ -841,11 +843,19 @@
         text-decoration: none;
       }
     }
+
     @include media($mobile_threshold) {
       h2 {
         text-overflow: ellipsis;
         overflow: hidden;
         height: 65px;
+      }
+    }
+    @include media($mobile2) {
+      .content {
+        position: absolute;
+        bottom: 14px;
+        margin-top: 0;
       }
     }
     @include media($tablet) {
