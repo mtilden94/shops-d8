@@ -300,7 +300,15 @@
         .pager__item {
           .button {
             @extend %button;
+            text-align: center;
+            width: 180px;
+            height: 60px;
             line-height: 1;
+            @include media($tablet) {
+              font-size: 16px;
+              width: 210px;
+              height: 60px;
+            }
           }
         }
       }
