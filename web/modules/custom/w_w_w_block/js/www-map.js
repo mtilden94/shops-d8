@@ -11,6 +11,7 @@
 					center: new google.maps.LatLng(0, 0),
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					scrollwheel: false,
+					disableDoubleClickZoom: true,
 					disableDefaultUI: true
 				});
 
