@@ -13,8 +13,22 @@
   {% endif %}
 
   <div{{ content_attributes.addClass('content') }}>
+
+        {% if '<blockquote>' in content.field_introduction_text %}
+
         {{ content.field_introduction_text }}
 
+          <p class="author indented">
+              {% if full_name %}
+                  <b style="color: #000000">{{ full_name }}</b><br/>
+              {% endif %}
+
+              {% if bio %}
+                  {{ bio }}
+              {% endif %}
+          </p>
+
+          {% else %}
           <p class="author">
               {% if full_name %}
                   <b style="color: #000000">{{ full_name }}</b><br/>
@@ -24,6 +38,9 @@
                   {{ bio }}
               {% endif %}
           </p>
+          {{ content.field_introduction_text }}
+
+          {% endif %}
 
       {{ content|without('links', 'field_introduction_text', 'field_first_name', 'field_last_name', 'field_bio') }}
   </div>
