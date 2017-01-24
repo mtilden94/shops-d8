@@ -443,14 +443,14 @@ function shopsPlus_preprocess_views_view(&$vars) {
 
     if ($exp_data_sort_order && $exp_data_sort_order != '') {
       if (strtolower($exp_data_sort_order) == 'desc') {
-        $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+        $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
       }
       else {
-        $vars['sort_link'] = '<a class="order-desc" href="/resource-center?' . $exp_data_query . 'sort_order=DESC">SORT BY:  MOST OLDEST</a>';
+        $vars['sort_link'] = '<a class="order-desc" href="/resource-center-results?' . $exp_data_query . 'sort_order=DESC">SORT BY:  OLDEST</a>';
       }
     }
     else {
-      $vars['sort_link'] = '<a class="order-asc" href="/resource-center?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
+      $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . $exp_data_query . 'sort_order=ASC">SORT BY:  MOST RECENT</a>';
     }
     $vars['header']['result']['#markup'] = $view->total_rows . " Results" . $search_title;
   }
@@ -474,7 +474,7 @@ function shopsPlus_preprocess_views_view(&$vars) {
         $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  MOST RECENT</a>';
       } else {
         $exposed_data['sort_order'] = "DESC";
-        $vars['sort_link'] = '<a class="order-desc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  MOST OLDEST</a>';
+        $vars['sort_link'] = '<a class="order-desc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  OLDEST</a>';
       }
     } else {
       $vars['sort_link'] = '<a class="order-asc" href="/resource-center-results?' . http_build_query($exposed_data) . '">SORT BY:  MOST RECENT</a>';
