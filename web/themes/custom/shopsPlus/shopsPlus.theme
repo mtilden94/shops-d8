@@ -225,7 +225,7 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
   }
 
   if ($variables['field_name'] == 'field_url' AND !empty($variables['items'][0])) {
-    $value = $variables['items'][0]['content']['#context']['value'];
+    $value = trim($variables['items'][0]['content']['#context']['value']);
 
     if (filter_var($value, FILTER_VALIDATE_URL) !== FALSE) {
       $url = Url::fromUri($value);
