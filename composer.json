@@ -100,10 +100,14 @@
 		],
 		"post-install-cmd": [
 			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+			"rm -rf ./web/modules/custom/backup_migrate/vendor",
+			"composer --working-dir=./web/modules/custom/backup_migrate update",
 			"drush -r `pwd`/web cr"
 		],
 		"post-update-cmd": [
 			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+			"rm -rf ./web/modules/custom/backup_migrate/vendor",
+			"composer --working-dir=./web/modules/custom/backup_migrate update",
 			"drush -r `pwd`/web cr"
 		]
 	},
