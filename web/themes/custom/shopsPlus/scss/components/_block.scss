@@ -1624,3 +1624,17 @@
 .block-original-latest_news_updates-block_7 {
   margin-bottom: 30px !important;
 }
+
+.block-original-resource_center-block_1 {
+  .node {
+    &.node-resource-teaser {
+      .content {
+        .content-field {
+          &.collapsed {
+            background-color: #eee;
+          }
+        }
+      }
+    }
+  }
+}
