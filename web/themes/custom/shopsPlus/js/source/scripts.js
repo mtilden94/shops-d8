@@ -188,6 +188,12 @@
         // jQuery(function ($) {
         $(document).ready(function () {
 
+            $('.youtube').colorbox({iframe: true, width: 640, height: 390, href:function(){
+                var videoId = new RegExp('[\\?&]v=([^&#]*)').exec(this.href);
+                if (videoId && videoId[1]) {
+                    return 'http://youtube.com/embed/'+videoId[1]+'?rel=0&wmode=transparent';
+                }
+            }});
 
             //remove footer last link
             // var text_last_a_footer = $('#footer .menu--footer ul.menu li.menu-item:last-child a').text();
