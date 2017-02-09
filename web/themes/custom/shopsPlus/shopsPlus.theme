@@ -9,6 +9,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\file\Entity\File;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Template\Attribute;
 
 /**
@@ -175,36 +176,68 @@ function shopsPlus_preprocess_page(&$variables) {
     //our people more
     if ($node_type == "our_people") {
       $node_nid = $node->id();
-      $query = \Drupal::database()->select('node', 'n');
-      $query->addField('n', 'nid');
-      $query->condition('n.type', 'our_people');
-      $query->join('node_field_data', 'nfd', 'nfd.nid = n.nid');
-      $query->addField('nfd', 'title');
-      $query->condition('nfd.status', 1);
-      $query->orderBy('nfd.title');
-      $our_people_data = $query->execute()->fetchAll();
-      $old_item = $item = array();
-      $stop_flag = 0;
-      foreach ($our_people_data as $data) {
-        if ($data->nid != $node_nid) {
-          if ($stop_flag) {
-            $item = array('nid' => $data->nid, 'title' => $data->title);
-            $stop_flag = 2;
+      $staff_type__id = $node->field_staff_type->entity->id();
+      $prev = array();
+      $next = array();
+
+
+      $cid = 'our_people_more:' . $node_nid;
+
+      if ($cache = \Drupal::cache()->get($cid)) {
+        $data = $cache->data;
+        $prev = $data['prev'];
+        $next = $data['next'];
+
+      } else {
+        $nids = array();
+
+        $query = \Drupal::database()->select('node_field_data', 'n');
+        $query->addField('n', 'nid');
+        $query->addField('n', 'title');
+        $query->leftJoin('node__field_job_title', 'njt', 'n.nid = njt.entity_id AND njt.deleted = 0');
+        $query->leftJoin('taxonomy_term_field_data', 'td', 'njt.field_job_title_target_id = td.tid');
+        $query->leftJoin('taxonomy_index', 'ti', 'n.nid = ti.nid');
+        $query->leftJoin('node__field_last_name', 'ln', 'n.nid = ln.entity_id AND ln.deleted = 0');
+        $query->condition('ti.tid', $staff_type__id);
+        $query->condition('n.status', 1);
+        $query->condition('n.type', 'our_people');
+        $query->orderBy('ln.field_last_name_value', 'ASC');
+        $nids = $query->execute()->fetchAll();
+
+        $tags = array(
+          'node:' . $node_nid,
+        );
+
+        foreach ($nids as $key => $value) {
+          if($value->nid != $node_nid) continue;
+
+          if(!empty($nids[$key - 1])) {
+            $prev = array(
+              'nid' => $nids[$key - 1]->nid,
+              'title' => $nids[$key - 1]->title
+            );
+
+            $tags[] = 'node:' . $nids[$key - 1]->nid;
           }
-          else {
-            $old_item = array('nid' => $data->nid, 'title' => $data->title);
+
+          if(!empty($nids[$key + 1])) {
+            $next = array(
+              'nid' => $nids[$key + 1]->nid,
+              'title' => $nids[$key + 1]->title
+            );
+
+            $tags[] = 'node:' . $nids[$key + 1]->nid;
           }
-        }
-        if ($stop_flag == 2) {
           break;
         }
-        if ($data->nid == $node_nid) {
-          $stop_flag = 1;
-        }
+
+        \Drupal::cache()->set($cid, array('prev' => $prev, 'next' => $next), CacheBackendInterface::CACHE_PERMANENT, $tags);
       }
+
+
       $variables['our_people_more'] = array(
-        'prev' => $old_item,
-        'next' => $item
+        'prev' => $prev,
+        'next' => $next
       );
     }
   }
