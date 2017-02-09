@@ -279,3 +279,26 @@ blockquote {
     }
   }
 }
+
+div.two-columns{
+
+  .left-column {
+    display: block;
+    @include media($desktop){
+      display: inline-block;
+      width: 40%;
+      padding-right: 5px;
+      vertical-align: top;
+    }
+  }
+  .right-column{
+    display: block;
+    @include media($desktop){
+      display: inline-block;
+      width: 50%;
+      padding-left: 5px;
+      vertical-align: top;
+    }
+  }
+
+}

@@ -68,7 +68,8 @@
 		"drupal/search_api": "1.x-dev",
 		"drupal/search_api_solr": "1.x-dev",
 		"drupal/search_api_attachments": "1.x-dev",
-		"drupal/flood_unblock": "^1.2"
+		"drupal/flood_unblock": "^1.2",
+		"drupal/google_analytics": "^2.1"
 	},
 	"require-dev": {
 		"behat/mink": "~1.7",
@@ -98,10 +99,16 @@
 			"DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
 		],
 		"post-install-cmd": [
-			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+			"rm -rf ./web/modules/custom/backup_migrate/vendor",
+			"composer --working-dir=./web/modules/custom/backup_migrate update",
+			"drush -r `pwd`/web cr"
 		],
 		"post-update-cmd": [
-			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+			"rm -rf ./web/modules/custom/backup_migrate/vendor",
+			"composer --working-dir=./web/modules/custom/backup_migrate update",
+			"drush -r `pwd`/web cr"
 		]
 	},
 	"extra": {

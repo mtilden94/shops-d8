@@ -12,6 +12,7 @@ node_modules
 
 # Ignore Drupal's file directory
 web/sites/*/files
+private/*
 
 #Ignore local setting files
 web/sites/default/settings.local.php
