@@ -1493,6 +1493,11 @@
   & > h2 {
     font-size: 18px;
     margin-bottom: 20px;
+    
+    @include media($fullsize) {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
   }
 
   .views-content {
