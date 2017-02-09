@@ -1485,49 +1485,61 @@
 .block-original-events-block_2,
 .block-original-events-block_3 {
   display: none;
+
   @include media($tablet) {
-    text-align: center;
     display: block;
-    border: $base-border;
-    padding: 26px;
-    &:before {
-      content: '';
-      width: 97px;
-      height: 97px;
-      border-radius: 50%;
-      display: block;
-      border: 2px solid #002f6c;
-      margin: 0 auto 20px;
-      background: url("../images/optimized/calendar-icon.png");
-      background-repeat: no-repeat;
-      background-position: 50%;
-      background-color: #cfeef2;
-    }
-    h2 {
-      font-size: 18px;
-    }
-    .event-date {
-      font-family: $heading-font-family;
-      color: $active;
-      font-size: 16px;
-    }
-    .country {
-      font-size: 14px;
-      color: #777;
-    }
   }
-  @include media($fullsize) {
-    padding: 31px;
-    &:before {
-      width: 115px;
-      height: 115px;
-      margin: 0 auto 23px;
+
+  & > h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .views-content {
+    @include media($tablet) {
+      text-align: center;
+      border: $base-border;
+      padding: 26px;
+
+      &:before {
+        content: '';
+        width: 97px;
+        height: 97px;
+        border-radius: 50%;
+        display: block;
+        border: 2px solid #002f6c;
+        margin: 0 auto 20px;
+        background: url("../images/optimized/calendar-icon.png");
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-color: #cfeef2;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      .event-date {
+        font-family: $heading-font-family;
+        color: $active;
+        font-size: 16px;
+      }
+      .country {
+        font-size: 14px;
+        color: #777;
+      }
     }
-    h2 {
-      font-size: 26px;
-    }
-    .country, .event-date {
-      font-size: 18px;
+    @include media($fullsize) {
+      padding: 31px;
+      &:before {
+        width: 115px;
+        height: 115px;
+        margin: 0 auto 23px;
+      }
+      h2 {
+        font-size: 26px;
+      }
+      .country, .event-date {
+        font-size: 18px;
+      }
     }
   }
 }
