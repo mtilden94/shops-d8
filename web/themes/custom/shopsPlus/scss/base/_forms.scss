@@ -42,10 +42,6 @@ textarea {
   font-size: $base-font-size;
 }
 
-select::-ms-expand {
-  display: none;
-}
-
 #{$all-text-inputs} {
   appearance: none;
   border: $base-border;
@@ -537,4 +533,8 @@ textarea {
       margin-top: 32px;
     }
   }
+}
+
+select::-ms-expand {
+  display: none;
 }
