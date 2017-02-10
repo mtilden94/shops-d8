@@ -234,7 +234,7 @@ function shopsPlus_preprocess_page(&$variables) {
               'nid' => $nids[$key + 1]->nid,
               'title' => $nids[$key + 1]->title
             );
-            
+
             $tags[] = 'node:' . $nids[$key + 1]->nid;
           }
           break;
