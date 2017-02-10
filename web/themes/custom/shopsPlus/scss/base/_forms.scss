@@ -42,6 +42,10 @@ textarea {
   font-size: $base-font-size;
 }
 
+select::-ms-expand {
+  display: none;
+}
+
 #{$all-text-inputs} {
   appearance: none;
   border: $base-border;
