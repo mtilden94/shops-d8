@@ -538,3 +538,11 @@ textarea {
 select::-ms-expand {
   display: none;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
