@@ -188,6 +188,7 @@ function shopsPlus_preprocess_page(&$variables) {
 
       } else {
         $query = \Drupal::database()->select('node_field_data', 'n');
+        $query->distinct();
         $query->addField('n', 'nid');
         $query->addField('n', 'title');
         $query->leftJoin('node__field_job_title', 'njt', 'n.nid = njt.entity_id AND njt.deleted = 0');
