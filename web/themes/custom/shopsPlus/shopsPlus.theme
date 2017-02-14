@@ -197,7 +197,6 @@ function shopsPlus_preprocess_page(&$variables) {
         $query->leftJoin('node__field_last_name', 'ln', 'n.nid = ln.entity_id AND ln.deleted = 0');
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
-          $query->addField('n', 'title');
           $query->leftJoin('node__field_country', 'c', 'n.nid = c.entity_id AND c.deleted = 0');
           $query->leftJoin('node_field_data', 'nc', 'c.field_country_target_id = nc.nid');
           $query->leftJoin('node__field_chief_of_party', 'cp', 'n.nid = cp.entity_id AND cp.deleted = 0');
@@ -209,6 +208,7 @@ function shopsPlus_preprocess_page(&$variables) {
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
           $query->groupBy('n.nid');
+          $query->groupBy('n.title');
           $query->orderBy('nc.title', 'ASC');
           $query->orderBy('cp.field_chief_of_party_value', 'DESC');
         }
