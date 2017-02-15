@@ -208,9 +208,11 @@ function shopsPlus_preprocess_page(&$variables) {
 
         $query->groupBy('n.nid');
         $query->groupBy('n.title');
-        
+        $query->groupBy('ln.field_last_name_value');
+
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
           $query->groupBy('nc.title');
+          $query->groupBy('cp.field_chief_of_party_value');
           $query->orderBy('nc.title', 'ASC');
           $query->orderBy('cp.field_chief_of_party_value', 'DESC');
         }
