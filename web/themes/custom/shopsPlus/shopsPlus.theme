@@ -195,11 +195,14 @@ function shopsPlus_preprocess_page(&$variables) {
         $query->leftJoin('taxonomy_term_field_data', 'td', 'njt.field_job_title_target_id = td.tid');
         $query->innerJoin('taxonomy_index', 'ti', 'n.nid = ti.nid');
         $query->leftJoin('node__field_last_name', 'ln', 'n.nid = ln.entity_id AND ln.deleted = 0');
+        $query->addField('ln', 'field_last_name_value');
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
           $query->leftJoin('node__field_country', 'c', 'n.nid = c.entity_id AND c.deleted = 0');
           $query->leftJoin('node_field_data', 'nc', 'c.field_country_target_id = nc.nid');
+          $query->addField('nc', 'title', 'nc_title');
           $query->leftJoin('node__field_chief_of_party', 'cp', 'n.nid = cp.entity_id AND cp.deleted = 0');
+          $query->addField('cp', 'field_chief_of_party_value');
         }
 
         $query->condition('ti.tid', $staff_type__id);
