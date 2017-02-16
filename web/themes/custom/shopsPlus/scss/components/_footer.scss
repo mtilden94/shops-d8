@@ -33,6 +33,16 @@
       }
     }
   }
+  #block-footerdisclaimer {
+    clear: both;
+
+    p {
+      font-size: 12px;
+      padding: 20px;
+      color: #fff;
+    }
+  }
+
   @include media($tablet) {
     .container {
       padding: 37px 20px;
