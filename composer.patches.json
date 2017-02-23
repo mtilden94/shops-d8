@@ -7,9 +7,6 @@
     },
     "drupal/address": {
       "Field behavior overrides": "patches/address_field_behavior_overrides.patch"
-    },
-    "drupal/search_api_attachments": {
-      "patch filterForPropertyPath": "patches/patch-filterForPropertyPath.patch"
     }
   }
 }
