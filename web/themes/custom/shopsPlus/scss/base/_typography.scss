@@ -280,7 +280,7 @@ blockquote {
   }
 }
 
-div.two-columns{
+div.two-columns.newspaper{
 
   .left-column {
     display: block;
@@ -301,4 +301,64 @@ div.two-columns{
     }
   }
 
+}
+
+div.two-columns.table {
+  width: 100%;
+  clear: both;
+
+  hr, p {
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    clear: both;
+
+    li {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+
+      &.top-border {
+        display: none;
+      }
+
+      &:before {
+        background-color: none;
+        height: 0;
+        width: 0;
+      }
+
+      &:nth-child(even) {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      @include media($tablet) {
+        width: 47%;
+        vertical-align: middle;
+        display: inline-block;
+
+        &:nth-child(even){
+          padding: 0;
+          margin: 0;
+          border: none;
+        }
+
+        &.top-border {
+          border-top: 1px solid #ccc;
+          display: inline-block;
+        }
+      }
+    }
+  }
 }
