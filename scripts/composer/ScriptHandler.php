@@ -63,6 +63,9 @@ class ScriptHandler {
       umask($oldmask);
       $event->getIO()->write("Create a private directory with chmod 0777");
       $fs->copy(getcwd() . '/scripts/resources/.htaccess', getcwd() . '/private/.htaccess');
+    }else{
+      $fs->chmod(getcwd() . '/private', 0777);
+      $event->getIO()->write("Confirming permissions for /private to 0777");
     }
 
     if (!$fs->exists(getcwd() . '/private/backup_migrate')){
@@ -70,6 +73,9 @@ class ScriptHandler {
       $fs->mkdir(getcwd() . '/private/backup_migrate', 0777);
       umask($oldmask);
       $event->getIO()->write("Create a private directory for backup and migrate with chmod 0777");
+    }else{
+      $fs->chmod(getcwd() . '/private/backup_migrate', 0777);
+      $event->getIO()->write("Confirming permissions on backup and migrate folder to 0777");
     }
   }
 
