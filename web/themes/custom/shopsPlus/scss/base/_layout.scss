@@ -17,6 +17,9 @@ body.no-sidebar, body.one-sidebar {
   background-color: $base-background-color;
 }
 
+span.ext {
+  display: none !important;
+}
 #on-content {
   p {
     margin: 0;

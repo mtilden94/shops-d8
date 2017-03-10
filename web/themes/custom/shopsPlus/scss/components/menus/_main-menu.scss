@@ -89,6 +89,9 @@
 						}
 					}
 				}
+				span.0 {
+					display: none;
+				}
 				a, span:not(.pos-block) {
 					font-family: $heading-font-family;
 					font-weight: $header-normal;

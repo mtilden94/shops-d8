@@ -60,6 +60,7 @@
       font-family: $heading-font-family;
       .job-title {
         margin-bottom: 20px;
+        color: $breadcrumbs;
         a {
           color: $breadcrumbs;
           text-decoration: none;
