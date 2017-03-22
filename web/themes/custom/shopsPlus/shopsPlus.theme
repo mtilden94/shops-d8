@@ -221,13 +221,11 @@ function shopsPlus_preprocess_page(&$variables) {
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
           $query->groupBy('nc.title');
-          $query->groupBy('td_weight_min');
           $query->groupBy('lo_order');
-          //$query->groupBy('cp.field_chief_of_party_value');
+
           $query->orderBy('nc.title', 'ASC');
           $query->orderBy('td_weight_min', 'ASC');
           $query->orderBy('lo_order', 'ASC');
-          //$query->orderBy('cp.field_chief_of_party_value', 'DESC');
         }
 
         //$query->orderBy('flt.field_leadership_team_value' 'ASC');
