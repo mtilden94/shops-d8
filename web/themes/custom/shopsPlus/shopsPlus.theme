@@ -200,11 +200,14 @@ function shopsPlus_preprocess_page(&$variables) {
         //$query->addField('flt', 'field_leadership_team_value');
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
+          $query->addField('td', 'weight');
           $query->leftJoin('node__field_country', 'c', 'n.nid = c.entity_id AND c.deleted = 0');
           $query->leftJoin('node_field_data', 'nc', 'c.field_country_target_id = nc.nid');
           $query->addField('nc', 'title', 'nc_title');
-          $query->leftJoin('node__field_chief_of_party', 'cp', 'n.nid = cp.entity_id AND cp.deleted = 0');
-          $query->addField('cp', 'field_chief_of_party_value');
+          $query->leftJoin('node__field_executive_leadership_order', 'lo', 'n.nid = lo.entity_id AND c.deleted = 0');
+          $query->addField('lo', 'field_executive_leadership_order_value', 'lo_order');
+          //$query->leftJoin('node__field_chief_of_party', 'cp', 'n.nid = cp.entity_id AND cp.deleted = 0');
+          //$query->addField('cp', 'field_chief_of_party_value');
         }
 
         $query->condition('ti.tid', $staff_type__id);
@@ -218,9 +221,13 @@ function shopsPlus_preprocess_page(&$variables) {
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
           $query->groupBy('nc.title');
-          $query->groupBy('cp.field_chief_of_party_value');
+          $query->groupBy('td.weight');
+          $query->groupBy('lo_order');
+          //$query->groupBy('cp.field_chief_of_party_value');
           $query->orderBy('nc.title', 'ASC');
-          $query->orderBy('cp.field_chief_of_party_value', 'DESC');
+          $query->orderBy('td.weight', 'ASC');
+          $query->orderBy('lo_order', 'ASC');
+          //$query->orderBy('cp.field_chief_of_party_value', 'DESC');
         }
 
         //$query->orderBy('flt.field_leadership_team_value' 'ASC');
