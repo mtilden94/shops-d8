@@ -200,7 +200,7 @@ function shopsPlus_preprocess_page(&$variables) {
         //$query->addField('flt', 'field_leadership_team_value');
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
-          $query->addField('td', 'weight');
+          $query->addExpression('MIN(td.weight)', 'td_weight_min');
           $query->leftJoin('node__field_country', 'c', 'n.nid = c.entity_id AND c.deleted = 0');
           $query->leftJoin('node_field_data', 'nc', 'c.field_country_target_id = nc.nid');
           $query->addField('nc', 'title', 'nc_title');
@@ -221,11 +221,11 @@ function shopsPlus_preprocess_page(&$variables) {
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
           $query->groupBy('nc.title');
-          $query->groupBy('td.weight');
+          $query->groupBy('td_weight_min');
           $query->groupBy('lo_order');
           //$query->groupBy('cp.field_chief_of_party_value');
           $query->orderBy('nc.title', 'ASC');
-          $query->orderBy('td.weight', 'ASC');
+          $query->orderBy('td_weight_min', 'ASC');
           $query->orderBy('lo_order', 'ASC');
           //$query->orderBy('cp.field_chief_of_party_value', 'DESC');
         }
