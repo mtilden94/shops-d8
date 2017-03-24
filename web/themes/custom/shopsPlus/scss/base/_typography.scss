@@ -280,6 +280,26 @@ blockquote {
   }
 }
 
+// Add This
+.share-wrapper {
+
+  .title {
+    font-size: 18px;
+    color: #04326d;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
+
+  span.a2a_kit {
+      display: block;
+      margin-bottom: 20px;
+
+      a {
+        padding: 0;
+      }
+  }
+}
+
 div.two-columns.newspaper{
 
   .left-column {
