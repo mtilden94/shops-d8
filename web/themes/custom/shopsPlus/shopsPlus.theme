@@ -200,7 +200,9 @@ function shopsPlus_preprocess_page(&$variables) {
         //$query->addField('flt', 'field_leadership_team_value');
 
         if($staff_type__id == 895 OR $staff_type__id == 1112) {
-          $query->addExpression('MIN(td.weight)', 'td_weight_min');
+          $query->leftJoin('taxonomy_term__field_weight_on_staff_page', 'tw', 'td.tid = tw.entity_id AND tw.deleted = 0');
+          $query->addExpression('MAX(tw.field_weight_on_staff_page_value)', 'td_weight_max');
+
           $query->leftJoin('node__field_country', 'c', 'n.nid = c.entity_id AND c.deleted = 0');
           $query->leftJoin('node_field_data', 'nc', 'c.field_country_target_id = nc.nid');
           $query->addField('nc', 'title', 'nc_title');
@@ -224,7 +226,7 @@ function shopsPlus_preprocess_page(&$variables) {
           $query->groupBy('lo_order');
 
           $query->orderBy('nc.title', 'ASC');
-          $query->orderBy('td_weight_min', 'ASC');
+          $query->orderBy('td_weight_max', 'DESC');
           $query->orderBy('lo_order', 'ASC');
         }
 
