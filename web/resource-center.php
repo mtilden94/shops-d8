@@ -14,6 +14,7 @@ Post Implementation Instructions:
 
 1. Update views to use SHOPS Plus from the taxonomy for Resources.
 2. Add Filters back to the resouce center search.
+3. Delete the resource types no longer needed.
 
 
 **********************************************************/
@@ -31,11 +32,12 @@ $autoloader = require_once 'autoload.php';
 
 $kernel = new UpdateKernel('prod', $autoloader, FALSE);
 
-$pubdate = strtotime('2016-11-01');
-$shopsplus = 0;
-$shops = 0;
+global $log;
+$log = fopen('resource-center-assets/tagging_log', 'w');
 
 require_once 'resource-center-assets/resource-center-fx.php';
+
+writeLog("Beginning Process");
 
 /*********
  * Get List of New Countries
@@ -76,7 +78,8 @@ createKeywordMappings($keyword_mappings, $missing_elements, $keyword_collection,
 drupal_flush_all_caches();
 
 if (count($missing_elements) > 0){
-  echo print_r($missing_elements, true);
+  writeLog("Missing Elements: " . print_r($missing_elements, true));
+  fclose($log);
   exit(0);
 }
 
@@ -85,5 +88,8 @@ if (count($missing_elements) > 0){
 ****/
 
 processResourceCenter($keyword_mappings);
+
+writeLog("Process Complete.");
+fclose($log);
 
 ?>

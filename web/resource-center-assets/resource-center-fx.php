@@ -78,6 +78,11 @@ function createKeywordMappings(&$keyword_mappings, &$missing_elements, $keyword_
         $keyword_mappings[$keyword_collection[$keyword]] = array();
         if (!is_null($tech_area)){
           // we have a tech area to Map
+          if ($tech_area === $keyword){
+            $keyword_mappings[$keyword_collection[$keyword]]['retag'] = false;
+          }else{
+            $keyword_mappings[$keyword_collection[$keyword]]['retag'] = true;
+          }
           if (isset($techareas[$tech_area])){
             // we have a matching tech area to use for the mapping
             $keyword_mappings[$keyword_collection[$keyword]]['tech-area'] = $techareas[$tech_area];
@@ -148,29 +153,81 @@ function createKeywordMappings(&$keyword_mappings, &$missing_elements, $keyword_
 
 }
 
+function getResourceTypeMappings(){
+
+  $rt_vocab = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('resource_type');
+  foreach ($rt_vocab as $rt){
+    $rt_collection[strtolower($rt->name)] = $rt->tid;
+  }
+
+  $resourceTM = array(
+    $rt_collection['article'] => $rt_collection['journal publications'],
+    $rt_collection['chat transcript'] => $rt_collection['other'],
+    $rt_collection['country assessment'] => $rt_collection['report'],
+    $rt_collection['discussion paper'] => $rt_collection['other'],
+    $rt_collection['global research report'] => $rt_collection['report'],
+    $rt_collection['graphic'] => $rt_collection['other'],
+    $rt_collection['handbook'] => $rt_collection['tools'],
+    $rt_collection['link'] => $rt_collection['other'],
+    $rt_collection['meeting notes'] => $rt_collection['other'],
+    $rt_collection['occasional paper'] => $rt_collection['other'],
+    $rt_collection['one pager'] => $rt_collection['information sheet'],
+    $rt_collection['technical report'] => $rt_collection['report'],
+    $rt_collection['working paper'] => $rt_collection['other'],
+    $rt_collection['blog'] => null,
+    $rt_collection['cd-rom'] => null,
+    $rt_collection['citation'] => null,
+    $rt_collection['literature review'] => null,
+    $rt_collection['research study'] => null,
+    $rt_collection['strategic analysis'] => null,
+    $rt_collection['up close'] => null
+  );
+
+
+  return $resourceTM;
+
+}
+
 function processResourceCenter($keyword_mappings){
+
+  $pubdate = strtotime('2016-11-01');
+  $shopsplus = 0;
+  $shops = 0;
+
+  $typeMappings = getResourceTypeMappings();
+
+  writeLog("Loading Projects ... ", true, false);
 
   $projects = array();
   getProjectCollection($projects);
 
+  writeLog("Done", false);
   //echo print_r($projects, true);
 
+  writeLog("Loading Resource Center Node Ids ... ", true, false);
   $query = \Drupal::entityQuery('node');
   $query->condition('type', 'resource');
   $ids = $query->execute();
+  writeLog("Done", false);
+
+  writeLog("Beginning loop through the Resource Center Ids");
 
   foreach ($ids as $key => $nId){
-    if (($key % 10) == 0){ drupal_flush_all_caches(); } // flush the cache every 10 nodes just to keep the memory clean.
+    if (($key % 10) == 0){ writeLog("Flushing cache ... ", true, false); drupal_flush_all_caches(); writeLog("Done", false); } // flush the cache every 10 nodes just to keep the memory clean.
 
+    writeLog("Loading Node (" . $nId . ") ... ", true, false);
     $node = Drupal::entityTypeManager()->getStorage('node')->load($nId);
+    writeLog("Done", false);
 
     $created = $node->get('created')->getValue();
     if ($created[0]['value'] > $pubdate){
       $shopsplus++;
       $node->set('field_associated_project', array($projects['shops plus']));
+      writeLog("Node set to shops plus");
     }else{
       $shops++;
       $node->set('field_associated_project', array($projects['shops']));
+      writeLog("Node set to shops");
     }
 
     $keywords = $node->get('keywords')->getValue();
@@ -198,6 +255,13 @@ function processResourceCenter($keyword_mappings){
 
             case "health-area":
               $new_healthareas[] = $ct_id;
+              break;
+
+            case "retag":
+              if (!$ct_id){
+                // Add this word back into the keyword area because it is different then the primary country, tech area, or health area.
+                $new_keywords[] = $target;
+              }
               break;
           } // end switch
         } // end foreach keyword mapping.
@@ -231,24 +295,67 @@ function processResourceCenter($keyword_mappings){
 
 
     if (count($retagged_keywords) > 0){
-      echo "Node modified: $nId\n";
       $node->set('keywords', $new_keywords);
+      writeLog("New Keywords: " . print_r($new_keywords, true));
       $node->set('field_country', $new_countries);
+      writeLog("New Countries: " . print_r($new_countries, true));
       $node->set('field_technical_area', $new_techareas);
+      writeLog("New TechAreas: " . print_r($new_techareas, true));
       $node->set('field_health_area', $new_healthareas);
+      writeLog("New Health Areas: " . print_r($new_healthareas, true));
       $node->set('field_retagged_keywords', $retagged_keywords);
+      writeLog("Retagged Keywords: " . print_r($retagged_keywords, true));
+    }else{
+      writeLog("No retagging needed.");
     }
 
     // Consolidate the resource types
+    $newResourceTypes = array();
+    $currentRTs = $node->get('resource_types')->getValue();
+    foreach ($currentRTs as $currentItem) {
+      if (isset($typeMappings[$currentItem['target_id']])){
+        // we have a mapping or a deletion
+        if (!is_null($typeMappings[$currentItem['target_id']])){
+          // not a deletions, add the mapped id.
+          $newResourceTypes[] = $typeMappings[$currentItem['target_id']];
+        } // else we skip it cuz we're deleting it.
+      }else{
+        // its not set, so we're keeping it.
+        $newResourceTypes[] = $currentItem['target_id'];
+      }
+    }
+    writeLog("New Resource Types: " . print_r($newResourceTypes, true));
+    $node->set('resource_types', $newResourceTypes);
 
     //echo "Saved Node $nId\n";
+    writeLog("Saving Node ... ", true, false);
     $node->save();
     unset($node);
+    writeLog("Done\n", false);
   } // end foreach
+  writeLog("End looping through Resource Center Nodes.");
+  writeLog("Shops Plus: $shopsplus");
+  writeLog("Shops: $shops");
 
-  echo "Shops Plus: $shopsplus\n";
-  echo "Shops: $shops\n";
+}
 
+function writeLog($str, $addDate = true, $newline = true){
+
+  global $log;
+
+  if ($addDate){
+    $str = date('r') . ": " . $str;
+  }
+
+  if ($newline){
+    $str .= "\n";
+  }
+
+  if (fwrite($log, $str) === false){
+    return false;
+  }
+
+  return true;
 }
 
 ?>
