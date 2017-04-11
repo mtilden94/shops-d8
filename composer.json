@@ -70,7 +70,8 @@
 		"drupal/search_api_attachments": "1.x-dev",
 		"drupal/flood_unblock": "^1.2",
 		"drupal/google_analytics": "^2.1",
-		"drupal/extlink": "^1.0"
+		"drupal/extlink": "^1.0",
+		"drupal/smtp": "^1.0@beta"
 	},
 	"require-dev": {
 		"behat/mink": "~1.7",
@@ -103,13 +104,23 @@
 			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
 			"rm -rf ./web/modules/custom/backup_migrate/vendor",
 			"composer --working-dir=./web/modules/custom/backup_migrate update",
-			"drush -r `pwd`/web cr"
+			"drush -r `pwd`/web cr",
+			"drush -r `pwd`/web sql-dump > ./private/site_backup/backup-db.sql",
+			"gzip ./private/site_backup/backup-db.sql",
+			"tar -zcf ./private/site_backup/backup-files.tar.gz ./web/sites/default/files",
+			"cp ./private/site_backup/backup-files.tar.gz ./web/sites/default/files/site_backup",
+			"cp ./private/site_backup/backup-db.sql.gz ./web/sites/default/files/site_backup"
 		],
 		"post-update-cmd": [
 			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
 			"rm -rf ./web/modules/custom/backup_migrate/vendor",
 			"composer --working-dir=./web/modules/custom/backup_migrate update",
-			"drush -r `pwd`/web cr"
+			"drush -r `pwd`/web cr",
+			"drush -r `pwd`/web sql-dump > ./private/site_backup/backup-db.sql",
+			"gzip ./private/site_backup/backup-db.sql",
+			"tar -zcf ./private/site_backup/backup-files.tar.gz ./web/sites/default/files",
+			"cp ./private/site_backup/backup-files.tar.gz ./web/sites/default/files/site_backup",
+			"cp ./private/site_backup/backup-db.sql.gz ./web/sites/default/files/site_backup"
 		]
 	},
 	"extra": {

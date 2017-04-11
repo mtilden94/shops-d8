@@ -77,6 +77,29 @@ class ScriptHandler {
       $fs->chmod(getcwd() . '/private/backup_migrate', 0777);
       $event->getIO()->write("Confirming permissions on backup and migrate folder to 0777");
     }
+
+    if (!$fs->exists(getcwd() . '/private/site_backup')){
+      $oldmask = umask(0);
+      $fs->mkdir(getcwd() . '/private/site_backup', 0777);
+      umask($oldmask);
+      $event->getIO()->write("Create a backup directory for the site.");
+    }else{
+      if ($fs->exists(getcwd() . '/private/site_backup/backup-db.sql.gz')){
+        $fs->rename(getcwd() . '/private/site_backup/backup-db.sql.gz', getcwd() . '/private/site_backup/backup-db.1.sql.gz', 1);
+      }
+      if ($fs->exists(getcwd() . '/private/site_backup/backup-files.tar.gz')){
+        $fs->rename(getcwd() . '/private/site_backup/backup-files.tar.gz', getcwd() . '/private/site_backup/backup-files.1.tar.gz', 1);
+      }
+    }
+
+    if (!$fs->exists(getcwd() . '/web/sites/default/files/site_backup')){
+      $oldmask = umask(0);
+      $fs->mkdir(getcwd() . '/web/sites/default/files/site_backup', 0777);
+      umask($oldmask);
+    }else{
+      $fs->remove(getcwd() . '/web/sites/default/files/site_backup/backup-db.sql.gz');
+      $fs->remove(getcwd() . '/web/sites/default/files/site_backup/backup-files.tar.gz');
+    }
   }
 
   /**
