@@ -108,6 +108,11 @@ function createKeywordMappings(&$keyword_mappings, &$missing_elements, $keyword_
 
         if (!is_null($health_area)){
           // we have a health area to Map
+          if ($health_area === $keyword or $keyword === 'family planning/reproductive health'){
+            $keyword_mappings[$keyword_collection[$keyword]]['retag'] = false;
+          }else{
+            $keyword_mappings[$keyword_collection[$keyword]]['retag'] = true;
+          }
           if (isset($healthareas[$health_area])){
             // we have a matching health area to use for the mapping
             $keyword_mappings[$keyword_collection[$keyword]]['health-area'] = $healthareas[$health_area];
@@ -128,6 +133,11 @@ function createKeywordMappings(&$keyword_mappings, &$missing_elements, $keyword_
         }
         if (!is_null($country)){
           // we have a country to Map
+          if ($country === $keyword){
+            $keyword_mappings[$keyword_collection[$keyword]]['retag'] = false;
+          }else{
+            $keyword_mappings[$keyword_collection[$keyword]]['retag'] = true;
+          }
           if (isset($countries[$country])){
             // we have a matching country to use for the mapping
             $keyword_mappings[$keyword_collection[$keyword]]['country'] = $countries[$country];
@@ -258,7 +268,7 @@ function processResourceCenter($keyword_mappings){
               break;
 
             case "retag":
-              if (!$ct_id){
+              if ($ct_id){
                 // Add this word back into the keyword area because it is different then the primary country, tech area, or health area.
                 $new_keywords[] = $target;
               }
