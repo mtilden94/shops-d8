@@ -70,7 +70,8 @@
 		"drupal/search_api_attachments": "1.x-dev",
 		"drupal/flood_unblock": "^1.2",
 		"drupal/google_analytics": "^2.1",
-		"drupal/extlink": "^1.0"
+		"drupal/extlink": "^1.0",
+		"drupal/smtp": "^1.0@beta"
 	},
 	"require-dev": {
 		"behat/mink": "~1.7",
