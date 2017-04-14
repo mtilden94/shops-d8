@@ -1,132 +1,96 @@
 <?php
 
+
+ini_set("auto_detect_line_endings", true);
+
+/*********************************************************
+
+Pre Implementation Instructions:
+
+1.  Create a taxonomy for Associated Projects:  SHOPS and SHOPS Plus (associated_project)
+2.  Add Taxonomy to Resource Center Type. (associated_project)
+3.  Add a field to Resource Center Type to hold retagged keywords. (retagged_keywords)
+
+Post Implementation Instructions:
+
+1. Update views to use SHOPS Plus from the taxonomy for Resources.
+2. Add Filters back to the resouce center search.
+3. Delete the resource types no longer needed.
+
+
+**********************************************************/
+
+
 use Drupal\Core\DrupalKernel;
+use Drupal\Core\Update\UpdateKernel;
 use Symfony\Component\HttpFoundation\Request;
 use CommerceGuys\Addressing\Validator\Constraints\AddressFormatConstraint;
 
-//require_once 'core/includes/file.inc';
+require_once 'core/includes/bootstrap.inc';
+require_once 'core/includes/file.inc';
 
 $autoloader = require_once 'autoload.php';
 
-$request = Request::createFromGlobals();
-$kernel = DrupalKernel::createFromRequest($request, $autoloader, 'prod');
-$kernel->boot();
+$kernel = new UpdateKernel('prod', $autoloader, FALSE);
 
-// Open an SQL File
+global $log;
+$log = fopen('resource-center-assets/tagging_log', 'w');
 
-$sql = fopen('./resources.sql', 'w+');
+require_once 'resource-center-assets/resource-center-fx.php';
+
+writeLog("Beginning Process");
 
 /*********
  * Get List of New Countries
  *********/
 
 $countries = array();
-
-$query = \Drupal::entityQuery('node');
-$query->condition('type', 'countries');
-
-$ids = $query->execute();
-
-//print_r($ids);
-echo "Total: " . count($ids) . "\n\n";
-
-foreach ($ids as $key => $val){
-   $node = \Drupal::entityTypeManager()->getStorage('node')->load($val);
-   $countries[$node->get('title')->value] = $val;
-}
-
-print_r($countries);
+getCountries($countries);
 
 /*********
  * Get List of New Tech Areas
  *********/
 
 $techareas = array();
-
-$query = \Drupal::entityQuery('node');
-$query->condition('type', 'technical_area');
-
-$ids = $query->execute();
-
-//print_r($ids);
-echo "Total: " . count($ids) . "\n\n";
-
-foreach ($ids as $key => $val){
-   $node = \Drupal::entityTypeManager()->getStorage('node')->load($val);
-   $techareas[$node->get('title')->value] = $key;
-}
-
-print_r($techareas);
+getTechAreas($techareas);
 
 /*********
  * Get List of New Health Areas
  *********/
 
 $healthareas = array();
+getHealthAreas($healthareas);
 
-$query = \Drupal::entityQuery('node');
-$query->condition('type', 'health_areas');
+/****
+* Get list of keyword terms in a vocabulary.
+****/
 
-$ids = $query->execute();
+$keyword_collection = array();
+getKeywordCollection($keyword_collection);
 
-//print_r($ids);
-echo "Total: " . count($ids) . "\n\n";
+//echo print_r($keyword_collection, true);
 
-foreach ($ids as $key => $val){
-   $node = \Drupal::entityTypeManager()->getStorage('node')->load($val);
-   $healthareas[$node->get('title')->value] = $key;
+$keyword_mappings = array();
+$missing_elements = array();
+createKeywordMappings($keyword_mappings, $missing_elements, $keyword_collection, $countries, $techareas, $healthareas);
+
+//echo print_r($keyword_mappings, true);
+
+drupal_flush_all_caches();
+
+if (count($missing_elements) > 0){
+  writeLog("Missing Elements: " . print_r($missing_elements, true));
+  fclose($log);
+  exit(0);
 }
-
-print_r($healthareas);
 
 /***
   Get A Node of type Resource Center
 ****/
 
-$query = \Drupal::entityQuery('node');
-$query->condition('type', 'resource');
-$ids = $query->execute();
+processResourceCenter($keyword_mappings);
 
-foreach ($ids as $key => $nId){
-  $node = Drupal::entityTypeManager()->getStorage('node')->load($nId);
-
-  /***
-    Load old Country Taxonomy
-    **/
-  $currentCountries = $node->get('countries')->getValue();
-  $delta = 0;
-  foreach ($currentCountries as $key => $val){
-    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($val['target_id']);
-    //echo "\n\nCountry is: [" . $term->get('name')->value . "]\n";
-    $countryId = $countries[trim($term->get('name')->value)];
-    //echo "Country ID: " . $countryId . "\n\n";
-    //echo "Entity ID for New Country is: " . $countryId . "\n\n";
-    if ($countryId > 0){
-      fwrite($sql, "INSERT INTO node_revision__field_country VALUES ('resource', 0, $nId, $nId, 'und', $delta, $countryId);\n");
-      fwrite($sql, "INSERT INTO node__field_country VALUES ('resource', 0, $nId, $nId, 'und', $delta, $countryId);\n");
-      $delta++;
-    }
-  }
-}
-/*
-
-Need to add countries to two tables:
-
-node_revision__field_country
-node__field_country
-
-Fields: [same for both tables]
-
-bundle: resource
-deleted: 0
-entity_id: [Node ID]
-revision_id: [Node ID]
-langcode: und
-delta: [0 - increments with each country]
-field_country_target_id: [country node id]
-
-*/
-
-fclose($sql);
+writeLog("Process Complete.");
+fclose($log);
 
 ?>
