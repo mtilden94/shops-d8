@@ -256,21 +256,15 @@ function processResourceCenter($keyword_mappings){
         foreach ($keyword_mappings[$target] as $ct => $ct_id){
           switch ($ct){
             case "country":
-              if (!in_array($ct_id, $new_countries)){
-                $new_countries[] = $ct_id;
-              }
+              $new_countries[] = $ct_id;
               break;
 
             case "tech-area":
-              if (!in_array($ct_id, $new_techareas)){
-                $new_techareas[] = $ct_id;
-              }
+              $new_techareas[] = $ct_id;
               break;
 
             case "health-area":
-              if (!in_array($ct_id, $new_healthareas)){
-                $new_healthareas[] = $ct_id;
-              }
+              $new_healthareas[] = $ct_id;
               break;
 
             case "retag":
