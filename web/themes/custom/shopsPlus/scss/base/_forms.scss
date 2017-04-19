@@ -457,36 +457,36 @@ textarea {
 }
 
 //temp hide form expand
-.page-resource-center, .page-resource-center-results {
-  .open-form-more, .select-wrap {
-    display: none;
-  }
-  .views-exposed-form {
-    .form-actions .button {
-      margin-bottom: 0;
-    }
-  }
-  @include media($tablet) {
-    .views-exposed-form {
-      .js-form-type-textfield {
-        margin-right: 120px;
-      }
-      .input-wrap {
-        margin-right: -120px;
-      }
-    }
-  }
-  @include media($fullsize) {
-    .views-exposed-form {
-      .js-form-type-textfield {
-        margin-right: 160px;
-      }
-      .input-wrap {
-        margin-right: -160px;
-      }
-    }
-  }
-}
+//.page-resource-center, .page-resource-center-results {
+//  .open-form-more, .select-wrap {
+//    display: none;
+//  }
+//  .views-exposed-form {
+//    .form-actions .button {
+//      margin-bottom: 0;
+//    }
+//  }
+//  @include media($tablet) {
+//    .views-exposed-form {
+//      .js-form-type-textfield {
+//        margin-right: 120px;
+//      }
+//      .input-wrap {
+//        margin-right: -120px;
+//      }
+//    }
+//  }
+//  @include media($fullsize) {
+//    .views-exposed-form {
+//      .js-form-type-textfield {
+//        margin-right: 160px;
+//      }
+//      .input-wrap {
+//        margin-right: -160px;
+//      }
+//    }
+//  }
+//}
 
 .page-events {
   .views-exposed-form {

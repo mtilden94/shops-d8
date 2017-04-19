@@ -303,6 +303,13 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     }
   }
 
+  if ($variables['field_name'] == 'field_resource_image' && $variables['element']['#view_mode'] == 'full') {
+    if ($variables['element'][0]['#item']->target_id == 431290) {
+      unset($variables['element'][0]['#item']);
+      unset($variables['items'][0]);
+    }
+  }
+
   if ($variables['field_name'] == 'field_url' AND !empty($variables['items'][0])) {
     $value = trim($variables['items'][0]['content']['#context']['value']);
 
@@ -589,7 +596,20 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
   $more_class = '';
 
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-index-resource-center-page-1') {
+    $form['actions']['#weight'] = 0;
     $form['fulltext']['#placeholder'] = t('Search the Resource Center');
+
+    $data_select = $form_state->getUserInput();
+    if ($data_select) {
+      if ((isset($data_select['health_area']) and $data_select['health_area'] != 'All') ||
+        (isset($data_select['type']) and $data_select['type'] != 'All') ||
+        (isset($data_select['technical_area']) and $data_select['technical_area'] != 'All') ||
+        (isset($data_select['country']) and $data_select['country'] != 'All')) {
+        $more_class = 'selected-filter ';
+      }
+    }
+    $form['more']['#weight'] = 0;
+    $form['more']['#markup'] = '<div class="' . $more_class . 'open-form-more">EXPAND SEARCH FILTERS</div>';
   }
 
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-resource-center-page-1') {
@@ -617,7 +637,7 @@ function shopsPlus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form
     $form['location']['#options']['All'] = "All locations";
   }
   if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-events-page-1') {
-    $form['title']['#placeholder'] = t('Search events');
+    $form['title']['#placeholxder'] = t('Search events');
     $data_select = $form_state->getUserInput();
     if ($data_select) {
       if ($data_select['health_area'] != 'All' || $data_select['event_type'] != 'All' || $data_select['location'] != 'All') {

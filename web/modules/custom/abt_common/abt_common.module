@@ -38,10 +38,55 @@ function abt_common_theme ($existing, $type, $theme, $path) {
 }
 
 function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form_id == 'views_exposed_form') {
-    $view_executable = $form_state->getStorage()['view'];
-    if ($view_executable->id() == 'events') {
-      $available_types = _getAvailableTerms();
+  switch ($form['#id']) {
+    case 'views-exposed-form-index-resource-center-page-1':
+      $form['resource_type']['#type'] = 'select';
+      unset($form['resource_type']['#size']);
+      $available_resource_types = _getAvailableResourceTypes();
+      if ($available_resource_types) {
+        $resouce_types = [];
+        foreach ($available_resource_types as $type) {
+          $resouce_types[$type->name] = $type->name;
+        }
+        $form['resource_type']['#options'] = ['' => t('Select an option')] + $resouce_types;
+      }
+
+      $form['countries_term_name']['#type'] = 'select';
+      unset($form['countries_term_name']['#size']);
+      $available_countries = _getAvailableResourceCountries();
+      if ($available_countries) {
+        $countries_to_select = [];
+        foreach ($available_countries as $type) {
+          $countries_to_select[$type->title] = $type->title;
+        }
+        $form['countries_term_name']['#options'] = ['' => t('Select an option')] + $countries_to_select;
+      }
+
+      $form['health_area_title']['#type'] = 'select';
+      unset($form['health_area_title']['#size']);
+      $available_health_areas = _getAvailableResourceHealthArea();
+      if ($available_health_areas) {
+        $health_areas_to_select = [];
+        foreach ($available_health_areas as $area) {
+          $health_areas_to_select[$area->title] = $area->title;
+        }
+          $form['health_area_title']['#options'] = ['' => t('Select an option')] + $health_areas_to_select;
+      }
+
+      $form['technical_area_title']['#type'] = 'select';
+      unset($form['technical_area_title']['#size']);
+      $available_tech_areas = _getAvailableResourceTechArea();
+      if ($available_tech_areas) {
+        $tech_areas_to_select = [];
+        foreach ($available_tech_areas as $area) {
+          $tech_areas_to_select[$area->title] = $area->title;
+        }
+          $form['technical_area_title']['#options'] = ['' => t('Select an option')] + $tech_areas_to_select;
+      }
+      break;
+
+    case 'views-exposed-form-events-page-1':
+      $available_types = _getAvailableEventTypes();
       if ($available_types) {
         $types_to_select = [];
         foreach ($available_types as $term) {
@@ -51,7 +96,7 @@ function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $fo
           $form['event_type']['#options'] = ['All' => t('All types')] + $types_to_select;
         }
       }
-      $available_countries = _getAvailableCountries();
+      $available_countries = _getAvailableEventsCountries();
       if ($available_countries) {
         $countries_to_select = [];
         foreach ($available_countries as $country_code) {
@@ -64,7 +109,7 @@ function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $fo
           $form['location']['#options'] = ['All' => t('All locations')] + $countries_to_select;
         }
       }
-      $available_areas = _getAvailableAreas();
+      $available_areas = _getAvailableEventsAreas();
       if ($available_areas) {
         $areas_to_select = [];
         foreach ($available_areas as $area) {
@@ -74,11 +119,11 @@ function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $fo
           $form['health_area']['#options'] = ['All' => t('All areas')] + $areas_to_select;
         }
       }
-    }
+      break;
   }
 }
 
-function _getAvailableTerms () {
+function _getAvailableEventTypes() {
   $query = \Drupal::database()->select('node__field_event_type', 'n');
   $query->join('node_field_data', 'nd', 'n.entity_id = nd.nid');
   $query->join('taxonomy_term_field_data', 'td', 'n.field_event_type_target_id = td.tid');
@@ -87,6 +132,7 @@ function _getAvailableTerms () {
   $query->where('nd.status = :status', [':status' => 1]);
   $query->groupBy('n.field_event_type_target_id');
   $query->groupBy('td.name');
+  $query->orderBy('td.name');
   $query->groupBy('td.tid');
   $data = $query->execute();
   $results = $data->fetchAll();
@@ -96,7 +142,7 @@ function _getAvailableTerms () {
   return FALSE;
 }
 
-function _getAvailableAreas () {
+function _getAvailableEventsAreas() {
   $query = \Drupal::database()->select('node__field_health_area', 'n');
   $query->join('node_field_data', 'nd', 'n.field_health_area_target_id = nd.nid');
   $query->join('node_field_data', 'nde', 'n.entity_id = nde.nid');
@@ -106,6 +152,7 @@ function _getAvailableAreas () {
   $query->where('nde.status = :status', [':status' => 1]);
   $query->groupBy('nd.nid');
   $query->groupBy('nd.title');
+  $query->orderBy('nd.title');
   $data = $query->execute();
   $results = $data->fetchAll();
   if ($results) {
@@ -114,12 +161,89 @@ function _getAvailableAreas () {
   return FALSE;
 }
 
-function _getAvailableCountries () {
+function _getAvailableResourceHealthArea() {
+  $query = \Drupal::database()->select('node__field_health_area', 'n');
+  $query->join('node_field_data', 'nd', 'n.field_health_area_target_id = nd.nid');
+  $query->join('node_field_data', 'nde', 'n.entity_id = nde.nid');
+  $query->fields('nd', array('title'));
+  $query->fields('nd', array('nid'));
+  $query->where('n.bundle = :bundle', [':bundle' => 'resource']);
+  $query->where('nde.status = :status', [':status' => 1]);
+  $query->groupBy('nd.nid');
+  $query->groupBy('nd.title');
+  $query->orderBy('nd.title');
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
+}
+
+function _getAvailableResourceTechArea() {
+  $query = \Drupal::database()->select('node__field_technical_area', 'n');
+  $query->join('node_field_data', 'nd', 'n.field_technical_area_target_id = nd.nid');
+  $query->join('node_field_data', 'nde', 'n.entity_id = nde.nid');
+  $query->fields('nd', array('title'));
+  $query->fields('nd', array('nid'));
+  $query->where('n.bundle = :bundle', [':bundle' => 'resource']);
+  $query->where('nde.status = :status', [':status' => 1]);
+  $query->groupBy('nd.nid');
+  $query->groupBy('nd.title');
+  $query->orderBy('nd.title');
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
+}
+
+function _getAvailableEventsCountries() {
   $query = \Drupal::database()->select('node__field_location', 'n');
   $query->join('node_field_data', 'nd', 'n.entity_id = nd.nid');
   $query->distinct();
   $query->where('nd.status = :status', [':status' => 1]);
   $query->fields('n', array('field_location_country_code'));
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
+}
+
+function _getAvailableResourceTypes() {
+  $query = \Drupal::database()->select('node__resource_types', 'n');
+  $query->join('node_field_data', 'nd', 'n.entity_id = nd.nid');
+  $query->join('taxonomy_term_field_data', 'td', 'n.resource_types_target_id = td.tid');
+  $query->fields('td', array('tid'));
+  $query->fields('td', array('name'));
+  $query->where('nd.status = :status', [':status' => 1]);
+  $query->where('n.bundle = :bundle', [':bundle' => 'resource']);
+  $query->groupBy('n.resource_types_target_id');
+  $query->groupBy('td.name');
+  $query->orderBy('td.name');
+  $query->groupBy('td.tid');
+  $data = $query->execute();
+  $results = $data->fetchAll();
+  if ($results) {
+    return $results;
+  }
+  return FALSE;
+}
+
+function _getAvailableResourceCountries() {
+  $query = \Drupal::database()->select('node__field_country', 'n');
+  $query->join('node_field_data', 'nd', 'n.field_country_target_id = nd.nid');
+  $query->join('node_field_data', 'nde', 'n.entity_id = nde.nid');
+  $query->fields('nd', array('title'));
+  $query->fields('nd', array('nid'));
+  $query->where('n.bundle = :bundle', [':bundle' => 'resource']);
+  $query->where('nde.status = :status', [':status' => 1]);
+  $query->groupBy('nd.nid');
+  $query->groupBy('nd.title');
+  $query->orderBy('nd.title');
   $data = $query->execute();
   $results = $data->fetchAll();
   if ($results) {
