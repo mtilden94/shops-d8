@@ -732,6 +732,7 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
  */
 $settings['install_profile'] = 'standard';
 $config_directories['sync'] = 'sites/default/files_config_dNukWKgjltMdB_X7LqvC6Uxt-wQ7d5tCUpu2OWmKsf8U4HHCBZ6HrQsN54Dw3BKoZYqxfvBJ8g/sync';
+
 if (file_exists(__DIR__ . '/settings.local.php')) {
     include __DIR__ . '/settings.local.php';
 }
