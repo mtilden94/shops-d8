@@ -303,6 +303,13 @@ function shopsPlus_preprocess_field(&$variables, $hook) {
     }
   }
 
+  if ($variables['field_name'] == 'field_resource_image' && $variables['element']['#view_mode'] == 'full') {
+    if ($variables['element'][0]['#item']->target_id == 431290) {
+      unset($variables['element'][0]['#item']);
+      unset($variables['items'][0]);
+    }
+  }
+
   if ($variables['field_name'] == 'field_url' AND !empty($variables['items'][0])) {
     $value = trim($variables['items'][0]['content']['#context']['value']);
 
