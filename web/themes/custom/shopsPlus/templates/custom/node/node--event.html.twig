@@ -7,17 +7,22 @@ is_past ? 'event-is-past' : 'event-is-up'
 <article{{ attributes.addClass(classes, 'clearfix') }}>
   <div{{ content_attributes.addClass('content', 'clearfix') }}>
     {% if is_past %}
-      <div class="left-side">
-        <div class="recap-wrap">
-          {{ content.field_recap }}
+      {% if content.field_image_gallery|render|trim is not empty %}
+        <div class="left-side">
+          <div class="recap-wrap">
+            {{ content.field_recap }}
+          </div>
+          {{ content.addtoany }}
         </div>
+        <div class="right-side">
+          <div class="recap_images">
+              {{ content.field_image_gallery }}
+          </div>
+        </div>
+      {% else %}
+        <div><div class="recap-wrap">{{ content.field_recap }}</div></div>
         {{ content.addtoany }}
-      </div>
-      <div class="right-side">
-        <div class="recap_images">
-            {{ content.field_image_gallery }}
-        </div>
-      </div>
+      {% endif %}
     {% else %}
       <div class="left-side">
         {% if content.field_event_date %}
