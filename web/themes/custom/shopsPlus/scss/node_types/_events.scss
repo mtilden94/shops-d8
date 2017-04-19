@@ -722,6 +722,10 @@
       @include media($tablet) {
         padding: 30px 20px 25px 20px;
       }
+
+      .title .f_item {
+        width: 100%;
+      }
     }
   }
   .block-views-block-events-header-block-2 {
