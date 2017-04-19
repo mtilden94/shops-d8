@@ -57,7 +57,7 @@ function abt_common_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $fo
       if ($available_countries) {
         $countries_to_select = [];
         foreach ($available_countries as $type) {
-          $countries_to_select[$type->name] = $type->name;
+          $countries_to_select[$type->title] = $type->title;
         }
         $form['countries_term_name']['#options'] = ['' => t('Select an option')] + $countries_to_select;
       }
@@ -234,17 +234,16 @@ function _getAvailableResourceTypes() {
 }
 
 function _getAvailableResourceCountries() {
-  $query = \Drupal::database()->select('node__countries', 'n');
-  $query->join('node_field_data', 'nd', 'n.entity_id = nd.nid');
-  $query->join('taxonomy_term_field_data', 'td', 'n.countries_target_id = td.tid');
-  $query->fields('td', array('tid'));
-  $query->fields('td', array('name'));
-  $query->where('nd.status = :status', [':status' => 1]);
+  $query = \Drupal::database()->select('node__field_country', 'n');
+  $query->join('node_field_data', 'nd', 'n.field_country_target_id = nd.nid');
+  $query->join('node_field_data', 'nde', 'n.entity_id = nde.nid');
+  $query->fields('nd', array('title'));
+  $query->fields('nd', array('nid'));
   $query->where('n.bundle = :bundle', [':bundle' => 'resource']);
-  $query->groupBy('n.countries_target_id');
-  $query->groupBy('td.name');
-  $query->orderBy('td.name');
-  $query->groupBy('td.tid');
+  $query->where('nde.status = :status', [':status' => 1]);
+  $query->groupBy('nd.nid');
+  $query->groupBy('nd.title');
+  $query->orderBy('nd.title');
   $data = $query->execute();
   $results = $data->fetchAll();
   if ($results) {
