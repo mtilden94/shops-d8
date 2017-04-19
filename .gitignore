@@ -16,7 +16,6 @@ private/*
 #Ignore local setting files
 web/sites/default/settings.local.php
 web/sites/default/services.local.yml
-web/sites/default/settings.php
 web/.htaccess
 
 # Ignore SimpleTest multi-site environment.
