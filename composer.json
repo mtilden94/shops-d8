@@ -95,7 +95,8 @@
 	"scripts": {
 		"drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
 		"pre-install-cmd": [
-			"DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+			"DrupalProject\\composer\\ScriptHandler::checkComposerVersion",
+			"rm -rf ./vendor"
 		],
 		"pre-update-cmd": [
 			"DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
@@ -104,23 +105,14 @@
 			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
 			"rm -rf ./web/modules/custom/backup_migrate/vendor",
 			"composer --working-dir=./web/modules/custom/backup_migrate update",
-			"drush -r ./web cr",
-			"drush -r ./web sql-dump > ./private/site_backup/backup-db.sql",
-			"gzip ./private/site_backup/backup-db.sql",
-			"tar -zcf ./private/site_backup/backup-files.tar.gz ./web/sites/default/files",
-			"cp ./private/site_backup/backup-files.tar.gz ./web/sites/default/files/site_backup",
-			"cp ./private/site_backup/backup-db.sql.gz ./web/sites/default/files/site_backup"
+			"drush -r ./web sql-cli < ./sql-scripts/config.sql",
+			"drush -r ./web cr"
 		],
 		"post-update-cmd": [
 			"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
 			"rm -rf ./web/modules/custom/backup_migrate/vendor",
 			"composer --working-dir=./web/modules/custom/backup_migrate update",
-			"drush -r ./web cr",
-			"drush -r ./web sql-dump > ./private/site_backup/backup-db.sql",
-			"gzip ./private/site_backup/backup-db.sql",
-			"tar -zcf ./private/site_backup/backup-files.tar.gz ./web/sites/default/files",
-			"cp ./private/site_backup/backup-files.tar.gz ./web/sites/default/files/site_backup",
-			"cp ./private/site_backup/backup-db.sql.gz ./web/sites/default/files/site_backup"
+			"drush -r ./web cr"
 		]
 	},
 	"extra": {
