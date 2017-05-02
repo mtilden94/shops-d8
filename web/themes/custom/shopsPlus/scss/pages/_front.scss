@@ -23,7 +23,22 @@
 }
 
 article.node-story-front .introduction-text blockquote {
-  color: #fff;
+  color: #000;
+  font-style: normal;
+  margin-left: 0;
+
+  &:before {
+    content: "";
+  }
+  p:before {
+    content: "“";
+  }
+  p:after {
+    content: "”";
+  }
+  @include media($tablet) {
+    color: #fff;
+  }
 }
 
 .front #block-shopsplus-content {

@@ -30,10 +30,10 @@
       <div class="event-date-city">
         {{ content.field_event_date }}
         {% if city %}
-          <div class="event-city">, {{ city }}</div>
+          <div class="event-city">{{ city }}</div>
         {% else %}
           <div class="location">
-            , {{ 'Online'|t }}
+            {{ 'Online'|t }}
           </div>
         {% endif %}
       </div>
