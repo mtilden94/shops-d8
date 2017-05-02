@@ -337,9 +337,11 @@
         font-weight: $header-bold;
         line-height: $base-line-height;
       }
+      /*
       .event-date-city > div {
         float: left;
       }
+      */
       .event-date-city {
         @include clearfix;
         color: $blue;

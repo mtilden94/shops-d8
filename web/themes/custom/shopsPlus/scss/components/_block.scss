@@ -125,7 +125,7 @@
             }
           }
         }
-        
+
 
         div.field .f_item {
           display: inline;
@@ -737,9 +737,11 @@
       font-weight: $header-bold;
       line-height: $base-line-height;
     }
+    /*
     .event-date-city > div {
       float: left;
     }
+    */
     .event-date-city {
       @include clearfix;
       color: $blue;
@@ -1491,7 +1493,7 @@
   & > h2 {
     font-size: 18px;
     margin-bottom: 20px;
-    
+
     @include media($fullsize) {
       font-size: 22px;
       margin-bottom: 15px;
