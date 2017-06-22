@@ -165,19 +165,19 @@ function createKeywordMappings(&$keyword_mappings, &$missing_elements, $keyword_
 
 function getResourceTypeMappings(){
 
-  $rt_vocab = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('resource_type');
+  $rt_vocab = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('resource_types');
   foreach ($rt_vocab as $rt){
     $rt_collection[strtolower($rt->name)] = $rt->tid;
   }
 
   $resourceTM = array(
-    $rt_collection['article'] => $rt_collection['journal publications'],
+    $rt_collection['article'] => $rt_collection['journal publication'],
     $rt_collection['chat transcript'] => $rt_collection['other'],
     $rt_collection['country assessment'] => $rt_collection['report'],
     $rt_collection['discussion paper'] => $rt_collection['other'],
     $rt_collection['global research report'] => $rt_collection['report'],
     $rt_collection['graphic'] => $rt_collection['other'],
-    $rt_collection['handbook'] => $rt_collection['tools'],
+    $rt_collection['handbook'] => $rt_collection['tool'],
     $rt_collection['link'] => $rt_collection['other'],
     $rt_collection['meeting notes'] => $rt_collection['other'],
     $rt_collection['occasional paper'] => $rt_collection['other'],

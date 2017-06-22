@@ -663,16 +663,12 @@
             color: $heading-color;
             font-weight: $bold;
             line-height: 100%;
-            height: 50px;
             overflow: hidden;
             &:after {
               content: "";
             }
             @include media($tablet) {
-              height: 35px;
-            }
-            @include media($fullsize) {
-              height: 44px;
+              height: 100px;
             }
           }
           .date {
