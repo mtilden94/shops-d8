@@ -27,3 +27,4 @@ web/sites/simpletest
 #ignore logs
 error_log
 tagging_log
+prepros-6.config
