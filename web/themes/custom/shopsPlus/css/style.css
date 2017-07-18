@@ -5639,7 +5639,7 @@ h1 a, h2 a, h3 a {
       float: left;
       border-left: none;
       border-right: none; }
-    .page-events .past-events-view .line-group .views-row:nth-child(-2n+5) {
+    .page-events .past-events-view .line-group .views-row:nth-child(-2n+15) {
       margin-right: 4%;
       margin-left: 0; } }
   @media screen and (min-width: 1040px) {
